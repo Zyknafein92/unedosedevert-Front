@@ -28,7 +28,7 @@ package:
         - dist/
 
 deploy:
-  image: python:lastest
+  image: python:latest
   stage: deploy
   before_script:
     - pip install awscli
