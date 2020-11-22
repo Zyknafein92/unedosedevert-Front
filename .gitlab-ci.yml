@@ -13,7 +13,7 @@ install:
     script:
         - npm install
         - npm install -g @angular/cli
-        - ng build unedosedevert-front 
+        - ng build
     artifacts:
       paths:
         - node_modules/
