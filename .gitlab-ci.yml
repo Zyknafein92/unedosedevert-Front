@@ -1,0 +1,29 @@
+image : node:latest
+
+stages:
+    - install
+    - package
+
+cache:
+  paths:
+    - node_modules/
+
+install:
+    stage: install
+    script:
+        - npm install
+        - npm install -g @angular/cli
+        - ng build unedosedevert-front 
+    artifacts:
+      paths:
+        - node_modules/
+
+package:
+    stage: package
+    script:
+      - ./node_modules/.bin/ng build --prod
+    artifacts:
+      paths:
+        - dist/
+
+    
