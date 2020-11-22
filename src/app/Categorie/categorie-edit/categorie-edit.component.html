@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="well-block">
+    <div class="well-title">
+
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('name').valid || !forms.get('name').touched">Le nom doit être renseigné.</div>
+            <label class="control-label">Nom</label>
+            <input type="text" class="form-control" formControlName="name" required >
+          </div>
+
+        <div class="row">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

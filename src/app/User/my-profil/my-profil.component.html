@@ -1,0 +1,40 @@
+<div class="myprofil" *ngIf="user">
+  <section class="coordonnées">
+    <h1>Mes données personnelles :</h1>
+
+    <br>
+
+    <h2 class="sous-titre">Mes informations utilisateurs :</h2>
+    <h3>Nom:</h3>
+    <p class="text">{{user.nom}}</p>
+    <h3>Prénom:</h3>
+    <p class="text">{{user.prenom}}</p>
+    <h3>Date de naissance : </h3>
+    <p class="text">{{user.anniversaire | date:'dd/MM/yyyy'}}</p>
+    <br>
+    <h2 class="sous-titre">Mes coordonnées de contact :</h2>
+
+    <h3>Téléphone :</h3>
+    <p class="text">{{user.telephone}}</p>
+    <h3>Email:</h3>
+    <p class="text">{{user.email}}</p>
+
+
+    <div class="btn-group">
+      <button type="button" class="btn bg-light" data-toggle="modal" data-target="#updateUser">Modifier le profil</button>
+      <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Supprimer mon compte</button>
+    </div>
+  </section>
+  <br>
+
+ <section class="adresse">
+  <h1>Mes addresses :</h1>
+   <button type="button" class="btn bg-light" data-toggle="modal" >Ajouter une adresse de livraison</button>
+   <div class="list-adresse" *ngFor="let adresse of user.adresses">
+     <p class="text">{{adresse.nom}}</p>
+     <p class="text">{{adresse.numero}} {{adresse.voie}}</p>
+     <p class="text">{{adresse.codePostal}} {{adresse.ville}} </p>
+   </div>
+ </section>
+
+</div>

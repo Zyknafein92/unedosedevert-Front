@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="well-block">
+    <div class="well-title">
+
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('nom').valid || !forms.get('nom').touched">Le nom doit être renseigné.</div>
+            <label class="control-label">Nom</label>
+            <input type="text" class="form-control" formControlName="nom" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('numero').valid || !forms.get('numero').touched">Le numero doit être renseigné.</div>
+            <label class="control-label">Numero</label>
+            <input type="number" class="form-control" formControlName="name" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('voie').valid || !forms.get('voie').touched">La voie doit être renseigné.</div>
+            <label class="control-label">Voie</label>
+            <input type="text" class="form-control" formControlName="voie" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('codePostal').valid || !forms.get('codePostal').touched">Le code postal doit être renseigné.</div>
+            <label class="control-label">Code postal</label>
+            <input type="text" class="form-control" formControlName="codePostal" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('ville').valid || !forms.get('ville').touched">La ville doit être renseignée.</div>
+            <label class="control-label">Ville</label>
+            <input type="text" class="form-control" formControlName="ville" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('batiment').valid || !forms.get('batiment').touched">Le batiment doit être renseigné.</div>
+            <label class="control-label">Batiment</label>
+            <input type="text" class="form-control" formControlName="batiment" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('digicode').valid || !forms.get('digicode').touched">Le digicode doit être renseigné.</div>
+            <label class="control-label">Digicode</label>
+            <input type="text" class="form-control" formControlName="digicode" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('interphone').valid || !forms.get('interphone').touched">Le nom doit être renseigné.</div>
+            <label class="control-label">Interphone</label>
+            <input type="text" class="form-control" formControlName="interphone" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('etage').valid || !forms.get('etage').touched">L'etage doit être renseigné.</div>
+            <label class="control-label">Etage</label>
+            <input type="text" class="form-control" formControlName="etage" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('porte').valid || !forms.get('porte').touched">La porte doit être renseignée.</div>
+            <label class="control-label">Porte</label>
+            <input type="text" class="form-control" formControlName="porte" required >
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

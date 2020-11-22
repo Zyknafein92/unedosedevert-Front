@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card-body">
+    <br>
+    <div class="row">
+      <button type="button" class="btn btn-info" (click)="creerType() ">Créer un type</button>
+    </div>
+    <br>
+    <div class="card-deck">
+      <div class="card-body">
+        <table class="table table-responsive">
+          <table class="table table-hover table-condensed table-striped">
+            <thead class="Type">
+            <tr>
+              <th>Nom</th>
+              <th>Actions</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let type of types">
+              <td>{{type.name}}</td>
+              <td>
+                <button mat-fab color="primary" aria-label="Edit" *ngIf="type" datatype="type" (click)="modifierType(type.id)">
+                  <mat-icon>bookmark</mat-icon>
+                </button>
+              </td>
+              <td>
+                <button mat-fab color="warn" aria-label="Delete" *ngIf="type" datatype="type" (click)="supprimerType(type.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </table>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+

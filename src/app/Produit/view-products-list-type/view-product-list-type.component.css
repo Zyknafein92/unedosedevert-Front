@@ -1,0 +1,9 @@
+.produit-container {
+  max-width: 1400px;
+  text-align: center;
+  margin-left: 200px;
+}
+
+.produit-carte .col-md-3 {
+  max-width: 100%;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+<div class="card-body">
+  <br>
+  <div class="row">
+    <button type="button" class="btn btn-info" (click)="creerCategorie() ">Créer un categorie</button>
+  </div>
+  <br>
+  <div class="card-deck">
+    <div class="card-body">
+      <table class="table table-responsive">
+        <table class="table table-hover table-condensed table-striped">
+          <thead class="Categorie">
+          <tr>
+            <th>Nom</th>
+            <th>Actions</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let categorie of categories">
+            <td>{{categorie.name}}</td>
+            <td>
+              <button mat-fab color="primary" aria-label="Edit" *ngIf="categorie" datatype="categorie" (click)="modifierCategorie(categorie.id)">
+                <mat-icon>bookmark</mat-icon>
+              </button>
+            </td>
+            <td>
+              <button mat-fab color="warn" aria-label="Delete" *ngIf="categorie" datatype="categorie" (click)="supprimerCategorie(categorie.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </table>
+    </div>
+  </div>
+  <br>
+</div>
+</div>

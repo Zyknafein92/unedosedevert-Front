@@ -1,0 +1,30 @@
+.produit-view-container {
+  max-width: 100%;
+  text-align: left;
+  margin-right: 23px;
+  margin-bottom: 50px;
+}
+
+.produit-title {
+  text-transform: uppercase;
+}
+
+.price {
+  font-size: 1.52rem;
+  font-weight: 600;
+}
+button {
+  font-size: 1.6em;
+  height: 3.1rem;
+  width: 100%;
+  text-transform: uppercase;
+  background-color: forestgreen;
+}
+
+h1, h2 {
+  margin-bottom: 5px;
+}
+
+.produit-view-container:hover {
+  cursor: pointer;
+}

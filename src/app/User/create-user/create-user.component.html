@@ -1,0 +1,141 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="well-block">
+        <div class="well-title">
+
+
+          <div class="card">
+            <div class="card-header" style="text-align: center"><h3>Créer votre profil utilisateur :</h3></div>
+          </div>
+
+          <form [formGroup]="forms" (ngSubmit)="saveUser()">
+            <br>
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group"
+                     [class.has-success]="forms.get('prenom').valid"
+                     [class.has-error]="forms.get('prenom').invalid && forms.get('prenom').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('prenom').valid || !forms.get('prenom').touched">Le prénom doit posséder au moins 2 lettres.</div>
+                  <mat-label class="control-label">Prénom:</mat-label>
+                  <input class="form-control"
+                         type="text"
+                         name="prenom"
+                         placeholder="prenom"
+                         formControlName="prenom"
+                         required minlength="2">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"
+                     [class.has-success]="forms.get('nom').valid"
+                     [class.has-error]="forms.get('nom').invalid && forms.get('nom').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('nom').valid || !forms.get('nom').touched">Le nom doit posséder au moins 2 lettres.</div>
+                  <label class="control-label">Nom:</label>
+                  <input class="form-control input-md"
+                         type="text"
+                         name="nom"
+                         placeholder="Nom"
+                         formControlName="nom"
+                         required
+                         minlength="2">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group"
+                     [class.has-success]="forms.get('anniversaire').valid"
+                     [class.has-error]="forms.get('anniversaire').invalid && forms.get('anniversaire').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('anniversaire').valid || !forms.get('anniversaire').touched">La date de naissance doit être renseignée.</div>
+                  <label class="control-label">Date de Naissance:</label>
+                  <input class="form-control input-md"
+                         type="Date"
+                         name="Date de Naissance"
+                         placeholder="anniversaire"
+                         formControlName="anniversaire"
+                         autocapitalize="on"
+                         spellcheck="on"
+                         required/>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"
+                     [class.has-success]="forms.get('telephone').valid"
+                     [class.has-error]="forms.get('telephone').invalid && forms.get('telephone').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('telephone').valid || !forms.get('telephone').touched">Le numéro de telephone doit être composé de 10 chiffres.</div>
+                  <label class="control-label">Numéro de télételephone:</label>
+                  <input class="form-control input-md"
+                         type="text"
+                         name="telephone"
+                         minlength="10"
+                         maxlength="10"
+                         placeholder="Numéro de telephone"
+                         formControlName="telephone"
+                         required>
+                </div>
+
+              </div>
+            </div>
+
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group"
+                     [class.has-success]="forms.get('email').valid"
+                     [class.has-error]="forms.get('email').invalid && forms.get('email').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('email').valid || !forms.get('email').touched">L'adresse email doit être valide (xx@xx.xx)</div>
+                  <label for="email" class="control-label">Email:</label>
+                  <input required
+                         id="email"
+                         name="email"
+                         type="email"
+                         class="form-control"
+                         formControlName="email"
+                         placeholder="Email">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group"
+                     [class.has-success]="forms.get('password').valid"
+                     [class.has-error]="forms.get('password').invalid && forms.get('password').touched">
+                  <div class="alert alert-danger" [hidden]="forms.get('password').valid || !forms.get('password').touched">Le password doit contenir au moins 6 caractères ou chiffres.</div>
+                  <label class="control-label">Mot de passe:</label>
+                  <input class="form-control input-md"
+                         type="password"
+                         name="password"
+                         placeholder="Mot de passe"
+                         formControlName="password"
+                         minlength="6"
+                         required>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="col-md-12" align="right">
+              <div class="form-group">
+                <button
+                  type="submit"
+                class="btn btn-primary" [disabled]="forms.invalid">Valider
+                </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

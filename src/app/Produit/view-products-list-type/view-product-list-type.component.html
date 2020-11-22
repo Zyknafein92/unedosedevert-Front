@@ -1,0 +1,11 @@
+<br>
+<div class="container produit-container">
+  <div class="row col-md-12 ">
+    <div class="produit-carte" *ngFor="let produit of produits">
+      <div class="col-md-3">
+        <app-categorie-view-produit [produit]="produit"></app-categorie-view-produit>
+      </div>
+    </div>
+    <!-- Ajouter un grid pour une liste de produits-->
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<br>
+<div class="container">
+  <div class="well-block">
+    <div class="well-title">
+
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('name').valid || !forms.get('name').touched">Le nom doit être renseigné.</div>
+            <label class="control-label">Nom</label>
+            <input type="text" class="form-control" formControlName="name" required >
+          </div>
+
+          <div class="form-group col-6">
+            <div class="alert alert-danger" [hidden]="forms.get('origine').valid || !forms.get('origine').touched">L'origine du produit doit être renseignée.</div>
+            <label class="control-label">Origine</label>
+            <input type="text" class="form-control" formControlName="origine" required >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-4">
+            <div class="alert alert-danger" [hidden]="forms.get('prix').valid || !forms.get('prix').touched">Le prix doit être renseigné.</div>
+            <label class="control-label">Prix</label>
+            <input type="number" class="form-control" formControlName="prix" required >
+          </div>
+
+          <div class="form-group col-4">
+            <div class="alert alert-danger" [hidden]="forms.get('tva').valid || !forms.get('tva').touched">Le TVA doit être renseignée.</div>
+            <label class="control-label">TVA</label>
+            <input type="number" class="form-control" formControlName="tva" required >
+          </div>
+
+          <div class="form-group col-4">
+            <label class="control-label">Stock</label>
+            <select class="form-control" formControlName="stock" required>
+              <option [ngValue]="null">Selectionnez un état de stock...</option>
+              <option *ngFor="let value of stockKeys" [value]="value">{{stock[value]}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group col-6">
+          <label class="control-label">Type</label>
+          <select class="form-control" formControlName="type" #type required (change)="changeFn($event)">
+            <option [ngValue]="null">Selectionnez un type...</option>
+            <option *ngFor="let _t of types" [ngValue]="_t">{{_t.name}}</option>
+          </select>
+        </div>
+          <div class="form-group col-6">
+          <label class="control-label">Categorie</label>
+          <select class="form-control" name="categorie"  formControlName="categorie" required>
+            <option [ngValue]="null">Selectionnez une categorie...</option>
+            <option *ngFor="let _c of categories" [ngValue]="_c">{{_c.name}} </option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <div class="alert alert-danger" [hidden]="forms.get('description').valid || !forms.get('description').touched">La description doit être renseignée.</div>
+            <label class="control-label">Description</label>
+            <input type="text" class="form-control" name="description"  formControlName="description" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--        <button type="submit" class="btn btn-primary" [hidden]="this.forms.invalid">Save</button>-->
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

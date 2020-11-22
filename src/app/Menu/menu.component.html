@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <span>Une Dose de Vert</span>
+  <button mat-button routerLink="accueil">Accueil</button>
+  <button mat-button routerLink="products">Nos produits</button>
+  <button mat-button>A propos</button>
+  <button mat-button [matMenuTriggerFor]="compte" *ngIf="this.tokenEmail != null">Mon compte</button>
+  <button mat-button routerLink="login" *ngIf="this.tokenEmail == null">Se connecter</button>
+  <button mat-button *ngIf="this.tokenEmail != null" (click)="logout()">Me déconnecter</button>
+  <button mat-button [matMenuTriggerFor]="Admin" *ngIf="this.authorities== 'ROLE_ADMIN'">Admin</button>
+
+  <mat-menu #Admin="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="Commande">Commande</button>
+    <button mat-menu-item [matMenuTriggerFor]="Livraison">Livraison</button>
+    <button mat-menu-item [matMenuTriggerFor]="Produit">Produit</button>
+    <button mat-menu-item [matMenuTriggerFor]="Recette">Recette</button>
+    <button mat-menu-item [matMenuTriggerFor]="Utilisateur">Utilisateur</button>
+  </mat-menu>
+
+  <mat-menu #Commande="matMenu">
+  </mat-menu>
+
+  <mat-menu #Livraison="matMenu">
+  </mat-menu>
+
+  <mat-menu #Produit="matMenu">
+    <button mat-menu-item routerLink="admin/products" >Listes des produits</button>
+    <button mat-menu-item routerLink="admin/products/categories" >Listes des categories</button>
+    <button mat-menu-item routerLink="admin/products/types" >Listes des types</button>
+  </mat-menu>
+
+  <mat-menu #Recette="matMenu">
+  </mat-menu>
+
+  <mat-menu #Utilisateur="matMenu">
+  </mat-menu>
+
+  <mat-menu #compte="matMenu">
+    <button mat-menu-item routerLink="user/myprofil">Mon profil</button>
+    <button mat-menu-item>Mes commandes</button>
+    <button mat-menu-item>Mon panier</button>
+  </mat-menu>
+</mat-toolbar>
