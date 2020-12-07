@@ -60,11 +60,11 @@ export class ProduitEditComponent implements OnInit {
       stock: ['', Validators.required]
       //  picture: ['', Validators.required],
     });
-    this.forms.controls['type'].valueChanges.subscribe(type => {
+    this.forms.controls.type.valueChanges.subscribe(type => {
       this.type = type;
     });
 
-    this.forms.controls['categorie'].valueChanges.subscribe(categorie => {
+    this.forms.controls.categorie.valueChanges.subscribe(categorie => {
       this.categorie = categorie;
       console.log(categorie);
     });

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
 import {CategoriesService} from '../../../services/categorie.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ModalConfirmComponent} from '../../Modal/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-categorie-edit',
@@ -11,22 +13,21 @@ import {CategoriesService} from '../../../services/categorie.service';
 })
 export class CategorieEditComponent implements OnInit {
   forms: FormGroup;
+  @Input()
   categorie: Categorie;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private categorieService: CategoriesService) { }
+              private categorieService: CategoriesService,
+              public dialogRef: MatDialogRef<CategorieEditComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.activatedRoute.queryParams.subscribe(
-      (params) => {
-        const id = params.id;
-        if (id) {
-          this.patchValue(id);
-        }
-      });
+    if (this.data.id != null) {
+      this.patchValue(this.data.id);
+    }
   }
 
   private initForm(): void {
@@ -34,18 +35,6 @@ export class CategorieEditComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
     });
-  }
-
-  onSubmit(): void {
-    if (!this.categorie || this.categorie.id == null) {
-      this.categorieService.createCategorie(this.forms).subscribe(
-        next => this.router.navigate(['/admin/products/categories'])
-      );
-    } else {
-      this.categorieService.updateCategorie(this.forms).subscribe(
-        next => this.router.navigate(['/admin/products/categories'])
-      );
-    }
   }
 
   private patchValue(id: number): void {
@@ -56,6 +45,18 @@ export class CategorieEditComponent implements OnInit {
         name: data.name,
       });
     });
+  }
+
+  onSubmit(): void {
+    if (!this.categorie || this.categorie.id == null) {
+      this.categorieService.createCategorie(this.forms).subscribe(
+        data => this.router.navigate(['/admin/products/categories'])
+      );
+    } else {
+      this.categorieService.updateCategorie(this.forms).subscribe(
+        data => this.router.navigate(['/admin/products/categories'])
+      );
+    }
   }
 
 }

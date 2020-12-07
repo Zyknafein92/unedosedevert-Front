@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Categorie} from '../model/categorie.model';
 import {FormGroup} from '@angular/forms';
+import {SortDirection} from '@angular/material/sort';
 
 
 @Injectable({
@@ -15,7 +16,11 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Array<Categorie>> {
-    return this.http.get<Array<Categorie>>(this.URL);
+    return this.http.get<Array<Categorie>>(`${this.URL}`);
+  }
+
+  getCategoriePage(page: number, size: number, sort: string): Observable<any> {
+    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
   }
 
   getCategorie(id: number): Observable<Categorie> {

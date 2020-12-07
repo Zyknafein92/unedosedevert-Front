@@ -28,7 +28,7 @@ export class ViewProductsListComponent implements OnInit {
   }
 
   private initCategories(): void {
-    this.categorieService.getCategories().subscribe( data => {
+    this.categorieService.getCategories().subscribe(data => {
       this.categories = data;
     });
   }
