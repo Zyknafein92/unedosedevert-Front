@@ -3,6 +3,7 @@ image : node:latest
 stages:
     - install
     - package
+    - deploy
 
 cache:
   paths:
@@ -13,7 +14,7 @@ install:
     script:
         - npm install
         - npm install -g @angular/cli
-        - ng build unedosedevert-front 
+        - ng build
     artifacts:
       paths:
         - node_modules/
@@ -25,5 +26,14 @@ package:
     artifacts:
       paths:
         - dist/
+
+deploy:
+  image: python:latest
+  stage: deploy
+  before_script:
+    - pip install awscli
+  script:
+    - aws s3 sync ./dist s3://unedosedevert/ --acl=public-read --delete
+
 
     
