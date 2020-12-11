@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 import {SearchCriteria} from '../model/search-criteria';
+import {SortDirection} from '@angular/material/sort';
 
 
 
@@ -21,10 +22,15 @@ export class ProduitService {
     return this.http.get<Array<Produit>>(this.URL);
   }
 
-  getProduitsBySearch(searchCriteria: SearchCriteria): Observable<Array<Produit>> {
+  getProduitPage(page: number, size: number, sort: string): Observable<any> {
+    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+  }
+
+  // tslint:disable-next-line:max-line-length
+  getProduitsBySearch(searchCriteria: SearchCriteria, page: number, size: number, sort: string): Observable<any> {
     let customParam = new HttpParams();
     if (searchCriteria.type != null) {
-     customParam = customParam.set('type', searchCriteria.type);
+      customParam = customParam.set('type', searchCriteria.type);
     }
     if (searchCriteria.categorie != null) {
       customParam = customParam.set('categorie', searchCriteria.categorie);
@@ -33,7 +39,7 @@ export class ProduitService {
       customParam = customParam.set('query', searchCriteria.query);
     }
     console.log('Service:', customParam);
-    return this.http.get<Array<Produit>>(`${this.URL}/search`, {params: customParam});
+    return this.http.get<Array<Produit>>(`${this.URL}/search?page=${page}&size=${size}&sort=${sort}`, {params: customParam});
   }
 
 

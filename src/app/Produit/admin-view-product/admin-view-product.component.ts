@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Produit} from '../../../model/produit.model';
 import {Router} from '@angular/router';
 import {ProduitService} from '../../../services/produit.service';
@@ -7,6 +7,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {merge} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {MatSort} from '@angular/material/sort';
+import {Type} from '../../../model/type.model';
+import {MatDialog} from '@angular/material/dialog';
+import {TypeEditComponent} from '../../Type/type-edit/type-edit.component';
+import {ProduitEditComponent} from '../produit-edit/produit-edit.component';
 
 
 @Component({
@@ -14,23 +18,38 @@ import {MatSort} from '@angular/material/sort';
   templateUrl: './admin-view-product.component.html',
   styleUrls: ['./admin-view-product.component.css']
 })
-export class AdminViewProductComponent implements OnInit {
+export class AdminViewProductComponent implements AfterViewInit {
 
   produit: Produit;
   produits: Array<Produit>;
+  displayedColumns: string[] = ['name', 'type', 'categorie', 'prix', 'stock', 'modifier', 'supprimer'];
+  isLoadingResults = true;
+  dataSource = new MatTableDataSource<Produit>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
 
 
 
-  constructor(private router: Router, private produitService: ProduitService) { }
+  constructor(private router: Router, private produitService: ProduitService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.initProduits();
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    merge(this.sort.sortChange, this.paginator.page).pipe(
+      startWith({}),
+      switchMap(() => {
+        return this.produitService.getProduitPage(this.paginator.pageIndex + 1, this.paginator.pageSize , this.sort.direction);
+      }));
   }
 
   private initProduits(): void {
-    this.produitService.getProduits().subscribe(data => {
-        this.produits = data;
+    this.produitService.getProduitPage(0, 30, 'DESC').subscribe(data => {
+        this.produits = data.content;
+        this.dataSource = new MatTableDataSource<Produit>(this.produits);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         console.log('data : ', data);
       },
       err => {
@@ -39,11 +58,17 @@ export class AdminViewProductComponent implements OnInit {
   }
 
   creerProduit(): void {
-    this.router.navigate(['admin/products/edit']);
+    const dialogRef = this.dialog.open(ProduitEditComponent, {
+      width: '500px',
+      data: {}
+    });
   }
 
-  modifierProduit(id: number): void {
-    this.router.navigate(['admin/products/edit'], {queryParams: {id}});
+  modifierProduit(produit: Produit): void {
+    const dialogRef = this.dialog.open(ProduitEditComponent, {
+      width: '500px',
+      data: produit
+    });
   }
 
   supprimerProduit(id: number): void {

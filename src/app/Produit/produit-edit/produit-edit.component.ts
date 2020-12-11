@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
@@ -8,6 +8,7 @@ import {Produit} from '../../../model/produit.model';
 import {Stock} from '../../../model/stock.model';
 import {TypeService} from '../../../services/type.service';
 import {CategoriesService} from '../../../services/categorie.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-produit-edit',
@@ -16,12 +17,13 @@ import {CategoriesService} from '../../../services/categorie.service';
 })
 export class ProduitEditComponent implements OnInit {
 
+  @Input()
+  produit: Produit;
   forms: FormGroup;
   types: Array<Type>;
   categories: Array<Categorie>;
   stock = Stock;
   stockKeys = Object.keys(this.stock);
-  produit: Produit;
   type: Type;
   categorie: Categorie;
 
@@ -31,20 +33,18 @@ export class ProduitEditComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private produitService: ProduitService,
               private typeService: TypeService,
-              private categorieService: CategoriesService) {
+              private categorieService: CategoriesService,
+              public dialogRef: MatDialogRef<ProduitEditComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.initCategorie();
     this.initType();
-    this.activatedRoute.queryParams.subscribe(
-      (params) => {
-        const id = params.id;
-        if (id) {
-          this.patchValue(id);
-        }
-      });
+    if (this.data.id != null) {
+      this.patchValue(this.data.id);
+    }
   }
 
   initForm(): void {

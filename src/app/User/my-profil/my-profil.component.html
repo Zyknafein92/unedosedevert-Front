@@ -1,40 +1,63 @@
-<div class="myprofil" *ngIf="user">
-  <section class="coordonnées">
-    <h1>Mes données personnelles :</h1>
+<div class="container" *ngIf="user">
+<form [formGroup]="forms" (ngSubmit)="onSubmit()">
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle><h3><i>Mon identitée:</i></h3></mat-card-subtitle>
+    </mat-card-header>
 
-    <br>
+    <mat-card-content>
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Nom:</mat-label>
+          <input matInput placeholder="Nom" formControlName="nom" value="{{user.nom}}">
+          <mat-error [hidden]="forms.get('nom').valid || !forms.get('nom').touched">
+            Votre <strong>nom</strong> doit être renseigné.
+          </mat-error>
+        </mat-form-field>
 
-    <h2 class="sous-titre">Mes informations utilisateurs :</h2>
-    <h3>Nom:</h3>
-    <p class="text">{{user.nom}}</p>
-    <h3>Prénom:</h3>
-    <p class="text">{{user.prenom}}</p>
-    <h3>Date de naissance : </h3>
-    <p class="text">{{user.anniversaire | date:'dd/MM/yyyy'}}</p>
-    <br>
-    <h2 class="sous-titre">Mes coordonnées de contact :</h2>
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Prénom:</mat-label>
+          <input matInput placeholder="Prénom" formControlName="prenom" value="{{user.prenom}}">
+          <mat-error [hidden]="forms.get('prenom').valid || !forms.get('prenom').touched">
+            Votre <strong>prénom</strong> doit être renseigné.
+          </mat-error>
+        </mat-form-field>
 
-    <h3>Téléphone :</h3>
-    <p class="text">{{user.telephone}}</p>
-    <h3>Email:</h3>
-    <p class="text">{{user.email}}</p>
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Date de naissance:</mat-label>
+          <input matInput type="date" placeholder="Anniversaire" formControlName="anniversaire" value="{{user.anniversaire}}">
+          <mat-error [hidden]="forms.get('anniversaire').valid || !forms.get('anniversaire').touched">
+            Votre <strong>date d'anniversaire</strong> doit être renseignée.
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
 
+    <mat-card-header>
+      <mat-card-subtitle><h3><i>Mes moyens de contacts:</i></h3></mat-card-subtitle>
+    </mat-card-header>
 
-    <div class="btn-group">
-      <button type="button" class="btn bg-light" data-toggle="modal" data-target="#updateUser">Modifier le profil</button>
-      <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Supprimer mon compte</button>
-    </div>
-  </section>
-  <br>
+    <mat-card-content>
+      <mat-form-field class="example-full-width col-4">
+        <mat-label>Téléphone:</mat-label>
+        <input matInput type="tel" placeholder="Téléphone" formControlName="telephone" value="{{user.telephone}}">
+        <mat-error [hidden]="forms.get('telephone').valid || !forms.get('telephone').touched">
+          Un<strong> numéro de téléphone</strong> doit être renseigné.
+        </mat-error>
+      </mat-form-field>
 
- <section class="adresse">
-  <h1>Mes addresses :</h1>
-   <button type="button" class="btn bg-light" data-toggle="modal" >Ajouter une adresse de livraison</button>
-   <div class="list-adresse" *ngFor="let adresse of user.adresses">
-     <p class="text">{{adresse.nom}}</p>
-     <p class="text">{{adresse.numero}} {{adresse.voie}}</p>
-     <p class="text">{{adresse.codePostal}} {{adresse.ville}} </p>
-   </div>
- </section>
+      <mat-form-field class="example-full-width col-8">
+        <mat-label>Email:</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email" value="{{user.email}}">
+        <mat-error [hidden]="forms.get('email').valid || !forms.get('email').touched">
+          Un <strong>email</strong> doit être renseigné.
+        </mat-error>
+      </mat-form-field>
 
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>
+  </form>
 </div>
+

@@ -1,0 +1,8 @@
+.mat-dialog-title{
+  text-align: center;
+}
+
+.mat-dialog-content{
+  height: auto !important;
+  overflow: initial !important;
+}

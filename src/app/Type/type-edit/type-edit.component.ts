@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Type} from '../../../model/type.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TypeService} from '../../../services/type.service';
 import {Categorie} from '../../../model/categorie.model';
 import {CategoriesService} from '../../../services/categorie.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-type-edit',
@@ -13,8 +14,10 @@ import {CategoriesService} from '../../../services/categorie.service';
 })
 export class TypeEditComponent implements OnInit {
 
-  forms: FormGroup;
+  @Input()
   type: Type;
+
+  forms: FormGroup;
   categorieList: Array<Categorie>;
   categories: FormGroup;
 
@@ -22,19 +25,17 @@ export class TypeEditComponent implements OnInit {
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private typeService: TypeService,
-              private categorieService: CategoriesService) {
+              private categorieService: CategoriesService,
+              public dialogRef: MatDialogRef<TypeEditComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.initCategories();
-    this.activatedRoute.queryParams.subscribe(
-      (params) => {
-        const id = params.id;
-        if (id) {
-          this.patchValue(id);
-        }
-      });
+    if (this.data.id != null) {
+      this.patchValue(this.data.id);
+    }
   }
 
   private initForm(): void {

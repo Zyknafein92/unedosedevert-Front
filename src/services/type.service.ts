@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 
 import {FormGroup} from '@angular/forms';
 import {Type} from '../model/type.model';
+import {SortDirection} from '@angular/material/sort';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class TypeService {
 
   getType(id: number): Observable<Type> {
     return this.http.get<Type>(`${this.URL}/${id}`);
+  }
+
+  getTypePage(page: number, size: number, sort: string): Observable<any> {
+    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
   }
 
   createType(form: FormGroup): Observable < Type> {

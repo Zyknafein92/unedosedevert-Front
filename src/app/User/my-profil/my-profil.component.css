@@ -1,38 +1,7 @@
-.myprofil h1{
-  margin-top: 20px;
-  font-size: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  align-content: center;
-  text-decoration: underline;
+.example-card {
+  max-width: 400px;
 }
 
-.coordonnées {
-  max-width: 100%;
-  text-align: center;
-  background-color: whitesmoke;
-}
-
-.myprofil h2{
-  color: forestgreen;
-  font-size: 25px;
-  text-align: left;
-  margin-left:100px;
-  text-transform: uppercase;
-  text-decoration: underline;
-}
-
-.myprofil h3{
-  color: forestgreen;
-  font-size: 20px;
-  text-align: left;
-  margin-left:100px;
-  text-transform: uppercase;
-}
-
-.myprofil p{
-  width: 100%;
-  font-size: 16px;
-  text-align: left;
-  margin-left:100px;
+.example-header-image {
+  background-size: cover;
 }

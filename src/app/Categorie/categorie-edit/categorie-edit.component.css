@@ -1,9 +1,9 @@
-
 .mat-dialog-title{
   text-align: center;
 }
 
 .mat-dialog-content{
   height: auto !important;
+  width: auto !important;
   overflow: initial !important;
 }

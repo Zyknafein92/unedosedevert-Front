@@ -23,7 +23,7 @@ export class ViewProductListTypeComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       (params) => {
         this.search.categorie = params.categorie;
-        this.produitService.getProduitsBySearch(this.search).subscribe(data => {
+        this.produitService.getProduitsBySearch(this.search, 0, 20, 'DESC').subscribe(data => {
           this.produits = data;
         });
       });

@@ -7,6 +7,8 @@ import {CategorieEditComponent} from '../categorie-edit/categorie-edit.component
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {merge} from 'rxjs';
+import {startWith, switchMap} from 'rxjs/operators';
 
 
 
@@ -34,11 +36,17 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
 
   ngAfterViewInit(): void {
    this.initCategories();
+   this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+   merge(this.sort.sortChange, this.paginator.page).pipe(
+     startWith({}),
+     switchMap(() => {
+       return this.categorieService.getCategoriePage(this.paginator.pageIndex + 1, this.paginator.pageSize , this.sort.direction);
+     }));
   }
 
   private initCategories(): void {
-    this.categorieService.getCategoriePage(1, 20, 'DESC').subscribe(data => {
-        this.categories = Array.from(data);
+    this.categorieService.getCategoriePage(0, 30, 'DESC').subscribe(data => {
+        this.categories = data.content;
         this.dataSource = new MatTableDataSource<Categorie>(this.categories);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

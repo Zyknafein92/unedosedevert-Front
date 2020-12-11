@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Categorie} from '../model/categorie.model';
 import {FormGroup} from '@angular/forms';
-import {SortDirection} from '@angular/material/sort';
+
 
 
 @Injectable({
@@ -19,6 +19,7 @@ export class CategoriesService {
     return this.http.get<Array<Categorie>>(`${this.URL}`);
   }
 
+  // todo : changer le lien, et le nom une fois les modifs faites
   getCategoriePage(page: number, size: number, sort: string): Observable<any> {
     return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
   }
