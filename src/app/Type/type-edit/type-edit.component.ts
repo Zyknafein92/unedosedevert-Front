@@ -20,6 +20,7 @@ export class TypeEditComponent implements OnInit {
   forms: FormGroup;
   categorieList: Array<Categorie>;
   categories: FormGroup;
+  isChecked: true;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -55,6 +56,9 @@ export class TypeEditComponent implements OnInit {
         name: data.name,
         categories: data.categories
       });
+      console.log('type: ', this.type);
+      const categories: FormArray = this.forms.get('categories') as FormArray;
+      this.type.categories.forEach(e => categories.push(new FormControl(e)));
     });
   }
 
@@ -86,18 +90,26 @@ export class TypeEditComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onCheckboxChange(e) {
     const categories: FormArray = this.forms.get('categories') as FormArray;
-    console.log('categories: ', categories);
-    if (e.target.checked) {
-      categories.push(new FormControl(this.categorieList.find(value => value.name === e.target.value)));
-    } else {
+    const value = e.source.value;
+    if (e.checked) {
+      categories.push(new FormControl(value));
+    }
+   else {
       let i = 0 ;
       categories.controls.forEach((item: FormControl) => {
-        if (item.value === e.target.value) {
+        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
+        if (item.value.id === value.id) {
           categories.removeAt(i);
           return;
         }
         i++;
       });
      }
+    console.log('after pushing: ', categories);
+  }
+
+  // tslint:disable-next-line:typedef
+  isContain(categories: Array<Categorie>, categorie: Categorie) {
+    return categories.map(t => t.name).includes((categorie.name));
   }
 }
