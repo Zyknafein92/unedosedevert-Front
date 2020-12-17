@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Adresse} from '../model/adresse.model';
-import {Commande} from '../model/commande.model';
 import {FormGroup} from '@angular/forms';
 
 @Injectable({

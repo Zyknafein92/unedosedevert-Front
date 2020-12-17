@@ -3,8 +3,8 @@
     <li class="typeElement">
     <mat-card>{{type.name}}</mat-card>
     </li>
-    <ul class="categorieProduit" *ngFor="let cat of type.categories">
+    <mat-list-item class="categorieProduit" *ngFor="let cat of type.categories">
       <button mat-raised-button color="primary" (click)="voirProduits(cat['id'])">{{cat.name}}</button>
-    </ul>
+    </mat-list-item>
   </ul>
 </div>

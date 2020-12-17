@@ -1,82 +1,91 @@
-<div class="container">
-  <div class="well-block">
-    <div class="well-title">
+<h2 mat-dialog-title *ngIf="adresse == null">Ajouter une adresse a mon carnet</h2>
+<h2 mat-dialog-title *ngIf="adresse">Modifier une adresse</h2>
 
-      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
-
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('nom').valid || !forms.get('nom').touched">Le nom doit être renseigné.</div>
-            <label class="control-label">Nom</label>
-            <input type="text" class="form-control" formControlName="nom" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('numero').valid || !forms.get('numero').touched">Le numero doit être renseigné.</div>
-            <label class="control-label">Numero</label>
-            <input type="number" class="form-control" formControlName="name" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('voie').valid || !forms.get('voie').touched">La voie doit être renseigné.</div>
-            <label class="control-label">Voie</label>
-            <input type="text" class="form-control" formControlName="voie" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('codePostal').valid || !forms.get('codePostal').touched">Le code postal doit être renseigné.</div>
-            <label class="control-label">Code postal</label>
-            <input type="text" class="form-control" formControlName="codePostal" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('ville').valid || !forms.get('ville').touched">La ville doit être renseignée.</div>
-            <label class="control-label">Ville</label>
-            <input type="text" class="form-control" formControlName="ville" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('batiment').valid || !forms.get('batiment').touched">Le batiment doit être renseigné.</div>
-            <label class="control-label">Batiment</label>
-            <input type="text" class="form-control" formControlName="batiment" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('digicode').valid || !forms.get('digicode').touched">Le digicode doit être renseigné.</div>
-            <label class="control-label">Digicode</label>
-            <input type="text" class="form-control" formControlName="digicode" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('interphone').valid || !forms.get('interphone').touched">Le nom doit être renseigné.</div>
-            <label class="control-label">Interphone</label>
-            <input type="text" class="form-control" formControlName="interphone" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('etage').valid || !forms.get('etage').touched">L'etage doit être renseigné.</div>
-            <label class="control-label">Etage</label>
-            <input type="text" class="form-control" formControlName="etage" required >
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <div class="alert alert-danger" [hidden]="forms.get('porte').valid || !forms.get('porte').touched">La porte doit être renseignée.</div>
-            <label class="control-label">Porte</label>
-            <input type="text" class="form-control" formControlName="porte" required >
-          </div>
-        </div>
-
-
-      </form>
+<mat-dialog-content>
+  <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+    <div class="row">
+    <mat-form-field class="example-full-width col-10">
+      <mat-label>Nom:</mat-label>
+      <input matInput type="text" placeholder="Nom" formControlName="nom">
+      <mat-error [hidden]="forms.get('nom').valid || !forms.get('nom').touched">
+        Le <strong>nom</strong> de l'adresse doit être renseigné.
+      </mat-error>
+    </mat-form-field>
     </div>
-  </div>
-</div>
+
+    <div class="row">
+    <mat-form-field class="example-full-width col-4">
+      <mat-label>Numéro:</mat-label>
+      <input matInput type="number" placeholder="numero" formControlName="numero">
+      <mat-error [hidden]="forms.get('numero').valid || !forms.get('numero').touched">
+        Le <strong>numéro</strong> de l'adresse doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-6">
+      <mat-label>Voie:</mat-label>
+      <input matInput type="text" placeholder="Voie" formControlName="voie">
+      <mat-error [hidden]="forms.get('voie').valid || !forms.get('voie').touched">
+        La <strong>voie</strong> de l'adresse doit être renseignée (ex: rue,avenue..).
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="row">
+    <mat-form-field class="example-full-width col-4">
+      <mat-label>Code postal:</mat-label>
+      <input matInput type="text" placeholder="Code postal" formControlName="codePostal">
+      <mat-error [hidden]="forms.get('codePostal').valid || !forms.get('codePostal').touched">
+        Le <strong>code postal</strong> de l'adresse doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-6">
+      <mat-label>Ville:</mat-label>
+      <input matInput type="text" placeholder="Ville" formControlName="ville">
+      <mat-error [hidden]="forms.get('ville').valid || !forms.get('ville').touched">
+        La <strong>ville</strong> doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="row">
+    <mat-form-field class="example-full-width col-2">
+      <mat-label>Batiment:</mat-label>
+      <input matInput type="text" placeholder="Batiment" formControlName="batiment">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-4">
+      <mat-label>Digicode:</mat-label>
+      <input matInput type="text" placeholder="Digicode" formControlName="digicode">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-4">
+      <mat-label>Interphone:</mat-label>
+      <input matInput type="text" placeholder="Interphone" formControlName="interphone">
+    </mat-form-field>
+    </div>
+
+    <div class="row">
+    <mat-form-field class="example-full-width col-5">
+      <mat-label>Etage:</mat-label>
+      <input matInput type="number" placeholder="Etage" formControlName="etage">
+      <mat-error [hidden]="forms.get('etage').valid || !forms.get('etage').touched">
+        <strong>L'étage</strong> doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-5">
+      <mat-label>Porte:</mat-label>
+      <input matInput type="text" placeholder="Porte" formControlName="porte">
+      <mat-error [hidden]="forms.get('porte').valid || !forms.get('porte').touched">
+        La position de votre <strong>porte</strong> sur le palier doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+    </div>
+  </form>
+  <mat-action-list mat-dialog-actions>
+    <button mat-button color="accent" (click)="onSubmit()" [disabled]="!this.forms.valid" [mat-dialog-close]>Sauvegarder</button>
+    <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
+  </mat-action-list>
+</mat-dialog-content>

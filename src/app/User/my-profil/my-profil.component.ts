@@ -9,7 +9,10 @@ import {Commande} from '../../../model/commande.model';
 import {Adresse} from '../../../model/adresse.model';
 import {Role} from '../../../model/role';
 import {Panier} from '../../../model/panier.model';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {TypeEditComponent} from '../../Type/type-edit/type-edit.component';
+import {Type} from '../../../model/type.model';
+import {AdresseEditComponent} from '../../Adresse/adresse-edit/adresse-edit.component';
 
 
 @Component({
@@ -29,6 +32,7 @@ export class MyProfilComponent implements OnInit{
               private token: TokenStorageService,
               private router: Router,
               private formBuilder: FormBuilder,
+              public dialog: MatDialog,
               private adresseService: AdresseService) { }
 
 
@@ -40,6 +44,7 @@ export class MyProfilComponent implements OnInit{
   private initform(): void {
     this.forms = this.formBuilder.group(
       {
+        id: new FormControl(),
         nom: new FormControl(),
         prenom: new FormControl(),
         anniversaire: new FormControl(),
@@ -59,6 +64,7 @@ export class MyProfilComponent implements OnInit{
     this.userService.getMyProfil(this.token.getEmail()).subscribe( data => {
       this.user = data;
       this.forms.patchValue({
+        id: data.id,
         adresses: data.adresses,
         nom: data.nom,
         prenom: data.prenom,
@@ -86,6 +92,30 @@ export class MyProfilComponent implements OnInit{
 
 // tslint:disable-next-line:typedef
   onSubmit() {
-
+  this.userService.updateUser(this.forms).subscribe(next => {
+    this.initProfil(this.token);
+  });
   }
+
+  creerAdresse(): void {
+    const id = this.user.id;
+    console.log('user id:', id);
+    const dialogRef = this.dialog.open(AdresseEditComponent, {
+      data: {userID: id}
+    });
+  }
+
+  modifierAdresse(adresse: Adresse): void {
+    const dialogRef = this.dialog.open(AdresseEditComponent, {
+      data: adresse
+    });
+  }
+
+  supprimerAdresse(id: number): void {
+    console.log('id to delete', id);
+    this.adresseService.deleteAdresse(id).subscribe( next => {
+      this.initProfil(this.token);
+    });
+  }
+
 }

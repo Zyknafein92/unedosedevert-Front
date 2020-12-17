@@ -1,7 +1,18 @@
-.example-card {
-  max-width: 400px;
+.mat-card {
+  margin-top: 40px;
 }
 
-.example-header-image {
-  background-size: cover;
+.adresse {
+  margin: 20px 75px;
+  text-align: center;
+  background-color: snow;
 }
+
+.adresse h4 {
+  color: green;
+}
+
+.adresse mat-card-header{
+display: inline-block;
+}
+

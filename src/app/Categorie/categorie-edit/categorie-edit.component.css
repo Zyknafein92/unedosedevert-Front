@@ -7,3 +7,7 @@
   width: auto !important;
   overflow: initial !important;
 }
+
+h2 {
+  color: green;
+}
