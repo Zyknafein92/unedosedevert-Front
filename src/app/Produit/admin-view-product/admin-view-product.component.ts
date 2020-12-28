@@ -62,12 +62,18 @@ export class AdminViewProductComponent implements AfterViewInit {
       width: '500px',
       data: {}
     });
+    dialogRef.afterClosed().subscribe(next => {
+      this.initProduits();
+    });
   }
 
   modifierProduit(produit: Produit): void {
     const dialogRef = this.dialog.open(ProduitEditComponent, {
       width: '500px',
       data: produit
+    });
+    dialogRef.componentInstance.productChange.subscribe(data => {
+      this.initProduits();
     });
   }
 

@@ -45,7 +45,6 @@ export class TypeEditComponent implements OnInit {
       name: ['', Validators.required],
       categories: this.formBuilder.array([])
     });
-
   }
 
   private patchValue(id: number): void {
@@ -72,7 +71,6 @@ export class TypeEditComponent implements OnInit {
       id: ['', Validators.required],
       name: ['', Validators.required],
     });
-
   }
 
   onSubmit(): void {

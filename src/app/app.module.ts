@@ -45,6 +45,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -97,7 +98,7 @@ import {MatCardModule} from '@angular/material/card';
     MatSelectModule,
     MatCardModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

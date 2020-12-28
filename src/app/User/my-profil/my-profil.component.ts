@@ -1,17 +1,12 @@
-import {AfterViewInit, Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
 import {Router} from '@angular/router';
 import {User} from '../../../model/user.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdresseService} from '../../../services/adresse.service';
-import {Commande} from '../../../model/commande.model';
 import {Adresse} from '../../../model/adresse.model';
-import {Role} from '../../../model/role';
-import {Panier} from '../../../model/panier.model';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {TypeEditComponent} from '../../Type/type-edit/type-edit.component';
-import {Type} from '../../../model/type.model';
+import {MatDialog} from '@angular/material/dialog';
 import {AdresseEditComponent} from '../../Adresse/adresse-edit/adresse-edit.component';
 
 
@@ -98,16 +93,20 @@ export class MyProfilComponent implements OnInit{
   }
 
   creerAdresse(): void {
-    const id = this.user.id;
-    console.log('user id:', id);
     const dialogRef = this.dialog.open(AdresseEditComponent, {
-      data: {userID: id}
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(next => {
+      this.initProfil(this.token);
     });
   }
 
   modifierAdresse(adresse: Adresse): void {
     const dialogRef = this.dialog.open(AdresseEditComponent, {
       data: adresse
+    });
+    dialogRef.componentInstance.addressChange.subscribe(data => {
+      this.initProfil(this.token);
     });
   }
 
@@ -118,4 +117,7 @@ export class MyProfilComponent implements OnInit{
     });
   }
 
+  adressChange(adresse: Adresse): void {
+    this.initProfil(this.token);
+  }
 }

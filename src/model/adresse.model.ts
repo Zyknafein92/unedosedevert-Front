@@ -1,6 +1,5 @@
 export class Adresse {
   id: number;
-  userID: number;
   nom: string;
   numero: number;
   voie: string;

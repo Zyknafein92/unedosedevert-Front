@@ -1,12 +1,12 @@
-
 <mat-dialog-content>
   <h2 mat-dialog-title *ngIf="produit == null">Ajouter un type de produit</h2>
   <h2 mat-dialog-title *ngIf="produit != null">Modifier un type de produit</h2>
-  <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+
+  <form [formGroup]="forms">
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>Nom:</mat-label>
-      <input matInput placeholder="Nom" formControlName="name">
+      <input matInput type="text" placeholder="Nom" formControlName="name">
       <mat-error [hidden]="forms.get('name').valid || !forms.get('name').touched">
         Le <strong>nom</strong> du type de produit doit être renseigné.
       </mat-error>
@@ -14,25 +14,25 @@
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>Origine:</mat-label>
-      <input matInput placeholder="Origine" formControlName="origine">
+      <input matInput type="text" placeholder="Origine" formControlName="origine">
       <mat-error [hidden]="forms.get('origine').valid || !forms.get('origine').touched">
-        <strong>L'origine</strong>du produit doit être renseigné.
+        <strong>L'origine </strong>du produit doit être renseigné.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>Prix:</mat-label>
-      <input matInput placeholder="Prix" formControlName="prix">
+      <input matInput type="number" placeholder="Prix" formControlName="prix">
       <mat-error [hidden]="forms.get('prix').valid || !forms.get('prix').touched">
-        Le<strong>prix</strong>du produit doit être renseigné.
+        Le<strong> prix </strong>du produit doit être renseigné.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>TVA:</mat-label>
-      <input matInput placeholder="TVA" formControlName="tva">
+      <input matInput type="number" placeholder="TVA" formControlName="tva">
       <mat-error [hidden]="forms.get('tva').valid || !forms.get('tva').touched">
-        La<strong>TVA</strong>du produit doit être renseignée.
+        La<strong> TVA </strong>du produit doit être renseignée.
       </mat-error>
     </mat-form-field>
 
@@ -40,20 +40,20 @@
     <mat-form-field appearance="fill" class="col-6">
       <mat-label>Type</mat-label>
       <mat-select>
-        <mat-option *ngFor="let type of types" [value]="type">{{type.name}}</mat-option>
+        <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('type').valid || !forms.get('type').touched">
-        Le<strong>type</strong>du produit doit être renseigné.
+        Le<strong> type </strong>du produit doit être renseigné.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="col-6">
       <mat-label>Stock</mat-label>
       <mat-select>
-        <mat-option *ngFor="let stock of stockKeys" [value]="stock">{{stock}}</mat-option>
+        <mat-option *ngFor="let st of stockKeys" (onSelectionChange)="updateStock(st)" [value]="st">{{st}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('stock').valid || !forms.get('stock').touched">
-        Le<strong>status</strong>du stock produit doit être renseigné.
+        Le<strong> status </strong>du stock produit doit être renseigné.
       </mat-error>
     </mat-form-field>
 
@@ -61,25 +61,28 @@
     <mat-form-field appearance="fill" class="col-12">
       <mat-label>Categorie</mat-label>
       <mat-select>
-        <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie.name}}</mat-option>
+        <mat-option *ngFor="let cat of categories" (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('categorie').valid || !forms.get('categorie').touched">
-        La<strong>categorie</strong>du produit doit être renseignée.
+        La<strong> categorie </strong>du produit doit être renseignée.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width col-md-12">
       <mat-label>Description:</mat-label>
-      <input matInput placeholder="Description" formControlName="description">
+      <input matInput type="text" placeholder="Description" formControlName="description">
       <mat-error [hidden]="forms.get('description').valid || !forms.get('description').touched">
-        La<strong>description</strong>du produit doit être renseignée.
+        La<strong> description </strong>du produit doit être renseignée.
       </mat-error>
     </mat-form-field>
 
-    <div mat-dialog-actions>
-      <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-      <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid" [mat-dialog-close]>Sauvegarder</button>
-    </div>
+<!--    <div class="align-content-center">-->
+<!--    <input class="ng-hide" id="input-file-id" multiple type="file" value="urlPhoto"/>-->
+<!--    </div>-->
 
   </form>
+  <mat-dialog-actions>
+    <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
+    <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
+  </mat-dialog-actions>
 </mat-dialog-content>

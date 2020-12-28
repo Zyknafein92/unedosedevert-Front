@@ -18,10 +18,10 @@
         </mat-checkbox>
       </mat-list-item>
     </mat-list>
-    <div mat-dialog-actions>
+    <mat-dialog-actions>
       <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-      <button mat-button color="accent" (click)="onSubmit()" [hidden]="forms.invalid" [mat-dialog-close]>Sauvegarder</button>
-    </div>
+      <button mat-button color="accent" (click)="onSubmit()" [mat-dialog-close]>Sauvegarder</button>
+    </mat-dialog-actions>
   </form>
 </mat-dialog-content>
 

@@ -12,4 +12,6 @@ export class Produit {
   prix: number;
   tva: number;
   stock: Stock;
+  urlPhoto: any;
+  // grandephoto: File;
 }

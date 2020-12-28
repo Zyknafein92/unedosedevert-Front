@@ -1,11 +1,11 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {Adresse} from '../../../model/adresse.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AdresseService} from '../../../services/adresse.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {User} from '../../../model/user.model';
-import {UserService} from '../../../services/user.service';
+
 
 @Component({
   selector: 'app-adresse-edit',
@@ -19,6 +19,9 @@ export class AdresseEditComponent implements OnInit {
 
   forms: FormGroup;
   user: User;
+
+  @Output()
+  addressChange = new EventEmitter();
 
 
   constructor(private router: Router,
@@ -35,8 +38,6 @@ export class AdresseEditComponent implements OnInit {
 
   private initFrom(): void {
     this.forms = this.formBuilder.group({
-      id: ['',  Validators.required],
-      userID: this.data.userID,
       nom: ['', Validators.required],
       numero: ['', Validators.required],
       voie: ['', Validators.required],
@@ -57,7 +58,6 @@ export class AdresseEditComponent implements OnInit {
       this.forms.patchValue({
         id: data.id,
         nom: data.nom,
-        userID: data.userID,
         numero: data.numero,
         voie: data.voie,
         codePostal: data.codePostal,
@@ -72,14 +72,22 @@ export class AdresseEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('onSubmit:', this.forms);
+    if (this.forms.invalid) {
+      this.forms.markAllAsTouched();
+      return;
+    }
     if (!this.adresse || this.adresse.id == null) {
       this.adresseService.createAdresse(this.forms).subscribe(
-        next => this.router.navigate(['user/myprofil'])
+        next => {
+          this.addressChange.emit(next);
+          this.dialogRef.close();
+        }
       );
     } else {
       this.adresseService.updateAdresse(this.forms).subscribe(
-        next => this.router.navigate(['user/myprofil'])
+        next => {
+          this.addressChange.emit(next);
+        }
       );
     }
   }

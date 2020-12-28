@@ -16,7 +16,7 @@
     <div class="row">
     <mat-form-field class="example-full-width col-4">
       <mat-label>Numéro:</mat-label>
-      <input matInput type="number" placeholder="numero" formControlName="numero">
+      <input matInput type="number" placeholder="Numero" formControlName="numero">
       <mat-error [hidden]="forms.get('numero').valid || !forms.get('numero').touched">
         Le <strong>numéro</strong> de l'adresse doit être renseigné.
       </mat-error>
@@ -24,7 +24,7 @@
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>Voie:</mat-label>
-      <input matInput type="text" placeholder="Voie" formControlName="voie">
+      <input matInput type="text" placeholder="rue de Paris, avenue des Champs-Elysées" formControlName="voie">
       <mat-error [hidden]="forms.get('voie').valid || !forms.get('voie').touched">
         La <strong>voie</strong> de l'adresse doit être renseignée (ex: rue,avenue..).
       </mat-error>
@@ -52,7 +52,7 @@
     <div class="row">
     <mat-form-field class="example-full-width col-2">
       <mat-label>Batiment:</mat-label>
-      <input matInput type="text" placeholder="Batiment" formControlName="batiment">
+      <input matInput type="text" placeholder="A,B,C formControlName="batiment">
     </mat-form-field>
 
     <mat-form-field class="example-full-width col-4">
@@ -77,7 +77,7 @@
 
     <mat-form-field class="example-full-width col-5">
       <mat-label>Porte:</mat-label>
-      <input matInput type="text" placeholder="Porte" formControlName="porte">
+      <input matInput type="text" placeholder="Droite, Gauche, Milieu..." formControlName="porte">
       <mat-error [hidden]="forms.get('porte').valid || !forms.get('porte').touched">
         La position de votre <strong>porte</strong> sur le palier doit être renseignée.
       </mat-error>
@@ -85,7 +85,7 @@
     </div>
   </form>
   <mat-action-list mat-dialog-actions>
-    <button mat-button color="accent" (click)="onSubmit()" [disabled]="!this.forms.valid" [mat-dialog-close]>Sauvegarder</button>
+    <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
   </mat-action-list>
 </mat-dialog-content>
