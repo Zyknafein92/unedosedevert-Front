@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
   constructor(private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    console.log('token', this.token);
     this.authorities = this.token.getAuthorities();
     this.tokenEmail = this.token.getEmail();
   }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Type} from '../../../model/type.model';
 import {Router} from '@angular/router';
 import {TypeService} from '../../../services/type.service';
@@ -44,7 +44,6 @@ export class AdminViewTypesListComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource<Type>(this.types);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log('data : ', data);
       },
       err => {
         console.log('error: ', err.error.message);
@@ -55,11 +54,17 @@ export class AdminViewTypesListComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(TypeEditComponent, {
       data: {}
     });
+    dialogRef.afterClosed().subscribe(next => {
+      this.initTypes();
+    });
   }
 
   modifierType(type: Type): void {
     const dialogRef = this.dialog.open(TypeEditComponent, {
       data: type
+    });
+    dialogRef.componentInstance.typeChange.subscribe(data => {
+      this.initTypes();
     });
   }
 

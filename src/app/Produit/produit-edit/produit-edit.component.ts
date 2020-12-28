@@ -9,7 +9,7 @@ import {Stock} from '../../../model/stock.model';
 import {TypeService} from '../../../services/type.service';
 import {CategoriesService} from '../../../services/categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-produit-edit',
@@ -31,6 +31,7 @@ export class ProduitEditComponent implements OnInit {
 
   @Output()
   productChange = new EventEmitter();
+
 
 
   constructor(private router: Router,
@@ -75,6 +76,7 @@ export class ProduitEditComponent implements OnInit {
 
   private initForm(): void {
     this.forms = this.formBuilder.group({
+      id: '',
       name: ['', Validators.required],
       type: Type,
       categorie: Categorie,

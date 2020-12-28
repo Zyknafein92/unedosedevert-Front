@@ -2,7 +2,7 @@
   <h2 mat-dialog-title *ngIf="produit == null">Ajouter un type de produit</h2>
   <h2 mat-dialog-title *ngIf="produit != null">Modifier un type de produit</h2>
 
-  <form [formGroup]="forms">
+  <form [formGroup]="forms" (ngSubmit)="onSubmit()">
 
     <mat-form-field class="example-full-width col-6">
       <mat-label>Nom:</mat-label>
@@ -61,7 +61,7 @@
     <mat-form-field appearance="fill" class="col-12">
       <mat-label>Categorie</mat-label>
       <mat-select>
-        <mat-option *ngFor="let cat of categories" (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
+        <mat-option *ngFor="let cat of categories"  (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('categorie').valid || !forms.get('categorie').touched">
         La<strong> categorie </strong>du produit doit être renseignée.
@@ -83,6 +83,6 @@
   </form>
   <mat-dialog-actions>
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-    <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
+    <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid">Sauvegarder</button>
   </mat-dialog-actions>
 </mat-dialog-content>

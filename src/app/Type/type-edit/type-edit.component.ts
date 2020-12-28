@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Type} from '../../../model/type.model';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,11 +16,12 @@ export class TypeEditComponent implements OnInit {
 
   @Input()
   type: Type;
-
   forms: FormGroup;
   categorieList: Array<Categorie>;
   categories: FormGroup;
   isChecked: true;
+  @Output()
+  typeChange = new EventEmitter();
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -41,7 +42,7 @@ export class TypeEditComponent implements OnInit {
 
   private initForm(): void {
     this.forms = this.formBuilder.group({
-      id: ['',  Validators.required],
+      id: '',
       name: ['', Validators.required],
       categories: this.formBuilder.array([])
     });
@@ -74,13 +75,18 @@ export class TypeEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.forms.invalid) {
+      this.forms.markAllAsTouched();
+      return;
+    }
     if (!this.type || this.type.id == null) {
       this.typeService.createType(this.forms).subscribe(
-        next => this.router.navigate(['/admin/products/types'])
-      );
+        next => {
+          this.typeChange.emit(next);
+        });
     } else {
       this.typeService.updateType(this.forms).subscribe(
-        next => this.router.navigate(['/admin/products/types'])
+        next => this.typeChange.emit(next)
       );
     }
   }
@@ -92,7 +98,7 @@ export class TypeEditComponent implements OnInit {
     if (e.checked) {
       categories.push(new FormControl(value));
     }
-   else {
+    else {
       let i = 0 ;
       categories.controls.forEach((item: FormControl) => {
         console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
@@ -102,7 +108,7 @@ export class TypeEditComponent implements OnInit {
         }
         i++;
       });
-     }
+    }
     console.log('after pushing: ', categories);
   }
 

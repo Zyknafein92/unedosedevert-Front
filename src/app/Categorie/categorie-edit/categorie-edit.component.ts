@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
@@ -15,6 +15,8 @@ export class CategorieEditComponent implements OnInit {
   forms: FormGroup;
   @Input()
   categorie: Categorie;
+  @Output()
+  categorieChange = new EventEmitter();
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -48,14 +50,21 @@ export class CategorieEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.forms.invalid) {
+      this.forms.markAllAsTouched();
+      return;
+    }
     if (!this.categorie || this.categorie.id == null) {
       this.categorieService.createCategorie(this.forms).subscribe(
-        data => this.router.navigate(['/admin/products/categories'])
-      );
+        next => {
+          this.categorieChange.emit(next);
+          this.dialogRef.close();
+        });
     } else {
       this.categorieService.updateCategorie(this.forms).subscribe(
-        data => this.router.navigate(['/admin/products/categories'])
-      );
+        next => {
+          this.categorieChange.emit(next);
+        });
     }
   }
 

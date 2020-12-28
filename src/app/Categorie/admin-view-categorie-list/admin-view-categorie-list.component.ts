@@ -62,12 +62,18 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
       width: '350px',
       data: {}
     });
+    dialogRef.afterClosed().subscribe(next => {
+      this.initCategories();
+    });
   }
 
   modifierCategorie(cat: Categorie): void {
     const dialogRef = this.dialog.open(CategorieEditComponent, {
       width: '350px',
       data: cat
+    });
+    dialogRef.componentInstance.categorieChange.subscribe(data => {
+      this.initCategories();
     });
   }
 
