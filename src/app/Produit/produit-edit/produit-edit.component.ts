@@ -49,7 +49,6 @@ export class ProduitEditComponent implements OnInit {
     this.initCategorie();
     this.initType();
     if (this.data.id != null) {
-      console.log('up', this.data);
       this.patchValue(this.data.id);
     }
   }
@@ -68,7 +67,6 @@ export class ProduitEditComponent implements OnInit {
     } else {
       this.produitService.updateProduit(this.forms).subscribe(
         next => {
-          console.log('update forms :', this.forms);
           this.productChange.emit(next);
         });
     }
@@ -82,10 +80,7 @@ export class ProduitEditComponent implements OnInit {
       categorie: Categorie,
       description: ['', Validators.required],
       origine: ['', Validators.required],
-      prix: ['', Validators.required],
-      tva: ['', Validators.required],
-      stock: Stock,
-      // urlPhoto: ['', Validators.required],
+      urlPhoto: ['', Validators.required],
     });
   }
   private initCategorie(): void {
@@ -110,10 +105,7 @@ export class ProduitEditComponent implements OnInit {
         type: data.type,
         description: data.description,
         origine: data.origine,
-        prix: data.prix,
-        tva: data.tva,
-        stock: data.stock,
-        // urlPhoto: data.urlPhoto
+        urlPhoto: data.urlPhoto
       });
     });
   }
@@ -138,5 +130,15 @@ export class ProduitEditComponent implements OnInit {
     this.forms.patchValue({
       stock: st
     });
+  }
+
+  uploadPhoto(e: any): void {
+    console.log(e.target);
+    const file = e.target.files.length ? e.target.files[0] : null;
+    if (file) {
+      this.produitService.uploadPhoto(file).subscribe( data => {
+       this.forms.patchValue({urlPhoto: data.urlPhoto});
+      });
+    }
   }
 }

@@ -1,5 +1,4 @@
 <mat-toolbar>
-  <span>Une Dose de Vert</span>
   <button mat-button routerLink="accueil">Accueil</button>
   <button mat-button routerLink="products">Nos produits</button>
   <button mat-button>A propos</button>
@@ -23,9 +22,11 @@
   </mat-menu>
 
   <mat-menu #Produit="matMenu">
-    <button mat-menu-item routerLink="admin/products" >Listes des produits</button>
-    <button mat-menu-item routerLink="admin/products/categories" >Listes des categories</button>
-    <button mat-menu-item routerLink="admin/products/types" >Listes des types</button>
+    <button mat-menu-item routerLink="admin/products" > Listes des produits </button>
+    <button mat-menu-item routerLink="admin/products/types"> Listes des types </button>
+    <button mat-menu-item routerLink="admin/products/categories"> Listes des categories </button>
+    <button mat-menu-item routerLink="admin/products/tagCategories"> Listes des categories de tags </button>
+    <button mat-menu-item routerLink="admin/products/tags"> Listes des tags </button>
   </mat-menu>
 
   <mat-menu #Recette="matMenu">

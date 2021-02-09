@@ -1,0 +1,74 @@
+.header {
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-color: #f5ede4;
+  border: none;
+}
+
+.wrapper1 {
+  width: 100%;
+  height: 6.25rem;
+  margin: 0 0 0 0;
+  padding: 1.063rem 1.866rem 0rem 1.875rem;
+  background-color: #f5ede4;
+  display: inline-block;
+}
+
+h1 {
+  font-family: Sofia;
+  font-size: 2.625rem;
+  line-height: 1.40;
+  float:left;
+  color: #4d4d4d;
+}
+
+.client-area {
+  float: right;
+  color: #757575;
+  list-style: none;
+}
+
+.client-area li {
+  text-align: left;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: #757575;
+  font-family: WorkSans;
+  display: inline-block;
+  margin: 0.50rem 0;
+}
+
+.user-icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 2.98rem 0 1rem;
+
+}
+
+.panier-icon {
+  width: 3.25rem;
+  height: 3.206rem;
+  margin-left: 1.97rem;
+}
+
+.wrapper2 {
+  border: none;
+  width: 100%;
+  height: 3.625rem;
+  background-color: #c7a38f;
+}
+
+.message {
+  height: 1rem;
+  padding: 1.25rem 0 1.25rem 0;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #f5ede4;
+}
+
+
+
+
+
+

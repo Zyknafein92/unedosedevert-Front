@@ -8,27 +8,6 @@ import {ModalConfirmComponent} from '../../Modal/modal-confirm/modal-confirm.com
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-
-  city: string;
-  name: string;
-
-  constructor(public dialog: MatDialog) { }
-
   ngOnInit(): void {
-    console.log('load component');
-    this.city = 'Paris';
-    this.name = 'Jérome';
   }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ModalConfirmComponent, {
-      width: '350px',
-      data: {name: this.name, city: this.city}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog fermé: ', result);
-    });
-  }
-
 }

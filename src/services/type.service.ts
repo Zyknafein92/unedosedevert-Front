@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
 import {FormGroup} from '@angular/forms';
 import {Type} from '../model/type.model';
-import {SortDirection} from '@angular/material/sort';
+
 
 @Injectable({
   providedIn: 'root'

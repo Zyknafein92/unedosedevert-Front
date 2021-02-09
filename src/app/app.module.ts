@@ -14,7 +14,7 @@ import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { AdminViewProductComponent } from './Produit/admin-view-product/admin-view-product.component';
+import { AdminViewProductComponent } from './Admin/admin-view-product/admin-view-product.component';
 import { MenuComponent } from './Menu/menu.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProductViewComponent } from './Produit/view-product/product-view.component';
@@ -28,8 +28,8 @@ import {CommonModule} from '@angular/common';
 import {ViewProductListTypeComponent} from './Produit/view-products-list-type/view-product-list-type.component';
 import { CategorieEditComponent } from './Categorie/categorie-edit/categorie-edit.component';
 import { TypeEditComponent } from './Type/type-edit/type-edit.component';
-import { AdminViewTypesListComponent } from './Type/admin-view-types-list/admin-view-types-list.component';
-import { AdminViewCategorieListComponent } from './Categorie/admin-view-categorie-list/admin-view-categorie-list.component';
+import { AdminViewTypesListComponent } from './Admin/admin-view-types-list/admin-view-types-list.component';
+import { AdminViewCategorieListComponent } from './Admin/admin-view-categorie-list/admin-view-categorie-list.component';
 import { MyProfilComponent } from './User/my-profil/my-profil.component';
 import { MyCommandComponent } from './User/my-command/my-command.component';
 import { ModalConfirmComponent } from './Modal/modal-confirm/modal-confirm.component';
@@ -46,6 +46,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {CookieService} from 'ngx-cookie-service';
+import { HeaderComponent } from './Header/header/header.component';
+import { TagEditComponent } from './Tags/tag-edit/tag-edit.component';
+import { TagsCategorieEditComponent } from './Tags/tags-categorie-edit/tags-categorie-edit.component';
+import { AdminViewTagComponent } from './Admin/admin-view-tag/admin-view-tag.component';
+import { AdminViewTagCategorieComponent } from './Admin/admin-view-tag-categorie/admin-view-tag-categorie.component';
+import { FooterComponent } from './Footer/footer.component';
 
 
 @NgModule({
@@ -71,6 +77,12 @@ import {CookieService} from 'ngx-cookie-service';
     MyProfilComponent,
     MyCommandComponent,
     ModalConfirmComponent,
+    HeaderComponent,
+    TagEditComponent,
+    TagsCategorieEditComponent,
+    AdminViewTagComponent,
+    AdminViewTagCategorieComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

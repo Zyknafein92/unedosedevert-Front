@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Produit} from '../model/produit.model';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 import {SearchCriteria} from '../model/search-criteria';
-import {SortDirection} from '@angular/material/sort';
 
 
 
@@ -13,6 +12,7 @@ import {SortDirection} from '@angular/material/sort';
 })
 export class ProduitService {
   private URL = 'http://localhost:8080/api/produits';
+  private adminURL = 'http://localhost:8080/api/admin';
 
   searchCriteria: SearchCriteria;
 
@@ -58,5 +58,14 @@ export class ProduitService {
 
   deleteProduit(id: number): Observable<Produit> {
     return this.http.delete<Produit>(`${this.URL}/${id}`);
+  }
+
+  uploadPhoto(file: File): Observable<any> {
+    const headers = new HttpHeaders().set('responseType', 'text');
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post<any>(`${this.adminURL}/upload`, formData, {
+      headers
+    });
   }
 }

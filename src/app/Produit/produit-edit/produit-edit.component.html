@@ -1,6 +1,6 @@
 <mat-dialog-content>
-  <h2 mat-dialog-title *ngIf="produit == null">Ajouter un type de produit</h2>
-  <h2 mat-dialog-title *ngIf="produit != null">Modifier un type de produit</h2>
+  <h2 mat-dialog-title *ngIf="produit == null">Ajouter un produit</h2>
+  <h2 mat-dialog-title *ngIf="produit != null">Modifier un produit</h2>
 
   <form [formGroup]="forms" (ngSubmit)="onSubmit()">
 
@@ -20,21 +20,21 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width col-6">
-      <mat-label>Prix:</mat-label>
-      <input matInput type="number" placeholder="Prix" formControlName="prix">
-      <mat-error [hidden]="forms.get('prix').valid || !forms.get('prix').touched">
-        Le<strong> prix </strong>du produit doit être renseigné.
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field class="example-full-width col-6">-->
+<!--      <mat-label>Prix:</mat-label>-->
+<!--      <input matInput type="number" placeholder="Prix" formControlName="prix">-->
+<!--      <mat-error [hidden]="forms.get('prix').valid || !forms.get('prix').touched">-->
+<!--        Le<strong> prix </strong>du produit doit être renseigné.-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
-    <mat-form-field class="example-full-width col-6">
-      <mat-label>TVA:</mat-label>
-      <input matInput type="number" placeholder="TVA" formControlName="tva">
-      <mat-error [hidden]="forms.get('tva').valid || !forms.get('tva').touched">
-        La<strong> TVA </strong>du produit doit être renseignée.
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field class="example-full-width col-6">-->
+<!--      <mat-label>TVA:</mat-label>-->
+<!--      <input matInput type="number" placeholder="TVA" formControlName="tva">-->
+<!--      <mat-error [hidden]="forms.get('tva').valid || !forms.get('tva').touched">-->
+<!--        La<strong> TVA </strong>du produit doit être renseignée.-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
 
     <mat-form-field appearance="fill" class="col-6">
@@ -47,15 +47,15 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="col-6">
-      <mat-label>Stock</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let st of stockKeys" (onSelectionChange)="updateStock(st)" [value]="st">{{st}}</mat-option>
-      </mat-select>
-      <mat-error [hidden]="forms.get('stock').valid || !forms.get('stock').touched">
-        Le<strong> status </strong>du stock produit doit être renseigné.
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field appearance="fill" class="col-6">-->
+<!--      <mat-label>Stock</mat-label>-->
+<!--      <mat-select>-->
+<!--        <mat-option *ngFor="let st of stockKeys" (onSelectionChange)="updateStock(st)" [value]="st">{{st}}</mat-option>-->
+<!--      </mat-select>-->
+<!--      <mat-error [hidden]="forms.get('stock').valid || !forms.get('stock').touched">-->
+<!--        Le<strong> status </strong>du stock produit doit être renseigné.-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
 
     <mat-form-field appearance="fill" class="col-12">
@@ -70,15 +70,17 @@
 
     <mat-form-field class="example-full-width col-md-12">
       <mat-label>Description:</mat-label>
-      <input matInput type="text" placeholder="Description" formControlName="description">
+      <textarea matInput type="text" placeholder="Description" formControlName="description"></textarea>
       <mat-error [hidden]="forms.get('description').valid || !forms.get('description').touched">
         La<strong> description </strong>du produit doit être renseignée.
       </mat-error>
     </mat-form-field>
 
-<!--    <div class="align-content-center">-->
-<!--    <input class="ng-hide" id="input-file-id" multiple type="file" value="urlPhoto"/>-->
-<!--    </div>-->
+    <div class="align-content-center">
+      <input (change)="uploadPhoto($event)" class="ng-hide" id="input-file-id" multiple type="file"/>
+      <img src="{{forms.controls.urlPhoto.value}}" *ngIf="forms.controls.urlPhoto && forms.controls.urlPhoto.value">
+    </div>
+
 
   </form>
   <mat-dialog-actions>
