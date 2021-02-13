@@ -58,24 +58,11 @@ export class AdminViewProductComponent implements AfterViewInit {
   }
 
   creerProduit(): void {
-    const dialogRef = this.dialog.open(ProduitEditComponent, {
-      width: '800px',
-      height: '800px',
-      data: {}
-    });
-    dialogRef.afterClosed().subscribe(next => {
-      this.initProduits();
-    });
+    this.router.navigate(['admin/products/edit']);
   }
 
-  modifierProduit(produit: Produit): void {
-    const dialogRef = this.dialog.open(ProduitEditComponent, {
-      width: '500px',
-      data: produit
-    });
-    dialogRef.componentInstance.productChange.subscribe(data => {
-      this.initProduits();
-    });
+  modifierProduit(id: number): void {
+    this.router.navigate(['admin/products/edit'], {queryParams: {id}});
   }
 
   supprimerProduit(id: number): void {

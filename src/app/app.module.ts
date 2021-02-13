@@ -48,10 +48,15 @@ import {MatCardModule} from '@angular/material/card';
 import {CookieService} from 'ngx-cookie-service';
 import { HeaderComponent } from './Header/header/header.component';
 import { TagEditComponent } from './Tags/tag-edit/tag-edit.component';
-import { TagsCategorieEditComponent } from './Tags/tags-categorie-edit/tags-categorie-edit.component';
+import { LabelEditComponent } from './Label/label-edit/label-edit.component';
 import { AdminViewTagComponent } from './Admin/admin-view-tag/admin-view-tag.component';
-import { AdminViewTagCategorieComponent } from './Admin/admin-view-tag-categorie/admin-view-tag-categorie.component';
 import { FooterComponent } from './Footer/footer.component';
+import {AdminViewLabelComponent} from './Admin/admin-view-label/admin-view-label.component';
+import { AdminViewSousCategorieListComponent } from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
+import { SousCategorieEditComponent } from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
+import { AdminViewVariantComponent } from './Admin/admin-view-variant/admin-view-variant.component';
+import { AdminViewReductionComponent } from './Admin/admin-view-reduction/admin-view-reduction.component';
+import { VariantEditComponent } from './Variant/variant-edit/variant-edit.component';
 
 
 @NgModule({
@@ -79,10 +84,15 @@ import { FooterComponent } from './Footer/footer.component';
     ModalConfirmComponent,
     HeaderComponent,
     TagEditComponent,
-    TagsCategorieEditComponent,
+    LabelEditComponent,
     AdminViewTagComponent,
-    AdminViewTagCategorieComponent,
     FooterComponent,
+    AdminViewLabelComponent,
+    AdminViewSousCategorieListComponent,
+    SousCategorieEditComponent,
+    AdminViewVariantComponent,
+    AdminViewReductionComponent,
+    VariantEditComponent,
   ],
   imports: [
     BrowserModule,

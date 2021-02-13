@@ -12,8 +12,12 @@ export class VariantService {
 
   constructor(private http: HttpClient) { }
 
-  getTags(): Observable<Array<Variant>> {
+  getVariants(): Observable<Array<Variant>> {
     return this.http.get<Array<Variant>>(this.URL);
+  }
+
+  getVariantsByProduitId(produitID: number): Observable<Array<Variant>> {
+    return this.http.get<Array<Variant>>(`${this.URL}/produit/${produitID}`);
   }
 
   getVariant(id: number): Observable<Variant> {

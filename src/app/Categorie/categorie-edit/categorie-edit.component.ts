@@ -1,10 +1,12 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
+import {SousCategorie} from '../../../model/sous-categorie';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoriesService} from '../../../services/categorie.service';
+import {SousCategorieService} from '../../../services/sous-categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ModalConfirmComponent} from '../../Modal/modal-confirm/modal-confirm.component';
+
 
 @Component({
   selector: 'app-categorie-edit',
@@ -12,9 +14,13 @@ import {ModalConfirmComponent} from '../../Modal/modal-confirm/modal-confirm.com
   styleUrls: ['./categorie-edit.component.css']
 })
 export class CategorieEditComponent implements OnInit {
-  forms: FormGroup;
+
   @Input()
   categorie: Categorie;
+  forms: FormGroup;
+  sousCategorieList: Array<SousCategorie>;
+  sousCategories: FormGroup;
+  isChecked: true;
   @Output()
   categorieChange = new EventEmitter();
 
@@ -22,11 +28,13 @@ export class CategorieEditComponent implements OnInit {
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private categorieService: CategoriesService,
+              private sousCategorieService: SousCategorieService,
               public dialogRef: MatDialogRef<CategorieEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.initSousCategories();
     if (this.data.id != null) {
       this.patchValue(this.data.id);
     }
@@ -34,8 +42,9 @@ export class CategorieEditComponent implements OnInit {
 
   private initForm(): void {
     this.forms = this.formBuilder.group({
-      id: [''],
+      id: '',
       name: ['', Validators.required],
+      sousCategories: this.formBuilder.array([])
     });
   }
 
@@ -45,7 +54,24 @@ export class CategorieEditComponent implements OnInit {
       this.forms.patchValue({
         id: data.id,
         name: data.name,
+        sousCategories: data.sousCategories
       });
+      const sousCategories: FormArray = this.forms.get('sousCategories') as FormArray;
+      this.categorie.sousCategories.forEach(e => sousCategories.push(new FormControl(e)));
+    });
+  }
+
+  private initSousCategories(): void {
+    this.sousCategorieService.getSousCategories().subscribe(
+      data => {
+        this.sousCategorieList = data;
+      });
+  }
+
+  private createSousCategorie(): void {
+    this.sousCategories = this.formBuilder.group({
+      id: ['', Validators.required],
+      name: ['', Validators.required],
     });
   }
 
@@ -66,6 +92,32 @@ export class CategorieEditComponent implements OnInit {
           this.categorieChange.emit(next);
         });
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  onCheckboxChange(e) {
+    const sousCategories: FormArray = this.forms.get('sousCategories') as FormArray;
+    const value = e.source.value;
+    if (e.checked) {
+      sousCategories.push(new FormControl(value));
+    } else {
+      let i = 0;
+      sousCategories.controls.forEach((item: FormControl) => {
+        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
+        if (item.value.id === value.id) {
+          sousCategories.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log('after pushing: ', sousCategories);
+  }
+
+  // tslint:disable-next-line:typedef
+  isContain(sousCategories: Array<SousCategorie>, sousCategorie: SousCategorie) {
+    console.log('is contain list', sousCategories);
+    return sousCategories.map(t => t.name).includes((sousCategorie.name));
   }
 
 }

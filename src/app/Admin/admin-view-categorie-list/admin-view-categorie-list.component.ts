@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Categorie} from '../../../model/categorie.model';
 import {Router} from '@angular/router';
 import {CategoriesService} from '../../../services/categorie.service';

@@ -22,6 +22,7 @@ export class ProduitService {
     return this.http.get<Array<Produit>>(this.URL);
   }
 
+  // todo : produits?page=5&size=20
   getProduitPage(page: number, size: number, sort: string): Observable<any> {
     return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
   }

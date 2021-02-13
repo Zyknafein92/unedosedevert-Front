@@ -1,13 +1,13 @@
 import {Commande} from './commande.model';
 import {Adresse} from './adresse.model';
 import {Panier} from './panier.model';
-import {Role} from './role';
+import {RoleModel} from './role.model';
 
 export class User {
   id: number;
   commandes = new Array<Commande>();
   adresses = new Array<Adresse>();
-  roles?: Array<Role>;
+  roles?: Array<RoleModel>;
   panier: Panier;
   nom: string;
   prenom: string;

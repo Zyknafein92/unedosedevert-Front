@@ -8,16 +8,16 @@
 
 .wrapper1 {
   width: 100%;
-  height: 6.25rem;
+  height: 50px;
   margin: 0 0 0 0;
-  padding: 1.063rem 1.866rem 0rem 1.875rem;
+  padding: 0.50rem 0.90rem 0rem 0.90rem;
   background-color: #f5ede4;
   display: inline-block;
 }
 
 h1 {
   font-family: Sofia;
-  font-size: 2.625rem;
+  font-size: 1rem;
   line-height: 1.40;
   float:left;
   color: #4d4d4d;
@@ -31,7 +31,7 @@ h1 {
 
 .client-area li {
   text-align: left;
-  font-size: 1.25rem;
+  font-size: 0.65rem;
   line-height: 1.2;
   color: #757575;
   font-family: WorkSans;
@@ -40,16 +40,16 @@ h1 {
 }
 
 .user-icon {
-  width: 3.25rem;
-  height: 3.25rem;
-  margin: 0 2.98rem 0 1rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0 1.9rem 0 0.5rem;
 
 }
 
 .panier-icon {
-  width: 3.25rem;
-  height: 3.206rem;
-  margin-left: 1.97rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-left: 0.95rem;
 }
 
 .wrapper2 {

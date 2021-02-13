@@ -1,9 +1,12 @@
-import {Reduction} from './reduction.model';
+
+import {Stock} from './stock.model';
 
 export class Variant {
   id: number;
-  image: string;
+  name: string;
+  imageUrlOnSelect: any;
+  imageUrlNonSelect: any;
   prix: number;
-  tva: number;
-  reduction: Reduction;
+  prixKg: number;
+  stock: Stock;
 }

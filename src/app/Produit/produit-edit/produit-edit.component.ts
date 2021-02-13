@@ -9,6 +9,15 @@ import {Stock} from '../../../model/stock.model';
 import {TypeService} from '../../../services/type.service';
 import {CategoriesService} from '../../../services/categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {SousCategorie} from '../../../model/sous-categorie';
+import {Tag} from '../../../model/tag.model';
+import {Label} from '../../../model/label';
+import {Variant} from '../../../model/variant.model';
+import {Reduction} from '../../../model/reduction.model';
+import {LabelService} from '../../../services/label.service';
+import {TagService} from '../../../services/tag.service';
+import {SousCategorieService} from '../../../services/sous-categorie.service';
+import {VariantService} from '../../../services/variant.service';
 
 
 @Component({
@@ -18,21 +27,20 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class ProduitEditComponent implements OnInit {
 
-  @Input()
   produit: Produit;
   forms: FormGroup;
   types: Array<Type>;
-  categories: Array<Categorie>;
-  stock = Stock;
-  stockKeys = Object.keys(this.stock);
   typeToAdd: Type;
   type: Type;
+  categories: Array<Categorie>;
   categorie: Categorie;
-
-  @Output()
-  productChange = new EventEmitter();
-
-
+  stock = Stock;
+  stockKeys = Object.keys(this.stock);
+  sousCategories: Array<SousCategorie>;
+  sousCat: SousCategorie;
+  tags: Array<Tag>;
+  labels: Array<Label>;
+  variants: Array<Variant>;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -40,17 +48,27 @@ export class ProduitEditComponent implements OnInit {
               private produitService: ProduitService,
               private typeService: TypeService,
               private categorieService: CategoriesService,
-              public dialogRef: MatDialogRef<ProduitEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              private sousCategorieService: SousCategorieService,
+              private tagService: TagService,
+              private labelService: LabelService,
+              private variantService: VariantService) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.initCategorie();
     this.initType();
-    if (this.data.id != null) {
-      this.patchValue(this.data.id);
-    }
+    this.initTags();
+    this.initLabels();
+    this.initSousCategorie();
+    this.initVariants();
+    this.activatedRoute.queryParams.subscribe(
+      (params) => {
+        const id = params.id;
+        if (id) {
+          this.patchValue(id);
+        }
+      });
   }
 
   onSubmit(): void {
@@ -61,13 +79,12 @@ export class ProduitEditComponent implements OnInit {
     if (!this.produit || this.produit.id == null) {
       this.produitService.createProduit(this.forms).subscribe(
         next => {
-          this.productChange.emit(next);
-          this.dialogRef.close();
+          this.router.navigate(['admin/products']);
         });
     } else {
       this.produitService.updateProduit(this.forms).subscribe(
         next => {
-          this.productChange.emit(next);
+          this.router.navigate(['admin/products']);
         });
     }
   }
@@ -78,9 +95,21 @@ export class ProduitEditComponent implements OnInit {
       name: ['', Validators.required],
       type: Type,
       categorie: Categorie,
-      description: ['', Validators.required],
+      sousCategorie: SousCategorie,
+      tags: new Array<Tag>(),
+      labels: new Array<Label>(),
       origine: ['', Validators.required],
+      descriptionProduit: ['', Validators.required],
+      commentaireProduit: ['', Validators.required],
+      conseilUtilisation: ['', Validators.required],
+      composition: ['', Validators.required],
+      pourquoi: ['', Validators.required],
+      producteur: ['', Validators.required],
+      allergenes: ['', Validators.required],
+      infoNutrition: ['', Validators.required],
+      reduction: Reduction,
       urlPhoto: ['', Validators.required],
+      variant: new Array<Variant>(),
     });
   }
   private initCategorie(): void {
@@ -95,17 +124,53 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
+  private initTags(): void {
+    this.tagService.getTags().subscribe( data => {
+      this.tags = data;
+    });
+  }
+
+  private initLabels(): void  {
+    this.labelService.getLabels().subscribe( data => {
+      this.labels = data;
+    });
+  }
+
+  private initSousCategorie(): void  {
+    this.sousCategorieService.getSousCategories().subscribe( data => {
+      this.sousCategories = data;
+    });
+  }
+
+  private initVariants(): void {
+   this.variantService.getVariants().subscribe( data => {
+     this.variants = data;
+   });
+  }
+
   private patchValue(id: any): void {
     this.produitService.getProduit(id).subscribe(data => {
       this.produit = data;
       this.forms.patchValue({
         id: data.id,
         name: data.name,
-        categorie: data.categorie,
         type: data.type,
-        description: data.description,
+        categorie: data.categorie,
+        sousCategorie: data.sousCategorie,
+        tags: data.tags,
+        labels: data.labels,
         origine: data.origine,
-        urlPhoto: data.urlPhoto
+        descriptionProduit: data.descriptionProduit,
+        commentaireProduit: data.commentaireProduit,
+        conseilUtilisation: data.conseilUtilisation,
+        composition: data.composition,
+        pourquoi: data.pourquoi,
+        producteur: data.producteur,
+        allergenes: data.allergenes,
+        infoNutrition: data.infoNutrition,
+        reduction: data.reduction,
+        urlPhoto: data.urlPhoto,
+        variant: data.variant,
       });
     });
   }
@@ -126,9 +191,10 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  updateStock(st: any): void {
+  updateSousCategorie(sousCat: any): void {
+    const scat = this.categories.find(value => value.id === sousCat.id);
     this.forms.patchValue({
-      stock: st
+      sousCategorie: scat
     });
   }
 

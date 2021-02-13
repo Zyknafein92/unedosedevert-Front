@@ -20,24 +20,8 @@
       </mat-error>
     </mat-form-field>
 
-<!--    <mat-form-field class="example-full-width col-6">-->
-<!--      <mat-label>Prix:</mat-label>-->
-<!--      <input matInput type="number" placeholder="Prix" formControlName="prix">-->
-<!--      <mat-error [hidden]="forms.get('prix').valid || !forms.get('prix').touched">-->
-<!--        Le<strong> prix </strong>du produit doit être renseigné.-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
 
-<!--    <mat-form-field class="example-full-width col-6">-->
-<!--      <mat-label>TVA:</mat-label>-->
-<!--      <input matInput type="number" placeholder="TVA" formControlName="tva">-->
-<!--      <mat-error [hidden]="forms.get('tva').valid || !forms.get('tva').touched">-->
-<!--        La<strong> TVA </strong>du produit doit être renseignée.-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-
-
-    <mat-form-field appearance="fill" class="col-6">
+    <mat-form-field appearance="fill" class="col-4">
       <mat-label>Type</mat-label>
       <mat-select>
         <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
@@ -47,18 +31,8 @@
       </mat-error>
     </mat-form-field>
 
-<!--    <mat-form-field appearance="fill" class="col-6">-->
-<!--      <mat-label>Stock</mat-label>-->
-<!--      <mat-select>-->
-<!--        <mat-option *ngFor="let st of stockKeys" (onSelectionChange)="updateStock(st)" [value]="st">{{st}}</mat-option>-->
-<!--      </mat-select>-->
-<!--      <mat-error [hidden]="forms.get('stock').valid || !forms.get('stock').touched">-->
-<!--        Le<strong> status </strong>du stock produit doit être renseigné.-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
 
-
-    <mat-form-field appearance="fill" class="col-12">
+    <mat-form-field appearance="fill" class="col-4">
       <mat-label>Categorie</mat-label>
       <mat-select>
         <mat-option *ngFor="let cat of categories"  (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
@@ -68,11 +42,72 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width col-md-12">
+    <mat-form-field appearance="fill" class="col-4">
+      <mat-label>Sous-Categorie</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let scat of sousCategories"  (onSelectionChange)="updateSousCategorie(scat)" [value]="scat">{{scat.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
       <mat-label>Description:</mat-label>
-      <textarea matInput type="text" placeholder="Description" formControlName="description"></textarea>
-      <mat-error [hidden]="forms.get('description').valid || !forms.get('description').touched">
+      <textarea matInput type="text" placeholder="Description" formControlName="descriptionProduit"></textarea>
+      <mat-error [hidden]="forms.get('descriptionProduit').valid || !forms.get('descriptionProduit').touched">
         La<strong> description </strong>du produit doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Commentaire supplémentaire:</mat-label>
+      <textarea matInput type="text" placeholder="commentaireProduit" formControlName="commentaireProduit"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Conseil d'utilisation et préparation:</mat-label>
+      <textarea matInput type="text" placeholder="Conseil d'utilisation" formControlName="conseilUtilisation"></textarea>
+      <mat-error [hidden]="forms.get('conseilUtilisation').valid || !forms.get('conseilUtilisation').touched">
+        Les<strong> conseils d'utilisations et de préparations </strong>du produit doivent être renseignés.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Composition :</mat-label>
+      <textarea matInput type="text" placeholder="Composition" formControlName="composition"></textarea>
+      <mat-error [hidden]="forms.get('composition').valid || !forms.get('composition').touched">
+        La<strong> composition </strong>du produit doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Pourquoi ce produit ?</mat-label>
+      <textarea matInput type="text" placeholder="pourquoi" formControlName="pourquoi"></textarea>
+      <mat-error [hidden]="forms.get('pourquoi').valid || !forms.get('pourquoi').touched">
+        La rubrique <strong> Pourquoi ce produit ? </strong> doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Producteur :</mat-label>
+      <textarea matInput type="text" placeholder="Producteur" formControlName="producteur"></textarea>
+      <mat-error [hidden]="forms.get('producteur').valid || !forms.get('producteur').touched">
+        La rubrique <strong> producteur </strong> doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Valeurs et allergènes :</mat-label>
+      <textarea matInput type="text" placeholder="Valeurs et allergènes" formControlName="allergenes"></textarea>
+      <mat-error [hidden]="forms.get('allergenes').valid || !forms.get('allergenes').touched">
+        La rubrique <strong> valeurs et allergènes </strong> doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-md-12">
+      <mat-label>Infos nutritionnelles :</mat-label>
+      <textarea matInput type="text" placeholder="Infos nutritionnelles" formControlName="infoNutrition"></textarea>
+      <mat-error [hidden]="forms.get('infoNutrition').valid || !forms.get('infoNutrition').touched">
+        La rubrique <strong> Infos nutritionnelles  </strong> doit être renseignée.
       </mat-error>
     </mat-form-field>
 
@@ -80,11 +115,15 @@
       <input (change)="uploadPhoto($event)" class="ng-hide" id="input-file-id" multiple type="file"/>
       <img src="{{forms.controls.urlPhoto.value}}" *ngIf="forms.controls.urlPhoto && forms.controls.urlPhoto.value">
     </div>
-
-
   </form>
   <mat-dialog-actions>
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
     <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid">Sauvegarder</button>
   </mat-dialog-actions>
+
+  <app-admin-view-variant [produitId]="produit"></app-admin-view-variant>
 </mat-dialog-content>
+
+
+
+

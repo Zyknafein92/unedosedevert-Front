@@ -16,8 +16,10 @@ import {MyProfilComponent} from './User/my-profil/my-profil.component';
 import {AdresseEditComponent} from './Adresse/adresse-edit/adresse-edit.component';
 import {AdminViewTagComponent} from './Admin/admin-view-tag/admin-view-tag.component';
 import {TagEditComponent} from './Tags/tag-edit/tag-edit.component';
-import {AdminViewTagCategorieComponent} from './Admin/admin-view-tag-categorie/admin-view-tag-categorie.component';
-import {TagsCategorieEditComponent} from './Tags/tags-categorie-edit/tags-categorie-edit.component';
+import {AdminViewLabelComponent} from './Admin/admin-view-label/admin-view-label.component';
+import {LabelEditComponent} from './Label/label-edit/label-edit.component';
+import {AdminViewSousCategorieListComponent} from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
+import {SousCategorieEditComponent} from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
 
 
 const routes: Routes = [
@@ -25,12 +27,14 @@ const routes: Routes = [
   { path: 'admin/products/edit', component: ProduitEditComponent},
   { path: 'admin/products/categories/edit', component: CategorieEditComponent},
   { path: 'admin/products/categories', component: AdminViewCategorieListComponent},
+  { path: 'admin/products/sous-categories', component: AdminViewSousCategorieListComponent},
+  { path: 'admin/products/sous-categories/edit', component: SousCategorieEditComponent},
   { path: 'admin/products/types', component: AdminViewTypesListComponent},
   { path: 'admin/products/types/edit', component: TypeEditComponent},
   { path: 'admin/products/tags', component: AdminViewTagComponent},
   { path: 'admin/products/tags/edit', component: TagEditComponent},
-  { path: 'admin/products/tagCategories', component: AdminViewTagCategorieComponent},
-  { path: 'admin/products/tagCategorie/edit', component: TagsCategorieEditComponent},
+  { path: 'admin/products/labels', component: AdminViewLabelComponent},
+  { path: 'admin/products/label/edit', component: LabelEditComponent},
   { path: 'products', component: ViewProductsListComponent},
   { path: 'products/categorie', component: ViewProductListTypeComponent},
   { path: 'product', component: ProductViewComponent},

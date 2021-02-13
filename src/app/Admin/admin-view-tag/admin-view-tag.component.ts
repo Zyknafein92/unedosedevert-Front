@@ -20,7 +20,7 @@ export class AdminViewTagComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['name', 'modifier', 'supprimer'];
   tags: Array<Tag>;
-  dataSource = new MatTableDataSource<Categorie>();
+  dataSource = new MatTableDataSource<Tag>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -43,7 +43,7 @@ export class AdminViewTagComponent implements AfterViewInit {
   private initTag(): void {
     this.tagService.getTagPage(0, 30, 'DESC').subscribe(data => {
         this.tags = data.content;
-        this.dataSource = new MatTableDataSource<Categorie>(this.tags);
+        this.dataSource = new MatTableDataSource<Tag>(this.tags);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log('data : ', data);

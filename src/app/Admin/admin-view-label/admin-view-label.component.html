@@ -1,5 +1,5 @@
 <div class="container">
-  <button mat-raised-button (click)="creerTagCategorie()">Créer une catégorie de tag</button>
+  <button mat-raised-button (click)="creerLabel()">Créer un label</button>
   <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
@@ -7,15 +7,15 @@
     </ng-container>
     <ng-container matColumnDef="modifier">
       <th mat-header-cell *matHeaderCellDef>Modifier</th>
-      <td mat-cell *matCellDef="let tagCategorie">
-        <button mat-fab color="primary" aria-label="Build" [value]="" (click)="modifierTagCategorie(tagCategorie)">
+      <td mat-cell *matCellDef="let label">
+        <button mat-fab color="primary" aria-label="Build" [value]="" (click)="modifierLabel(label)">
           <mat-icon>build</mat-icon>
         </button></td>
     </ng-container>
     <ng-container matColumnDef="supprimer">
       <th mat-header-cell *matHeaderCellDef>Supprimer</th>
-      <td mat-cell *matCellDef="let tagCategorie">
-        <button mat-fab color="warn" aria-label="Build" [value]="tagCategorie" (click)="supprimerTagCategorie(tagCategorie.id)">
+      <td mat-cell *matCellDef="let label">
+        <button mat-fab color="warn" aria-label="Build" [value]="label" (click)="supprimerLabel(label.id)">
           <mat-icon>delete</mat-icon>
         </button></td>
     </ng-container>

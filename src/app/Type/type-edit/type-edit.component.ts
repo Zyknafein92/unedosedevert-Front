@@ -56,7 +56,6 @@ export class TypeEditComponent implements OnInit {
         name: data.name,
         categories: data.categories
       });
-      console.log('type: ', this.type);
       const categories: FormArray = this.forms.get('categories') as FormArray;
       this.type.categories.forEach(e => categories.push(new FormControl(e)));
     });

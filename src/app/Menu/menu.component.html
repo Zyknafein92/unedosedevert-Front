@@ -1,8 +1,4 @@
 <mat-toolbar>
-  <button mat-button routerLink="accueil">Accueil</button>
-  <button mat-button routerLink="products">Nos produits</button>
-  <button mat-button>A propos</button>
-  <button mat-button [matMenuTriggerFor]="compte" *ngIf="this.tokenEmail != null">Mon compte</button>
   <button mat-button routerLink="login" *ngIf="this.tokenEmail == null">Se connecter</button>
   <button mat-button *ngIf="this.tokenEmail != null" (click)="logout()">Me déconnecter</button>
   <button mat-button [matMenuTriggerFor]="Admin" *ngIf="this.authorities== 'ROLE_ADMIN'">Admin</button>
@@ -25,8 +21,9 @@
     <button mat-menu-item routerLink="admin/products" > Listes des produits </button>
     <button mat-menu-item routerLink="admin/products/types"> Listes des types </button>
     <button mat-menu-item routerLink="admin/products/categories"> Listes des categories </button>
-    <button mat-menu-item routerLink="admin/products/tagCategories"> Listes des categories de tags </button>
+    <button mat-menu-item routerLink="admin/products/sous-categories"> Listes des sous-categories </button>
     <button mat-menu-item routerLink="admin/products/tags"> Listes des tags </button>
+    <button mat-menu-item routerLink="admin/products/labels"> Listes des labels </button>
   </mat-menu>
 
   <mat-menu #Recette="matMenu">

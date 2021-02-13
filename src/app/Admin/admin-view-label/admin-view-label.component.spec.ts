@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminViewTagCategorieComponent } from './admin-view-tag-categorie.component';
+import { AdminViewTagCategorieComponent } from './admin-view-label.component';
 
 describe('AdminViewTagCategorieComponent', () => {
   let component: AdminViewTagCategorieComponent;
