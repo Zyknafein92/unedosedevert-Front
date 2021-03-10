@@ -1,17 +1,13 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Produit} from '../../../model/produit.model';
 import {Router} from '@angular/router';
 import {ProduitService} from '../../../services/produit.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {merge} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {startWith, switchMap} from 'rxjs/operators';
 import {MatSort} from '@angular/material/sort';
-import {Type} from '../../../model/type.model';
 import {MatDialog} from '@angular/material/dialog';
-import {TypeEditComponent} from '../../Type/type-edit/type-edit.component';
-import {ProduitEditComponent} from '../../Produit/produit-edit/produit-edit.component';
-
 
 @Component({
   selector: 'app-admin-view-product',
@@ -23,14 +19,10 @@ export class AdminViewProductComponent implements AfterViewInit {
   produit: Produit;
   produits: Array<Produit>;
   displayedColumns: string[] = ['name', 'type', 'categorie', 'modifier', 'supprimer'];
-  isLoadingResults = true;
   dataSource = new MatTableDataSource<Produit>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-
-
 
   constructor(private router: Router, private produitService: ProduitService, public dialog: MatDialog) { }
 
@@ -67,5 +59,4 @@ export class AdminViewProductComponent implements AfterViewInit {
 
   supprimerProduit(id: number): void {
     this.produitService.deleteProduit(id).subscribe( next => this.initProduits()); }
-
 }

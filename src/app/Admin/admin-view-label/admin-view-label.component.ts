@@ -1,15 +1,14 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {Label} from '../../../model/label';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {Router} from '@angular/router';
+import {LabelService} from '../../../services/label.service';
 import {MatDialog} from '@angular/material/dialog';
 import {merge} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
-
-import {LabelService} from '../../../services/label.service';
 import {LabelEditComponent} from '../../Label/label-edit/label-edit.component';
-import {Label} from '../../../model/label';
 
 @Component({
   selector: 'app-admin-view-tag-categorie',
@@ -52,6 +51,7 @@ export class AdminViewLabelComponent implements AfterViewInit {
 
   creerLabel(): void {
     const dialogRef = this.dialog.open(LabelEditComponent, {
+      width: '350px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(next => {
@@ -60,7 +60,9 @@ export class AdminViewLabelComponent implements AfterViewInit {
   }
 
   modifierLabel(label: Label): void {
+    console.log('label: ', label);
     const dialogRef = this.dialog.open(LabelEditComponent, {
+      width: '350px',
       data: label
     });
     dialogRef.componentInstance.labelChange.subscribe(data => {

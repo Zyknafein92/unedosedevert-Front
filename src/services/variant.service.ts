@@ -8,33 +8,24 @@ import {Variant} from '../model/variant.model';
   providedIn: 'root'
 })
 export class VariantService {
-  private URL = 'http://localhost:8080/api/produits/variants';
+  private URL = 'http://localhost:8080/api/produits/';
 
   constructor(private http: HttpClient) { }
 
-  getVariants(): Observable<Array<Variant>> {
-    return this.http.get<Array<Variant>>(this.URL);
-  }
-
   getVariantsByProduitId(produitID: number): Observable<Array<Variant>> {
-    return this.http.get<Array<Variant>>(`${this.URL}/produit/${produitID}`);
+    return this.http.get<Array<Variant>>(`${this.URL}${produitID}/variants`);
   }
 
-  getVariant(id: number): Observable<Variant> {
-    return this.http.get<Variant>(`${this.URL}/${id}`);
+  getVariant(produitID: number, id: number): Observable<Variant> {
+    return this.http.get<Variant>(`${this.URL}${produitID}/variants/${id}`);
   }
 
-  getVariantPage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
-  }
-
-  createVariant(form: FormGroup): Observable < Variant> {
-    console.log('form:', form.value);
-    return this.http.post<Variant>(this.URL, form.value);
+  createVariant(form: FormGroup): Observable <Variant> {
+     return this.http.post<Variant>(`${this.URL}${form.getRawValue().produitId}/variants`, form.value);
   }
 
   updateVariant(form: FormGroup): Observable<Variant> {
-    return this.http.put<Variant>(`${this.URL}`, form.value);
+    return this.http.put<Variant>(`${this.URL}${form.getRawValue().produitId}/variants`, form.value);
   }
 
   deleteVariant(id: number): Observable<Variant> {

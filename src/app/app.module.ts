@@ -17,15 +17,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AdminViewProductComponent } from './Admin/admin-view-product/admin-view-product.component';
 import { MenuComponent } from './Menu/menu.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { ProductViewComponent } from './Produit/view-product/product-view.component';
-import { ViewProductsListComponent } from './Produit/view-products-list/view-products-list.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { CreateUserComponent } from './User/create-user/create-user.component';
 import { AccueilComponent } from './Accueil/accueil/accueil.component';
 import {httpInterceptorProviders} from '../services/security/auth-interceptor.service';
-import { CategorieViewProduitComponent } from './Produit/categorie-view-produit/categorie-view-produit.component';
 import {CommonModule} from '@angular/common';
-import {ViewProductListTypeComponent} from './Produit/view-products-list-type/view-product-list-type.component';
 import { CategorieEditComponent } from './Categorie/categorie-edit/categorie-edit.component';
 import { TypeEditComponent } from './Type/type-edit/type-edit.component';
 import { AdminViewTypesListComponent } from './Admin/admin-view-types-list/admin-view-types-list.component';
@@ -68,13 +64,9 @@ import { VariantEditComponent } from './Variant/variant-edit/variant-edit.compon
     PanierEditComponent,
     AdminViewProductComponent,
     MenuComponent,
-    ProductViewComponent,
-    ViewProductsListComponent,
-    ViewProductListTypeComponent,
     LoginComponent,
     CreateUserComponent,
     AccueilComponent,
-    CategorieViewProduitComponent,
     CategorieEditComponent,
     TypeEditComponent,
     AdminViewTypesListComponent,

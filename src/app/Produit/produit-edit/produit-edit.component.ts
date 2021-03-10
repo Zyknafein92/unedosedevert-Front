@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
 import {Type} from '../../../model/type.model';
 import {ProduitService} from '../../../services/produit.service';
@@ -8,7 +8,6 @@ import {Produit} from '../../../model/produit.model';
 import {Stock} from '../../../model/stock.model';
 import {TypeService} from '../../../services/type.service';
 import {CategoriesService} from '../../../services/categorie.service';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {SousCategorie} from '../../../model/sous-categorie';
 import {Tag} from '../../../model/tag.model';
 import {Label} from '../../../model/label';
@@ -55,13 +54,6 @@ export class ProduitEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
-    this.initCategorie();
-    this.initType();
-    this.initTags();
-    this.initLabels();
-    this.initSousCategorie();
-    this.initVariants();
     this.activatedRoute.queryParams.subscribe(
       (params) => {
         const id = params.id;
@@ -69,6 +61,12 @@ export class ProduitEditComponent implements OnInit {
           this.patchValue(id);
         }
       });
+    this.initForm();
+    this.initCategorie();
+    this.initType();
+    this.initTags();
+    // this.initLabels();
+    this.initSousCategorie();
   }
 
   onSubmit(): void {
@@ -79,6 +77,7 @@ export class ProduitEditComponent implements OnInit {
     if (!this.produit || this.produit.id == null) {
       this.produitService.createProduit(this.forms).subscribe(
         next => {
+          console.log('form to create:', this.forms);
           this.router.navigate(['admin/products']);
         });
     } else {
@@ -93,9 +92,9 @@ export class ProduitEditComponent implements OnInit {
     this.forms = this.formBuilder.group({
       id: '',
       name: ['', Validators.required],
-      type: Type,
-      categorie: Categorie,
-      sousCategorie: SousCategorie,
+      type: [Type, Validators.required],
+      categorie: [Categorie, Validators.required],
+      sousCategorie: [SousCategorie, Validators.required],
       tags: new Array<Tag>(),
       labels: new Array<Label>(),
       origine: ['', Validators.required],
@@ -112,6 +111,7 @@ export class ProduitEditComponent implements OnInit {
       variant: new Array<Variant>(),
     });
   }
+
   private initCategorie(): void {
     this.categorieService.getCategories().subscribe(data => {
       this.categories = data;
@@ -130,11 +130,11 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  private initLabels(): void  {
-    this.labelService.getLabels().subscribe( data => {
-      this.labels = data;
-    });
-  }
+  // private initLabels(): void  {
+  //   this.labelService.getLabels().subscribe( data => {
+  //     this.labels = data;
+  //   });
+  // }
 
   private initSousCategorie(): void  {
     this.sousCategorieService.getSousCategories().subscribe( data => {
@@ -142,8 +142,9 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  private initVariants(): void {
-   this.variantService.getVariants().subscribe( data => {
+  private initVariants(id: number): void {
+    if (this.produit == null) { return; }
+    this.variantService.getVariantsByProduitId(this.produit.id).subscribe( data => {
      this.variants = data;
    });
   }
@@ -151,6 +152,7 @@ export class ProduitEditComponent implements OnInit {
   private patchValue(id: any): void {
     this.produitService.getProduit(id).subscribe(data => {
       this.produit = data;
+      this.initVariants(this.produit.id);
       this.forms.patchValue({
         id: data.id,
         name: data.name,
@@ -175,27 +177,20 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  updateCategorie(categorie: Categorie): void {
-   const cat = this.categories.find(value => value.id === categorie.id);
-   this.forms.patchValue({
-     categorie: cat
-   });
+  updateCategorie(categorie: Categorie): Categorie {
+    if (this.produit.categorie != null) {
+      return this.produit.categorie;
+    } else {
+    return this.categories.find(value => value.id === categorie.id);
+    }
   }
 
-  updateType(typ: Type): void {
-    this.typeService.getType(typ.id).subscribe(data => {
-      this.categories = data.categories;
-      this.forms.patchValue({
-        type: data
-      });
-    });
+  updateType(type: Type): Type {
+    return this.types.find(value => value.id === type.id);
   }
 
-  updateSousCategorie(sousCat: any): void {
-    const scat = this.categories.find(value => value.id === sousCat.id);
-    this.forms.patchValue({
-      sousCategorie: scat
-    });
+  updateSousCategorie(sousCat: SousCategorie): SousCategorie {
+    return this.categories.find(value => value.id === sousCat.id);
   }
 
   uploadPhoto(e: any): void {

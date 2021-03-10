@@ -2,9 +2,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AdminViewProductComponent} from './Admin/admin-view-product/admin-view-product.component';
 import {ProduitEditComponent} from './Produit/produit-edit/produit-edit.component';
-import {ProductViewComponent} from './Produit/view-product/product-view.component';
-import {ViewProductsListComponent} from './Produit/view-products-list/view-products-list.component';
-import {ViewProductListTypeComponent} from './Produit/view-products-list-type/view-product-list-type.component';
 import {LoginComponent} from './Auth/login/login.component';
 import {CreateUserComponent} from './User/create-user/create-user.component';
 import {AccueilComponent} from './Accueil/accueil/accueil.component';
@@ -35,9 +32,6 @@ const routes: Routes = [
   { path: 'admin/products/tags/edit', component: TagEditComponent},
   { path: 'admin/products/labels', component: AdminViewLabelComponent},
   { path: 'admin/products/label/edit', component: LabelEditComponent},
-  { path: 'products', component: ViewProductsListComponent},
-  { path: 'products/categorie', component: ViewProductListTypeComponent},
-  { path: 'product', component: ProductViewComponent},
   { path: 'login', component: LoginComponent},
   { path: 'user/myprofil', component: MyProfilComponent},
   { path: 'user/adress/edit', component: AdresseEditComponent},

@@ -10,7 +10,6 @@ import {startWith, switchMap} from 'rxjs/operators';
 import {merge} from 'rxjs';
 import {VariantEditComponent} from '../../Variant/variant-edit/variant-edit.component';
 
-
 @Component({
   selector: 'app-admin-view-variant',
   templateUrl: './admin-view-variant.component.html',
@@ -23,7 +22,6 @@ export class AdminViewVariantComponent implements OnInit {
   displayedColumns: string[] = ['name', 'modifier', 'supprimer'];
   variants: Array<Variant>;
   dataSource = new MatTableDataSource<Variant>();
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -38,7 +36,10 @@ export class AdminViewVariantComponent implements OnInit {
 
   private initVariants(): void {
     this.variantService.getVariantsByProduitId(this.produitId).subscribe(data => {
+        this.variants = data;
         this.dataSource = new MatTableDataSource<Variant>(this.variants);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       err => {
         console.log('error: ', err.error.message);
@@ -46,10 +47,12 @@ export class AdminViewVariantComponent implements OnInit {
   }
 
   creerVariant(): void {
+    const variant = new Variant();
+    variant.produitId = this.produitId;
     const dialogRef = this.dialog.open(VariantEditComponent, {
       width: '800',
       height: '600',
-      data: {}
+      data: variant
     });
     dialogRef.afterClosed().subscribe(next => {
       this.initVariants();
