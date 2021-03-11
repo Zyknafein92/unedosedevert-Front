@@ -25,7 +25,7 @@
     <mat-form-field appearance="fill" class="col-4">
       <mat-label>Type</mat-label>
       <mat-select>
-        <mat-option (selectionchange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
+        <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('type').valid || !forms.get('type').touched">
         Le<strong> type </strong>du produit doit être renseigné.
@@ -35,8 +35,8 @@
 
     <mat-form-field appearance="fill" class="col-4">
       <mat-label>Categorie</mat-label>
-      <mat-select >
-        <mat-option *ngFor="let cat of categories" (selectionchange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
+      <mat-select formControlName="categorie">
+        <mat-option *ngFor="let cat of categories" (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('categorie').valid || !forms.get('categorie').touched">
         La<strong> categorie </strong>du produit doit être renseignée.
@@ -46,7 +46,7 @@
     <mat-form-field appearance="fill" class="col-4">
       <mat-label>Sous-Categorie</mat-label>
       <mat-select>
-        <mat-option *ngFor="let scat of sousCategories" (selectionchange)="updateSousCategorie(scat)" [value]="scat">{{scat.name}}</mat-option>
+        <mat-option *ngFor="let scat of sousCategories" (onSelectionChange)="updateSousCategorie(scat)" [value]="scat">{{scat.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -119,7 +119,7 @@
   </form>
   <mat-dialog-actions>
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-    <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid">Sauvegarder</button>
+    <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
   </mat-dialog-actions>
 
   <div *ngIf="this.produit">

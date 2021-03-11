@@ -51,6 +51,9 @@ export class CategorieEditComponent implements OnInit {
           name: data.name,
           sousCategories: data.sousCategories
         });
+        const sousCategories: FormArray = this.forms.get('sousCategories') as FormArray;
+        data.sousCategories.forEach(e => sousCategories.push(new FormControl(e)));
+        console.log(this.forms);
       });
     }
   }
@@ -74,6 +77,7 @@ export class CategorieEditComponent implements OnInit {
           this.dialogRef.close();
         });
     } else {
+      console.log(this.forms);
       this.categorieService.updateCategorie(this.forms).subscribe(
         next => {
           this.categorieChange.emit(next);

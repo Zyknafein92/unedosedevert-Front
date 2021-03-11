@@ -70,7 +70,9 @@ export class ProduitEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+
     if (this.forms.invalid) {
+      console.log(this.forms.valid);
       this.forms.markAllAsTouched();
       return;
     }
@@ -92,9 +94,9 @@ export class ProduitEditComponent implements OnInit {
     this.forms = this.formBuilder.group({
       id: '',
       name: ['', Validators.required],
-      type: [Type, Validators.required],
-      categorie: [Categorie, Validators.required],
-      sousCategorie: [SousCategorie, Validators.required],
+      type: [null, Validators.required],
+      categorie: [null, Validators.required],
+      sousCategorie: [null, Validators.required],
       tags: new Array<Tag>(),
       labels: new Array<Label>(),
       origine: ['', Validators.required],
@@ -115,12 +117,24 @@ export class ProduitEditComponent implements OnInit {
   private initCategorie(): void {
     this.categorieService.getCategories().subscribe(data => {
       this.categories = data;
+      if (this.produit && this.produit.categorie) {
+        this.produit.categorie = this.categories.find(value => value.id === this.produit.categorie.id);
+        this.forms.patchValue({
+          categorie: this.produit.categorie,
+        });
+      }
     });
   }
 
   private initType(): void {
     this.typeService.getTypes().subscribe(data => {
       this.types = data;
+      if (this.produit && this.produit.type) {
+        this.produit.type = this.types.find(value => value.id === this.produit.type.id);
+        this.forms.patchValue({
+          type: this.produit.type,
+        });
+      }
     });
   }
 
@@ -139,6 +153,12 @@ export class ProduitEditComponent implements OnInit {
   private initSousCategorie(): void  {
     this.sousCategorieService.getSousCategories().subscribe( data => {
       this.sousCategories = data;
+      if (this.produit && this.produit.sousCategorie) {
+        this.produit.sousCategorie = this.sousCategories.find(value => value.id === this.produit.sousCategorie.id);
+        this.forms.patchValue({
+          sousCategorie: this.produit.type,
+        });
+      }
     });
   }
 
@@ -177,20 +197,26 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  updateCategorie(categorie: Categorie): Categorie {
-    if (this.produit.categorie != null) {
-      return this.produit.categorie;
-    } else {
-    return this.categories.find(value => value.id === categorie.id);
-    }
+  updateCategorie(cat: Categorie): void {
+    cat = this.categories.find(value => value.id === cat.id);
+    console.log(cat);
+    this.forms.patchValue({
+      categorie: cat,
+    });
   }
 
-  updateType(type: Type): Type {
-    return this.types.find(value => value.id === type.id);
+  updateType(typ: Type): void {
+    typ = this.types.find(value => value.id === typ.id);
+    this.forms.patchValue({
+      type: typ,
+    });
   }
 
-  updateSousCategorie(sousCat: SousCategorie): SousCategorie {
-    return this.categories.find(value => value.id === sousCat.id);
+  updateSousCategorie(sousCat: SousCategorie): void {
+     sousCat = this.sousCategories.find(value => value.id === sousCat.id);
+     this.forms.patchValue({
+       sousCategorie: sousCat
+     });
   }
 
   uploadPhoto(e: any): void {
