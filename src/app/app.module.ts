@@ -15,7 +15,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AdminViewProductComponent } from './Admin/admin-view-product/admin-view-product.component';
-import { MenuComponent } from './Menu/menu.component';
+import { MenuComponent } from './Menu/menu/menu.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { LoginComponent } from './Auth/login/login.component';
 import { CreateUserComponent } from './User/create-user/create-user.component';
@@ -32,7 +32,7 @@ import { ModalConfirmComponent } from './Modal/modal-confirm/modal-confirm.compo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -51,8 +51,17 @@ import {AdminViewLabelComponent} from './Admin/admin-view-label/admin-view-label
 import { AdminViewSousCategorieListComponent } from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
 import { SousCategorieEditComponent } from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
 import { AdminViewVariantComponent } from './Admin/admin-view-variant/admin-view-variant.component';
-import { AdminViewReductionComponent } from './Admin/admin-view-reduction/admin-view-reduction.component';
 import { VariantEditComponent } from './Variant/variant-edit/variant-edit.component';
+import { ReductionEditComponent } from './Reduction/reduction-edit/reduction-edit.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ViewProductComponent } from './Produit/view-product/view-product.component';
+import { BoutonComponent } from './Utils/bouton/bouton.component';
+import { PetitBoutonComponent } from './Utils/petit-bouton/petit-bouton.component';
+import { SousMenuComponent } from './Menu/sous-menu/sous-menu.component';
+import { CarteProduitComponent } from './Utils/carteProduit/carte-produit/carte-produit.component';
+import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-products/view-all-products.component';
+
 
 
 @NgModule({
@@ -83,22 +92,32 @@ import { VariantEditComponent } from './Variant/variant-edit/variant-edit.compon
     AdminViewSousCategorieListComponent,
     SousCategorieEditComponent,
     AdminViewVariantComponent,
-    AdminViewReductionComponent,
     VariantEditComponent,
+    ReductionEditComponent,
+    ViewProductComponent,
+    BoutonComponent,
+    PetitBoutonComponent,
+    SousMenuComponent,
+    CarteProduitComponent,
+    ViewAllProductsComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCheckboxModule,
+
     MatListModule,
     MatIconModule,
+    MatExpansionModule,
     MatButtonModule,
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,

@@ -1,7 +1,7 @@
 export class Reduction {
   id: number;
-  prixReduit: number;
-  totalReduction: number;
-  start: Date;
-  end: Date;
+  produitID: number;
+  pourcentageRemise: number;
+  reductionStart: Date;
+  reductionEnd: Date;
 }

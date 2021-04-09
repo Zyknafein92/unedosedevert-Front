@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
   providedIn: 'root'
 })
 export class ReductionService {
-  private URL = 'http://localhost:8080/api/produits/reductions';
+  private URL = 'http://localhost:8080/api/produits/';
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +16,8 @@ export class ReductionService {
     return this.http.get<Array<Reduction>>(this.URL);
   }
 
-  getReduction(id: number): Observable<Reduction> {
-    return this.http.get<Reduction>(`${this.URL}/${id}`);
+  getReduction(produitID: number): Observable<Reduction> {
+    return this.http.get<Reduction>(`${this.URL}${produitID}/reduction`);
   }
 
   getReductionPage(page: number, size: number, sort: string): Observable<any> {
@@ -26,14 +26,14 @@ export class ReductionService {
 
   createReduction(form: FormGroup): Observable < Reduction> {
     console.log('form:', form.value);
-    return this.http.post<Reduction>(this.URL, form.value);
+    return this.http.post<Reduction>(`${this.URL}${form.getRawValue().produitID}/reduction`, form.value);
   }
 
   updateReduction(form: FormGroup): Observable<Reduction> {
-    return this.http.put<Reduction>(`${this.URL}`, form.value);
+    return this.http.put<Reduction>(`${this.URL}${form.getRawValue().produitID}/reduction`, form.value);
   }
 
-  deleteReduction(id: number): Observable<Reduction> {
-    return this.http.delete<Reduction>(`${this.URL}/${id}`);
+  deleteReduction(produitID: number, id: number): Observable<Reduction> {
+    return this.http.delete<Reduction>(`${this.URL}${produitID}/reduction/${id}`);
   }
 }

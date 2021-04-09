@@ -14,8 +14,6 @@ export class ProduitService {
   private URL = 'http://localhost:8080/api/produits';
   private adminURL = 'http://localhost:8080/api/admin';
 
-  searchCriteria: SearchCriteria;
-
   constructor(private http: HttpClient) { }
 
   getProduits(): Observable<Array<Produit>> {
@@ -26,20 +24,22 @@ export class ProduitService {
     return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
   }
 
-  // tslint:disable-next-line:max-line-length
-  getProduitsBySearch(searchCriteria: SearchCriteria, page: number, size: number, sort: string): Observable<any> {
+  findProductByCriteria(searchCriteria: SearchCriteria): Observable<Array<Produit>> {
     let customParam = new HttpParams();
-    if (searchCriteria.type != null) {
-      customParam = customParam.set('type', searchCriteria.type);
+    if (searchCriteria && searchCriteria.tag != null) {
+      customParam = customParam.set('tag', searchCriteria.tag);
     }
-    if (searchCriteria.categorie != null) {
+    if (searchCriteria && searchCriteria.categorie != null) {
       customParam = customParam.set('categorie', searchCriteria.categorie);
     }
-    if (searchCriteria.query != null) {
+    if (searchCriteria && searchCriteria.sousCategorie != null) {
+      customParam = customParam.set('sousCategorie', searchCriteria.sousCategorie);
+    }
+    if (searchCriteria && searchCriteria.query != null) {
       customParam = customParam.set('query', searchCriteria.query);
     }
     console.log('Service:', customParam);
-    return this.http.get<Array<Produit>>(`${this.URL}/search?page=${page}&size=${size}&sort=${sort}`, {params: customParam});
+    return this.http.post<Array<Produit>>(`${this.URL}/search`, searchCriteria, {params: customParam});
   }
 
 

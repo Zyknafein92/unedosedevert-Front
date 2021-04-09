@@ -1,0 +1,11 @@
+.mat-dialog-title{
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  align-content: center !important;
+}
+
+h2 {
+  color: green;
+}

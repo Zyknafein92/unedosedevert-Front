@@ -24,7 +24,7 @@
 
     <mat-form-field appearance="fill" class="col-4">
       <mat-label>Type</mat-label>
-      <mat-select>
+      <mat-select formControlName="type">
         <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
       </mat-select>
       <mat-error [hidden]="forms.get('type').valid || !forms.get('type').touched">
@@ -45,10 +45,32 @@
 
     <mat-form-field appearance="fill" class="col-4">
       <mat-label>Sous-Categorie</mat-label>
-      <mat-select>
+      <mat-select formControlName="sousCategorie">
         <mat-option *ngFor="let scat of sousCategories" (onSelectionChange)="updateSousCategorie(scat)" [value]="scat">{{scat.name}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+<!--    <mat-list>-->
+<!--      <mat-list-item class="row col-md-6" *ngFor="let tag of tags; let i=index">-->
+<!--        <mat-checkbox class="example-margin"-->
+<!--                      [value]="tag"-->
+<!--                      [checked]="this.tag && isTagContain(this.produit.tags, tag)"-->
+<!--                      (change)="onCheckTagChange($event)">{{tag.name}}-->
+<!--        </mat-checkbox>-->
+<!--      </mat-list-item>-->
+<!--    </mat-list>-->
+
+
+<!--      <mat-list>-->
+<!--        <mat-list-item class="row col-md-6" *ngFor="let label of labels; let i=index">-->
+<!--          <mat-checkbox class="example-margin"-->
+<!--                        [value]="label"-->
+<!--                        [checked]="this.label && isLabelContain(this.produit.labels, label)"-->
+<!--                        (change)="onCheckLabelChange($event)">{{label.name}}-->
+<!--          </mat-checkbox>-->
+<!--        </mat-list-item>-->
+<!--      </mat-list>-->
+
 
     <mat-form-field class="col-md-12">
       <mat-label>Description:</mat-label>
@@ -112,12 +134,14 @@
       </mat-error>
     </mat-form-field>
 
-    <div class="align-content-center">
+    <div class="photo-selecteur">
       <input (change)="uploadPhoto($event)" class="ng-hide" id="input-file-id" multiple type="file"/>
       <img src="{{forms.controls.urlPhoto.value}}" *ngIf="forms.controls.urlPhoto && forms.controls.urlPhoto.value">
     </div>
   </form>
-  <mat-dialog-actions>
+</mat-dialog-content>
+  <br>
+  <mat-dialog-actions align="end">
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
     <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
   </mat-dialog-actions>
@@ -126,7 +150,9 @@
     <app-admin-view-variant *ngIf="this.produit != null" [produitId]="this.produit.id"></app-admin-view-variant>
   </div>
 
-</mat-dialog-content>
+  <div *ngIf="this.produit">
+    <app-reduction-edit *ngIf="this.produit != null" [produitId]="this.produit.id"></app-reduction-edit>
+  </div>
 </div>
 
 

@@ -1,0 +1,8 @@
+<div class="wrapper" *ngIf="type != null">
+<ul class="cat" *ngFor="let cat of categories">
+  <li class="catElem" (click)="searchProduitByCat(cat.name)">{{cat.name}}</li>
+  <ul class="sCat" *ngFor="let sc of cat.sousCategories">
+    <li class="sCatElem" (click)="searchProduitBySC(sc.name)">{{sc.name}}</li>
+  </ul>
+</ul>
+</div>

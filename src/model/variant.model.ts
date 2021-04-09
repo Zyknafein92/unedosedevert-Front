@@ -8,5 +8,6 @@ export class Variant {
   imageUrlNonSelect: any;
   prix: number;
   prixKg: number;
+  prixReduction: number;
   stock: Stock;
 }

@@ -3,6 +3,7 @@ import {AuthLoginInfo} from '../../../services/security/login-info';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,30 +12,52 @@ import {TokenStorageService} from '../../../services/security/token-storage.serv
 })
 export class LoginComponent implements OnInit {
 
-  form: any = {};
+  forms: FormGroup;
+  formsUser: FormGroup;
+  hide = true;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles = '[]';
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
+      this.initForms();
+      this.initFormUser();
+      if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
       this.router.navigate(['/']);
     }
   }
 
+    private initFormUser(): void {
+        this.formsUser = this.formBuilder.group(
+            {
+                nom: ['', Validators.required],
+                prenom: ['', Validators.required],
+                anniversaire: new FormControl(),
+                email: new FormControl('', Validators.compose([
+                    Validators.required,
+                    Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')
+                ])),
+                telephone: new FormControl('', Validators.compose([
+                    Validators.required,
+                    Validators.pattern('^[0-9]{10}$')
+                ])),
+                password: ['', [Validators.min(6), Validators.required]],
+            });
+    }
+
   onSubmit(): void {
-    console.log(this.form);
+    console.log(this.forms);
 
     this.loginInfo = new AuthLoginInfo(
-      this.form.email,
-      this.form.password);
-
+      this.forms.getRawValue().email,
+      this.forms.getRawValue().password);
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       response => {
@@ -58,8 +81,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  navigateToRegister(): void {
-    this.router.navigateByUrl('/user/add');
-  }
-
+    private initForms(): void {
+        this.forms = this.formBuilder.group({
+            email: ['', [Validators.email, Validators.required]],
+            password: ['', [Validators.min(6), Validators.required]],
+        });
+    }
 }

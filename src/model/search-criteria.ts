@@ -1,7 +1,7 @@
-import {Categorie} from './categorie.model';
 
 export class SearchCriteria {
   categorie: string;
-  type: string;
+  sousCategorie: string;
+  tag: string;
   query: string;
 }

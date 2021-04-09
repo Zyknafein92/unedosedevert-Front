@@ -1,0 +1,14 @@
+.customized-button {
+  padding: 10px 30px;
+  border: solid 2px #c7a38f;
+  text-transform: uppercase;
+  color: #c7a38f;
+  font-family: WorkSans, serif;
+  font-size: 14px;
+  background-color: white;
+}
+
+.customized-button:hover {
+  background-color: #c7a38f;
+  color: white;
+}

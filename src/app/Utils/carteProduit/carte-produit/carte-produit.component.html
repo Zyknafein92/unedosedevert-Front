@@ -1,0 +1,37 @@
+<div class="wrapperCarte" *ngIf="produit != null">
+  <div class="produitIMG">
+    <img src="{{produit.urlPhoto}}" alt="Photo de {{produit.name}}">
+  </div>
+
+  <div class="nomProduit">
+    <p>{{produit.name}}</p>
+  </div>
+
+  <div class="descrition">
+    <p>{{produit.descriptionProduit}}</p>
+  </div>
+
+  <div class="type">
+    <p>{{produit.type.name}}</p>
+  </div>
+
+  <div class="variantInitiateur" *ngFor="let vari of variants">
+    <div class="variantSelecteur">
+     <app-petit-bouton label="{{vari.name}}"></app-petit-bouton>
+    </div>
+    <div class="panierSelecteur">
+      <div class="buttonRemove">
+      <app-petit-bouton class="-" label="-"></app-petit-bouton>
+      </div>
+      <p class="nombre">{{nombre}}</p>
+      <div class="buttonAdd">
+      <app-petit-bouton class="+" label="+"></app-petit-bouton>
+      </div>
+      <p class="prix">{{vari.prix}}€</p>
+    </div>
+    <div class="reduction">
+      <p>{{vari.prixReduction}}</p>
+    </div>
+    <app-bouton class="panierButton" label="Ajouter au panier"></app-bouton>
+  </div>
+</div>

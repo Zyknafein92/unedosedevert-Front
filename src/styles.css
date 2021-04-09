@@ -2,3 +2,13 @@
   font-family: Sofia-Regular;
   src: url("assets/fonts/Sofia-Regular.ttf");
 }
+
+@font-face {
+  font-family: WorkSans;
+  src: url("src/assets/fonts/WorkSans-VariableFont_wght.ttf")
+}
+
+@font-face {
+  font-family: AbhayaLibre;
+  src: url("src/assets/fonts/AbhayaLibre-Bold.ttf")
+}

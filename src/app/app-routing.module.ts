@@ -17,6 +17,8 @@ import {AdminViewLabelComponent} from './Admin/admin-view-label/admin-view-label
 import {LabelEditComponent} from './Label/label-edit/label-edit.component';
 import {AdminViewSousCategorieListComponent} from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
 import {SousCategorieEditComponent} from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
+import {ViewProductComponent} from './Produit/view-product/view-product.component';
+import {ViewAllProductsComponent} from './Produit/view-all-product/view-all-products/view-all-products.component';
 
 
 const routes: Routes = [
@@ -36,7 +38,10 @@ const routes: Routes = [
   { path: 'user/myprofil', component: MyProfilComponent},
   { path: 'user/adress/edit', component: AdresseEditComponent},
   { path: 'user/add', component: CreateUserComponent},
-  { path: 'accueil', component: AccueilComponent}
+  { path: 'accueil', component: AccueilComponent},
+  { path: 'product', component: ViewProductComponent},
+  { path: 'products', component: ViewAllProductsComponent},
+  { path: '', redirectTo: 'accueil', pathMatch: 'full'},
 ];
 
 @NgModule({

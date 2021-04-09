@@ -16,7 +16,8 @@ export class CreateUserComponent implements OnInit {
   user: User;
   private messageError: string;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+              private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.initform();

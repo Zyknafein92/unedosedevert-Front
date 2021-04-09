@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
 import {Type} from '../../../model/type.model';
 import {ProduitService} from '../../../services/produit.service';
@@ -17,6 +17,7 @@ import {LabelService} from '../../../services/label.service';
 import {TagService} from '../../../services/tag.service';
 import {SousCategorieService} from '../../../services/sous-categorie.service';
 import {VariantService} from '../../../services/variant.service';
+import {ReductionService} from '../../../services/reduction.service';
 
 
 @Component({
@@ -47,6 +48,7 @@ export class ProduitEditComponent implements OnInit {
               private produitService: ProduitService,
               private typeService: TypeService,
               private categorieService: CategoriesService,
+              private reductionService: ReductionService,
               private sousCategorieService: SousCategorieService,
               private tagService: TagService,
               private labelService: LabelService,
@@ -65,12 +67,11 @@ export class ProduitEditComponent implements OnInit {
     this.initCategorie();
     this.initType();
     this.initTags();
-    // this.initLabels();
+    this.initLabels();
     this.initSousCategorie();
   }
 
   onSubmit(): void {
-
     if (this.forms.invalid) {
       console.log(this.forms.valid);
       this.forms.markAllAsTouched();
@@ -144,11 +145,11 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  // private initLabels(): void  {
-  //   this.labelService.getLabels().subscribe( data => {
-  //     this.labels = data;
-  //   });
-  // }
+  private initLabels(): void  {
+    this.labelService.getLabels().subscribe( data => {
+      this.labels = data;
+    });
+  }
 
   private initSousCategorie(): void  {
     this.sousCategorieService.getSousCategories().subscribe( data => {
@@ -156,7 +157,7 @@ export class ProduitEditComponent implements OnInit {
       if (this.produit && this.produit.sousCategorie) {
         this.produit.sousCategorie = this.sousCategories.find(value => value.id === this.produit.sousCategorie.id);
         this.forms.patchValue({
-          sousCategorie: this.produit.type,
+          sousCategorie: this.produit.sousCategorie,
         });
       }
     });
@@ -192,7 +193,7 @@ export class ProduitEditComponent implements OnInit {
         infoNutrition: data.infoNutrition,
         reduction: data.reduction,
         urlPhoto: data.urlPhoto,
-        variant: data.variant,
+        variant: data.variants,
       });
     });
   }
@@ -227,5 +228,67 @@ export class ProduitEditComponent implements OnInit {
        this.forms.patchValue({urlPhoto: data.urlPhoto});
       });
     }
+  }
+
+  updateTags(tag: Tag): void {
+    tag = this.tags.find(value => value.id === tag.id);
+    this.forms.patchValue({
+      tags: tag
+    });
+  }
+
+  updateLabels(label: Label): void {
+    label = this.labels.find(value => value.id === label.id);
+    this.forms.patchValue({
+      labels: label
+    });
+  }
+
+  onCheckLabelChange(e): void {
+    const labels: FormArray = this.forms.get('labels') as FormArray;
+    const value = e.source.value;
+    if (e.checked) {
+      labels.push(new FormControl(value));
+    }
+    else {
+      let i = 0 ;
+      labels.controls.forEach((item: FormControl) => {
+        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
+        if (item.value.id === value.id) {
+          labels.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log('after pushing: ', labels);
+  }
+
+  isLabelContain(labels: Array<Label>, label: Label): boolean {
+    return labels.map(l => l.name).includes((label.name));
+  }
+
+  isTagContain(tags: Array<Tag>, tag: Tag): boolean {
+    return tags.map(t => t.name).includes((tag.name));
+  }
+
+  onCheckTagChange(e): void {
+    const tags: FormArray = this.forms.get('tags') as FormArray;
+    const value = e.source.value;
+    if (e.checked) {
+      tags.push(new FormControl(value));
+    }
+    else {
+      let i = 0 ;
+      tags.controls.forEach((item: FormControl) => {
+        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
+        if (item.value.id === value.id) {
+          tags.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log('after pushing: ', tags);
   }
 }

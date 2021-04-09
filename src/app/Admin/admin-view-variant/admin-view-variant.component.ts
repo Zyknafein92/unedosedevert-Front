@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Variant} from '../../../model/variant.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -6,8 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import {Router} from '@angular/router';
 import {VariantService} from '../../../services/variant.service';
 import {MatDialog} from '@angular/material/dialog';
-import {startWith, switchMap} from 'rxjs/operators';
-import {merge} from 'rxjs';
+
 import {VariantEditComponent} from '../../Variant/variant-edit/variant-edit.component';
 
 @Component({
@@ -71,6 +70,6 @@ export class AdminViewVariantComponent implements OnInit {
   }
 
   supprimerVariant(id: number): void {
-    this.variantService.deleteVariant(id).subscribe(next => this.initVariants());
+    this.variantService.deleteVariant(this.produitId, id).subscribe(next => this.initVariants());
   }
 }

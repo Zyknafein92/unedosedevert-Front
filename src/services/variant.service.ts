@@ -28,7 +28,7 @@ export class VariantService {
     return this.http.put<Variant>(`${this.URL}${form.getRawValue().produitId}/variants`, form.value);
   }
 
-  deleteVariant(id: number): Observable<Variant> {
-    return this.http.delete<Variant>(`${this.URL}/${id}`);
+  deleteVariant(produitID, id: number): Observable<Variant> {
+    return this.http.delete<Variant>(`${this.URL}${produitID}/variants/${id}`);
   }
 }

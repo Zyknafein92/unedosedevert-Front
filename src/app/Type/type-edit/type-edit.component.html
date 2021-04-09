@@ -9,6 +9,7 @@
         Le <strong>nom</strong> du type de produit doit être renseigné.
       </mat-error>
     </mat-form-field>
+
     <mat-list>
       <mat-list-item class="row col-md-12" *ngFor="let categorie of categorieList; let i=index">
         <mat-checkbox class="example-margin"
@@ -18,10 +19,6 @@
         </mat-checkbox>
       </mat-list-item>
     </mat-list>
-    <mat-dialog-actions>
-      <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-      <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid" [mat-dialog-close]>Sauvegarder</button>
-    </mat-dialog-actions>
   </form>
 </mat-dialog-content>
 

@@ -1,0 +1,59 @@
+.wrapperCarte {
+  height: 29.5%;
+  width: 20%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  text-align: center;
+}
+
+.produitIMG {
+  margin: 0 auto;
+}
+
+p {
+  font-family: AbhayaLibre, serif;
+}
+
+.nomProduit {
+  margin: 4% 0 2.4% 0;
+  font-size: 23px;
+}
+
+.type {
+  font-size: 22px;
+  margin-bottom: 6%;
+}
+
+.panierSelecteur {
+  display: flex;
+  flex-direction: row !important;
+  margin: 6.5% 0 5.6% 0;
+}
+
+.buttonRemove {
+  margin-left: 5.3%;
+  margin-right: 5.4%;
+}
+
+.buttonAdd {
+  margin-left: 5.3%;
+  margin-right: 19.8%;
+}
+
+.nombre {
+  font-family: WorkSans, serif;
+  font-size: 22px;
+  margin: 5% auto 5% auto;
+}
+
+.prix {
+  float: right;
+  font-family: WorkSans, serif;
+  font-size: 22px;
+  margin: 5% auto 5% auto;
+}
+
+.panierButton {
+  margin: 0% 3.4%
+}
+
+

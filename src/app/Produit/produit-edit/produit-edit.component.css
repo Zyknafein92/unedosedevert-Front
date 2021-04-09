@@ -2,10 +2,20 @@
   text-align: center;
 }
 
-.mat-dialog-content{
+.mat-dialog-content {
   height: auto !important;
   width: auto !important;
   overflow: initial !important;
+}
+.mat-dialog-actions {
+  align-content: center !important;
+  justify-content: center;
+  display: flex;
+  width: 100% !important;
+}
+.photo-selecteur {
+  align-content: center;
+  margin-left: 40px;
 }
 
 h2 {

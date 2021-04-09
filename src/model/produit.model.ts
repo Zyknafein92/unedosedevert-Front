@@ -23,7 +23,7 @@ export class Produit {
   producteur: string;
   allergenes: string;
   infoNutrition: string;
-  variant = new Array<Variant>();
+  variants = new Array<Variant>();
   reduction: Reduction;
   urlPhoto: any;
 }

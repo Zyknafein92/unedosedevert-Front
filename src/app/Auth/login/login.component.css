@@ -1,0 +1,54 @@
+.wrapper{
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+h1 {
+  font-family: WorkSans, serif;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+hr {
+  width: 100%;
+  height: 2px;
+  background-color: #c7a38f !important;
+  align-self: center;
+}
+
+.ConnexionArea {
+  width: 25%;
+  float: left;
+  margin: 4% 0 0 16.3%;
+  text-align: center;
+}
+
+.ConnexionArea mat-form-field {
+  margin: 2% 0;
+  justify-content: center !important;
+  align-content: center !important;
+  text-align: center;
+  border: #f2f2f2 solid 2px;
+}
+
+.CompteArea {
+  width: 25%;
+  text-align: center;
+  float: right;
+  margin: 4% 16.3% 0 0;
+}
+
+.CompteArea .mat-expansion-panel {
+  box-shadow: none;
+}
+
+.CompteArea .mat-expansion-panel-header {
+  font-family: WorkSans, serif;
+  font-size: 14px;
+  color: #707070;
+  text-transform: uppercase;
+  border-bottom: #f2f2f2 solid 1px;
+}
