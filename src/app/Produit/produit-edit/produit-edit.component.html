@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="Produit">
 <mat-dialog-content>
   <h2 mat-dialog-title *ngIf="produit == null">Ajouter un produit</h2>
   <h2 mat-dialog-title *ngIf="produit != null">Modifier un produit</h2>
@@ -50,27 +51,30 @@
       </mat-select>
     </mat-form-field>
 
-<!--    <mat-list>-->
-<!--      <mat-list-item class="row col-md-6" *ngFor="let tag of tags; let i=index">-->
-<!--        <mat-checkbox class="example-margin"-->
+<!--    <div class="checkbox">-->
+<!--    <mat-list class="col-md-6">-->
+<!--      <mat-label>Choisissez les tags associés à ce produit :</mat-label>-->
+<!--      <mat-list-item *ngFor="let tag of tagsList; let i=index">-->
+<!--        <mat-checkbox class="tags"-->
 <!--                      [value]="tag"-->
-<!--                      [checked]="this.tag && isTagContain(this.produit.tags, tag)"-->
+<!--                      [checked]="this.produit && isTagContain(this.produit.tags, tag)"-->
 <!--                      (change)="onCheckTagChange($event)">{{tag.name}}-->
 <!--        </mat-checkbox>-->
 <!--      </mat-list-item>-->
 <!--    </mat-list>-->
 
 
-<!--      <mat-list>-->
-<!--        <mat-list-item class="row col-md-6" *ngFor="let label of labels; let i=index">-->
-<!--          <mat-checkbox class="example-margin"-->
+<!--      <mat-list class="col-md-6">-->
+<!--        <mat-label>Choisissez les labels associés à ce produit :</mat-label>-->
+<!--        <mat-list-item *ngFor="let label of labelList; let i=index">-->
+<!--          <mat-checkbox class="labels"-->
 <!--                        [value]="label"-->
-<!--                        [checked]="this.label && isLabelContain(this.produit.labels, label)"-->
+<!--                        [checked]="this.produit && isLabelContain(this.produit.labels, label)"-->
 <!--                        (change)="onCheckLabelChange($event)">{{label.name}}-->
 <!--          </mat-checkbox>-->
 <!--        </mat-list-item>-->
 <!--      </mat-list>-->
-
+<!--    </div>-->
 
     <mat-form-field class="col-md-12">
       <mat-label>Description:</mat-label>
@@ -78,11 +82,6 @@
       <mat-error [hidden]="forms.get('descriptionProduit').valid || !forms.get('descriptionProduit').touched">
         La<strong> description </strong>du produit doit être renseignée.
       </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Commentaire supplémentaire:</mat-label>
-      <textarea matInput type="text" placeholder="commentaireProduit" formControlName="commentaireProduit"></textarea>
     </mat-form-field>
 
     <mat-form-field class="col-md-12">
@@ -118,6 +117,14 @@
     </mat-form-field>
 
     <mat-form-field class="col-md-12">
+      <mat-label>Commentaire producteur :</mat-label>
+      <textarea matInput type="text" placeholder="Producteur" formControlName="commentaireProducteur"></textarea>
+      <mat-error [hidden]="forms.get('producteur').valid || !forms.get('producteur').touched">
+        La rubrique <strong> commentaire producteur </strong> doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
       <mat-label>Valeurs et allergènes :</mat-label>
       <textarea matInput type="text" placeholder="Valeurs et allergènes" formControlName="allergenes"></textarea>
       <mat-error [hidden]="forms.get('allergenes').valid || !forms.get('allergenes').touched">
@@ -134,23 +141,35 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field class="col-md-12">
+      <mat-label>Commentaire supplémentaire:</mat-label>
+      <textarea matInput type="text" placeholder="commentaireProduit" formControlName="commentaireProduit"></textarea>
+    </mat-form-field>
+
     <div class="photo-selecteur">
-      <input (change)="uploadPhoto($event)" class="ng-hide" id="input-file-id" multiple type="file"/>
-      <img src="{{forms.controls.urlPhoto.value}}" *ngIf="forms.controls.urlPhoto && forms.controls.urlPhoto.value">
+      <label>Photo: 300 x 300 px</label>
+      <input (change)="uploadPetitePhoto($event)" class="ng-hide"  multiple type="file"/>
+      <img src="{{forms.controls.urlPetitePhoto.value}}" *ngIf="forms.controls.urlPetitePhoto && forms.controls.urlPetitePhoto.value">
+    </div>
+
+    <div class="photo-selecteur">
+      <label>Photo: 732 x 732 px</label>
+      <input (change)="uploadGrandePhoto($event)" class="ng-hide" multiple type="file"/>
+      <img src="{{forms.controls.urlPetitePhoto.value}}" *ngIf="forms.controls.urlGrandePhoto && forms.controls.urlGrandePhoto.value">
     </div>
   </form>
 </mat-dialog-content>
   <br>
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions>
     <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
     <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
   </mat-dialog-actions>
-
-  <div *ngIf="this.produit">
+  </div>
+  <div class="variant" *ngIf="this.produit">
     <app-admin-view-variant *ngIf="this.produit != null" [produitId]="this.produit.id"></app-admin-view-variant>
   </div>
 
-  <div *ngIf="this.produit">
+  <div class="reduction" *ngIf="this.produit">
     <app-reduction-edit *ngIf="this.produit != null" [produitId]="this.produit.id"></app-reduction-edit>
   </div>
 </div>

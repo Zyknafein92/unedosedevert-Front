@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {FormGroup} from '@angular/forms';
@@ -11,6 +11,7 @@ import {Label} from '../model/label';
 })
 export class LabelService {
   private URL = 'http://localhost:8080/api/produits/label';
+  private adminURL = 'http://localhost:8080/api/admin';
 
   constructor(private http: HttpClient) { }
 
@@ -37,5 +38,14 @@ export class LabelService {
 
   deleteLabel(id: number): Observable<Label> {
     return this.http.delete<Label>(`${this.URL}/${id}`);
+  }
+
+  uploadPhoto(file: File): Observable<any> {
+    const headers = new HttpHeaders().set('responseType', 'text');
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post<any>(`${this.adminURL}/upload`, formData, {
+      headers
+    });
   }
 }

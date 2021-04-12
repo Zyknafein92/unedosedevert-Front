@@ -21,9 +21,11 @@ export class Produit {
   composition: string;
   pourquoi: string;
   producteur: string;
+  commentaireProducteur: string;
   allergenes: string;
   infoNutrition: string;
   variants = new Array<Variant>();
   reduction: Reduction;
-  urlPhoto: any;
+  urlPetitePhoto: any;
+  urlGrandePhoto: any;
 }

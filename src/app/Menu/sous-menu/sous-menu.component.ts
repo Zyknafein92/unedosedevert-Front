@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SousCategorie} from '../../../model/sous-categorie';
 import {Categorie} from '../../../model/categorie.model';
 import {Type} from '../../../model/type.model';
@@ -13,7 +13,7 @@ import {Route, Router} from '@angular/router';
   templateUrl: './sous-menu.component.html',
   styleUrls: ['./sous-menu.component.css']
 })
-export class SousMenuComponent implements OnInit {
+export class SousMenuComponent implements OnInit, OnChanges {
   @Input()
   type: Type;
   categories: Array<Categorie>;
@@ -24,6 +24,11 @@ export class SousMenuComponent implements OnInit {
   constructor(private typeService: TypeService, private categorieService: CategoriesService, private sousCategorieService: SousCategorieService, private router: Router) { }
 
   ngOnInit(): void {
+    this.initCategories();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes: ', changes);
     this.initCategories();
   }
 

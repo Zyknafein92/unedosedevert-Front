@@ -38,8 +38,10 @@ export class ProduitEditComponent implements OnInit {
   stockKeys = Object.keys(this.stock);
   sousCategories: Array<SousCategorie>;
   sousCat: SousCategorie;
-  tags: Array<Tag>;
-  labels: Array<Label>;
+  tagsList: Array<Tag>;
+  tags: FormGroup;
+  labels: FormGroup;
+  labelList: Array<Label>;
   variants: Array<Variant>;
 
   constructor(private router: Router,
@@ -69,6 +71,7 @@ export class ProduitEditComponent implements OnInit {
     this.initTags();
     this.initLabels();
     this.initSousCategorie();
+    this.initTagsForms();
   }
 
   onSubmit(): void {
@@ -102,15 +105,17 @@ export class ProduitEditComponent implements OnInit {
       labels: new Array<Label>(),
       origine: ['', Validators.required],
       descriptionProduit: ['', Validators.required],
-      commentaireProduit: ['', Validators.required],
+      commentaireProduit: [''],
       conseilUtilisation: ['', Validators.required],
       composition: ['', Validators.required],
       pourquoi: ['', Validators.required],
       producteur: ['', Validators.required],
+      commentaireProducteur: ['', Validators.required],
       allergenes: ['', Validators.required],
       infoNutrition: ['', Validators.required],
       reduction: Reduction,
-      urlPhoto: ['', Validators.required],
+      urlPetitePhoto: [''],
+      urlGrandePhoto: [''],
       variant: new Array<Variant>(),
     });
   }
@@ -141,13 +146,28 @@ export class ProduitEditComponent implements OnInit {
 
   private initTags(): void {
     this.tagService.getTags().subscribe( data => {
-      this.tags = data;
+      this.tagsList = data;
+    });
+  }
+
+  private initTagsForms(): void {
+    this.tags = this.formBuilder.group({
+      id: [''],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
   private initLabels(): void  {
     this.labelService.getLabels().subscribe( data => {
-      this.labels = data;
+      this.labelList = data;
+    });
+  }
+
+  private initLabelForm(): void {
+    this.labels = this.formBuilder.group({
+      id: '',
+      name: ['' , Validators.required],
     });
   }
 
@@ -189,12 +209,19 @@ export class ProduitEditComponent implements OnInit {
         composition: data.composition,
         pourquoi: data.pourquoi,
         producteur: data.producteur,
+        commentaireProducteur: data.commentaireProducteur,
         allergenes: data.allergenes,
         infoNutrition: data.infoNutrition,
         reduction: data.reduction,
-        urlPhoto: data.urlPhoto,
+        urlGrandePhoto: data.urlGrandePhoto,
+        urlPetitePhoto: data.urlPetitePhoto,
         variant: data.variants,
       });
+      const tags: FormArray = this.forms.get('tags') as FormArray;
+      this.produit.tags.forEach(t => tags.push(new FormControl(t)));
+
+      const labels: FormArray = this.forms.get('labels') as FormArray;
+      this.produit.labels.forEach(l => labels.push(new FormControl(l)));
     });
   }
 
@@ -220,52 +247,24 @@ export class ProduitEditComponent implements OnInit {
      });
   }
 
-  uploadPhoto(e: any): void {
+  uploadPetitePhoto(e: any): void {
     console.log(e.target);
     const file = e.target.files.length ? e.target.files[0] : null;
     if (file) {
       this.produitService.uploadPhoto(file).subscribe( data => {
-       this.forms.patchValue({urlPhoto: data.urlPhoto});
+       this.forms.patchValue({urlPetitePhoto: data.urlPetitePhoto});
       });
     }
   }
 
-  updateTags(tag: Tag): void {
-    tag = this.tags.find(value => value.id === tag.id);
-    this.forms.patchValue({
-      tags: tag
-    });
-  }
-
-  updateLabels(label: Label): void {
-    label = this.labels.find(value => value.id === label.id);
-    this.forms.patchValue({
-      labels: label
-    });
-  }
-
-  onCheckLabelChange(e): void {
-    const labels: FormArray = this.forms.get('labels') as FormArray;
-    const value = e.source.value;
-    if (e.checked) {
-      labels.push(new FormControl(value));
-    }
-    else {
-      let i = 0 ;
-      labels.controls.forEach((item: FormControl) => {
-        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
-        if (item.value.id === value.id) {
-          labels.removeAt(i);
-          return;
-        }
-        i++;
+  uploadGrandePhoto(e: any): void {
+    console.log(e.target);
+    const file = e.target.files.length ? e.target.files[0] : null;
+    if (file) {
+      this.produitService.uploadPhoto(file).subscribe( data => {
+        this.forms.patchValue({urlGrandePhoto: data.urlGrandePhoto});
       });
     }
-    console.log('after pushing: ', labels);
-  }
-
-  isLabelContain(labels: Array<Label>, label: Label): boolean {
-    return labels.map(l => l.name).includes((label.name));
   }
 
   isTagContain(tags: Array<Tag>, tag: Tag): boolean {
@@ -290,5 +289,29 @@ export class ProduitEditComponent implements OnInit {
       });
     }
     console.log('after pushing: ', tags);
+  }
+
+  isLabelContain(labels: Array<Label>, label: Label): boolean {
+    return labels.map(l => l.name).includes((label.name));
+  }
+
+  onCheckLabelChange(e): void {
+    const labels: FormArray = this.forms.get('labels') as FormArray;
+    const value = e.source.value;
+    if (e.checked) {
+      labels.push(new FormControl(value));
+    }
+    else {
+      let i = 0 ;
+      labels.controls.forEach((item: FormControl) => {
+        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
+        if (item.value.id === value.id) {
+          labels.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log('after pushing: ', labels);
   }
 }

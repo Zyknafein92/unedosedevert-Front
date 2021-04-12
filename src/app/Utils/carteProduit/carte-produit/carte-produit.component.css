@@ -1,6 +1,6 @@
 .wrapperCarte {
+  width: 18.4%;
   height: 29.5%;
-  width: 20%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   text-align: center;
 }
@@ -29,6 +29,12 @@ p {
   margin: 6.5% 0 5.6% 0;
 }
 
+.variantInitiateur {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 2% 5%;
+}
+
 .buttonRemove {
   margin-left: 5.3%;
   margin-right: 5.4%;
@@ -36,7 +42,7 @@ p {
 
 .buttonAdd {
   margin-left: 5.3%;
-  margin-right: 19.8%;
+  margin-right: 15.6%;
 }
 
 .nombre {
@@ -45,15 +51,28 @@ p {
   margin: 5% auto 5% auto;
 }
 
+.priceDisplay {
+ padding-left: 2% !important;
+}
+
 .prix {
-  float: right;
   font-family: WorkSans, serif;
   font-size: 22px;
   margin: 5% auto 5% auto;
 }
 
-.panierButton {
-  margin: 0% 3.4%
+.reduction {
+  font-family: WorkSans, serif;
+  font-size: 22px;
+  margin: 5% auto 5% auto;
+  color: #757575;
 }
+
+.panierButton {
+  margin: 0 3.4%
+}
+
+
+
 
 

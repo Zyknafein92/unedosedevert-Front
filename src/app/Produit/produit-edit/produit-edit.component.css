@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+.Produit {
+  margin: 4%;
+}
 .mat-dialog-content {
   height: auto !important;
   width: auto !important;
@@ -15,7 +18,13 @@
 }
 .photo-selecteur {
   align-content: center;
+  text-align: center;
   margin-left: 40px;
+}
+
+.checkbox{
+  display: flex;
+  margin: 1% auto;
 }
 
 h2 {

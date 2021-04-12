@@ -17,21 +17,21 @@
 
   <div class="variantInitiateur" *ngFor="let vari of variants">
     <div class="variantSelecteur">
-     <app-petit-bouton label="{{vari.name}}"></app-petit-bouton>
+     <app-petit-bouton class="variantButton" (click)="selectVariant(vari)" [selected]="this.variantSelected===vari" label="{{vari.name}}"></app-petit-bouton>
     </div>
-    <div class="panierSelecteur">
-      <div class="buttonRemove">
-      <app-petit-bouton class="-" label="-"></app-petit-bouton>
-      </div>
-      <p class="nombre">{{nombre}}</p>
-      <div class="buttonAdd">
-      <app-petit-bouton class="+" label="+"></app-petit-bouton>
-      </div>
-      <p class="prix">{{vari.prix}}€</p>
     </div>
-    <div class="reduction">
-      <p>{{vari.prixReduction}}</p>
+  <div class="panierSelecteur">
+    <div class="buttonRemove">
+      <app-petit-bouton class="-" label="-" (click)="changeQuantity(-1)"></app-petit-bouton>
     </div>
-    <app-bouton class="panierButton" label="Ajouter au panier"></app-bouton>
+    <p class="nombre">{{quantite}}</p>
+    <div class="buttonAdd">
+      <app-petit-bouton class="+" label="+" (click)="changeQuantity(1)" ></app-petit-bouton>
+    </div>
+    <div class="priceDisplay">
+    <p class="prix">{{this.afficherPrix(this.prixActuel)}}</p>
+    <p class="reduction">Réduction</p>
+    </div>
   </div>
+  <app-bouton class="panierButton" label="Ajouter au panier"></app-bouton>
 </div>

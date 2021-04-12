@@ -44,7 +44,10 @@ export class MenuComponent implements OnInit {
   }
 
   openMenu(type: Type): void {
-    this.typeToDisplay = type;
-    console.log(this.typeToDisplay);
+    if (type === this.typeToDisplay && this.typeToDisplay != null) {
+      this.typeToDisplay = null;
+    } else {
+      this.typeToDisplay = type;
+    }
   }
 }

@@ -21,6 +21,12 @@ h1 {
   line-height: 1.56;
   float:left;
   color: #4d4d4d;
+  cursor:pointer;
+}
+
+h1:focus {
+  text-decoration: none;
+  outline: none;
 }
 
 .client-area {
