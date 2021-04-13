@@ -27,6 +27,6 @@ export class AccueilComponent implements OnInit {
   }
 
   showProduit(produit: Produit): void {
-    this.router.navigate(['/products'], {queryParams: {id : produit.id}});
+    this.router.navigate(['/product'], {queryParams: {id : produit.id}});
   }
 }

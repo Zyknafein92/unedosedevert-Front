@@ -148,6 +148,7 @@ export class ProduitEditComponent implements OnInit {
     this.tagService.getTags().subscribe( data => {
       this.tagsList = data;
     });
+    console.log(this.tagsList);
   }
 
   private initTagsForms(): void {
@@ -252,7 +253,7 @@ export class ProduitEditComponent implements OnInit {
     const file = e.target.files.length ? e.target.files[0] : null;
     if (file) {
       this.produitService.uploadPhoto(file).subscribe( data => {
-       this.forms.patchValue({urlPetitePhoto: data.urlPetitePhoto});
+       this.forms.patchValue({urlPetitePhoto: data.urlPhoto});
       });
     }
   }
@@ -262,7 +263,7 @@ export class ProduitEditComponent implements OnInit {
     const file = e.target.files.length ? e.target.files[0] : null;
     if (file) {
       this.produitService.uploadPhoto(file).subscribe( data => {
-        this.forms.patchValue({urlGrandePhoto: data.urlGrandePhoto});
+        this.forms.patchValue({urlGrandePhoto: data.urlPhoto});
       });
     }
   }
@@ -272,21 +273,22 @@ export class ProduitEditComponent implements OnInit {
   }
 
   onCheckTagChange(e): void {
-    const tags: FormArray = this.forms.get('tags') as FormArray;
+    const tags: FormControl = this.forms.get('tags') as FormControl;
     const value = e.source.value;
     if (e.checked) {
-      tags.push(new FormControl(value));
+      tags.value.push(new FormControl(value));
     }
     else {
       let i = 0 ;
-      tags.controls.forEach((item: FormControl) => {
+      tags.patchValue(tags.value.filter(t => t.value.id !== value.id));
+      /*tags.value.forEach((item: FormControl) => {
         console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
         if (item.value.id === value.id) {
-          tags.removeAt(i);
+          tags.value.removeAt(i);
           return;
         }
         i++;
-      });
+      });*/
     }
     console.log('after pushing: ', tags);
   }
