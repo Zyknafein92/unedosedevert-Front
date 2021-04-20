@@ -72,11 +72,11 @@ export class ProduitEditComponent implements OnInit {
     this.initLabels();
     this.initSousCategorie();
     this.initTagsForms();
+    this.initLabelForms();
   }
 
   onSubmit(): void {
     if (this.forms.invalid) {
-      console.log(this.forms.valid);
       this.forms.markAllAsTouched();
       return;
     }
@@ -89,6 +89,7 @@ export class ProduitEditComponent implements OnInit {
     } else {
       this.produitService.updateProduit(this.forms).subscribe(
         next => {
+          console.log('form to update:', this.forms);
           this.router.navigate(['admin/products']);
         });
     }
@@ -101,8 +102,8 @@ export class ProduitEditComponent implements OnInit {
       type: [null, Validators.required],
       categorie: [null, Validators.required],
       sousCategorie: [null, Validators.required],
-      tags: new Array<Tag>(),
-      labels: new Array<Label>(),
+      tags: this.formBuilder.array([]),
+      labels: this.formBuilder.array([]),
       origine: ['', Validators.required],
       descriptionProduit: ['', Validators.required],
       commentaireProduit: [''],
@@ -148,7 +149,6 @@ export class ProduitEditComponent implements OnInit {
     this.tagService.getTags().subscribe( data => {
       this.tagsList = data;
     });
-    console.log(this.tagsList);
   }
 
   private initTagsForms(): void {
@@ -165,7 +165,7 @@ export class ProduitEditComponent implements OnInit {
     });
   }
 
-  private initLabelForm(): void {
+  private initLabelForms(): void {
     this.labels = this.formBuilder.group({
       id: '',
       name: ['' , Validators.required],
@@ -219,10 +219,10 @@ export class ProduitEditComponent implements OnInit {
         variant: data.variants,
       });
       const tags: FormArray = this.forms.get('tags') as FormArray;
-      this.produit.tags.forEach(t => tags.push(new FormControl(t)));
+      this.produit.tags.forEach(t => tags.value.push(new FormControl(t)));
 
       const labels: FormArray = this.forms.get('labels') as FormArray;
-      this.produit.labels.forEach(l => labels.push(new FormControl(l)));
+      this.produit.labels.forEach(l => labels.value.push(new FormControl(l)));
     });
   }
 
@@ -273,22 +273,13 @@ export class ProduitEditComponent implements OnInit {
   }
 
   onCheckTagChange(e): void {
-    const tags: FormControl = this.forms.get('tags') as FormControl;
+    const tags: FormArray = this.forms.get('tags') as FormArray;
     const value = e.source.value;
     if (e.checked) {
-      tags.value.push(new FormControl(value));
+      tags.push(new FormControl(value));
     }
     else {
-      let i = 0 ;
-      tags.patchValue(tags.value.filter(t => t.value.id !== value.id));
-      /*tags.value.forEach((item: FormControl) => {
-        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
-        if (item.value.id === value.id) {
-          tags.value.removeAt(i);
-          return;
-        }
-        i++;
-      });*/
+      tags.controls.push(tags.value.filter(t => t.value.id !== value.id));
     }
     console.log('after pushing: ', tags);
   }
@@ -304,15 +295,7 @@ export class ProduitEditComponent implements OnInit {
       labels.push(new FormControl(value));
     }
     else {
-      let i = 0 ;
-      labels.controls.forEach((item: FormControl) => {
-        console.log('value from formarray: ', item.value, ' value from checkbox: ', value, ' = ? ', item.value.id === value.id);
-        if (item.value.id === value.id) {
-          labels.removeAt(i);
-          return;
-        }
-        i++;
-      });
+      labels.controls.push(labels.value.filter(l => l.value.id !== value.id));
     }
     console.log('after pushing: ', labels);
   }

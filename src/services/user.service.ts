@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user.model';
 import {FormGroup} from '@angular/forms';
+import {ServicePartage} from './service.partage';
 
 
 @Injectable({
@@ -10,9 +11,11 @@ import {FormGroup} from '@angular/forms';
 })
 
 export class UserService {
-  private URL = 'http://localhost:8080/api/user';
+  private URL = '/api/user';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(this.URL);

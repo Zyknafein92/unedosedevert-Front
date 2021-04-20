@@ -38,10 +38,10 @@
 
 
   <div class="charte">
-  <div class="UneDoseDeVert">
+  <div class="UneDoseDeVert" id="UneDoseDeVert">
     <hr>
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#UneDoseDeVert') > -1">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Une Dose de Vert, l’épicerie fine végétale
@@ -68,7 +68,7 @@
 
   <hr>
 
-  <div class="NosEngagements">
+  <div class="NosEngagements" id="NosEngagements">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -111,7 +111,7 @@
 
   <hr>
 
-  <div class="Equipe">
+  <div class="Equipe" id="Equipe">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -132,7 +132,7 @@
 
   <hr>
 
-  <div class="LivraisonTarifs">
+  <div class="LivraisonTarifs" id="LivraisonTarifs">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>

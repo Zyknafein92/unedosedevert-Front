@@ -9,7 +9,6 @@ import {TypeEditComponent} from './Type/type-edit/type-edit.component';
 import {AdminViewTypesListComponent} from './Admin/admin-view-types-list/admin-view-types-list.component';
 import {CategorieEditComponent} from './Categorie/categorie-edit/categorie-edit.component';
 import {AdminViewCategorieListComponent} from './Admin/admin-view-categorie-list/admin-view-categorie-list.component';
-import {MyProfilComponent} from './User/my-profil/my-profil.component';
 import {AdresseEditComponent} from './Adresse/adresse-edit/adresse-edit.component';
 import {AdminViewTagComponent} from './Admin/admin-view-tag/admin-view-tag.component';
 import {TagEditComponent} from './Tags/tag-edit/tag-edit.component';
@@ -19,6 +18,7 @@ import {AdminViewSousCategorieListComponent} from './Admin/admin-view-sous-categ
 import {SousCategorieEditComponent} from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
 import {ViewProductComponent} from './Produit/view-product/view-product.component';
 import {ViewAllProductsComponent} from './Produit/view-all-product/view-all-products/view-all-products.component';
+import {MySpaceComponent} from './User/my-space/my-space.component';
 
 
 const routes: Routes = [
@@ -35,9 +35,9 @@ const routes: Routes = [
   { path: 'admin/products/labels', component: AdminViewLabelComponent},
   { path: 'admin/products/label/edit', component: LabelEditComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'user/myprofil', component: MyProfilComponent},
   { path: 'user/adress/edit', component: AdresseEditComponent},
   { path: 'user/add', component: CreateUserComponent},
+  { path: 'user/mySpace', component: MySpaceComponent},
   { path: 'accueil', component: AccueilComponent},
   { path: 'product', component: ViewProductComponent},
   { path: 'products', component: ViewAllProductsComponent},

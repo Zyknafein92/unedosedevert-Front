@@ -26,8 +26,6 @@ import { CategorieEditComponent } from './Categorie/categorie-edit/categorie-edi
 import { TypeEditComponent } from './Type/type-edit/type-edit.component';
 import { AdminViewTypesListComponent } from './Admin/admin-view-types-list/admin-view-types-list.component';
 import { AdminViewCategorieListComponent } from './Admin/admin-view-categorie-list/admin-view-categorie-list.component';
-import { MyProfilComponent } from './User/my-profil/my-profil.component';
-import { MyCommandComponent } from './User/my-command/my-command.component';
 import { ModalConfirmComponent } from './Modal/modal-confirm/modal-confirm.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -61,6 +59,14 @@ import { PetitBoutonComponent } from './Utils/petit-bouton/petit-bouton.componen
 import { SousMenuComponent } from './Menu/sous-menu/sous-menu.component';
 import { CarteProduitComponent } from './Utils/carteProduit/carte-produit/carte-produit.component';
 import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-products/view-all-products.component';
+import { TagChipsComponent } from './Utils/tag-chips/tag-chips.component';
+import { MySpaceComponent } from './User/my-space/my-space.component';
+import { MySpaceSelectorComponent } from './User/my-space-selector/my-space-selector.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {SousCategorieService} from '../services/sous-categorie.service';
+import {ServicePartage} from '../services/service.partage';
+
+
 
 
 
@@ -80,8 +86,6 @@ import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-pr
     TypeEditComponent,
     AdminViewTypesListComponent,
     AdminViewCategorieListComponent,
-    MyProfilComponent,
-    MyCommandComponent,
     ModalConfirmComponent,
     HeaderComponent,
     TagEditComponent,
@@ -100,13 +104,16 @@ import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-pr
     SousMenuComponent,
     CarteProduitComponent,
     ViewAllProductsComponent,
+    TagChipsComponent,
+    MySpaceComponent,
+    MySpaceSelectorComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCheckboxModule,
-
+    MatRadioModule,
     MatListModule,
     MatIconModule,
     MatExpansionModule,
@@ -131,7 +138,7 @@ import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-pr
     MatSelectModule,
     MatCardModule,
   ],
-  providers: [httpInterceptorProviders, CookieService],
+  providers: [httpInterceptorProviders, CookieService, ServicePartage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

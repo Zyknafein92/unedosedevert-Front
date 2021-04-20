@@ -54,7 +54,7 @@
     <div class="checkbox">
     <mat-list class="col-md-6">
       <mat-label>Choisissez les tags associés à ce produit :</mat-label>
-      <mat-list-item *ngFor="let tag of tagsList; let i=index">
+      <mat-list-item *ngFor="let tag of tagsList">
         <mat-checkbox class="tags"
                       [value]="tag"
                       [checked]="this.produit && isTagContain(this.produit.tags, tag)"
@@ -66,7 +66,7 @@
 
       <mat-list class="col-md-6">
         <mat-label>Choisissez les labels associés à ce produit :</mat-label>
-        <mat-list-item *ngFor="let label of labelList; let i=index">
+        <mat-list-item *ngFor="let label of labelList">
           <mat-checkbox class="labels"
                         [value]="label"
                         [checked]="this.produit && isLabelContain(this.produit.labels, label)"

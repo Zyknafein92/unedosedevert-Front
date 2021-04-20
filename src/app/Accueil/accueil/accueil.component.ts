@@ -12,8 +12,10 @@ import {Router} from '@angular/router';
 export class AccueilComponent implements OnInit {
 
   newProducts: Array<Produit>;
+  location;
 
   constructor(private produitService: ProduitService, private router: Router) {
+    this.location = window.location;
   }
 
   ngOnInit(): void {

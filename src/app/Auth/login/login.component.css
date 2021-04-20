@@ -22,7 +22,7 @@ hr {
 .ConnexionArea {
   width: 25%;
   float: left;
-  margin: 4% 0 0 16.3%;
+  margin: 4% 0 4% 16.3%;
   text-align: center;
 }
 
@@ -30,8 +30,12 @@ hr {
   margin: 2% 0;
   justify-content: center !important;
   align-content: center !important;
-  text-align: center;
+  text-align: left;
   border: #f2f2f2 solid 2px;
+}
+
+.ConnexionAreaButton {
+  margin-top: 4%;
 }
 
 .CompteArea {
@@ -51,4 +55,22 @@ hr {
   color: #707070;
   text-transform: uppercase;
   border-bottom: #f2f2f2 solid 1px;
+}
+
+.CompteArea .mat-form-field {
+  border: #f2f2f2 solid 2px;
+  width: 100%;
+  margin: 2% 0 2% 0;
+  text-align: left;
+}
+
+.mat-radio-button {
+  margin: 2% 6%;
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+.CreationButton {
+  margin-top: 4%;
 }

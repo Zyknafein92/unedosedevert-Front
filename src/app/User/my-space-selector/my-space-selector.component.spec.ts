@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyProfilComponent } from './my-profil.component';
+import { MySpaceSelectorComponent } from './my-space-selector.component';
 
-describe('MyProfilComponent', () => {
-  let component: MyProfilComponent;
-  let fixture: ComponentFixture<MyProfilComponent>;
+describe('MySpaceSelectorComponent', () => {
+  let component: MySpaceSelectorComponent;
+  let fixture: ComponentFixture<MySpaceSelectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyProfilComponent ]
+      declarations: [ MySpaceSelectorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyProfilComponent);
+    fixture = TestBed.createComponent(MySpaceSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

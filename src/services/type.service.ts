@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {Type} from '../model/type.model';
+import {ServicePartage} from './service.partage';
 
 
 @Injectable({
@@ -10,9 +11,11 @@ import {Type} from '../model/type.model';
 })
 export class TypeService {
 
-  private URL = 'http://localhost:8080/api/produits/types';
+  private URL = '/api/produits/types';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getTypes(): Observable<Array<Type>> {
     return this.http.get<Array<Type>>(this.URL);

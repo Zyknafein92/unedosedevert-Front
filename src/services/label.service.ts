@@ -4,16 +4,20 @@ import {Observable} from 'rxjs';
 
 import {FormGroup} from '@angular/forms';
 import {Label} from '../model/label';
+import {ServicePartage} from './service.partage';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LabelService {
-  private URL = 'http://localhost:8080/api/produits/label';
-  private adminURL = 'http://localhost:8080/api/admin';
+  private URL = '/api/produits/label';
+  private adminURL = '/api/admin';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+    this.adminURL = servicePartage.BACKEND_URL + this.adminURL;
+  }
 
   getLabels(): Observable<Array<Label>> {
     return this.http.get<Array<Label>>(this.URL);

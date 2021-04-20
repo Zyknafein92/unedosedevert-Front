@@ -3,14 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {Variant} from '../model/variant.model';
+import {ServicePartage} from './service.partage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VariantService {
-  private URL = 'http://localhost:8080/api/produits/';
+  private URL = '/api/produits/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getVariantsByProduitId(produitID: number): Observable<Array<Variant>> {
     return this.http.get<Array<Variant>>(`${this.URL}${produitID}/variants`);

@@ -3,15 +3,18 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Adresse} from '../model/adresse.model';
 import {FormGroup} from '@angular/forms';
+import {ServicePartage} from './service.partage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdresseService {
 
-  private URL = 'http://localhost:8080/api/user/address';
+  private URL = '/api/user/address';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getAdresse(id: number): Observable<Adresse> {
     return this.http.get<Adresse>(`${this.URL}/${id}`);

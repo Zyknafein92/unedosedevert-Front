@@ -1,5 +1,6 @@
 <h2 mat-dialog-title *ngIf="sousCategorie == null">Ajouter une sous-categorie</h2>
 <h2 mat-dialog-title *ngIf="sousCategorie">Modifier une sous-categorie</h2>
+<br>
 <mat-dialog-content>
   <form [formGroup]="forms" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
@@ -15,3 +16,4 @@
     </div>
   </form>
 </mat-dialog-content>
+

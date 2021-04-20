@@ -28,8 +28,17 @@
   cursor: pointer;
 }
 
+.typeButton:hover {
+  color: #c7a38f !important;
+}
+
+.socialButton:hover {
+  color: #c7a38f !important;
+}
+
 .wrapperRightSide {
   float: right;
+  cursor: pointer;
 }
 
 .mat-form-field {

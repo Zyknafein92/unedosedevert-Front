@@ -3,14 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Reduction} from '../model/reduction.model';
 import {FormGroup} from '@angular/forms';
+import {ServicePartage} from './service.partage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReductionService {
-  private URL = 'http://localhost:8080/api/produits/';
+  private URL = '/api/produits/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getReductions(): Observable<Array<Reduction>> {
     return this.http.get<Array<Reduction>>(this.URL);

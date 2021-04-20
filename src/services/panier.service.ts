@@ -2,15 +2,18 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Panier} from '../model/panier.model';
+import {ServicePartage} from './service.partage';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PanierService {
-  private URL = 'http://localhost:8080/api/order';
+  private URL = '/api/order';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getPaniers(): Observable<Array<Panier>> {
     return this.http.get<Array<Panier>>(this.URL);

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Categorie} from '../model/categorie.model';
 import {FormGroup} from '@angular/forms';
+import {ServicePartage} from './service.partage';
 
 
 
@@ -11,9 +12,11 @@ import {FormGroup} from '@angular/forms';
 })
 export class CategoriesService {
 
-  private URL = 'http://localhost:8080/api/produits/categories';
+  private URL = '/api/produits/categories';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getCategories(): Observable<Array<Categorie>> {
     return this.http.get<Array<Categorie>>(`${this.URL}`);

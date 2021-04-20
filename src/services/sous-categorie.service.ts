@@ -3,14 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {SousCategorie} from '../model/sous-categorie';
 import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
+import {ServicePartage} from './service.partage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SousCategorieService {
-  private URL = 'http://localhost:8080/api/produits/sousCategorie';
+  private URL = '/api/produits/sousCategorie';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getSousCategories(): Observable<Array<SousCategorie>> {
     return this.http.get<Array<SousCategorie>>(this.URL);

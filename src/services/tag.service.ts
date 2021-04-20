@@ -3,15 +3,18 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {Tag} from '../model/tag.model';
+import {ServicePartage} from './service.partage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagService {
 
-  private URL = 'http://localhost:8080/api/produits/tag';
+  private URL = '/api/produits/tag';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   getTags(): Observable<Array<Tag>> {
     return this.http.get<Array<Tag>>(this.URL);

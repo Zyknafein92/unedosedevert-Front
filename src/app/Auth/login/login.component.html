@@ -20,50 +20,107 @@
         </mat-error>
       </mat-form-field>
     </form>
+    <div class="ConnexionAreaButton">
     <mat-dialog-actions>
-      <app-bouton  (click)="onSubmit()" label="Me connecter"></app-bouton>
+      <app-bouton  (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
     </mat-dialog-actions>
+  </div>
   </div>
 
   <div class="CompteArea">
     <h1> Créer un compte </h1>
     <hr>
-<!--    <form [formGroup]="formsUser">-->
-<!--    <mat-accordion>-->
-<!--      <mat-expansion-panel>-->
-<!--        <mat-expansion-panel-header>-->
-<!--          <mat-panel-title>-->
-<!--          Informations personnelles-->
-<!--          </mat-panel-title>-->
-<!--        </mat-expansion-panel-header>-->
+    <form [formGroup]="formsUser">
+      <mat-accordion>
+        <div class="informationsPerso">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Informations personnelles
+              </mat-panel-title>
+            </mat-expansion-panel-header>
 
-<!--&lt;!&ndash;        <mat-form-field>&ndash;&gt;-->
-<!--&lt;!&ndash;          <mat-label>Nom:</mat-label>&ndash;&gt;-->
-<!--&lt;!&ndash;          <input matInput placeholder="nom" formControlName="nom">&ndash;&gt;-->
-<!--&lt;!&ndash;          <mat-error [hidden]="forms.get('nom').valid || !forms.get('nom').touched">&ndash;&gt;-->
-<!--&lt;!&ndash;            Le <strong>nom</strong> doit être renseigné.&ndash;&gt;-->
-<!--&lt;!&ndash;          </mat-error>&ndash;&gt;-->
-<!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+            <mat-radio-group formControlName="genre">
+              <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
+              <mat-radio-button  value="Madame">Madame</mat-radio-button>
+            </mat-radio-group>
 
-<!--        <mat-form-field>-->
-<!--          <mat-label>Prenom:</mat-label>-->
-<!--          <input matInput placeholder="Prenom" formControlName="prenom">-->
-<!--          <mat-error [hidden]="forms.get('prenom').valid || !forms.get('prenom').touched">-->
-<!--            Le <strong>prénom</strong> doit être renseigné.-->
-<!--          </mat-error>-->
-<!--        </mat-form-field>-->
+            <mat-form-field>
+              <mat-label>Nom:</mat-label>
+              <input matInput placeholder="Nom :" formControlName="nom">
+              <mat-error [hidden]="formsUser.get('nom').valid || !formsUser.get('nom').touched">
+                Le <strong>nom</strong> doit être renseigné.
+              </mat-error>
+            </mat-form-field>
 
-<!--      </mat-expansion-panel>-->
-<!--    </mat-accordion>-->
-<!--    <mat-accordion>-->
-<!--      <mat-expansion-panel>-->
-<!--        <mat-expansion-panel-header>-->
-<!--          <mat-panel-title>-->
-<!--            Informations de connexion-->
-<!--          </mat-panel-title>-->
-<!--        </mat-expansion-panel-header>-->
-<!--      </mat-expansion-panel>-->
-<!--    </mat-accordion>-->
-<!--    </form>-->
+            <mat-form-field>
+              <mat-label>Prenom:</mat-label>
+              <input matInput placeholder="Prenom :" formControlName="prenom">
+              <mat-error [hidden]="formsUser.get('prenom').valid || !formsUser.get('prenom').touched">
+                Le <strong>prénom</strong> doit être renseigné.
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <mat-label>Date de naissance :</mat-label>
+              <input matInput type="date" placeholder="Date de naissance :" [matDatepicker]="anniversaire" formControlName="anniversaire">
+              <mat-datepicker-toggle matSuffix [for]="anniversaire"></mat-datepicker-toggle>
+              <mat-datepicker #anniversaire></mat-datepicker>
+            </mat-form-field>
+          </mat-expansion-panel>
+        </div>
+
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Informations de connexion
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-form-field class="col-md-12">
+            <mat-label>Email :</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com ">
+            <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
+              Veuillez renseigner une adresse e-mail valide !
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-12">
+            <mat-label>Confirmer l'adresse email :</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Confirmer l'adresse email : pat@example.com">
+            <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
+              Veuillez renseigner une adresse e-mail valide !
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Mot de passe" formControlName="password" name="password"
+                   (change)="verifierPassword()"
+                   required>
+            <mat-error [hidden]="formsUser.get('password').valid || !formsUser.get('password').touched">
+              Le mot de passe est incorrect. Il doit être au moins de 6 charactères.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-12">
+            <input matInput  placeholder="Confirmer le mot de passe" name="password2"
+                   (change)="verifierPassword()"
+                   required>
+            <mat-error [hidden]="passwordsMatch">
+              Les mots de passes ne correspondent pas !
+            </mat-error>
+          </mat-form-field>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+    <div class="CreationButton">
+    <mat-dialog-actions>
+      <app-bouton (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
+    </mat-dialog-actions>
+    </div>
   </div>
 </div>

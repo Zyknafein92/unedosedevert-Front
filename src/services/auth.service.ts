@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 
 import {JwtResponse} from './security/JwtReponse';
 import {AuthLoginInfo} from './security/login-info';
-
-
-
+import {ServicePartage} from './service.partage';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,10 +15,11 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private URL = 'http://localhost:8080/api/login';
+  private URL = '/api/login';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {

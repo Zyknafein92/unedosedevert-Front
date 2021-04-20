@@ -2,6 +2,9 @@
   width: 100%;
 
 }
+p {
+  color: black;
+}
 
 .topWrapper{
   display: flex;
@@ -39,11 +42,17 @@
   margin: 2% 0;
 }
 
-.tag p {
+.tagArea {
+  width: 100%;
+  display: inline-flex;
+}
+.tag {
+  width: 100%;
+  height: 100%;
 }
 
 .prix {
-  margin: 4% 0 1% 0;
+  margin: 3% 0 2% 0;
 }
 
 .prix p {
@@ -59,26 +68,37 @@
 }
 
 .variant{
-  margin-top: 5% !important;
+  display: inline-flex;
+  flex-direction: row;
+  margin: 5% 5% 5% 0;
 }
 
 .panierSelecteur{
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   width: 100%;
+  vertical-align: center;
+  text-align: center;
 }
 
 .panierSelecteur .buttonRemove {
-  margin: 5% 10% 5% 0;
+  margin: 5% 0% 5% 0;
   font-size:40px;
 }
 
+.buttonRemove:focus {
+  outline: none;
+}
+
 .panierSelecteur .quantitée {
-  margin: 5% 0 5% 0;
+  margin: 7% 7.9% 7% 7.9%;
+  font-family: WorkSans, serif;
+  font-size: 22px;
+
 }
 
 .panierSelecteur .buttonAdd {
-  margin: 5% 10% 5% 10%;
+  margin: 5% 10% 5% 0%;
 }
 
 .panierSelecteur .Panier {
@@ -119,7 +139,7 @@
 }
 
 .descriptionProduit {
- margin: 2% 0;
+  margin: 2% 0;
 }
 
 .descriptionProduit h2 {
@@ -127,13 +147,13 @@
   font-size: 18px;
 }
 
-.descriptionProduit p{
+.descriptionProduit p {
   font-family: AbhayaLibre, serif;
   font-size: 16px;
 }
 
 .bottomWrapper {
-  width: 50%;
+  width: 87%;
   margin: 0 auto;
 }
 
@@ -150,7 +170,7 @@
 }
 
 .mat-accordion mat-expansion-panel{
-  width: 1482px;
+  width: 100%;
   justify-content: center;
   box-shadow: none;
   margin: 0;
@@ -165,4 +185,8 @@
   font-family: AbhayaLibre, serif;
   font-size: 18px;
   color: #000000;
+}
+
+.mat-expansion-indicator {
+  color: #c7a38f;
 }

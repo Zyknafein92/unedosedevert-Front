@@ -38,8 +38,7 @@ export class CarteProduitComponent implements OnInit {
   }
 
   changeQuantity(quantity: number): void {
-    console.log(this.variantSelected);
-    if((this.quantite === 0 && quantity < 0) || !this.variantSelected) {
+    if ((this.quantite === 0 && quantity < 0) || !this.variantSelected) {
       return;
     }
     this.quantite += quantity;

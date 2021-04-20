@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Commande} from '../model/commande.model';
+import {ServicePartage} from './service.partage';
 
 
 
@@ -10,10 +11,11 @@ import {Commande} from '../model/commande.model';
 })
 export class CommandeService {
 
-  private URL = 'http://localhost:8080/api/order';
+  private URL = '/api/order';
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
   getCommandes(): Observable<Array<Commande>> {
     return this.http.get<Array<Commande>>(this.URL);
   }

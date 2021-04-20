@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpEvent, HttpHeaders, HttpParams} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 import {SearchCriteria} from '../model/search-criteria';
+import {ServicePartage} from './service.partage';
 
 
 
@@ -11,10 +12,13 @@ import {SearchCriteria} from '../model/search-criteria';
   providedIn: 'root'
 })
 export class ProduitService {
-  private URL = 'http://localhost:8080/api/produits';
-  private adminURL = 'http://localhost:8080/api/admin';
+  private URL = '/api/produits';
+  private adminURL = '/api/admin';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+    this.adminURL = servicePartage.BACKEND_URL + this.adminURL;
+  }
 
   getProduits(): Observable<Array<Produit>> {
     return this.http.get<Array<Produit>>(this.URL);

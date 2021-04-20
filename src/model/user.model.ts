@@ -5,6 +5,7 @@ import {RoleModel} from './role.model';
 
 export class User {
   id: number;
+  genre: string;
   commandes = new Array<Commande>();
   adresses = new Array<Adresse>();
   roles?: Array<RoleModel>;

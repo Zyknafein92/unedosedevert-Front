@@ -1,6 +1,6 @@
 <div class="wrapperCarte" *ngIf="produit != null">
   <div class="produitIMG">
-    <img src="{{produit.urlPhoto}}" alt="Photo de {{produit.name}}">
+    <img src="{{produit.urlPetitePhoto}}" alt="Photo de {{produit.name}}">
   </div>
 
   <div class="nomProduit">
@@ -20,6 +20,7 @@
      <app-petit-bouton class="variantButton" (click)="selectVariant(vari)" [selected]="this.variantSelected===vari" label="{{vari.name}}"></app-petit-bouton>
     </div>
     </div>
+
   <div class="panierSelecteur">
     <div class="buttonRemove">
       <app-petit-bouton class="-" label="-" (click)="changeQuantity(-1)"></app-petit-bouton>

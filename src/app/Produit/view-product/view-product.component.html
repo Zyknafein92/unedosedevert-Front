@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="produit != null">
   <div class="topWrapper">
     <div class="imageProduit" >
-  <img src="{{produit.urlGrandePhoto}}">
+      <img src="{{produit.urlGrandePhoto}}">
     </div>
 
     <div class="sideText">
@@ -15,28 +15,30 @@
         <p>{{produit.producteur}}<p>
       </div>
 
-      <div class="tag">
-        <p>Bio</p>
+      <div class="tagArea">
+        <div class="tag" *ngFor="let tag of produit.tags">
+          <app-tag-chips label="{{tag.name}}"></app-tag-chips>
+        </div>
       </div>
 
-      <div class="variantArea" *ngFor="let variant of variants">
-        <div class="prix">
-          <p> {{variant.prix}} € les {{variant.name}}</p>
+      <div class="variantArea">
+        <div class="prix" *ngIf="variantSelected">
+          <p> {{this.afficherPrix(variantSelected.prix)}}  les {{variantSelected.name}}</p>
         </div>
 
-        <div class="prixKG">
-          <p>{{variant.prixKg}}€/Kilo</p>
+        <div class="prixKG" *ngIf="variantSelected">
+          <p>{{this.afficherPrix(variantSelected.prixKg)}}/Kilo</p>
         </div>
 
-        <div class="variant">
-          <app-petit-bouton label="{{variant.name}}"></app-petit-bouton>
+        <div class="variant" *ngFor="let variant of variants">
+          <app-petit-bouton (click)="selectVariant(variant)" [selected]="this.variantSelected === variant" label="{{variant.name}}"></app-petit-bouton>
         </div>
       </div>
 
       <div class="panierSelecteur">
-        <app-petit-bouton class="buttonRemove" label="-" fontSize="40px"></app-petit-bouton>
-        <app-petit-bouton class="quantitée" label="1" fontSize="40px"></app-petit-bouton>
-        <app-petit-bouton class="buttonAdd" label="+" fontSize="40px"></app-petit-bouton>
+        <app-petit-bouton class="buttonRemove" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
+        <p class="quantitée">{{quantite}}</p>
+        <app-petit-bouton class="buttonAdd" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
         <app-bouton class="Panier" label="Ajouter au panier"></app-bouton>
       </div>
 
@@ -56,8 +58,8 @@
       </div>
 
       <div class="descriptionProduit">
-        <p class="top">Description</p>
-        <p class="bot">{{produit.descriptionProduit}}</p>
+        <h2>Description</h2>
+        <p>{{produit.descriptionProduit}}</p>
       </div>
 
       <div class="commentaireProduit">
@@ -66,85 +68,85 @@
     </div>
   </div>
 
-    <div class="bottomWrapper">
-      <hr>
-      <div class="conseil">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-               Conseil d'utilisation et de préparation
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.conseilUtilisation}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
-      <div class="composition">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-               Composition
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.composition}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
-      <div class="pourquoi?">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-               Pourquoi ce produit ?
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.pourquoi}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
-      <div class="producteur">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Le producteur
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.producteur}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
-      <div class="valeurs">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-               Valeurs et allergènes
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.allergenes}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
-      <div class="infoNutri">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Informations nutritionnelles
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{produit.infoNutrition}}</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <hr>
+  <div class="bottomWrapper">
+    <hr>
+    <div class="conseil">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Conseil d'utilisation et de préparation
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.conseilUtilisation}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
+    <hr>
+    <div class="composition">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Composition
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.composition}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <hr>
+    <div class="pourquoi?">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Pourquoi ce produit ?
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.pourquoi}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <hr>
+    <div class="producteur">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Le producteur
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.commentaireProducteur}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <hr>
+    <div class="valeurs">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Valeurs et allergènes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.allergenes}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <hr>
+    <div class="infoNutri">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Informations nutritionnelles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{produit.infoNutrition}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <hr>
+  </div>
 </div>
