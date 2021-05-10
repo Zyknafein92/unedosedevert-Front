@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-bouton',
@@ -10,10 +10,15 @@ export class BoutonComponent implements OnInit {
   label: string;
   @Input()
   padding: any;
+  @Input()
+  selected: boolean;
+  @Input()
+  disabled: boolean;
 
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

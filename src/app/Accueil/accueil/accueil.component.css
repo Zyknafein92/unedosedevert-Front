@@ -77,7 +77,8 @@
   text-align: center;
 }
 
-.charte{
+.charte {
+  width: 100%;
   margin-top: 3%;
 }
 .charte p {
@@ -126,7 +127,7 @@ img {
 }
 
 hr {
-  width: 1482px;
+  width: 75%;
   height: 0.2%;
   background-color: #c7a38f !important;
   align-self: center;
@@ -134,7 +135,7 @@ hr {
 
 .textHR {
   background-color: #c7a38f !important;
-  width: 60px;
+  width: 4%;
   height: 1px;
   justify-content: center;
 }
@@ -144,7 +145,7 @@ hr {
   justify-content: center;
 }
 .mat-accordion mat-expansion-panel{
-  width: 1482px;
+  width: 75%;
   justify-content: center;
   box-shadow: none;
   margin: 0;
@@ -154,10 +155,16 @@ hr {
   height: 100px !important;
 }
 
+.mat-accordion mat-expansion-panel mat-expansion-panel-header:hover {
+  background-color: white;
+}
+
 .mat-accordion mat-expansion-panel mat-expansion-panel-header mat-panel-title {
   font-family: AbhayaLibre, serif;
   font-size: 26px;
   color: #000000;
   justify-content: center;
+  align-items: center;
+  height: 50px;
 }
 

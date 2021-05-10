@@ -1,8 +1,7 @@
 .wrapper{
-  width: 14.5%;
-  height: 18.2%;
   margin: 2% 0 2% 7%;
 }
+
 .wrapper ul {
   padding: 0;
 }
@@ -23,7 +22,12 @@
   background-color: #f2f2f2;
 }
 
-.wrapper li:focus {
-  background-color: #c7a38f;
+.wrapper li.active {
+  background-color: #f5ede4;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
 

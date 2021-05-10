@@ -1,11 +1,11 @@
 <div class="wrapper">
   <ul>
-    <li>Mon compte</li>
-    <li>Mes informations</li>
-    <li>Mes adresses</li>
-    <li>Mes commandes</li>
-    <li>Mes retours</li>
-    <li>Mes favoris</li>
-    <li>Me déconnecter</li>
+    <li class="{{actives.mon_espace}}" (click)="routeMySpace()">Mon compte</li>
+    <li class="{{actives.info}}" (click)="routeMyInfo()">Mes informations</li>
+    <li class="{{actives.adresse}}" (click)="routeMyAdress()">Mes adresses</li>
+    <li class="{{actives.command}}" (click)="routeMyOrders()">Mes commandes</li>
+    <li class="{{actives.retour}}" (click)="routeMyProductsBack()">Mes retours</li>
+<!--    <li><a href="../mon-espace">Mes favoris</a></li>-->
+    <li (click)="logout()">Me déconnecter</li>
   </ul>
 </div>

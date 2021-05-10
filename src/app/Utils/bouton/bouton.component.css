@@ -10,4 +10,17 @@
 .customized-button:hover {
   background-color: #c7a38f;
   color: white;
+  outline: none;
+}
+
+.customized-button:disabled {
+  background-color: #f2f2f2;
+  color: #757575;
+  border: solid 2px #f2f2f2;
+}
+
+.clicked {
+  outline: none;
+  background-color: #c7a38f;
+  color: white;
 }

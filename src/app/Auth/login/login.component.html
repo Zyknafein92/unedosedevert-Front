@@ -21,10 +21,11 @@
       </mat-form-field>
     </form>
     <div class="ConnexionAreaButton">
-    <mat-dialog-actions>
-      <app-bouton  (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
-    </mat-dialog-actions>
-  </div>
+      <mat-dialog-actions>
+        <app-bouton *ngIf="forms.invalid" [disabled]="true" label="Me connecter" padding="2% 20%"></app-bouton>
+        <app-bouton  *ngIf="forms.valid" (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
+      </mat-dialog-actions>
+    </div>
   </div>
 
   <div class="CompteArea">
@@ -61,13 +62,20 @@
               </mat-error>
             </mat-form-field>
 
-
-            <mat-form-field>
-              <mat-label>Date de naissance :</mat-label>
-              <input matInput type="date" placeholder="Date de naissance :" [matDatepicker]="anniversaire" formControlName="anniversaire">
-              <mat-datepicker-toggle matSuffix [for]="anniversaire"></mat-datepicker-toggle>
-              <mat-datepicker #anniversaire></mat-datepicker>
-            </mat-form-field>
+            <label class="labelAnniv">Date d'anniversaire :</label>
+            <div class="formAnniv"
+                 [class.has-success]="formsUser.get('anniversaire').valid"
+                 [class.has-error]="formsUser.get('anniversaire').invalid && formsUser.get('anniversaire').touched">
+              <div class="alert alert-danger" [hidden]="formsUser.get('anniversaire').valid || !formsUser.get('anniversaire').touched">La date de naissance doit être renseignée.</div>
+              <input class="form-control input-md"
+                     type="Date"
+                     name="Date de Naissance"
+                     placeholder="anniversaire"
+                     formControlName="anniversaire"
+                     autocapitalize="on"
+                     spellcheck="on"
+                     required/>
+            </div>
           </mat-expansion-panel>
         </div>
 
@@ -82,7 +90,7 @@
 
           <mat-form-field class="col-md-12">
             <mat-label>Email :</mat-label>
-            <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com ">
+            <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com" (input)="onEmailInput()">
             <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
               Veuillez renseigner une adresse e-mail valide !
             </mat-error>
@@ -90,26 +98,23 @@
 
           <mat-form-field class="col-md-12">
             <mat-label>Confirmer l'adresse email :</mat-label>
-            <input type="email" matInput formControlName="email" placeholder="Confirmer l'adresse email : pat@example.com">
-            <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
-              Veuillez renseigner une adresse e-mail valide !
+            <input type="email" formControlName="email2" matInput placeholder="Confirmer l'adresse email : pat@example.com"
+                   (input)="onEmailInput()">
+            <mat-error *ngIf="email2.invalid && !email2.hasError('emailMismatch')">
+             <span>L'email ne correspond pas !</span>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="col-md-12">
-            <input matInput placeholder="Mot de passe" formControlName="password" name="password"
-                   (change)="verifierPassword()"
-                   required>
-            <mat-error [hidden]="formsUser.get('password').valid || !formsUser.get('password').touched">
+            <input matInput placeholder="Mot de passe" formControlName="password" name="password" (input)="onPasswordInput()">
+            <mat-error [hidden]="formsUser.get('password').valid || !formsUser.get('password').touched || password.hasError('minLength')">
               Le mot de passe est incorrect. Il doit être au moins de 6 charactères.
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="col-md-12">
-            <input matInput  placeholder="Confirmer le mot de passe" name="password2"
-                   (change)="verifierPassword()"
-                   required>
-            <mat-error [hidden]="passwordsMatch">
+            <input matInput  placeholder="Confirmer le mot de passe" formControlName="password2" name="password2" (input)="onPasswordInput()">
+            <mat-error *ngIf="password2.invalid && !password2.hasError('passwordMismatch')">
               Les mots de passes ne correspondent pas !
             </mat-error>
           </mat-form-field>
@@ -118,9 +123,10 @@
       </mat-accordion>
     </form>
     <div class="CreationButton">
-    <mat-dialog-actions>
-      <app-bouton (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
-    </mat-dialog-actions>
+      <mat-dialog-actions>
+        <app-bouton *ngIf="this.formsUser.invalid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%" [disabled]="true"></app-bouton>
+        <app-bouton *ngIf="this.formsUser.valid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
+      </mat-dialog-actions>
     </div>
   </div>
 </div>

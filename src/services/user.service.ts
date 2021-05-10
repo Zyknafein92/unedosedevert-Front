@@ -25,8 +25,8 @@ export class UserService {
     return this.http.get<User>(`${this.URL}/${id}`);
   }
 
-  getMyProfil(userEmail: string): Observable<User> {
-    return this.http.get<User>(`${this.URL}/myprofil/${userEmail}`);
+  getMyProfil(): Observable<User> {
+    return this.http.get<User>(`${this.URL}/myprofil`);
   }
 
   createUser(form: FormGroup): Observable < User> {

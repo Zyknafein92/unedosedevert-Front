@@ -70,7 +70,7 @@
 
   <div class="NosEngagements" id="NosEngagements">
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#NosEngagements') > -1">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Nos Engagements
@@ -83,28 +83,29 @@
 
         <h1>Des fournisseurs en or tu trouveras</h1>
 
-        <p>Nous faisons appel à des fournisseurs de qualité en majorité français, exepté pour les produits qui ne poussent pas sous nos latitudes (café, thé…) ou de spécialités régionales en provenance de nos chers voisins.<br>
-          Nous ne présentons leurs produits que si nous pouvons vous garantir la qualité de leur production. Nous <br> mettons un point d’honneur à établir une transparence et des liens de confiance avec tous nos fournisseurs.</p>
+        <p>Nous faisons appel à des fournisseurs de qualité en majorité français, exepté pour les produits qui ne poussent pas sous nos latitudes (café, thé…) ou de spécialités régionales en provenance de nos chers voisins.
+          <br>
+          Nous ne présentons leurs produits que si nous pouvons vous garantir la qualité de leur production. Nous mettons un point d’honneur à établir une transparence et des liens de confiance avec tous nos fournisseurs.</p>
 
         <img src="../assets/img/ic_engagements_2@3x.png">
 
         <h1>Le calcul de ton impact CO2 et social, en tête tu garderas</h1>
 
-        <p> Une dose de vert s’inscrit dans une démarche de circuit court. Dans cet objectif nous portons une grande <br> attention aux suggestions que nous pouvons recevoir pour être mis en contact avec toujours plus de nouveaux petits producteurs et artisans.
+        <p> Une dose de vert s’inscrit dans une démarche de circuit court. Dans cet objectif nous portons une grande attention aux suggestions que nous pouvons recevoir pour être mis en contact avec toujours plus de nouveaux petits producteurs et artisans.
           Nous avons à coeur de favoriser des produits qui dépassent nos exigences comme les produits issus du commerce équitable où bénéficiant d’un acheminement par voie maritime. </p>
 
         <img src="../assets/img/ic_engagements_3@3x.png">
 
         <h1>Le meilleur pour la santé, tu exigeras</h1>
 
-        <p>Les produits alimentaires vendus par Une dose de vert sont soigneusement choisis et correspondent à des <br> critères favorisant la production biologique. Les petits producteurs n’ayant pas toujours les moyens de s’offrir une labelisation officielle,
+        <p>Les produits alimentaires vendus par Une dose de vert sont soigneusement choisis et correspondent à des critères favorisant la production biologique. Les petits producteurs n’ayant pas toujours les moyens de s’offrir une labelisation officielle,
           Une dose de vert se porte garant grâce à sa charte éthique et écologique. Notre sélection se fait sur des critères d’ingrédients restrictifs afin de vous proposer des produits plus sains et sans additifs, dans une démarche de qualité et de respect de votre santé.</p>
 
         <img src="../assets/img/ic_engagements_4@3x.png">
 
         <h1>Le juste prix, tu donneras</h1>
 
-        <p>Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste prix pour tous ses <br> clients tout en préservant ses critères de qualité et pour la juste rémunération des producteurs. C’est cette <br> démarche engagée et de proximité qui façonne notre identité.</p>
+        <p>Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste prix pour tous ses clients tout en préservant ses critères de qualité et pour la juste rémunération des producteurs. C’est cette démarche engagée et de proximité qui façonne notre identité.</p>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -113,18 +114,18 @@
 
   <div class="Equipe" id="Equipe">
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#Equipe') > -1">
         <mat-expansion-panel-header>
           <mat-panel-title>
             L'équipe
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>
-          A la barre de Une dose de vert, on trouve Céline et Mathieu, jeunes trentenaires végétaliens et tous deux <br> engagés dans une démarche de réduction de leur impact environnemental. Couple à la ville, ils <br> s’investissent ensemble pour partager leurs connaissances, et vous faire découvrir de nouveaux <br> horizons culinaires.
+          A la barre de Une dose de vert, on trouve Céline et Mathieu, jeunes trentenaires végétaliens et tous deux  engagés dans une démarche de réduction de leur impact environnemental. Couple à la ville, ils  s’investissent ensemble pour partager leurs connaissances, et vous faire découvrir de nouveaux horizons culinaires.
           <br>
-          Généreux et talentueux, Mathieu ne sera jamais avare de conseils et se fera un plaisir de répondre à vos <br> questions tandis que Céline, cuisinière de formation et formée par de grandes maisons (Galeries <br> Lafayette, Fauchon…), élabore des recettes originales ou détournées de grands classiques pour le plus <br> grand plaisir de vos papilles.
+          Généreux et talentueux, Mathieu ne sera jamais avare de conseils et se fera un plaisir de répondre à vos  questions tandis que Céline, cuisinière de formation et formée par de grandes maisons (Galeries Lafayette, Fauchon…), élabore des recettes originales ou détournées de grands classiques pour le plus grand plaisir de vos papilles.
           <br>
-          Que ce soit pour des raisons de santé, de préservation de l’environnement, ou de bien-être animal, nous <br> gagnons à intégrer une plus grande « dose de vert » dans nos assiettes. Des recettes saines aux plats <br> régressifs, en passant par des douceurs aux multiples saveurs, vous trouverez forcément quelque chose <br> qui vous plaît, pour vous familiariser avec la cuisine végétalienne !
+          Que ce soit pour des raisons de santé, de préservation de l’environnement, ou de bien-être animal, nous gagnons à intégrer une plus grande « dose de vert » dans nos assiettes. Des recettes saines aux plats régressifs, en passant par des douceurs aux multiples saveurs, vous trouverez forcément quelque chose qui vous plaît, pour vous familiariser avec la cuisine végétalienne !
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -134,24 +135,26 @@
 
   <div class="LivraisonTarifs" id="LivraisonTarifs">
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#LivraisonTarifs') > -1">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Livraison et tarifs
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>
-          Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste prix pour <br> tous ses clients tout en préservant ses critères de qualité et pour la juste rémunération des <br> producteurs. C’est cette démarche engagée et de proximité qui façonne notre identité à travers <br> Une dose de vert.
+          Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste prix pour tous ses clients tout en préservant ses critères de qualité et pour la juste rémunération des producteurs. C’est cette démarche engagée et de proximité qui façonne notre identité à travers Une dose de vert.
           <br>
-          Nos frais de livraison sont de 3,50€, et la livraison est gratuite pour :<br>
-          - Un minimum de 20€ de commande en zone verte (communes de Levallois-Perret (92300),<br> Clichy (92110), Neuilly-sur-Seine (92200), Paris 17ème).<br>
-          - Un minimum de 30€ en zone bleue (Nanterre (92014), Courbevoie (92400), Asnières (92600),<br> Paris (autres arrondissements), Puteaux (92800)
+          Nos frais de livraison sont de 3,50€, et la livraison est gratuite pour :
           <br>
-          - Nous ne livrons pas encore dans la zone orange mais sommes en recherche de partenaires pour des <br> livraisons avec une empreinte carbone réduite!
+          - Un minimum de 20€ de commande en zone verte (communes de Levallois-Perret (92300), Clichy (92110), Neuilly-sur-Seine (92200), Paris 17ème).
           <br>
-          - Vous avez aussi la possibilité de venir chercher votre colis sur rendez-vous dans nos locaux à <br> Levallois-Perret, gratuitement et sans minimum de commande. Vous pourrez même apporter vos <br> bocaux ou sacs avec cette option!
+          - Un minimum de 30€ en zone bleue (Nanterre (92014), Courbevoie (92400), Asnières (92600), Paris (autres arrondissements), Puteaux (92800)
           <br>
-          Nous ne livrons pas dans les autres communes, mais si nos produits vous intéressent n’hésitez pas à <br> nous contacter à bienvenue@unedosedevert.fr
+          - Nous ne livrons pas encore dans la zone orange mais sommes en recherche de partenaires pour des livraisons avec une empreinte carbone réduite!
+          <br>
+          - Vous avez aussi la possibilité de venir chercher votre colis sur rendez-vous dans nos locaux à Levallois-Perret, gratuitement et sans minimum de commande. Vous pourrez même apporter vos bocaux ou sacs avec cette option!
+          <br>
+          Nous ne livrons pas dans les autres communes, mais si nos produits vous intéressent n’hésitez pas à nous contacter à bienvenue@unedosedevert.fr
         </p>
       </mat-expansion-panel>
     </mat-accordion>

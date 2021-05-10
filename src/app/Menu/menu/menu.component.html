@@ -1,15 +1,12 @@
 <div class="wrapperMenu">
-  <ul class="typeList">
-    <li class="typeButton" *ngFor="let typ of types" (click)="openMenu(this.typ)"><span>{{typ.name}}</span></li>
-  </ul>
+  <div class="typeListDiv">
+    <ul class="typeList">
+      <li class="typeButton" *ngFor="let typ of types" (click)="openMenu(this.typ)"><span>{{typ.name}}</span></li>
+    </ul>
+  </div>
 
   <div class="wrapperRightSide">
-    <ul class="socialList">
-      <li class="socialButton"><p>Une dose de vert -- v.0.2</p></li>
-      <li class="socialButton"><p>Nos recettes</p></li>
-      <li class="socialButton"><p>Le Blog</p></li>
-
-    <mat-form-field [formGroup]="forms" (ngSubmit)="onSubmit(this.forms)" appearance="none">
+    <mat-form-field [formGroup]="forms" (ngSubmit)="onSubmit(this.forms)">
       <label>
         <input class="searchBar" matInput placeholder="Rechercher...." formControlName="search" >
       </label>
@@ -17,7 +14,6 @@
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
-    </ul>
   </div>
 </div>
 

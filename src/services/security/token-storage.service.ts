@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -12,51 +13,44 @@ const USER_KEY = 'AuthUser';
 
 export class TokenStorageService {
   // private roles: Array<string> = [];
-  private roles: string;
-  private token: string;
-  constructor(private cookieService: CookieService) { }
+  private role: string;
+  constructor(private cookieService: CookieService, private router: Router) { }
 
   signOut(): void {
-    this.cookieService.set('jwt-token', null);
-    this.cookieService.set('token-email', null);
+    this.cookieService.set('jwt-token', '');
+    this.cookieService.set('token-email', '');
     this.cookieService.set('token-authority', '');
-    window.sessionStorage.clear();
+    this.router.navigate(['/']);
   }
 
   public saveToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
     this.cookieService.set('jwt-token', token);
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY) || this.cookieService.get('jwt-token');
+    return this.cookieService.get('jwt-token');
   }
 
   public saveEmail(email: string): void {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, email);
     this.cookieService.set('token-email', email);
   }
 
   public getEmail(): string {
-    return sessionStorage.getItem(USERNAME_KEY) || this.cookieService.get('token-email');
+    return this.cookieService.get('token-email');
   }
 
   public saveAuthorities(authorities: string[]): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
     this.cookieService.set('token-authority', JSON.stringify(authorities));
   }
 
   public getAuthorities(): string {
-    this.roles = '';
-    const authoritiesString = sessionStorage.getItem(AUTHORITIES_KEY) || this.cookieService.get('token-authority');
-    if (this.getToken()) {
+    this.role = '';
+    const authoritiesString = this.cookieService.get('token-authority');
+    if (authoritiesString) {
       JSON.parse(authoritiesString).forEach(authority => {
-        this.roles = authority.authority;
+        this.role = authority.length > 0 ? authority[0] : '';
       });
     }
-    return this.roles;
+    return this.role;
   }
 }

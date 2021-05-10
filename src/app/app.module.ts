@@ -63,8 +63,12 @@ import { TagChipsComponent } from './Utils/tag-chips/tag-chips.component';
 import { MySpaceComponent } from './User/my-space/my-space.component';
 import { MySpaceSelectorComponent } from './User/my-space-selector/my-space-selector.component';
 import {MatRadioModule} from '@angular/material/radio';
-import {SousCategorieService} from '../services/sous-categorie.service';
 import {ServicePartage} from '../services/service.partage';
+import { MyOrderComponent } from './User/my-order/my-order/my-order.component';
+import { MyAdressComponent } from './User/my-adress/my-adress.component';
+import { MyInfoComponent } from './User/my-info/my-info.component';
+import { MyProductReturnComponent } from './User/my-product-return/my-product-return.component';
+import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-error.module';
 
 
 
@@ -107,6 +111,10 @@ import {ServicePartage} from '../services/service.partage';
     TagChipsComponent,
     MySpaceComponent,
     MySpaceSelectorComponent,
+    MyOrderComponent,
+    MyAdressComponent,
+    MyInfoComponent,
+    MyProductReturnComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,6 +145,7 @@ import {ServicePartage} from '../services/service.partage';
     MatSortModule,
     MatSelectModule,
     MatCardModule,
+    GlobalHandlerErrorModule,
   ],
   providers: [httpInterceptorProviders, CookieService, ServicePartage],
   bootstrap: [AppComponent]

@@ -34,6 +34,7 @@ h1:focus {
   color: #757575;
   list-style: none;
   text-transform: uppercase;
+  margin-right: 6.5%;
 }
 
 .client-area li {
@@ -43,6 +44,7 @@ h1:focus {
   color: #757575;
   font-family: WorkSans, serif;
   margin: 28px 10px;
+  cursor:pointer;
 }
 
 .user-icon {
@@ -53,7 +55,6 @@ h1:focus {
 .panier-icon {
   width: 24px;
   height: 24px;
-  margin-right: 123px;
 }
 
 .wrapper2 {
@@ -67,7 +68,7 @@ h1:focus {
   padding-top: 13px;
   align-content: center;
   line-height: 1.17;
-  font-family: WorkSans;
+  font-family: WorkSans, serif;
   height: 14px;
   font-size: 12px;
   text-align: center;

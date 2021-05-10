@@ -19,6 +19,10 @@ import {SousCategorieEditComponent} from './Categorie/sous-categorie-edit/sous-c
 import {ViewProductComponent} from './Produit/view-product/view-product.component';
 import {ViewAllProductsComponent} from './Produit/view-all-product/view-all-products/view-all-products.component';
 import {MySpaceComponent} from './User/my-space/my-space.component';
+import {MyInfoComponent} from './User/my-info/my-info.component';
+import {MyOrderComponent} from './User/my-order/my-order/my-order.component';
+import {MyProductReturnComponent} from './User/my-product-return/my-product-return.component';
+import {MyAdressComponent} from './User/my-adress/my-adress.component';
 
 
 const routes: Routes = [
@@ -37,7 +41,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'user/adress/edit', component: AdresseEditComponent},
   { path: 'user/add', component: CreateUserComponent},
-  { path: 'user/mySpace', component: MySpaceComponent},
+  { path: 'user/mon-espace', component: MySpaceComponent},
+  { path: 'user/mon-espace/infos', component: MyInfoComponent},
+  { path: 'user/mon-espace/commandes', component: MyOrderComponent},
+  { path: 'user/mon-espace/retours', component: MyProductReturnComponent},
+  { path: 'user/mon-espace/adresses', component: MyAdressComponent},
   { path: 'accueil', component: AccueilComponent},
   { path: 'product', component: ViewProductComponent},
   { path: 'products', component: ViewAllProductsComponent},

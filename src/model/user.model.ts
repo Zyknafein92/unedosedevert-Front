@@ -13,8 +13,8 @@ export class User {
   nom: string;
   prenom: string;
   anniversaire: Date;
-  telephone: string;
   email: string;
   password: string;
   active: boolean;
+  newsletter: boolean;
 }
