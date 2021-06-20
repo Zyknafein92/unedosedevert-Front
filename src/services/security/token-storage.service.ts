@@ -14,38 +14,40 @@ const USER_KEY = 'AuthUser';
 export class TokenStorageService {
   // private roles: Array<string> = [];
   private role: string;
-  constructor(private cookieService: CookieService, private router: Router) { }
+  private cookieService = window.localStorage;
+  constructor(private router: Router) { }
 
   signOut(): void {
-    this.cookieService.set('jwt-token', '');
-    this.cookieService.set('token-email', '');
-    this.cookieService.set('token-authority', '');
+    this.cookieService.setItem('jwt-token', '');
+    this.cookieService.setItem('token-email', '');
+    this.cookieService.setItem('token-authority', '');
     this.router.navigate(['/']);
   }
 
+
   public saveToken(token: string): void {
-    this.cookieService.set('jwt-token', token);
+    this.cookieService.setItem('jwt-token', token);
   }
 
   public getToken(): string {
-    return this.cookieService.get('jwt-token');
+    return this.cookieService.getItem('jwt-token');
   }
 
   public saveEmail(email: string): void {
-    this.cookieService.set('token-email', email);
+    this.cookieService.setItem('token-email', email);
   }
 
   public getEmail(): string {
-    return this.cookieService.get('token-email');
+    return this.cookieService.getItem('token-email');
   }
 
   public saveAuthorities(authorities: string[]): void {
-    this.cookieService.set('token-authority', JSON.stringify(authorities));
+    this.cookieService.setItem('token-authority', JSON.stringify(authorities));
   }
 
   public getAuthorities(): string {
     this.role = '';
-    const authoritiesString = this.cookieService.get('token-authority');
+    const authoritiesString = this.cookieService.getItem('token-authority');
     if (authoritiesString) {
       JSON.parse(authoritiesString).forEach(authority => {
         this.role = authority.length > 0 ? authority[0] : '';

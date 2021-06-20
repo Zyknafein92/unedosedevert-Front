@@ -39,7 +39,7 @@
         <app-petit-bouton class="buttonRemove" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
         <p class="quantitée">{{quantite}}</p>
         <app-petit-bouton class="buttonAdd" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
-        <app-bouton class="Panier" label="Ajouter au panier"></app-bouton>
+        <app-bouton class="Panier" label="Ajouter au panier" (click)="addToShoppingCart(this.variantSelected, this.quantite)"></app-bouton>
       </div>
 
       <div class="contenantFraisOrigine">

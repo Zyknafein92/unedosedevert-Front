@@ -2,9 +2,10 @@
   <div class="wrapper1">
     <h1 [routerLink]="['/']">Une dose de vert</h1>
     <ul class="client-area">
+      <li class="admin" [matMenuTriggerFor]="Admin" *ngIf="this.tokenEmail == 'admin@gmail.com'">Admin</li>
       <li class="espace" (click)="routerMonEspace()"><p>Mon espace</p></li>
       <li><img class="user-icon" src="../assets/img/usericon.png"> </li>
-      <li class="panier"><p>Mon panier (0)</p> </li>
+      <li class="panier" (click)="routerMonPanier()"><p>Mon panier (0)</p> </li>
       <li><img class="panier-icon" src="../assets/img/basket-2-512.png"></li>
     </ul>
   </div>
@@ -12,3 +13,27 @@
     <p class="message">Longue vie à Une dose de vert ! 10% de réduction pour nos 100 premières commandes avec le code WELCOME</p>
   </div>
 </div>
+
+  <mat-menu #Admin="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="Commande">Commande</button>
+    <button mat-menu-item [matMenuTriggerFor]="Livraison">Livraison</button>
+    <button mat-menu-item [matMenuTriggerFor]="Produit">Produit</button>
+    <button mat-menu-item [matMenuTriggerFor]="Recette">Recette</button>
+    <button mat-menu-item [matMenuTriggerFor]="Utilisateur">Utilisateur</button>
+  </mat-menu>
+  <mat-menu #Commande="matMenu">
+  </mat-menu>
+  <mat-menu #Livraison="matMenu">
+  </mat-menu>
+  <mat-menu #Produit="matMenu">
+    <button mat-menu-item routerLink="admin/products" > Listes des produits </button>
+    <button mat-menu-item routerLink="admin/products/types"> Listes des types </button>
+    <button mat-menu-item routerLink="admin/products/categories"> Listes des categories </button>
+    <button mat-menu-item routerLink="admin/products/sous-categories"> Listes des sous-categories </button>
+    <button mat-menu-item routerLink="admin/products/tags"> Listes des tags </button>
+    <button mat-menu-item routerLink="admin/products/labels"> Listes des labels </button>
+  </mat-menu>
+  <mat-menu #Recette="matMenu">
+  </mat-menu>
+  <mat-menu #Utilisateur="matMenu">
+  </mat-menu>

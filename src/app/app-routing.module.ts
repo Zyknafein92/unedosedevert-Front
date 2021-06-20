@@ -23,6 +23,7 @@ import {MyInfoComponent} from './User/my-info/my-info.component';
 import {MyOrderComponent} from './User/my-order/my-order/my-order.component';
 import {MyProductReturnComponent} from './User/my-product-return/my-product-return.component';
 import {MyAdressComponent} from './User/my-adress/my-adress.component';
+import {PanierEditComponent} from './Panier/panier-edit/panier-edit.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'user/mon-espace/commandes', component: MyOrderComponent},
   { path: 'user/mon-espace/retours', component: MyProductReturnComponent},
   { path: 'user/mon-espace/adresses', component: MyAdressComponent},
+  { path: 'user/mon-panier', component: PanierEditComponent},
   { path: 'accueil', component: AccueilComponent},
   { path: 'product', component: ViewProductComponent},
   { path: 'products', component: ViewAllProductsComponent},

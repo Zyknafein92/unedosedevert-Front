@@ -29,7 +29,7 @@ export class UserService {
     return this.http.get<User>(`${this.URL}/myprofil`);
   }
 
-  createUser(form: FormGroup): Observable < User> {
+  createUser(form: FormGroup): Observable<User> {
     return this.http.post<User>(this.URL, form.value);
   }
 

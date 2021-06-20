@@ -69,11 +69,13 @@ import { MyAdressComponent } from './User/my-adress/my-adress.component';
 import { MyInfoComponent } from './User/my-info/my-info.component';
 import { MyProductReturnComponent } from './User/my-product-return/my-product-return.component';
 import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-error.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,6 +148,7 @@ import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-err
     MatSelectModule,
     MatCardModule,
     GlobalHandlerErrorModule,
+    FontAwesomeModule
   ],
   providers: [httpInterceptorProviders, CookieService, ServicePartage],
   bootstrap: [AppComponent]

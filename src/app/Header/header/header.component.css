@@ -47,6 +47,10 @@ h1:focus {
   cursor:pointer;
 }
 
+.client-area li .admin {
+  margin-right: 4% !important;
+}
+
 .user-icon {
   width: 24px;
   height: 24px;

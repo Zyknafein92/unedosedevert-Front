@@ -15,7 +15,6 @@ import {window} from 'rxjs/operators';
 
 export class MySpaceSelectorComponent implements OnInit {
 
-
   tokenEmail: string;
   actives = {
     home: '',

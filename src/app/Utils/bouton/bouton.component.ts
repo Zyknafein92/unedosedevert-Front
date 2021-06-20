@@ -14,6 +14,7 @@ export class BoutonComponent implements OnInit {
   selected: boolean;
   @Input()
   disabled: boolean;
+  //todo: rajouter witdh en param pour corriger bug de porté des boutons
 
 
   constructor() {

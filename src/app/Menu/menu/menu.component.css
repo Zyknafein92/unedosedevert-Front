@@ -19,6 +19,7 @@
   margin: 27px 20px !important;
 }
 
+
 .mat-form-field {
   margin-top: -3%;
   font-family: WorkSans, sans-serif;
@@ -33,10 +34,15 @@
 }
 
 .typeListDiv {
-  margin-left: 5.5% !important;
+  margin-left: 6% !important;
+  justify-content: start;
 }
 
 .typeButton:hover {
+  color: #c7a38f !important;
+}
+
+.typeButton:active {
   color: #c7a38f !important;
 }
 
@@ -45,6 +51,7 @@
 }
 
 .wrapperRightSide {
-  margin: 1% 7% 0 0;
+  text-align: end;
+  margin: auto 6.8% auto 0;
 }
 

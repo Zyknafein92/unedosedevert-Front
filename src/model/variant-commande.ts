@@ -1,13 +1,13 @@
-
-import {Variant} from './variant.model';
 import {Produit} from './produit.model';
 
-export class PanierLigne {
+export class VariantCommande {
+
   id: number;
-  variant: Variant;
+  idVariant: number;
+  name: string;
   produit: Produit;
   quantity: number;
   prix: number;
-
-  manualId: number;
+  prixKg: number;
+  prixReduction: number;
 }

@@ -7,18 +7,19 @@ p {
 }
 
 .topWrapper{
+  width: 100%;
   display: flex;
   margin: 2% 0 2% 0;
 }
 
 .imageProduit {
-  float:left;
-  margin: 0 5% 0 6.5%;
+  margin: auto 5% auto 6.5%;
+  width: 50%;
 }
 
 .sideText {
-  float: right;
   margin: 0 6.5% 0 0;
+  width: 50%;
 }
 
 .title h1{

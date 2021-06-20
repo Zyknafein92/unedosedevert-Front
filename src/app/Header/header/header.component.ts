@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
 import {Route, Router} from '@angular/router';
+import {MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,7 @@ import {Route, Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   options: any;
   authorities: string;
   tokenEmail: string;
@@ -15,7 +17,6 @@ export class HeaderComponent implements OnInit {
   constructor(private token: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log('token', this.token);
     this.authorities = this.token.getAuthorities();
     this.tokenEmail = this.token.getEmail();
   }
@@ -30,5 +31,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  routerMonPanier() {
+      this.router.navigate(['user/mon-panier']);
   }
 }
