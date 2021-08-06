@@ -14,7 +14,18 @@ export class BoutonComponent implements OnInit {
   selected: boolean;
   @Input()
   disabled: boolean;
-  //todo: rajouter witdh en param pour corriger bug de porté des boutons
+  @Input()
+  width: any;
+  @Input()
+  onClick2: Function;
+
+  onButtonClick(): void {
+    if(this.onClick2) {
+      console.log('test clicked by function')
+      this.onClick2();
+    }
+  };
+
 
 
   constructor() {

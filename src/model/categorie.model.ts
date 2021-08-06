@@ -1,7 +1,7 @@
-import {SousCategorie} from './sous-categorie';
+import {SubCategorie} from './sub-categorie';
 
 export class Categorie {
   id: number;
   name: string;
-  sousCategories: Array<SousCategorie>;
+  subCategories: Array<SubCategorie>;
 }

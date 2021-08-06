@@ -23,8 +23,8 @@
                   <input class="form-control"
                          type="text"
                          name="prenom"
-                         placeholder="prenom"
-                         formControlName="prenom"
+                         placeholder="firstName"
+                         formControlName="firstName"
                          required minlength="2">
                 </div>
               </div>
@@ -33,13 +33,13 @@
                 <div class="form-group"
                      [class.has-success]="forms.get('nom').valid"
                      [class.has-error]="forms.get('nom').invalid && forms.get('nom').touched">
-                  <div class="alert alert-danger" [hidden]="forms.get('nom').valid || !forms.get('nom').touched">Le nom doit posséder au moins 2 lettres.</div>
+                  <div class="alert alert-danger" [hidden]="forms.get('nom').valid || !forms.get('nom').touched">Le lastName doit posséder au moins 2 lettres.</div>
                   <label class="control-label">Nom:</label>
                   <input class="form-control input-md"
                          type="text"
                          name="nom"
                          placeholder="Nom"
-                         formControlName="nom"
+                         formControlName="lastName"
                          required
                          minlength="2">
                 </div>
@@ -56,8 +56,8 @@
                   <input class="form-control input-md"
                          type="Date"
                          name="Date de Naissance"
-                         placeholder="anniversaire"
-                         formControlName="anniversaire"
+                         placeholder="birthday"
+                         formControlName="birthday"
                          autocapitalize="on"
                          spellcheck="on"
                          required/>

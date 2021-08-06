@@ -55,10 +55,10 @@ export class LoginComponent implements OnInit {
   private initFormsUser(): void {
     this.formsUser = this.formBuilder.group(
       {
-        genre: ['', Validators.required],
-        nom: ['', Validators.required],
-        prenom: ['', Validators.required],
-        anniversaire: new FormControl(),
+        gender: ['', Validators.required],
+        lastName: ['', Validators.required],
+        firstName: ['', Validators.required],
+        birthday: new FormControl(),
         email: new FormControl('', Validators.compose([
           Validators.required,
           Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),
@@ -161,10 +161,13 @@ export class LoginComponent implements OnInit {
       this.password2.setErrors(null);
   }
 
+  forgetPassword() {
+    this.router.navigate(['/password-recovery']);
+  }
 }
 
 export const emailMatchValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
-  if (formGroup.get('email').value === formGroup.get('email2').value)
+  if (formGroup.get('email') && formGroup.get('email').value === formGroup.get('email2').value)
     return null;
   else
     return {emailMismatch: true};

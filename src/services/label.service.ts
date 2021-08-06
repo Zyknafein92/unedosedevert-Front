@@ -44,7 +44,7 @@ export class LabelService {
     return this.http.delete<Label>(`${this.URL}/${id}`);
   }
 
-  uploadPhoto(file: File): Observable<any> {
+  uploadPicture(file: File): Observable<any> {
     const headers = new HttpHeaders().set('responseType', 'text');
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);

@@ -1,16 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Produit} from '../../../model/produit.model';
-import {ProduitService} from '../../../services/produit.service';
+import {Product} from '../../../model/product.model';
+import {ProductService} from '../../../services/product.service';
 import {VariantService} from '../../../services/variant.service';
 import {Variant} from '../../../model/variant.model';
 import {ActivatedRoute} from '@angular/router';
 import {Tag} from '../../../model/tag.model';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
-import {PanierService} from '../../../services/panier.service';
-import {FormGroup, Validators} from '@angular/forms';
-import {PanierLigne} from '../../../model/panier-ligne.model';
+import {ShoppingCartService} from '../../../services/shopping-cart.service';
+import {FormGroup} from '@angular/forms';
+import {ShoppingCartLine} from '../../../model/shopping-cart-line.model';
 import {UserService} from '../../../services/user.service';
-import {Panier} from '../../../model/panier.model';
+import {ShoppingCart} from '../../../model/shopping-cart.model';
 
 @Component({
   selector: 'app-view-product',
@@ -21,16 +21,16 @@ export class ViewProductComponent implements OnInit {
 
 
   forms: FormGroup;
-  produit: Produit;
+  product: Product;
   variants: Array<Variant>;
   tags: Array<Tag>;
   variantSelected: Variant;
-  quantite: number;
+  quantity: number;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private produitService: ProduitService,
+  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService,
               private variantService: VariantService, private tokenService: TokenStorageService,
-              private panierService: PanierService, private userService: UserService) {
+              private shoppingCartService: ShoppingCartService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -43,12 +43,12 @@ export class ViewProductComponent implements OnInit {
           this.initVariants(id);
         }
       });
-    this.quantite = 0;
+    this.quantity = 0;
   }
 
   private initProduit(id: number): void {
-    this.produitService.getProduit(id).subscribe(data => {
-      this.produit = data;
+    this.productService.getProduit(id).subscribe(data => {
+      this.product = data;
     });
   }
 
@@ -61,18 +61,18 @@ export class ViewProductComponent implements OnInit {
   selectVariant(variant: Variant): void {
     this.variantSelected = variant;
     if (this.variantSelected) {
-      this.quantite = 0;
+      this.quantity = 0;
     }
   }
 
   changeQuantity(quantity: number): void {
-    if ((this.quantite === 0 && quantity < 0) || !this.variantSelected) {
+    if ((this.quantity === 0 && quantity < 0) || !this.variantSelected) {
       return;
     }
-    this.quantite += quantity;
+    this.quantity += quantity;
   }
 
-  private afficherPrix(prix: number): string {
+  displayPrice(prix: number): string {
     const formatter = new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency: 'EUR',
@@ -80,45 +80,41 @@ export class ViewProductComponent implements OnInit {
     return formatter.format(prix);
   }
 
-  private createPanierLigne(variant, quantite): PanierLigne {
-    let panierLigne = new PanierLigne();
-    panierLigne.id = null;
-    panierLigne.variant = variant;
-    panierLigne.produit = this.produit;
-    panierLigne.quantity = quantite;
-    panierLigne.prix = variant.prix * quantite;
-    panierLigne.manualId = new Date().getTime();
-
-   return panierLigne;
-}
+  private createPanierLigne(variant, quantite): ShoppingCartLine {
+    let shoppingCartLine = new ShoppingCartLine();
+    shoppingCartLine.id = null;
+    shoppingCartLine.variant = variant;
+    shoppingCartLine.product = this.product;
+    shoppingCartLine.quantity = quantite;
+    shoppingCartLine.price = variant.price * quantite;
+    shoppingCartLine.manualId = new Date().getTime();
+    return shoppingCartLine;
+  }
 
   addToShoppingCart(variantSelected: Variant, quantite: number) {
-    let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantite);
+    let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantity);
+    console.log(ligneToAdd)
     if (this.tokenService.getEmail() != null && this.tokenService.getEmail() != '') {
       this.userService.getMyProfil().subscribe(res => {
         console.log(res);
-        this.panierService.addPanierLigne(ligneToAdd, res.panier.id).subscribe(response => {
+        this.shoppingCartService.addShoppingCartLine(ligneToAdd).subscribe(response => {
           console.log('data', response);
         });
       });
     } else {
-      let panierToSave = new Panier();
+      let shoppingCartToSave = new ShoppingCart();
 
-      let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantite);
-      panierToSave.panierLignes.push(ligneToAdd);
-      if (window.sessionStorage.getItem('panier') == null) {
-        window.sessionStorage.setItem('panier', JSON.stringify(panierToSave));
-        console.log(JSON.parse(window.sessionStorage.getItem('panier')));
+      let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantity);
+      shoppingCartToSave.shoppingCartLines.push(ligneToAdd);
+      if (window.sessionStorage.getItem('shoppingCart') == null) {
+        window.sessionStorage.setItem('shoppingCart', JSON.stringify(shoppingCartToSave));
+        console.log(JSON.parse(window.sessionStorage.getItem('shoppingCart')));
       } else {
-       panierToSave = JSON.parse(window.sessionStorage.getItem('panier'));
-       panierToSave.panierLignes.push(ligneToAdd);
-       window.sessionStorage.setItem('panier', JSON.stringify(panierToSave));
-       console.log(JSON.parse(window.sessionStorage.getItem('panier')));
+        shoppingCartToSave = JSON.parse(window.sessionStorage.getItem('shoppingCart'));
+        shoppingCartToSave.shoppingCartLines.push(ligneToAdd);
+        window.sessionStorage.setItem('shoppingCart', JSON.stringify(shoppingCartToSave));
+        console.log(JSON.parse(window.sessionStorage.getItem('shoppingCart')));
       }
-
-      // // Panier <- ajouter élément dedans après avoir créer le panier
-      // // Mettre à jour le panier front via wsS puis envoyer au back, clean session storage
-      // window.sessionStorage.
     }
   }
 }

@@ -2,9 +2,6 @@
   width: 100%;
 
 }
-p {
-  color: black;
-}
 
 .topWrapper{
   width: 100%;
@@ -37,7 +34,7 @@ p {
   margin-left: 0;
 }
 
-.producteur p {
+.brand p {
   font-family: AbhayaLibre, serif;
   font-size: 23px;
   margin: 2% 0;
@@ -125,12 +122,13 @@ p {
 }
 
 .origine {
-  white-space: break-spaces;
+  margin: 2% 0;
 }
 
 .top {
   font-family: AbhayaLibre, serif;
-  font-size: 18px
+  font-size: 18px;
+  color: black;
 }
 
 .bot {
@@ -146,11 +144,13 @@ p {
 .descriptionProduit h2 {
   font-family: AbhayaLibre, serif;
   font-size: 18px;
+  color: black;
 }
 
 .descriptionProduit p {
   font-family: AbhayaLibre, serif;
   font-size: 16px;
+  color: #707070;
 }
 
 .bottomWrapper {

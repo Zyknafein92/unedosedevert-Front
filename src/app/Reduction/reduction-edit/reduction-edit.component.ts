@@ -16,7 +16,7 @@ import {Reduction} from '../../../model/reduction.model';
 export class ReductionEditComponent implements OnInit {
 
   @Input()
-  produitId;
+  productId;
   reduction: Reduction;
   forms: FormGroup;
 
@@ -33,7 +33,7 @@ export class ReductionEditComponent implements OnInit {
   private initForm(): void {
     this.forms = this.formBuilder.group({
       id: '',
-      produitID: this.produitId,
+      produitID: this.productId,
       pourcentageRemise: ['', Validators.required],
       reductionStart: [new FormControl(new Date()), Validators.required],
       reductionEnd: [new FormControl(new Date()), Validators.required],
@@ -41,12 +41,12 @@ export class ReductionEditComponent implements OnInit {
   }
 
   private patchValue(): void {
-    this.reductionService.getReduction(this.produitId).subscribe(data => {
+    this.reductionService.getReduction(this.productId).subscribe(data => {
       this.reduction = data;
       this.forms.patchValue({
         id: data.id,
-        produitID: data.produitID,
-        pourcentageRemise: data.pourcentageRemise,
+        produitID: data.productID,
+        pourcentageRemise: data.percentageReduction,
         reductionStart: data.reductionStart,
         reductionEnd: data.reductionEnd
       });
@@ -63,19 +63,19 @@ export class ReductionEditComponent implements OnInit {
       this.reductionService.createReduction(this.forms).subscribe(
         next => {
           console.log('form to create:', this.forms);
-          this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.produitId}});
+          this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.productId}});
         });
     } else {
       this.reductionService.updateReduction(this.forms).subscribe(
         next => {
-          this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.produitId}});
+          this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.productId}});
         });
     }
   }
 
   SupprimerReduction(produitId, id): void {
-    this.reductionService.deleteReduction(this.produitId, this.reduction.id).subscribe(next => {
-      this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.produitId}});
+    this.reductionService.deleteReduction(this.productId, this.reduction.id).subscribe(next => {
+      this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.productId}});
     });
   }
 }

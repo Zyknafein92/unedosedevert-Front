@@ -2,10 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ProduitEditComponent } from './Produit/produit-edit/produit-edit.component';
-import { AdresseEditComponent } from './Adresse/adresse-edit/adresse-edit.component';
-import { CommandeEditComponent } from './Commande/commande-edit/commande-edit.component';
-import { PanierEditComponent } from './Panier/panier-edit/panier-edit.component';
+import { ProductEditComponent } from './Produit/produit-edit/product-edit.component';
+import { OrderEditComponent } from './Commande/commande-edit/order-edit.component';
+import { ShoppingCartEditComponent } from './Panier/shopping-cart-edit/shopping-cart-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -19,7 +18,7 @@ import { MenuComponent } from './Menu/menu/menu.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { LoginComponent } from './Auth/login/login.component';
 import { CreateUserComponent } from './User/create-user/create-user.component';
-import { AccueilComponent } from './Accueil/accueil/accueil.component';
+import { HomeComponent } from './Accueil/accueil/home.component';
 import {httpInterceptorProviders} from '../services/security/auth-interceptor.service';
 import {CommonModule} from '@angular/common';
 import { CategorieEditComponent } from './Categorie/categorie-edit/categorie-edit.component';
@@ -46,8 +45,8 @@ import { LabelEditComponent } from './Label/label-edit/label-edit.component';
 import { AdminViewTagComponent } from './Admin/admin-view-tag/admin-view-tag.component';
 import { FooterComponent } from './Footer/footer.component';
 import {AdminViewLabelComponent} from './Admin/admin-view-label/admin-view-label.component';
-import { AdminViewSousCategorieListComponent } from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
-import { SousCategorieEditComponent } from './Categorie/sous-categorie-edit/sous-categorie-edit.component';
+import { AdminViewSubCategorieListComponent } from './Admin/admin-view-sous-categorie-list/admin-view-sous-categorie-list.component';
+import { SubCategorieEditComponent } from './Categorie/sous-categorie-edit/sub-categorie-edit.component';
 import { AdminViewVariantComponent } from './Admin/admin-view-variant/admin-view-variant.component';
 import { VariantEditComponent } from './Variant/variant-edit/variant-edit.component';
 import { ReductionEditComponent } from './Reduction/reduction-edit/reduction-edit.component';
@@ -56,7 +55,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ViewProductComponent } from './Produit/view-product/view-product.component';
 import { BoutonComponent } from './Utils/bouton/bouton.component';
 import { PetitBoutonComponent } from './Utils/petit-bouton/petit-bouton.component';
-import { SousMenuComponent } from './Menu/sous-menu/sous-menu.component';
+import { SubMenuComponent } from './Menu/sous-menu/sub-menu.component';
 import { CarteProduitComponent } from './Utils/carteProduit/carte-produit/carte-produit.component';
 import { ViewAllProductsComponent } from './Produit/view-all-product/view-all-products/view-all-products.component';
 import { TagChipsComponent } from './Utils/tag-chips/tag-chips.component';
@@ -70,24 +69,27 @@ import { MyInfoComponent } from './User/my-info/my-info.component';
 import { MyProductReturnComponent } from './User/my-product-return/my-product-return.component';
 import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-error.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommandeStepperComponent } from './Commande/commande-stepper/commande-stepper.component';
+import { DeliveryEditComponent } from './Commande/delivery-edit/delivery-edit.component';
+import { PasswordRecoveryComponent } from './Auth/password-recovery/password-recovery.component';
+import { OrderPaymentComponent } from './Commande/order-payement/order-payement/order-payment.component';
+import { PasswordEditComponent } from './Auth/password-edit/password-edit.component';
+import { AdminSelectorComponent } from './Admin/admin-selector/admin-selector.component';
+import { SuccessPaymentComponent } from './Commande/success-payement/success-payment.component';
+import { FailurePaymentComponent } from './Commande/failure-payment/failure-payment.component';
+import {NgxStripeModule} from 'ngx-stripe';
 
-
-
-
-
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
-    ProduitEditComponent,
-    AdresseEditComponent,
-    CommandeEditComponent,
-    PanierEditComponent,
+    ProductEditComponent,
+    OrderEditComponent,
+    ShoppingCartEditComponent,
     AdminViewProductComponent,
     MenuComponent,
     LoginComponent,
     CreateUserComponent,
-    AccueilComponent,
+    HomeComponent,
     CategorieEditComponent,
     TypeEditComponent,
     AdminViewTypesListComponent,
@@ -99,15 +101,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminViewTagComponent,
     FooterComponent,
     AdminViewLabelComponent,
-    AdminViewSousCategorieListComponent,
-    SousCategorieEditComponent,
+    AdminViewSubCategorieListComponent,
+    SubCategorieEditComponent,
     AdminViewVariantComponent,
     VariantEditComponent,
     ReductionEditComponent,
     ViewProductComponent,
     BoutonComponent,
     PetitBoutonComponent,
-    SousMenuComponent,
+    SubMenuComponent,
     CarteProduitComponent,
     ViewAllProductsComponent,
     TagChipsComponent,
@@ -117,8 +119,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MyAdressComponent,
     MyInfoComponent,
     MyProductReturnComponent,
+    CommandeStepperComponent,
+    DeliveryEditComponent,
+    PasswordRecoveryComponent,
+    OrderPaymentComponent,
+    PasswordEditComponent,
+    AdminSelectorComponent,
+    SuccessPaymentComponent,
+    FailurePaymentComponent,
   ],
   imports: [
+    NgxStripeModule.forRoot("pk_test_51JCoGrIvqpPoFOLavdVV4XNOJP3bFiGytP3KicrQIdbVGTT1OK4ociumnWnYu9ppkY4zp1Q09F9ckJCWQDvzlu7t00xRxLC4fj"),
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,

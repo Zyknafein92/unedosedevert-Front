@@ -82,15 +82,17 @@ export class TypeEditComponent implements OnInit {
       this.typeService.createType(this.forms).subscribe(
         next => {
           this.typeChange.emit(next);
+          this.dialogRef.close()
         });
     } else {
       this.typeService.updateType(this.forms).subscribe(
-        next => this.typeChange.emit(next)
-      );
+        next => {
+          this.typeChange.emit(next);
+          this.dialogRef.close();
+        });
     }
   }
 
-  // tslint:disable-next-line:typedef
   onCheckboxChange(e) {
     const categories: FormArray = this.forms.get('categories') as FormArray;
     const value = e.source.value;
@@ -111,7 +113,6 @@ export class TypeEditComponent implements OnInit {
     console.log('after pushing: ', categories);
   }
 
-  // tslint:disable-next-line:typedef
   isContain(categories: Array<Categorie>, categorie: Categorie) {
     return categories.map(t => t.name).includes((categorie.name));
   }

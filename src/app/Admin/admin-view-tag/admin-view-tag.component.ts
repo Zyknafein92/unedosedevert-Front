@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {Categorie} from '../../../model/categorie.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -55,7 +54,6 @@ export class AdminViewTagComponent implements AfterViewInit {
 
   creerTag(): void {
     const dialogRef = this.dialog.open(TagEditComponent, {
-      width: '350px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(next => {
@@ -65,7 +63,6 @@ export class AdminViewTagComponent implements AfterViewInit {
 
   modifierTag(tag: Tag): void {
     const dialogRef = this.dialog.open(TagEditComponent, {
-      width: '350px',
       data: tag
     });
     dialogRef.componentInstance.tagChange.subscribe(data => {

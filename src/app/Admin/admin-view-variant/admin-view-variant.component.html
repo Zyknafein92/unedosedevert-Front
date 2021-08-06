@@ -1,5 +1,5 @@
 <div class="container">
-  <button mat-raised-button (click)="creerVariant()">Créer un variant </button>
+  <button mat-raised-button (click)="addVariant()">Créer un variant </button>
   <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
 
     <ng-container matColumnDef="name">
@@ -10,7 +10,7 @@
     <ng-container matColumnDef="modifier">
       <th mat-header-cell *matHeaderCellDef>Modifier</th>
       <td mat-cell *matCellDef="let variant">
-        <button mat-fab color="primary" aria-label="Build" [value]="variant" (click)="modifierVariant(variant)">
+        <button mat-fab color="primary" aria-label="Build" [value]="variant" (click)="updateVariant(variant)">
           <mat-icon>build</mat-icon>
         </button></td>
     </ng-container>
@@ -18,7 +18,7 @@
     <ng-container matColumnDef="supprimer">
       <th mat-header-cell *matHeaderCellDef>Supprimer</th>
       <td mat-cell *matCellDef="let variant">
-        <button mat-fab color="warn" aria-label="Build" [value]="variant" (click)="supprimerVariant(variant.id)">
+        <button mat-fab color="warn" aria-label="Build" [value]="variant" (click)="deleteVariant(variant.id)">
           <mat-icon>delete</mat-icon>
         </button></td>
     </ng-container>

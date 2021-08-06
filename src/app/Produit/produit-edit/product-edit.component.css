@@ -1,0 +1,55 @@
+.mat-dialog-title{
+  text-align: center;
+}
+
+.Produit {
+  margin: 4%;
+}
+.mat-dialog-content {
+  height: auto !important;
+  width: auto !important;
+  overflow: initial !important;
+}
+.mat-dialog-actions {
+  align-content: center !important;
+  justify-content: center;
+  display: flex;
+  width: 100% !important;
+}
+.photo-selecteur {
+  width: 100%;
+  margin: 2% 40px 2% 0;
+  align-content: center;
+  text-align: center;
+}
+
+.checkbox{
+  display: flex;
+  margin: 1% auto;
+}
+
+h2 {
+  font-family: AbhayaLibre, serif;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.17;
+}
+
+.textHR {
+  background-color: #c7a38f !important;
+  width: 10%;
+  height: 0.15em;
+  justify-content: center;
+}
+
+.separation {
+  font-size: 16px;
+  color: #000000;
+  font-family: WorkSans, serif;
+  background-color: #f5ede4;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin: 2% 1%;
+  font-weight: bold;
+}

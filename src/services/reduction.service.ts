@@ -29,11 +29,11 @@ export class ReductionService {
 
   createReduction(form: FormGroup): Observable < Reduction> {
     console.log('form:', form.value);
-    return this.http.post<Reduction>(`${this.URL}${form.getRawValue().produitID}/reduction`, form.value);
+    return this.http.post<Reduction>(`${this.URL}${form.getRawValue().productID}/reduction`, form.value);
   }
 
   updateReduction(form: FormGroup): Observable<Reduction> {
-    return this.http.put<Reduction>(`${this.URL}${form.getRawValue().produitID}/reduction`, form.value);
+    return this.http.put<Reduction>(`${this.URL}${form.getRawValue().productID}/reduction`, form.value);
   }
 
   deleteReduction(produitID: number, id: number): Observable<Reduction> {

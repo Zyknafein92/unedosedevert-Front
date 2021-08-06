@@ -1,33 +1,33 @@
-<div class="wrapper" *ngIf="produit != null">
+<div class="wrapper" *ngIf="product != null">
   <div class="topWrapper">
     <div class="imageProduit" >
-      <img src="{{produit.urlGrandePhoto}}">
+      <img src="{{product.urlPicture1}}">
     </div>
 
     <div class="sideText">
-      <div class="title">
-        <h1>{{produit.name}}</h1>
+      <div class="title" *ngIf="product.title != ''">
+        <h1>{{product.title}}</h1>
       </div>
 
       <hr>
 
-      <div class="producteur">
-        <p>{{produit.producteur}}<p>
+      <div class="brand" *ngIf="product.brand != ''">
+        <p>{{product.brand}}<p>
       </div>
 
-      <div class="tagArea">
-        <div class="tag" *ngFor="let tag of produit.tags">
+      <div class="tagArea" *ngIf="product.tags != null">
+        <div class="tag" *ngFor="let tag of product.tags">
           <app-tag-chips label="{{tag.name}}"></app-tag-chips>
         </div>
       </div>
 
-      <div class="variantArea">
+      <div class="variantArea" *ngIf="product.variants != null">
         <div class="prix" *ngIf="variantSelected">
-          <p> {{this.afficherPrix(variantSelected.prix)}}  les {{variantSelected.name}}</p>
+          <p> {{this.displayPrice(variantSelected.price)}}  les {{variantSelected.name}}</p>
         </div>
 
         <div class="prixKG" *ngIf="variantSelected">
-          <p>{{this.afficherPrix(variantSelected.prixKg)}}/Kilo</p>
+          <p>{{this.displayPrice(variantSelected.priceKg)}}/Kilo</p>
         </div>
 
         <div class="variant" *ngFor="let variant of variants">
@@ -37,9 +37,9 @@
 
       <div class="panierSelecteur">
         <app-petit-bouton class="buttonRemove" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
-        <p class="quantitée">{{quantite}}</p>
+        <p class="quantitée">{{quantity}}</p>
         <app-petit-bouton class="buttonAdd" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
-        <app-bouton class="Panier" label="Ajouter au panier" (click)="addToShoppingCart(this.variantSelected, this.quantite)"></app-bouton>
+        <app-bouton class="Panier" label="Ajouter au panier" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
       </div>
 
       <div class="contenantFraisOrigine">
@@ -49,28 +49,25 @@
         </div>
         <div class="FraisLivraison">
           <p class="top">Frais de livraison</p>
-          <p class="bot">Livraison offerte à partir de 44€  </p>
-        </div>
-        <div class="origine">
-          <p class="top">Origine</p>
-          <p class="bot">{{produit.origine}}</p>
+          <p class="bot">5€</p>
         </div>
       </div>
 
-      <div class="descriptionProduit">
+      <div class="origine" *ngIf="product.origin != ''">
+        <p class="top">Origine</p>
+        <p class="bot">{{product.origin}}</p>
+      </div>
+
+      <div class="descriptionProduit" *ngIf="product.productDescription != ''">
         <h2>Description</h2>
-        <p>{{produit.descriptionProduit}}</p>
-      </div>
-
-      <div class="commentaireProduit">
-        <p>{{produit.commentaireProduit}}</p>
+        <p>{{product.productDescription}}</p>
       </div>
     </div>
   </div>
 
   <div class="bottomWrapper">
     <hr>
-    <div class="conseil">
+    <div class="conseil" *ngIf="product.utilisationAdvice != ''">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -78,12 +75,12 @@
               Conseil d'utilisation et de préparation
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.conseilUtilisation}}</p>
+          <p>{{product.utilisationAdvice}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
-    <div class="composition">
+    <hr *ngIf="product.utilisationAdvice != ''">
+    <div class="composition" *ngIf="product.composition != ''">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -91,12 +88,12 @@
               Composition
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.composition}}</p>
+          <p>{{product.composition}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
-    <div class="pourquoi?">
+    <hr *ngIf="product.composition != ''">
+    <div class="pourquoi?" *ngIf="product.whyThisProduct != ''">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -104,12 +101,12 @@
               Pourquoi ce produit ?
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.pourquoi}}</p>
+          <p>{{product.whyThisProduct}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
-    <div class="producteur">
+    <hr *ngIf="product.whyThisProduct != ''">
+    <div class="producteur" *ngIf="product.producer != ''">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -117,12 +114,12 @@
               Le producteur
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.commentaireProducteur}}</p>
+          <p>{{product.producerComment}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
-    <div class="valeurs">
+    <hr *ngIf="product.producer != ''">
+    <div class="valeurs" *ngIf="product.allergen != ''">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -130,12 +127,12 @@
               Valeurs et allergènes
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.allergenes}}</p>
+          <p>{{product.allergen}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
-    <div class="infoNutri">
+    <hr *ngIf="product.allergen != ''">
+    <div class="infoNutri" *ngIf="product.nutritionalInformation != null">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -143,10 +140,10 @@
               Informations nutritionnelles
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>{{produit.infoNutrition}}</p>
+          <p>{{product.nutritionalInformation}}</p>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr>
+    <hr *ngIf="product.nutritionalInformation != null">
   </div>
 </div>

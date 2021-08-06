@@ -16,7 +16,7 @@ import {VariantEditComponent} from '../../Variant/variant-edit/variant-edit.comp
 })
 export class AdminViewVariantComponent implements OnInit {
 
-  @Input() produitId;
+  @Input() productId;
 
   displayedColumns: string[] = ['name', 'modifier', 'supprimer'];
   variants: Array<Variant>;
@@ -34,7 +34,7 @@ export class AdminViewVariantComponent implements OnInit {
     }
 
   private initVariants(): void {
-    this.variantService.getVariantsByProduitId(this.produitId).subscribe(data => {
+    this.variantService.getVariantsByProduitId(this.productId).subscribe(data => {
         this.variants = data;
         this.dataSource = new MatTableDataSource<Variant>(this.variants);
         this.dataSource.paginator = this.paginator;
@@ -45,12 +45,10 @@ export class AdminViewVariantComponent implements OnInit {
       });
   }
 
-  creerVariant(): void {
+  addVariant(): void {
     const variant = new Variant();
-    variant.produitId = this.produitId;
+    variant.productId = this.productId;
     const dialogRef = this.dialog.open(VariantEditComponent, {
-      width: '800',
-      height: '600',
       data: variant
     });
     dialogRef.afterClosed().subscribe(next => {
@@ -58,10 +56,8 @@ export class AdminViewVariantComponent implements OnInit {
     });
   }
 
-  modifierVariant(variant: Variant): void {
+  updateVariant(variant: Variant): void {
     const dialogRef = this.dialog.open(VariantEditComponent, {
-      width: '800',
-      height: '600',
       data: variant
     });
     dialogRef.componentInstance.variantChange.subscribe(data => {
@@ -69,7 +65,7 @@ export class AdminViewVariantComponent implements OnInit {
     });
   }
 
-  supprimerVariant(id: number): void {
-    this.variantService.deleteVariant(this.produitId, id).subscribe(next => this.initVariants());
+  deleteVariant(id: number): void {
+    this.variantService.deleteVariant(this.productId, id).subscribe(next => this.initVariants());
   }
 }

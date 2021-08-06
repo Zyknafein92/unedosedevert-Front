@@ -1,4 +1,8 @@
-<div class="container">
+<div class="wrapper">
+  <div class="adminSelector">
+    <app-admin-selector></app-admin-selector>
+  </div>
+<div class="categorie">
   <button mat-raised-button (click)="creerCategorie()">Créer une catégorie </button>
   <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
     <ng-container matColumnDef="name">
@@ -23,4 +27,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 </div>

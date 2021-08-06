@@ -1,27 +1,33 @@
 <h2 mat-dialog-title *ngIf="categorie == null">Ajouter une categorie</h2>
 <h2 mat-dialog-title *ngIf="categorie">Modifier une categorie</h2>
-
+<hr class="textHR">
+<p class="separation">Création d'une catégorie</p>
 <mat-dialog-content>
-  <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+  <form [formGroup]="forms">
     <mat-form-field class="example-full-width">
       <mat-label>Nom:</mat-label>
       <input matInput placeholder="Nom" formControlName="name">
       <mat-error [hidden]="forms.get('name').valid || !forms.get('name').touched">
-        Le <strong>nom</strong> de la catégorie de produit doit être renseigné.
+        Le <strong>lastName</strong> de la catégorie de product doit être renseigné.
       </mat-error>
     </mat-form-field>
     <mat-list>
+      <p class="separation">Lier des sous-catégories à la catégorie</p>
       <mat-list-item class="row col-md-12" *ngFor="let sousCategorie of sousCategorieList; let i=index">
         <mat-checkbox class="example-margin"
                       [value]="sousCategorie"
-                      [checked]="isContain(this.categorie?.sousCategories || [], sousCategorie)"
+                      [checked]="isContain(this.categorie?.subCategories || [], sousCategorie)"
                       (change)="onCheckboxChange($event)">{{sousCategorie.name}}
         </mat-checkbox>
       </mat-list-item>
     </mat-list>
     <mat-dialog-actions>
-      <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-      <button mat-button color="accent" (click)="onSubmit()" [disabled]="forms.invalid" [mat-dialog-close]>Sauvegarder</button>
+      <div class="col-md-6">
+        <app-bouton class="modifier col-md" label="Annuler" [mat-dialog-close]></app-bouton>
+      </div>
+      <div class="col-md-6">
+        <app-bouton class="modifier col-md" label="Sauvegarder" [hidden]="forms.invalid" [onClick2]="onSubmit.bind(this)"></app-bouton>
+      </div>
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>

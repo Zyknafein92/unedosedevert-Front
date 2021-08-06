@@ -51,7 +51,6 @@ export class AdminViewLabelComponent implements AfterViewInit {
 
   creerLabel(): void {
     const dialogRef = this.dialog.open(LabelEditComponent, {
-      width: '350px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(next => {
@@ -62,7 +61,6 @@ export class AdminViewLabelComponent implements AfterViewInit {
   modifierLabel(label: Label): void {
     console.log('label: ', label);
     const dialogRef = this.dialog.open(LabelEditComponent, {
-      width: '350px',
       data: label
     });
     dialogRef.componentInstance.labelChange.subscribe(data => {

@@ -1,3 +1,5 @@
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+
 @font-face {
   font-family: Sofia-Regular;
   src: url("assets/fonts/Sofia-Regular.ttf");
@@ -12,3 +14,4 @@
   font-family: AbhayaLibre;
   src: url("src/assets/fonts/AbhayaLibre-Regular.ttf")
 }
+

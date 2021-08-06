@@ -1,4 +1,4 @@
 <div class="custom-button">
-  <button *ngIf="!selected ? true : false" class="customized-button" style="padding:{{padding || '10px 30px'}}" disabled="{{disabled}}">{{label}}</button>
+  <button *ngIf="!selected ? true : false" class="customized-button" style="padding:{{padding || '10px 30px'}}" disabled="{{disabled}}" (click)="this.onButtonClick()">{{label}}</button>
   <button *ngIf="selected === true" class="customized-button clicked" style="padding:{{padding || '10px 30px'}}">{{label}}</button>
 </div>

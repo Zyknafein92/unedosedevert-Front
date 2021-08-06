@@ -1,15 +1,17 @@
-<h2 mat-dialog-title *ngIf="type == null">Ajouter un type de produit</h2>
-<h2 mat-dialog-title *ngIf="type">Modifier un type de produit</h2>
+<h2 mat-dialog-title *ngIf="type == null">Ajouter un type de product</h2>
+<h2 mat-dialog-title *ngIf="type">Modifier un type de product</h2>
+<hr class="textHR">
+<p class="separation">Création du type</p>
 <mat-dialog-content>
   <form [formGroup]="forms">
     <mat-form-field class="example-full-width">
       <mat-label>Nom:</mat-label>
       <input matInput placeholder="Nom" formControlName="name">
       <mat-error [hidden]="forms.get('name').valid || !forms.get('name').touched">
-        Le <strong>nom</strong> du type de produit doit être renseigné.
+        Le <strong>lastName</strong> du type de product doit être renseigné.
       </mat-error>
     </mat-form-field>
-
+    <p class="separation">Lier des catégories à un type</p>
     <mat-list>
       <mat-list-item class="row col-md-12" *ngFor="let categorie of categorieList; let i=index">
         <mat-checkbox class="example-margin"
@@ -20,8 +22,13 @@
       </mat-list-item>
     </mat-list>
     <mat-dialog-actions>
-      <button mat-button color="warn" [mat-dialog-close]>Annuler</button>
-      <button mat-button color="accent" (click)="onSubmit()" [hidden]="forms.invalid" [mat-dialog-close]>Sauvegarder</button>
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Annuler" [mat-dialog-close]></app-bouton>
+        </div>
+
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Sauvegarder" [hidden]="forms.invalid" [onClick2]="onSubmit.bind(this)"></app-bouton>
+        </div>
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>

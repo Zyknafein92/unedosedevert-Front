@@ -1,0 +1,38 @@
+<div id="stepper" class="bs-stepper">
+  <div class="bs-stepper-header">
+    <div class="step" data-target="#shoppingCart">
+      <button class="step-trigger">
+          <span class="bs-stepper-circle"></span>
+          <span class="bs-stepper-label">Panier</span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="step" data-target="#connexion" *ngIf="this.email == null || this.email == ''">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"></span>
+        <span class="bs-stepper-label">Connexion</span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="step" data-target="#delivery">
+      <button class="step-trigger">
+        <span class="bs-stepper-circle"></span>
+        <span class="bs-stepper-label">Livraison</span>
+      </button>
+    </div>
+  </div>
+  <div class="bs-stepper-content">
+    <form>
+      <div id="shoppingCart" class="content">
+        <app-panier-edit [toDelivery]="stepperNext" [shoppingCart]="shoppingCart"></app-panier-edit>
+      </div>
+      <div id="connexion" class="content" *ngIf="this.email == null || this.email == ''">
+        <app-login></app-login>
+      </div>
+      <div id="delivery" class="content text-center">
+        <app-delivery-edit [shoppingCart]="shoppingCart"></app-delivery-edit>
+      </div>
+    </form>
+  </div>
+</div>
+

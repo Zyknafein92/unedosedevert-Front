@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user.model';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {ServicePartage} from './service.partage';
 
 
@@ -25,6 +25,13 @@ export class UserService {
     return this.http.get<User>(`${this.URL}/${id}`);
   }
 
+  getUserByToken(token: string): Observable<User> {
+    let params = new HttpParams().set("token", token);
+
+    return this.http.get<User>(`${this.URL}/forgot-password`, {params })
+    //return this.http.get<User>(`${this.URL}/myprofil`);
+  }
+
   getMyProfil(): Observable<User> {
     return this.http.get<User>(`${this.URL}/myprofil`);
   }
@@ -37,8 +44,18 @@ export class UserService {
     return this.http.put<User>(`${this.URL}`, form.value);
   }
 
+  updateUserPassword(id: number, password: string) {
+    return this.http.put<User>(`${this.URL}/reset-password/${id}`, password);
+  }
+
   deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`${this.URL}/${id}`);
   }
 
+  forgetPassword(form: FormGroup) {
+    const params = new HttpParams()
+      .set('email', form.get('email').value);
+   console.log(params)
+    return this.http.post<void>(`${this.URL}/forgetPassword`, params);
+  }
 }

@@ -27,8 +27,8 @@ export class CreateUserComponent implements OnInit {
     this.forms = this.formBuilder.group(
       {
         nom: new FormControl(),
-        prenom: new FormControl(),
-        anniversaire: new FormControl(),
+        firstName: new FormControl(),
+        birthday: new FormControl(),
         email: new FormControl('', Validators.compose([
           Validators.required,
           Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')

@@ -34,6 +34,10 @@ hr {
   border: #f2f2f2 solid 2px;
 }
 
+.ConnexionArea mat-form-field .mat-icon {
+  padding-top: 2%;
+}
+
 .ConnexionAreaButton {
   margin-top: 4%;
 }
@@ -99,4 +103,11 @@ hr {
 
 .CreationButton {
   margin: 6% 0 4% 0;
+}
+
+.forgetPassword {
+  font-family: WorkSans, serif;
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
 }

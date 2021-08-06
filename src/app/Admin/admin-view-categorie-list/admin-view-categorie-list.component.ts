@@ -59,7 +59,6 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
 
   creerCategorie(): void {
     const dialogRef = this.dialog.open(CategorieEditComponent, {
-      width: '350px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(next => {
@@ -69,7 +68,6 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
 
   modifierCategorie(cat: Categorie): void {
     const dialogRef = this.dialog.open(CategorieEditComponent, {
-      width: '350px',
       data: cat
     });
     dialogRef.componentInstance.categorieChange.subscribe(data => {

@@ -1,18 +1,18 @@
-<div class="wrapperCarte" *ngIf="produit != null">
+<div class="wrapperCarte" *ngIf="product != null">
   <div class="produitIMG">
-    <img src="{{produit.urlPetitePhoto}}" alt="Photo de {{produit.name}}">
+    <img src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
   </div>
 
   <div class="nomProduit">
-    <p>{{produit.name}}</p>
+    <p>{{product.title}}</p>
   </div>
 
   <div class="descrition">
-    <p>{{produit.descriptionProduit}}</p>
+    <p>{{product.productDescription}}</p>
   </div>
 
   <div class="type">
-    <p>{{produit.type.name}}</p>
+    <p>{{product.type.name}}</p>
   </div>
 
   <div class="variantInitiateur" *ngFor="let vari of variants">
@@ -25,14 +25,14 @@
     <div class="buttonRemove">
       <app-petit-bouton class="-" label="-" (click)="changeQuantity(-1)"></app-petit-bouton>
     </div>
-    <p class="nombre">{{quantite}}</p>
+    <p class="nombre">{{quantity}}</p>
     <div class="buttonAdd">
       <app-petit-bouton class="+" label="+" (click)="changeQuantity(1)" ></app-petit-bouton>
     </div>
     <div class="priceDisplay">
-    <p class="prix">{{this.afficherPrix(this.prixActuel)}}</p>
+    <p class="prix">{{this.displayPrice(this.actualPrice)}}</p>
     <p class="reduction">Réduction</p>
     </div>
   </div>
-  <app-bouton class="panierButton" label="Ajouter au panier"></app-bouton>
+  <app-bouton class="panierButton" label="Ajouter au shoppingCart"></app-bouton>
 </div>

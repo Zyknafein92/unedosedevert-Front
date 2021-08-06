@@ -24,11 +24,11 @@ export class VariantService {
   }
 
   createVariant(form: FormGroup): Observable <Variant> {
-     return this.http.post<Variant>(`${this.URL}${form.getRawValue().produitId}/variants`, form.value);
+     return this.http.post<Variant>(`${this.URL}${form.getRawValue().productId}/variants`, form.value);
   }
 
   updateVariant(form: FormGroup): Observable<Variant> {
-    return this.http.put<Variant>(`${this.URL}${form.getRawValue().produitId}/variants`, form.value);
+    return this.http.put<Variant>(`${this.URL}${form.getRawValue().productId}/variants`, form.value);
   }
 
   deleteVariant(produitID, id: number): Observable<Variant> {

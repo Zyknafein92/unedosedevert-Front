@@ -13,11 +13,17 @@
       </mat-form-field>
 
       <mat-form-field class="col-md-12">
+        <div class="row">
+          <div class="col-md-10">
         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        <mat-error>
-          Mot de passe invalid !
-        </mat-error>
+            <mat-error>
+              Mot de passe invalid !
+            </mat-error>
+          </div>
+          <div class="mat-icon col-md-2">
+        <mat-icon matSuffix  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </div>
+        </div>
       </mat-form-field>
     </form>
     <div class="ConnexionAreaButton">
@@ -26,6 +32,8 @@
         <app-bouton  *ngIf="forms.valid" (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
       </mat-dialog-actions>
     </div>
+    <br>
+    <span class="forgetPassword" (click)="forgetPassword()">Mot de passe oublié</span>
   </div>
 
   <div class="CompteArea">
@@ -41,37 +49,36 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-radio-group formControlName="genre">
+            <mat-radio-group formControlName="gender">
               <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
               <mat-radio-button  value="Madame">Madame</mat-radio-button>
             </mat-radio-group>
 
             <mat-form-field>
               <mat-label>Nom:</mat-label>
-              <input matInput placeholder="Nom :" formControlName="nom">
-              <mat-error [hidden]="formsUser.get('nom').valid || !formsUser.get('nom').touched">
-                Le <strong>nom</strong> doit être renseigné.
+              <input matInput placeholder="Nom :" formControlName="lastName">
+              <mat-error [hidden]="formsUser.get('lastName').valid || !formsUser.get('lastName').touched">
+                Le <strong>lastName</strong> doit être renseigné.
               </mat-error>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Prenom:</mat-label>
-              <input matInput placeholder="Prenom :" formControlName="prenom">
-              <mat-error [hidden]="formsUser.get('prenom').valid || !formsUser.get('prenom').touched">
+              <input matInput placeholder="Prenom :" formControlName="firstName">
+              <mat-error [hidden]="formsUser.get('firstName').valid || !formsUser.get('firstName').touched">
                 Le <strong>prénom</strong> doit être renseigné.
               </mat-error>
             </mat-form-field>
 
             <label class="labelAnniv">Date de naissance :</label>
             <div class="formAnniv"
-                 [class.has-success]="formsUser.get('anniversaire').valid"
-                 [class.has-error]="formsUser.get('anniversaire').invalid && formsUser.get('anniversaire').touched">
-              <div class="alert alert-danger" [hidden]="formsUser.get('anniversaire').valid || !formsUser.get('anniversaire').touched">La date de naissance doit être renseignée.</div>
+                 [class.has-error]="formsUser.get('birthday').invalid && formsUser.get('birthday').touched">
+              <div class="alert alert-danger" [hidden]="formsUser.get('birthday').valid || !formsUser.get('birthday').touched">La date de naissance doit être renseignée.</div>
               <input class="form-control input-md"
                      type="Date"
                      name="Date de Naissance"
-                     placeholder="anniversaire"
-                     formControlName="anniversaire"
+                     placeholder="birthday"
+                     formControlName="birthday"
                      autocapitalize="on"
                      spellcheck="on"
                      required/>

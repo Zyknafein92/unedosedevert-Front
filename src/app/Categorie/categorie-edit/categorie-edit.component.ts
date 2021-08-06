@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Categorie} from '../../../model/categorie.model';
-import {SousCategorie} from '../../../model/sous-categorie';
+import {SubCategorie} from '../../../model/sub-categorie';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoriesService} from '../../../services/categorie.service';
-import {SousCategorieService} from '../../../services/sous-categorie.service';
+import {SubCategorieService} from '../../../services/sub-categorie.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 
@@ -17,8 +17,8 @@ export class CategorieEditComponent implements OnInit {
 
   categorie: Categorie;
   forms: FormGroup;
-  sousCategorieList: Array<SousCategorie>;
-  sousCategories: FormGroup;
+  sousCategorieList: Array<SubCategorie>;
+  subCategorie: FormGroup;
   isChecked: true;
   @Output()
   categorieChange = new EventEmitter();
@@ -27,21 +27,21 @@ export class CategorieEditComponent implements OnInit {
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private categorieService: CategoriesService,
-              private sousCategorieService: SousCategorieService,
+              private subCategorieService: SubCategorieService,
               public dialogRef: MatDialogRef<CategorieEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Categorie) { }
 
   ngOnInit(): void {
     this.categorie = this.data;
     this.initForm();
-    this.initSousCategories();
+    this.initSubCategories();
   }
 
   private initForm(): void {
     this.forms = this.formBuilder.group({
       id: '',
       name: ['', Validators.required],
-      sousCategories: this.formBuilder.array([])
+      subCategorie: this.formBuilder.array([])
     });
     if (this.categorie && this.categorie.id) {
       this.categorieService.getCategorie(this.categorie.id).subscribe( data => {
@@ -49,17 +49,17 @@ export class CategorieEditComponent implements OnInit {
         this.forms.patchValue({
           id: data.id,
           name: data.name,
-          sousCategories: data.sousCategories
+          subCategorie: data.subCategories
         });
-        const sousCategories: FormArray = this.forms.get('sousCategories') as FormArray;
-        data.sousCategories.forEach(e => sousCategories.push(new FormControl(e)));
+        const subCategorie: FormArray = this.forms.get('subCategorie') as FormArray;
+        data.subCategories.forEach(e => subCategorie.push(new FormControl(e)));
         console.log(this.forms);
       });
     }
   }
 
-  private initSousCategories(): void {
-    this.sousCategorieService.getSousCategories().subscribe(
+  private initSubCategories(): void {
+    this.subCategorieService.getSubCategories().subscribe(
       data => {
         this.sousCategorieList = data;
       });
@@ -81,32 +81,32 @@ export class CategorieEditComponent implements OnInit {
       this.categorieService.updateCategorie(this.forms).subscribe(
         next => {
           this.categorieChange.emit(next);
+          this.dialogRef.close();
         });
     }
   }
 
   // tslint:disable-next-line:typedef
   onCheckboxChange(e) {
-    const sousCategories: FormArray = this.forms.get('sousCategories') as FormArray;
+    const subCategorie: FormArray = this.forms.get('subCategorie') as FormArray;
     const value = e.source.value;
     if (e.checked) {
-      sousCategories.push(new FormControl(value));
+      subCategorie.push(new FormControl(value));
     } else {
       let i = 0;
-      sousCategories.controls.forEach((item: FormControl) => {
+      subCategorie.controls.forEach((item: FormControl) => {
         if (item.value.id === value.id) {
-          sousCategories.removeAt(i);
+          subCategorie.removeAt(i);
           return;
         }
         i++;
       });
     }
-    console.log('after pushing: ', sousCategories);
+    console.log('after pushing: ', subCategorie);
   }
 
-  // tslint:disable-next-line:typedef
-  isContain(sousCategories: Array<SousCategorie>, sousCategorie: SousCategorie) {
-    return sousCategories.map(t => t.name).includes((sousCategorie.name));
+  isContain(subCategories: Array<SubCategorie>, subCategorie: SubCategorie) {
+    return subCategories.map(t => t.name).includes((subCategorie.name));
   }
 
 }

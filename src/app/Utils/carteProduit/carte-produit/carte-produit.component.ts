@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Produit} from '../../../../model/produit.model';
+import {Product} from '../../../../model/product.model';
 import {Variant} from '../../../../model/variant.model';
 
 @Component({
@@ -9,47 +9,47 @@ import {Variant} from '../../../../model/variant.model';
 })
 export class CarteProduitComponent implements OnInit {
   @Input()
-  produit: Produit;
+  product: Product;
   variants: Array<Variant>;
-  quantite: number;
-  prixActuel: number;
+  quantity: number;
+  actualPrice: number;
   variantSelected: Variant;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.quantite = 0;
-    this.variants = this.produit.variants;
-    this.prixActuel = 0.0;
+    this.quantity = 0;
+    this.variants = this.product.variants;
+    this.actualPrice = 0.0;
   }
 
-  private afficherPrix(prix: number): string {
+  displayPrice(price: number): string {
     // tslint:disable-next-line:no-shadowed-variable
     const formatter = new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency: 'EUR',
     });
-    return formatter.format(prix);
+    return formatter.format(price);
   }
 
   private updatePrice(): void {
-    this.prixActuel = this.quantite * this.variantSelected.prix;
+    this.actualPrice = this.quantity * this.variantSelected.price;
   }
 
   changeQuantity(quantity: number): void {
-    if ((this.quantite === 0 && quantity < 0) || !this.variantSelected) {
+    if ((this.quantity === 0 && quantity < 0) || !this.variantSelected) {
       return;
     }
-    this.quantite += quantity;
+    this.quantity += quantity;
     this.updatePrice();
   }
 
   selectVariant(vari: Variant): void {
     this.variantSelected = vari;
     if (this.variantSelected) {
-      this.quantite = 0;
-      this.prixActuel = 0;
+      this.quantity = 0;
+      this.actualPrice = 0;
     }
   }
 }

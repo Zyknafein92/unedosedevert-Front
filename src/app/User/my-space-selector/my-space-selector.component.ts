@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
-import {Route, Router} from '@angular/router';
-import {window} from 'rxjs/operators';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-my-space-selector',

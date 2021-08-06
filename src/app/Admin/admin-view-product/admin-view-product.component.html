@@ -1,33 +1,38 @@
-<div class="container">
-  <button mat-raised-button (click)="creerProduit()">Créer un produit</button>
+<div class="wrapper">
+  <div class="adminSelector">
+    <app-admin-selector></app-admin-selector>
+  </div>
+<div class="product">
+  <button mat-raised-button (click)="addProduct()">Créer un produit</button>
   <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-      <td mat-cell *matCellDef="let produit">{{produit.name}}</td>
+      <td mat-cell *matCellDef="let p">{{p.title}}</td>
     </ng-container>
     <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-      <td mat-cell *matCellDef="let produit">{{produit.type.name}}</td>
+      <td mat-cell *matCellDef="let p">{{p.type.name}}</td>
     </ng-container>
     <ng-container matColumnDef="categorie">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
-      <td mat-cell *matCellDef="let produit">{{produit.categorie.name}}</td>
+      <td mat-cell *matCellDef="let p">{{p.categorie.name}}</td>
     </ng-container>
     <ng-container matColumnDef="modifier">
       <th mat-header-cell *matHeaderCellDef>Modifier</th>
-      <td mat-cell *matCellDef="let produit">
-        <button mat-fab color="primary" aria-label="Build" [value]="" (click)="modifierProduit(produit.id)">
+      <td mat-cell *matCellDef="let p">
+        <button mat-fab color="primary" aria-label="Build" [value]="p" (click)="updateProduct(p.id)">
           <mat-icon>build</mat-icon>
         </button></td>
     </ng-container>
     <ng-container matColumnDef="supprimer">
       <th mat-header-cell *matHeaderCellDef>Supprimer</th>
-      <td mat-cell *matCellDef="let produit">
-        <button mat-fab color="warn" aria-label="Build" [value]="produit" (click)="supprimerProduit(produit.id)">
+      <td mat-cell *matCellDef="let p">
+        <button mat-fab color="warn" aria-label="Build" [value]="p" (click)="deleteProduct(p.id)">
           <mat-icon>delete</mat-icon>
         </button></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
 </div>

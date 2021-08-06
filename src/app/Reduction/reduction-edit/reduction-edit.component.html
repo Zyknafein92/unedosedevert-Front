@@ -25,14 +25,14 @@
 
     <mat-form-field class="example-full-width col-4">
       <mat-label>Pourcentage de la remise:</mat-label>
-      <input matInput type="number" placeholder="Pourcentage de remise" formControlName="pourcentageRemise">
+      <input matInput type="number" placeholder="Pourcentage de remise" formControlName="percentageReduction">
       <mat-error [hidden]="forms.get('pourcentageRemise').valid || !forms.get('pourcentageRemise').touched">
-        Le <strong>pourcentage</strong> de la reduction du produit doit être renseigné.
+        Le <strong>pourcentage</strong> de la reduction du product doit être renseigné.
       </mat-error>
     </mat-form-field>
 
     <mat-dialog-actions>
-      <button mat-button color="warn" *ngIf="this.reduction != null && this.reduction.id" (click)="SupprimerReduction(this.produitId, this.reduction.id)">Supprimer la reduction</button>
+      <button mat-button color="warn" *ngIf="this.reduction != null && this.reduction.id" (click)="SupprimerReduction(this.productId, this.reduction.id)">Supprimer la reduction</button>
       <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
     </mat-dialog-actions>
   </form>
