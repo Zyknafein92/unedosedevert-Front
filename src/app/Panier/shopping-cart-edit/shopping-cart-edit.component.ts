@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ShoppingCartService} from '../../../services/shopping-cart.service';
 import {UserService} from '../../../services/user.service';
 import {ShoppingCartLine} from '../../../model/shopping-cart-line.model';
@@ -15,37 +15,22 @@ import {ShoppingCart} from '../../../model/shopping-cart.model';
 })
 export class ShoppingCartEditComponent implements OnChanges {
 
-  displayedColumns: string[] = ['Photo', 'Produit', 'Contenance', 'Quantité', 'Prix', 'Retirer'];
+  displayedColumns: string[] = ['Photo', 'Produit', 'Countenance', 'Quantity', 'Price', 'Retire'];
   data: Array<ShoppingCartLine>;
-  quantitySelected: FormControl;
+  totalPrice: number;
   @Input()
   shoppingCart: ShoppingCart;
   @Input()
   toDelivery: () => void;
+  @Output()
+  shoppingCartChange =  new EventEmitter();
 
 
-  constructor(private shoppingCartService: ShoppingCartService, private userService: UserService, private token: TokenStorageService) { }
+
+  constructor(private shoppingCartService: ShoppingCartService, private cd: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('change', changes['shoppingCart'].currentValue);
     this.initDatasource();
-  }
-
-  initQuantityForm(){
-    this.quantitySelected = new FormControl('', [Validators.required]);
-  }
-
-  deleteShoppingCartLine(shoppingCartLine) {
-    if (!shoppingCartLine.id) {
-     let sessionStorageLine = JSON.parse(window.sessionStorage.getItem('shoppingCart')).shoppingCartLines.filter(v => v.manualId != shoppingCartLine.manualId);
-     window.sessionStorage.setItem('shoppingCart', JSON.stringify(sessionStorageLine));
-     this.data = sessionStorageLine;
-    } else {
-      this.shoppingCartService.deleteShoppingCartLine(shoppingCartLine.id).subscribe(res => {
-        this.initDatasource();
-      })
-    }
-
   }
 
   private initDatasource() {
@@ -62,6 +47,7 @@ export class ShoppingCartEditComponent implements OnChanges {
     } else {
       this.shoppingCartService.updateShoppingCartLine(shoppingCartLine).subscribe(res => {
         this.initDatasource();
+        this.shoppingCartChange.emit();
       });
     }
   }
@@ -71,13 +57,29 @@ export class ShoppingCartEditComponent implements OnChanges {
     let newQuantity = $event.target.value;
     shoppingCartLine.quantity = newQuantity;
     shoppingCartLine.price = shoppingCartLine.variant.price * newQuantity
+    console.log(shoppingCartLine.price, newQuantity)
     if (!shoppingCartLine.id) {
       window.sessionStorage.setItem('shoppingCart', JSON.stringify(this.data));
     } else {
       this.shoppingCartService.updateShoppingCartLine(shoppingCartLine).subscribe(res => {
         this.initDatasource();
+        this.shoppingCartChange.emit();
       });
     }
+  }
+
+  deleteShoppingCartLine(shoppingCartLine) {
+    if (!shoppingCartLine.id) {
+      let sessionStorageLine = JSON.parse(window.sessionStorage.getItem('shoppingCart')).shoppingCartLines.filter(v => v.manualId != shoppingCartLine.manualId);
+      window.sessionStorage.setItem('shoppingCart', JSON.stringify(sessionStorageLine));
+      this.data = sessionStorageLine;
+    } else {
+      this.shoppingCartService.deleteShoppingCartLine(shoppingCartLine.id).subscribe(res => {
+        this.initDatasource();
+        this.shoppingCartChange.emit();
+      })
+    }
+
   }
 
   deliveryStep() {
@@ -92,7 +94,7 @@ export class ShoppingCartEditComponent implements OnChanges {
       style: 'currency',
       currency: 'EUR',
     });
-    return formatter.format(this.shoppingCart.totalPrice);
+    return formatter.format(this.shoppingCart.totalPrice)
   }
 
   formatPrice(price: any) {

@@ -1,16 +1,16 @@
 <div class="wrapperMenu">
   <div class="typeListDiv">
-    <ul class="typeList">
-      <li class="typeButton" *ngFor="let typ of types" (click)="openMenu(this.typ)"><span>{{typ.name}}</span></li>
+    <ul class="typeList row">
+      <li class="typeButton col-sd" *ngFor="let typ of types" (click)="openMenu(this.typ)"><span>{{typ.name}}</span></li>
     </ul>
   </div>
 
   <div class="wrapperRightSide">
-    <mat-form-field [formGroup]="forms" (ngSubmit)="onSubmit(this.forms)">
+    <mat-form-field>
       <label>
-        <input class="searchBar" matInput placeholder="Rechercher...." formControlName="search" >
+        <input type="text" class="searchBar" matInput placeholder="Rechercher...." [(ngModel)]="dataQuery">
       </label>
-      <button mat-button matSuffix mat-icon-button (click)="onSubmit(this.forms)">
+      <button mat-button matSuffix mat-icon-button (click)="onSubmit(this.dataQuery)">
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>

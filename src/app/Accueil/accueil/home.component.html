@@ -21,21 +21,13 @@
   <div class="wrapperNewProductCardList">
     <mat-card class="productCard" *ngFor="let product of newProducts">
       <mat-card-content>
-        <img mat-card-image class="productCardIMG" src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
-        <p>{{product.title}}</p>
-        <div class="row" style="justify-content: space-between">
-            <p id="unite">à partir de</p>
-            <p id="productPrice">{{smallestProductPrice(this.product)}}</p>
-        </div>
-        <div class="discovery">
-          <app-bouton label="Découvrir le produit" width="80%" (click)="showProduit(this.product)"></app-bouton>
-        </div>
+        <app-carte-produit [product]="product"></app-carte-produit>
       </mat-card-content>
     </mat-card>
   </div>
 
-  <div>
-    <app-bouton class="buttonNewProduct" label="voir les nouveautés"></app-bouton>
+  <div class="buttonNewProduct">
+    <app-bouton label="voir tous nos produits" (click)="showAllProduit()"></app-bouton>
   </div>
 
 
@@ -146,7 +138,7 @@
           <p>
             Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste price pour tous ses clients tout en préservant ses critères de qualité et pour la juste rémunération des producteurs. C’est cette démarche engagée et de proximité qui façonne notre identité à travers Une dose de vert.
             <br>
-            Nos frais de delivery sont de 3,50€, et la delivery est gratuite pour :
+            Nos frais de livraison sont de 5€, et la livraison est gratuite pour :
             <br>
             - Un minimum de 20€ de commande en zone verte (communes de Levallois-Perret (92300), Clichy (92110), Neuilly-sur-Seine (92200), Paris 17ème).
             <br>

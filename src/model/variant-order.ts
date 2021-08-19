@@ -5,7 +5,7 @@ export class VariantOrder {
   id: number;
   idVariant: number;
   name: string;
-  product: Product;
+  productDTO: Product;
   quantity: number;
   price: number;
   priceKg: number;

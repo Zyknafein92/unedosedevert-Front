@@ -18,9 +18,6 @@ export class TokenStorageService {
   constructor(private router: Router) { }
 
   signOut(): void {
-    this.cookieService.setItem('jwt-token', null);
-    this.cookieService.setItem('token-email', null);
-    this.cookieService.setItem('token-authority', null);
     this.cookieService.clear();
     this.router.navigate(['/']);
   }

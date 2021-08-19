@@ -17,6 +17,8 @@ export class BoutonComponent implements OnInit {
   @Input()
   width: any;
   @Input()
+  height: any;
+  @Input()
   onClick2: Function;
 
   onButtonClick(): void {

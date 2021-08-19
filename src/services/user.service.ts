@@ -21,15 +21,9 @@ export class UserService {
     return this.http.get<Array<User>>(this.URL);
   }
 
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(`${this.URL}/${id}`);
-  }
-
   getUserByToken(token: string): Observable<User> {
     let params = new HttpParams().set("token", token);
-
-    return this.http.get<User>(`${this.URL}/forgot-password`, {params })
-    //return this.http.get<User>(`${this.URL}/myprofil`);
+    return this.http.get<User>(`${this.URL}/forgot-password`, {params})
   }
 
   getMyProfil(): Observable<User> {
@@ -50,6 +44,10 @@ export class UserService {
 
   deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`${this.URL}/${id}`);
+  }
+
+  cleanShoppingCart(): Observable<User> {
+    return this.http.delete<User>(`${this.URL}/cleanShoppingCart`);
   }
 
   forgetPassword(form: FormGroup) {

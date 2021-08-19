@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   routerMonPanier() {
-      this.router.navigate(['user/mon-panier']);
+    this.router.navigate(['user/mon-panier']);
   }
 
   routerAdminSpace() {

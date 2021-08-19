@@ -3,7 +3,8 @@
     <app-admin-selector></app-admin-selector>
   </div>
   <div class="tags">
-    <button mat-raised-button (click)="creerTag()">Créer un tag </button>
+    <p class="separation">Gestion des tags</p>
+    <button mat-raised-button class="createTagButton" (click)="creerTag()">Créer un tag </button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>

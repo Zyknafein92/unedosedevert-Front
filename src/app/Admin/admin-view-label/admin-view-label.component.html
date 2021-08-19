@@ -3,7 +3,8 @@
     <app-admin-selector></app-admin-selector>
   </div>
   <div class="labels">
-    <button mat-raised-button (click)="creerLabel()">Créer un label </button>
+    <p class="separation">Gestion des labels</p>
+    <button mat-raised-button class="createLabelButton" (click)="creerLabel()">Créer un label </button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>

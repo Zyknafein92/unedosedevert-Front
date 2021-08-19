@@ -1,1 +1,53 @@
-<p>my-order works!</p>
+<div class="wrapper">
+  <div class="selector">
+    <app-my-space-selector></app-my-space-selector>
+  </div>
+
+  <div class="wrapperMyOrder">
+    <p class="separation">Mes commandes</p>
+    <div class="wrapperTable">
+      <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
+        <ng-container matColumnDef="orderNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>N° de commande</th>
+          <td mat-cell *matCellDef="let o">{{o.orderNumber}}</td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Commandée le</th>
+          <td mat-cell *matCellDef="let o">{{o.date | date: 'dd/MM/yyyy'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+          <td mat-cell *matCellDef="let o">{{formatPrice(o.total)}}</td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let o">{{displayStatus(o.orderStatus)}}</td>
+        </ng-container>
+        <ng-container matColumnDef="see">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">Voir la commande</th>
+          <td mat-cell *matCellDef="let o" style="text-align: center !important;">
+            <button mat-fab class="seeOrderButton"[value]="o" (click)="seeOrder(o)">
+              <mat-icon>visibility</mat-icon>
+            </button></td>
+        </ng-container>
+        <ng-container matColumnDef="renew">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">Renouveller la commande</th>
+          <td mat-cell *matCellDef="let o" style="text-align: center !important;">
+            <button mat-fab class="renewButton" aria-label="Build" [value]="o" (click)="renewOrder(o)">
+              <mat-icon>autorenew</mat-icon>
+            </button></td>
+        </ng-container>
+        <ng-container matColumnDef="payment">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">Payer la commande</th>
+          <td mat-cell *matCellDef="let o" style="text-align: center !important;">
+            <button *ngIf="displayStatus(o.orderStatus) === 'Paiement refusé.' " mat-fab class="paymentButton" aria-label="Build" [value]="o" (click)="paymentRetry(o)">
+              <mat-icon>attach_money</mat-icon>
+            </button></td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

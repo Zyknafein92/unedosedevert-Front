@@ -6,54 +6,14 @@
 .wrapperNewProductCardList {
   width: 100%;
   display: flex;
-  margin: 2% 7%;
+  justify-content: center;
 }
 
 .productCard {
-  width: 22%;
-  height: 15%;
+  width: 10%;
+  height: 5%;
   margin: 1% 1%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-}
-
-.productCard p {
-  margin: 4%;
-  font-family: AbhayaLibre, serif;
-  font-size: 20px !important;
-  text-align: center !important;
-}
-
-#unite {
-  color: #757575;
-  font-family: WorkSans, serif;
-  font-size: 18px;
-  text-align: start !important;
-  margin-left: 10%;
-}
-
-#productPrice {
-  font-family: WorkSans, serif;
-  font-size: 22px;
-  text-align: end !important;
-  margin-right: 10%;
-}
-
-.productCardIMG {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.buttonShowProduct {
-  height: 54px;
-  width: 330px;
-}
-
-.discovery {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  margin-top: 16px;
 }
 
 .wrapperNewProduit h1 {
@@ -85,10 +45,8 @@
   text-align: justify;
 }
 
-.viewNewProductButton {
-  width: 230px !important;
-  height: 54px !important;
-  margin: 50px auto 100px auto;
+.buttonNewProduct {
+ margin-top: 2%;
 }
 
 .UneDoseDeVert p {

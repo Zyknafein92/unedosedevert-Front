@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <table mat-table [dataSource]="this.data" *ngIf="order != null">
+    <ng-container matColumnDef="Photo">
+      <th mat-header-cell *matHeaderCellDef>Photo</th>
+      <td mat-cell *matCellDef="let v">
+        <img src="{{v.productDTO.urlPicture1}}" width="80"/>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Produit">
+      <th mat-header-cell *matHeaderCellDef>Produit</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.productDTO.title}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Contenance">
+      <th mat-header-cell *matHeaderCellDef>Contenance</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.name}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Quantité">
+      <th mat-header-cell *matHeaderCellDef>Quantité</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.quantity}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Prix">
+      <th mat-header-cell *matHeaderCellDef>Prix</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{formatPrice(v.price)}}</p>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="button">
+    <app-bouton label="Fermer" [onClick2]="close.bind(this)"></app-bouton>
+  </div>
+</div>

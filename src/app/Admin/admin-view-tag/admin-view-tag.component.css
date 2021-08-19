@@ -4,7 +4,7 @@ table {
 
 .tags {
   width: 80%;
-  margin: 5% 7% 2% 2%;
+  margin: 1.5% 7% 2% 2%;
   font-family: WorkSans, serif;
   font-size: 16px;
   color: #000000;
@@ -18,4 +18,17 @@ table {
 .adminSelector {
   margin: 1% 0 1% 5.5%;
   width: 20%;
+}
+
+.separation {
+  font-size: 12px;
+  margin-bottom: 1%;
+  padding-left: 1%;
+  color: #757575;
+  background-color: #f2f2f2;
+  text-transform: uppercase;
+}
+
+.createTagButton {
+  margin-left: 1%;
 }

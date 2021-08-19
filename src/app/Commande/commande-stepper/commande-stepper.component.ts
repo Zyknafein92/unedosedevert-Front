@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import Stepper from 'bs-stepper';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
 import {ShoppingCart} from '../../../model/shopping-cart.model';
@@ -16,6 +16,7 @@ export class CommandeStepperComponent implements OnInit {
   email: string;
   shoppingCart: ShoppingCart;
 
+
   constructor(private token: TokenStorageService, private userService: UserService, private shoppingCartService: ShoppingCartService) {
   }
 
@@ -29,21 +30,23 @@ export class CommandeStepperComponent implements OnInit {
   }
 
   stepperNext = (): void => {
-    console.log('executed');
     this.stepper.next();
   }
 
   private initData() {
     if (this.token.getEmail() != null && this.token.getEmail() != '') {
       this.userService.getMyProfil().subscribe(res => {
-        this.shoppingCartService.getShoppingCart(res.shoppingCart.id).subscribe(data => {
-          console.log('carts: ', data)
-          this.shoppingCart = data;
+        this.shoppingCartService.getShoppingCart(res.shoppingCart.id).subscribe(async data => {
+          this.shoppingCart = {...data};
         });
       });
     } else {
       if (window.sessionStorage.getItem('shoppingCart') != null)
         this.shoppingCart = JSON.parse(window.sessionStorage.getItem('shoppingCart')).shoppingCartLines;
     }
+  }
+
+  shoppingCartChange($event: any) {
+    this.initData();
   }
 }

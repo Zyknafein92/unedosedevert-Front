@@ -1,75 +1,35 @@
-.wrapperCarte {
-  width: 18.4%;
-  height: 29.5%;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  text-align: center;
+.productCardIMG {
+  background-size: cover;
 }
 
-.produitIMG {
-  margin: 0 auto;
-}
-
-p {
+.productTitle {
   font-family: AbhayaLibre, serif;
+  font-size: 20px !important;
+  text-align: center !important;
 }
 
-.nomProduit {
-  margin: 4% 0 2.4% 0;
-  font-size: 23px;
+.productCard p {
+  font-family: AbhayaLibre, serif;
+  font-size: 20px !important;
+  text-align: center !important;
 }
 
-.type {
-  font-size: 22px;
-  margin-bottom: 6%;
-}
-
-.panierSelecteur {
-  display: flex;
-  flex-direction: row !important;
-  margin: 6.5% 0 5.6% 0;
-}
-
-.variantInitiateur {
-  display: inline-flex;
-  flex-direction: row;
-  margin: 2% 5%;
-}
-
-.buttonRemove {
-  margin-left: 5.3%;
-  margin-right: 5.4%;
-}
-
-.buttonAdd {
-  margin-left: 5.3%;
-  margin-right: 15.6%;
-}
-
-.nombre {
-  font-family: WorkSans, serif;
-  font-size: 22px;
-  margin: 5% auto 5% auto;
-}
-
-.priceDisplay {
- padding-left: 2% !important;
-}
-
-.prix {
-  font-family: WorkSans, serif;
-  font-size: 22px;
-  margin: 5% auto 5% auto;
-}
-
-.reduction {
-  font-family: WorkSans, serif;
-  font-size: 22px;
-  margin: 5% auto 5% auto;
+#unite {
   color: #757575;
+  font-family: WorkSans, serif;
+  font-size: 18px;
 }
 
-.panierButton {
-  margin: 0 3.4%
+#productPrice {
+  font-family: WorkSans, serif;
+  font-size: 18px;
+  text-align: end !important;
+}
+
+.discovery {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 

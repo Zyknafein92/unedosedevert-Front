@@ -20,7 +20,6 @@ import {ViewAllProductsComponent} from './Produit/view-all-product/view-all-prod
 import {MySpaceComponent} from './User/my-space/my-space.component';
 import {MyInfoComponent} from './User/my-info/my-info.component';
 import {MyOrderComponent} from './User/my-order/my-order/my-order.component';
-import {MyProductReturnComponent} from './User/my-product-return/my-product-return.component';
 import {MyAdressComponent} from './User/my-adress/my-adress.component';
 import {CommandeStepperComponent} from './Commande/commande-stepper/commande-stepper.component';
 import {DeliveryEditComponent} from './Commande/delivery-edit/delivery-edit.component';
@@ -28,6 +27,8 @@ import {PasswordRecoveryComponent} from './Auth/password-recovery/password-recov
 import {PasswordEditComponent} from './Auth/password-edit/password-edit.component';
 import {SuccessPaymentComponent} from './Commande/success-payement/success-payment.component';
 import {FailurePaymentComponent} from './Commande/failure-payment/failure-payment.component';
+import {AdminViewOrderComponent} from './Admin/admin-view-order/admin-view-order.component';
+import {AdminOrderEditComponent} from './Admin/admin-order-edit/admin-order-edit.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,8 @@ const routes: Routes = [
   { path: 'admin/products/tags/edit', component: TagEditComponent},
   { path: 'admin/products/labels', component: AdminViewLabelComponent},
   { path: 'admin/products/label/edit', component: LabelEditComponent},
+  { path: 'admin/orders', component: AdminViewOrderComponent},
+  { path: 'admin/order/edit', component: AdminOrderEditComponent},
   { path: 'login', component: LoginComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},
   { path: 'forgot-password', component: PasswordEditComponent},
@@ -50,7 +53,6 @@ const routes: Routes = [
   { path: 'user/mon-espace', component: MySpaceComponent},
   { path: 'user/mon-espace/infos', component: MyInfoComponent},
   { path: 'user/mon-espace/commandes', component: MyOrderComponent},
-  { path: 'user/mon-espace/retours', component: MyProductReturnComponent},
   { path: 'user/mon-espace/adresses', component: MyAdressComponent},
   { path: 'user/mon-panier', component: CommandeStepperComponent},
   { path: 'user/delivery-edit', component: DeliveryEditComponent},

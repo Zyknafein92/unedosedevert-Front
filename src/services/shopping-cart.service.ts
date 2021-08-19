@@ -5,6 +5,7 @@ import {ShoppingCart} from '../model/shopping-cart.model';
 import {ServicePartage} from './service.partage';
 import {ShoppingCartLine} from '../model/shopping-cart-line.model';
 import {FormGroup} from '@angular/forms';
+import {Order} from '../model/order.model';
 
 
 @Injectable({
@@ -21,12 +22,12 @@ export class ShoppingCartService {
     return this.http.get<ShoppingCart>(`${this.URL}`);
   }
 
-  getShoppingCartLine(idPanierLigne: number): Observable<ShoppingCartLine> {
-    return this.http.get<ShoppingCartLine>(`${this.URL}`);
+  addShoppingCartLine(shoppingCartLine: ShoppingCartLine): Observable<ShoppingCartLine> {
+    return this.http.post<ShoppingCartLine>(`${this.URL}/shoppingCartLine`, shoppingCartLine);
   }
 
-  addShoppingCartLine(shoppingCartLine: ShoppingCartLine): Observable<ShoppingCartLine> {
-    return this.http.post<ShoppingCartLine>(`${this.URL}/panierLigne`, shoppingCartLine);
+  renewOrder(order: Order): Observable<ShoppingCart> {
+    return this.http.post<ShoppingCart>(`${this.URL}/renewOrder`, order);
   }
 
   updateShoppingCartLine(shoppingCartLine: ShoppingCartLine): Observable<ShoppingCartLine> {

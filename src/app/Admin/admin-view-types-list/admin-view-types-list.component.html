@@ -3,7 +3,8 @@
     <app-admin-selector></app-admin-selector>
   </div>
   <div class="typeList">
-    <button mat-raised-button (click)="creerType()">Créer un type de product</button>
+    <p class="separation">Gestion des types de produit</p>
+    <button mat-raised-button class="createTypeButton" (click)="creerType()">Créer un type de produit</button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>

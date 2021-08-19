@@ -1,38 +1,11 @@
-<div class="wrapperCarte" *ngIf="product != null">
-  <div class="produitIMG">
-    <img src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
+<mat-card-content>
+  <img mat-card-image class="productCardIMG" src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
+  <p class="productTitle">{{product.title}}</p>
+  <div class="row">
+    <p id="unite" class="col-md-6">à partir de</p>
+    <p id="productPrice" class="col-md-6">{{smallestProductPrice(this.product)}}</p>
   </div>
-
-  <div class="nomProduit">
-    <p>{{product.title}}</p>
+  <div class="discovery">
+    <app-bouton label="Découvrir le produit" padding="2% 10%" (click)="showProduit(this.product)"></app-bouton>
   </div>
-
-  <div class="descrition">
-    <p>{{product.productDescription}}</p>
-  </div>
-
-  <div class="type">
-    <p>{{product.type.name}}</p>
-  </div>
-
-  <div class="variantInitiateur" *ngFor="let vari of variants">
-    <div class="variantSelecteur">
-     <app-petit-bouton class="variantButton" (click)="selectVariant(vari)" [selected]="this.variantSelected===vari" label="{{vari.name}}"></app-petit-bouton>
-    </div>
-    </div>
-
-  <div class="panierSelecteur">
-    <div class="buttonRemove">
-      <app-petit-bouton class="-" label="-" (click)="changeQuantity(-1)"></app-petit-bouton>
-    </div>
-    <p class="nombre">{{quantity}}</p>
-    <div class="buttonAdd">
-      <app-petit-bouton class="+" label="+" (click)="changeQuantity(1)" ></app-petit-bouton>
-    </div>
-    <div class="priceDisplay">
-    <p class="prix">{{this.displayPrice(this.actualPrice)}}</p>
-    <p class="reduction">Réduction</p>
-    </div>
-  </div>
-  <app-bouton class="panierButton" label="Ajouter au shoppingCart"></app-bouton>
-</div>
+</mat-card-content>

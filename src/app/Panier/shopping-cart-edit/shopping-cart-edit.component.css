@@ -9,7 +9,7 @@
 /*MES ACHATS Wrapper Gauche*/
 .wrapperPanier{
   width: 75%;
-  margin: 5% 7% 2% 6.5%;
+  margin: 1% 7% 2% 6.5%;
   font-family: WorkSans, serif;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .panierTable {
-  width: 99%;
+  width: 100%;
   padding-left: 1%;
   margin-left: 1%;
   font-family: WorkSans, serif;
@@ -37,17 +37,37 @@
 
 .wrapperLivraison {
   width: 25%;
-  margin: 5% 6.5% 2% 2%;
+  margin: 1% 6.5% 2% 2%;
   font-family: WorkSans, serif;
   font-size: 12px;
   color: #707070;
 }
 
 .minimumCommande {
+  width: 100%;
+  margin: 0;
   background-color: #f2f2f2;
-  padding: 0.5%;
+  text-align: center;
+  vertical-align: auto;
   font-family: WorkSans, serif;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.minimumCommandeText {
+  text-align: center;
+  text-wrap: normal;
+  text-overflow: fade;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.minimumCommandeIcon {
+  text-align: center;
+  position: relative;
+  -webkit-transform: translateY(+18%);
 }
 
 .recapLivraison {
@@ -61,7 +81,7 @@
   text-align: center;
   color: #FFFFFF;
   background-color: #c7a38f;
-  padding: 4%;
+  padding: 2%;
   text-transform: uppercase;
 }
 
@@ -79,7 +99,8 @@
 }
 
 .LivraisonButton {
-  margin: 2% 0 !important;
+  width: 100%;
+  margin: 4% 0 !important;
 }
 
 .mat-column-Photo {
@@ -90,26 +111,28 @@
   width: 30%;
 }
 
-.mat-column-Contenance {
-  width: 40%;
-}
+.mat-column-Countenance {
+  width: 35%;
 
-.mat-column-Quantité {
+}
+.mat-column-Quantity {
   width: 10%;
 }
 
-.mat-column-Prix {
-  width: 10%;
+.mat-column-Price {
+  width: 20%;
 }
 
-.mat-column-Retirer {
-  width: 15%;
+.mat-column-Retire {
+  width: 20%;
 }
 
+.emptyShoppingCart {
+  font-family: WorkSans, serif;
+  font-size: 22px;
+  text-align: center;
+  color: #707070;
+  margin-top: 4%;
+}
 
-
-
-/*:host ::ng-deep .mat-sort-header-container {*/
-/*  justify-content: center;*/
-/*}*/
 

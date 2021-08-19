@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProductEditComponent } from './Produit/produit-edit/product-edit.component';
-import { OrderEditComponent } from './Commande/commande-edit/order-edit.component';
 import { ShoppingCartEditComponent } from './Panier/shopping-cart-edit/shopping-cart-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -66,24 +65,24 @@ import {ServicePartage} from '../services/service.partage';
 import { MyOrderComponent } from './User/my-order/my-order/my-order.component';
 import { MyAdressComponent } from './User/my-adress/my-adress.component';
 import { MyInfoComponent } from './User/my-info/my-info.component';
-import { MyProductReturnComponent } from './User/my-product-return/my-product-return.component';
 import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-error.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommandeStepperComponent } from './Commande/commande-stepper/commande-stepper.component';
 import { DeliveryEditComponent } from './Commande/delivery-edit/delivery-edit.component';
 import { PasswordRecoveryComponent } from './Auth/password-recovery/password-recovery.component';
-import { OrderPaymentComponent } from './Commande/order-payement/order-payement/order-payment.component';
 import { PasswordEditComponent } from './Auth/password-edit/password-edit.component';
 import { AdminSelectorComponent } from './Admin/admin-selector/admin-selector.component';
 import { SuccessPaymentComponent } from './Commande/success-payement/success-payment.component';
 import { FailurePaymentComponent } from './Commande/failure-payment/failure-payment.component';
 import {NgxStripeModule} from 'ngx-stripe';
+import { ViewOrderComponent } from './Commande/view-order/view-order.component';
+import { AdminViewOrderComponent } from './Admin/admin-view-order/admin-view-order.component';
+import { AdminOrderEditComponent } from './Admin/admin-order-edit/admin-order-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductEditComponent,
-    OrderEditComponent,
     ShoppingCartEditComponent,
     AdminViewProductComponent,
     MenuComponent,
@@ -118,15 +117,16 @@ import {NgxStripeModule} from 'ngx-stripe';
     MyOrderComponent,
     MyAdressComponent,
     MyInfoComponent,
-    MyProductReturnComponent,
     CommandeStepperComponent,
     DeliveryEditComponent,
     PasswordRecoveryComponent,
-    OrderPaymentComponent,
     PasswordEditComponent,
     AdminSelectorComponent,
     SuccessPaymentComponent,
     FailurePaymentComponent,
+    ViewOrderComponent,
+    AdminViewOrderComponent,
+    AdminOrderEditComponent,
   ],
   imports: [
     NgxStripeModule.forRoot("pk_test_51JCoGrIvqpPoFOLavdVV4XNOJP3bFiGytP3KicrQIdbVGTT1OK4ociumnWnYu9ppkY4zp1Q09F9ckJCWQDvzlu7t00xRxLC4fj"),

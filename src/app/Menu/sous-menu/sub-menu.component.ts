@@ -18,7 +18,6 @@ export class SubMenuComponent implements OnInit, OnChanges {
   type: Type;
   categories: Array<Categorie>;
   sousCategories: Array<SubCategorie>;
-  searchCriteria: SearchCriteria;
 
   constructor(private typeService: TypeService, private categorieService: CategoriesService, private sousCategorieService: SubCategorieService, private router: Router) { }
 
@@ -27,23 +26,20 @@ export class SubMenuComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes: ', changes);
     this.initCategories();
   }
 
   private initCategories(): void {
    this.categories = this.type.categories;
-   console.log('cat:', this.categories);
+  }
+
+    searchProduitByCat(cat: string): void {
+    const typeSearch = 'cat';
+    this.router.navigate(['/products'], {queryParams: {typeSearch  , value : cat}});
   }
 
   searchProduitBySC(sc: string): void {
     const typeSearch = 'sc';
-    console.log('sc', sc);
-    this.router.navigate(['/products'], {queryParams: {typeSearch  , search : sc}});
-  }
-  searchProduitByCat(cat: string): void {
-    const typeSearch = 'cat';
-    console.log('cat', cat);
-    this.router.navigate(['/products'], {queryParams: {typeSearch  , search : cat}});
+    this.router.navigate(['/products'], {queryParams: {typeSearch  , value : sc}});
   }
 }

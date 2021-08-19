@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../model/product.model';
 import {ProductService} from '../../../services/product.service';
 import {Router} from '@angular/router';
-import {Variant} from '../../../model/variant.model';
-
 
 @Component({
   selector: 'app-accueil',
@@ -41,5 +39,9 @@ export class HomeComponent implements OnInit {
       currency: 'EUR',
     });
     return formatter.format(Math.min(...prices));
+  }
+
+  showAllProduit() {
+    this.router.navigate(['/products']);
   }
 }

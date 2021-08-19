@@ -1,9 +1,6 @@
 <div class="container">
   <form [formGroup]="forms">
-    <h2 mat-dialog-title *ngIf="reduction == null">Ajouter une reduction</h2>
-    <h2 mat-dialog-title *ngIf="reduction != null">Modifier une reduction</h2>
-
-    <mat-form-field color="accent" appearance="fill">
+    <mat-form-field class="example-full-width col-4">
       <mat-label>Date de début:</mat-label>
       <input matInput formControlName="reductionStart"[matDatepicker]="start">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
@@ -13,7 +10,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field color="accent" appearance="fill">
+    <mat-form-field class="example-full-width col-4">
       <mat-label>Date de fin:</mat-label>
       <input matInput formControlName="reductionEnd"[matDatepicker]="end">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
@@ -32,8 +29,8 @@
     </mat-form-field>
 
     <mat-dialog-actions>
-      <button mat-button color="warn" *ngIf="this.reduction != null && this.reduction.id" (click)="SupprimerReduction(this.productId, this.reduction.id)">Supprimer la reduction</button>
-      <button mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
+      <button style="text-align: center" mat-button color="warn" *ngIf="this.reduction != null && this.reduction.id" (click)="SupprimerReduction(this.productId, this.reduction.id)">Supprimer la reduction</button>
+      <button style="text-align: center" mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
     </mat-dialog-actions>
   </form>
 </div>

@@ -25,7 +25,7 @@ export class AdminSelectorComponent implements OnInit {
   }
 
   private initActives() {
-    if ( this.router.url.toString() === '/' ) {
+    if ( this.router.url.toString() === '/admin/orders' ) {
       this.actives.commandes = 'active';
     }
     else if ( this.router.url.toString() === '/admin/products' ) {
@@ -55,7 +55,7 @@ export class AdminSelectorComponent implements OnInit {
   }
 
   routeOrders() {
-  this.router.navigate(['/']);
+  this.router.navigate(['/admin/orders']);
   }
 
   routeProducts() {

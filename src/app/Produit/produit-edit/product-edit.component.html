@@ -1,192 +1,204 @@
 <div class="container">
   <div class="Produit">
-<mat-dialog-content>
-  <h2 mat-dialog-title *ngIf="product == null">Ajouter un product</h2>
-  <h2 mat-dialog-title *ngIf="product != null">Modifier un product</h2>
-  <hr class="textHR">
-  <p class="separation">Informations</p>
-  <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+    <div>
+      <h2 mat-dialog-title *ngIf="product == null">Ajouter un produit</h2>
+      <h2 mat-dialog-title *ngIf="product != null">Modifier un produit</h2>
+      <hr class="textHR">
+      <p class="separation">Informations</p>
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
 
-    <mat-form-field appearance="fill" class="col-4">
-      <mat-label>Type</mat-label>
-      <mat-select formControlName="type">
-        <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types" [value]="typ">{{typ.name}}</mat-option>
-      </mat-select>
-      <mat-error [hidden]="forms.get('type').valid || !forms.get('type').touched">
-        Le<strong> type </strong>du product doit être renseigné.
-      </mat-error>
-    </mat-form-field>
-
-
-    <mat-form-field appearance="fill" class="col-4">
-      <mat-label>Categorie</mat-label>
-      <mat-select formControlName="categorie">
-        <mat-option *ngFor="let cat of categories" (onSelectionChange)="updateCategorie(cat)" [value]="cat">{{cat.name}}</mat-option>
-      </mat-select>
-      <mat-error [hidden]="forms.get('categorie').valid || !forms.get('categorie').touched">
-        La<strong> categorie </strong>du product doit être renseignée.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="col-4">
-      <mat-label>Sous-Categorie</mat-label>
-      <mat-select formControlName="subCategorie">
-        <mat-option *ngFor="let scat of subCategories" (onSelectionChange)="updateSubCategorie(scat)" [value]="scat">{{scat.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <div class="checkbox">
-    <mat-list class="col-md-6">
-      <mat-label>Choisissez les tags associés à ce product :</mat-label>
-      <mat-list-item *ngFor="let tag of tagsList">
-        <mat-checkbox class="tags"
-                      [value]="tag"
-                      [checked]="this.product && isTagContain(this.product.tags, tag)"
-                      (change)="onCheckTagChange($event)">{{tag.name}}
-        </mat-checkbox>
-      </mat-list-item>
-    </mat-list>
+        <mat-form-field appearance="fill" class="col-4">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option (onSelectionChange)="updateType(typ)" *ngFor="let typ of types"
+                        [value]="typ">{{typ.name}}</mat-option>
+          </mat-select>
+          <mat-error [hidden]="forms.get('type').valid || !forms.get('type').touched">
+            Le<strong> type </strong>du product doit être renseigné.
+          </mat-error>
+        </mat-form-field>
 
 
-      <mat-list class="col-md-6">
-        <mat-label>Choisissez les labels associés à ce product :</mat-label>
-        <mat-list-item *ngFor="let label of labelList">
-          <mat-checkbox class="labels"
-                        [value]="label"
-                        [checked]="this.product && isLabelContain(this.product.labels, label)"
-                        (change)="onCheckLabelChange($event)">{{label.name}}
-          </mat-checkbox>
-        </mat-list-item>
-      </mat-list>
+        <mat-form-field appearance="fill" class="col-4">
+          <mat-label>Categorie</mat-label>
+          <mat-select formControlName="categorie">
+            <mat-option *ngFor="let cat of categories" (onSelectionChange)="updateCategorie(cat)"
+                        [value]="cat">{{cat.name}}</mat-option>
+          </mat-select>
+          <mat-error [hidden]="forms.get('categorie').valid || !forms.get('categorie').touched">
+            La<strong> categorie </strong>du product doit être renseignée.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="col-4">
+          <mat-label>Sous-Categorie</mat-label>
+          <mat-select formControlName="subCategorie">
+            <mat-option *ngFor="let scat of subCategories" (onSelectionChange)="updateSubCategorie(scat)"
+                        [value]="scat">{{scat.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="checkbox">
+          <mat-list class="col-md-6">
+            <mat-label>Choisissez les tags associés à ce product :</mat-label>
+            <mat-list-item *ngFor="let tag of tagsList">
+              <mat-checkbox class="tags"
+                            [value]="tag"
+                            [checked]="this.product && isTagContain(this.product.tags, tag)"
+                            (change)="onCheckTagChange($event)">{{tag.name}}
+              </mat-checkbox>
+            </mat-list-item>
+          </mat-list>
+
+
+          <mat-list class="col-md-6">
+            <mat-label>Choisissez les labels associés à ce product :</mat-label>
+            <mat-list-item *ngFor="let label of labelList">
+              <mat-checkbox class="labels"
+                            [value]="label"
+                            [checked]="this.product && isLabelContain(this.product.labels, label)"
+                            (change)="onCheckLabelChange($event)">{{label.name}}
+              </mat-checkbox>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Nom:</mat-label>
+          <input matInput type="text" placeholder="Nom" formControlName="title">
+          <mat-error [hidden]="forms.get('title').valid || !forms.get('title').touched">
+            Le <strong>lastName</strong> du product doit être renseigné.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Marque:</mat-label>
+          <input matInput type="text" placeholder="Marque" formControlName="brand">
+          <mat-error [hidden]="forms.get('brand').valid || !forms.get('brand').touched">
+            La <strong>marque</strong> du product doit être renseigné.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width col-4">
+          <mat-label>Origine:</mat-label>
+          <input matInput type="text" placeholder="Origine" formControlName="origin">
+          <mat-error [hidden]="forms.get('origin').valid || !forms.get('origin').touched">
+            <strong>L'origine </strong>du product doit être renseigné.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Description:</mat-label>
+          <textarea matInput type="text" placeholder="Description" formControlName="productDescription"></textarea>
+          <mat-error [hidden]="forms.get('productDescription').valid || !forms.get('productDescription').touched">
+            La<strong> description </strong>du product doit être renseignée.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Conseil d'utilisation et préparation:</mat-label>
+          <textarea matInput type="text" placeholder="Conseil d'utilisation"
+                    formControlName="utilisationAdvice"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Composition :</mat-label>
+          <textarea matInput type="text" placeholder="Composition" formControlName="composition"></textarea>
+          <mat-error [hidden]="forms.get('composition').valid || !forms.get('composition').touched">
+            La<strong> composition </strong>du product doit être renseignée.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Pourquoi ce product ?</mat-label>
+          <textarea matInput type="text" placeholder="pourquoi" formControlName="whyThisProduct"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Producteur :</mat-label>
+          <textarea matInput type="text" placeholder="Producteur" formControlName="producer"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Quête d'un meilleur product :</mat-label>
+          <textarea matInput type="text" placeholder="Commentaire producteur"
+                    formControlName="producerComment"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Valeurs et allergènes :</mat-label>
+          <textarea matInput type="text" placeholder="Valeurs et allergènes" formControlName="allergen"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Infos nutritionnelles :</mat-label>
+          <textarea matInput type="text" placeholder="Infos nutritionnelles"
+                    formControlName="nutritionalInformation"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12">
+          <mat-label>Commentaire supplémentaire:</mat-label>
+          <textarea matInput type="text" placeholder="commentaireProduit"
+                    formControlName="additionalInformation"></textarea>
+        </mat-form-field>
+
+        <p class="separation">Photos du produit</p>
+
+        <div class="col-md-12" style="position: relative">
+          <div class="photo-selecteur">
+            <label>Photo principale:</label>
+            <input (change)="uploadFirstPicture($event)" class="ng-hide" multiple type="file"/>
+            <img src="{{forms.controls.urlPicture1.value}}"
+                 *ngIf="forms.controls.urlPicture1 && forms.controls.urlPicture1.value">
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="photo-selecteur">
+            <label>Photo secondaire :</label>
+            <input (change)="uploadSecondPicture($event)" class="ng-hide" multiple type="file"/>
+            <img src="{{forms.controls.urlPicture2.value}}"
+                 *ngIf="forms.controls.urlPicture2 && forms.controls.urlPicture2.value">
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="photo-selecteur">
+            <label>Photo tertiaire :</label>
+            <input (change)="uploadThirdPicture($event)" class="ng-hide" multiple type="file"/>
+            <img src="{{forms.controls.urlPicture3.value}}"
+                 *ngIf="forms.controls.urlPicture3 && forms.controls.urlPicture3.value">
+          </div>
+        </div>
+
+      </form>
     </div>
-
-    <mat-form-field class="example-full-width col-4">
-      <mat-label>Nom:</mat-label>
-      <input matInput type="text" placeholder="Nom" formControlName="title">
-      <mat-error [hidden]="forms.get('title').valid || !forms.get('title').touched">
-        Le <strong>lastName</strong> du product doit être renseigné.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width col-4">
-      <mat-label>Marque:</mat-label>
-      <input matInput type="text" placeholder="Marque" formControlName="brand">
-      <mat-error [hidden]="forms.get('brand').valid || !forms.get('brand').touched">
-        La <strong>marque</strong> du product doit être renseigné.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width col-4">
-      <mat-label>Origine:</mat-label>
-      <input matInput type="text" placeholder="Origine" formControlName="origin">
-      <mat-error [hidden]="forms.get('origin').valid || !forms.get('origin').touched">
-        <strong>L'origine </strong>du product doit être renseigné.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Description:</mat-label>
-      <textarea matInput type="text" placeholder="Description" formControlName="productDescription"></textarea>
-      <mat-error [hidden]="forms.get('productDescription').valid || !forms.get('productDescription').touched">
-        La<strong> description </strong>du product doit être renseignée.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Conseil d'utilisation et préparation:</mat-label>
-      <textarea matInput type="text" placeholder="Conseil d'utilisation" formControlName="utilisationAdvice"></textarea>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Composition :</mat-label>
-      <textarea matInput type="text" placeholder="Composition" formControlName="composition"></textarea>
-      <mat-error [hidden]="forms.get('composition').valid || !forms.get('composition').touched">
-        La<strong> composition </strong>du product doit être renseignée.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Pourquoi ce product ?</mat-label>
-      <textarea matInput type="text" placeholder="pourquoi" formControlName="whyThisProduct"></textarea>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Producteur :</mat-label>
-      <textarea matInput type="text" placeholder="Producteur" formControlName="producer"></textarea>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Quête d'un meilleur product :</mat-label>
-      <textarea matInput type="text" placeholder="Commentaire producteur" formControlName="producerComment"></textarea>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Valeurs et allergènes :</mat-label>
-      <textarea matInput type="text" placeholder="Valeurs et allergènes" formControlName="allergen"></textarea>
-    </mat-form-field>
-
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Infos nutritionnelles :</mat-label>
-      <textarea matInput type="text" placeholder="Infos nutritionnelles" formControlName="nutritionalInformation"></textarea>
-    </mat-form-field>
-
-    <mat-form-field class="col-md-12">
-      <mat-label>Commentaire supplémentaire:</mat-label>
-      <textarea matInput type="text" placeholder="commentaireProduit" formControlName="additionalInformation"></textarea>
-    </mat-form-field>
-
-    <p class="separation">Photos du product</p>
-
-    <div class="col-md-12">
-    <div class="photo-selecteur">
-      <label>Photo principale:</label>
-      <input (change)="uploadFirstPicture($event)" class="ng-hide"  multiple type="file"/>
-      <img src="{{forms.controls.urlPicture1.value}}" *ngIf="forms.controls.urlPicture1 && forms.controls.urlPicture1.value">
-    </div>
-    </div>
-
-    <div class="col-md-12">
-    <div class="photo-selecteur">
-      <label>Photo secondaire :</label>
-      <input (change)="uploadSecondPicture($event)" class="ng-hide" multiple type="file"/>
-      <img src="{{forms.controls.urlPicture2.value}}" *ngIf="forms.controls.urlPicture2 && forms.controls.urlPicture2.value">
-    </div>
-    </div>
-
-    <div class="col-md-12">
-    <div class="photo-selecteur">
-      <label>Photo tertiaire :</label>
-      <input (change)="uploadThirdPicture($event)" class="ng-hide" multiple type="file"/>
-      <img src="{{forms.controls.urlPicture3.value}}" *ngIf="forms.controls.urlPicture3 && forms.controls.urlPicture3.value">
-    </div>
-    </div>
-
-  </form>
-</mat-dialog-content>
-  <br>
-  <mat-dialog-actions>
-    <div class="row">
-    <div class="col-md-6">
-      <app-bouton class="modifier col-md" label="Annuler" [onClick2]="backToHomePage.bind(this)"></app-bouton>
-    </div>
-    <div class="col-md-6">
-    <app-bouton class="modifier col-md" label="Sauvegarder" [onClick2]="onSubmit.bind(this)"></app-bouton>
-    </div>
-    </div>
-  </mat-dialog-actions>
-
-
-  <p class="separation">Variant(s)</p>
-  <div class="variant" *ngIf="this.product">
-    <app-admin-view-variant *ngIf="this.product != null" [productId]="this.product.id"></app-admin-view-variant>
+    <br>
+    <mat-dialog-actions>
+      <div class="row">
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Annuler" [onClick2]="backToHomePage.bind(this)"></app-bouton>
+        </div>
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Sauvegarder" [onClick2]="onSubmit.bind(this)"></app-bouton>
+        </div>
+      </div>
+    </mat-dialog-actions>
   </div>
+  <div>
 
-  <p class="separation">Ajouter une réduction</p>
-  <div class="reduction" *ngIf="this.product">
-    <app-reduction-edit *ngIf="this.product != null" [productId]="this.product.id"></app-reduction-edit>
+    <p class="separation">Variant(s)</p>
+    <div class="variant" *ngIf="this.product">
+      <app-admin-view-variant *ngIf="this.product != null" [productId]="this.product.id"></app-admin-view-variant>
+    </div>
+
+    <p class="separation">Ajouter une réduction</p>
+    <div class="reduction" *ngIf="this.product">
+      <app-reduction-edit *ngIf="this.product != null" [productId]="this.product.id"></app-reduction-edit>
+    </div>
+
   </div>
-</div>
 </div>
 
 

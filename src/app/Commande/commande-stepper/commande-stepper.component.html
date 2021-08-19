@@ -24,7 +24,7 @@
   <div class="bs-stepper-content">
     <form>
       <div id="shoppingCart" class="content">
-        <app-panier-edit [toDelivery]="stepperNext" [shoppingCart]="shoppingCart"></app-panier-edit>
+        <app-panier-edit [toDelivery]="stepperNext" [shoppingCart]="shoppingCart" (shoppingCartChange)="shoppingCartChange($event)"></app-panier-edit>
       </div>
       <div id="connexion" class="content" *ngIf="this.email == null || this.email == ''">
         <app-login></app-login>

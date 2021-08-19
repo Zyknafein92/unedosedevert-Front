@@ -4,6 +4,8 @@ import {TokenStorageService} from '../../../services/security/token-storage.serv
 import {Type} from '../../../model/type.model';
 import {TypeService} from '../../../services/type.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Route, Router} from '@angular/router';
+import {timeInterval, timeout} from 'rxjs/operators';
 
 
 @Component({
@@ -15,16 +17,16 @@ export class MenuComponent implements OnInit {
   authorities: string;
   tokenEmail: string;
 
+  dataQuery: string;
   type: Type;
   typeToDisplay: Type;
   types: Array<Type>;
   forms: FormGroup;
 
-  constructor(private typeService: TypeService,  private formBuilder: FormBuilder) { }
+  constructor(private typeService: TypeService,  private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.initTypes();
-    this.initForms();
   }
 
   private initTypes(): void {
@@ -33,15 +35,13 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  private initForms(): void {
-   this.forms = this.formBuilder.group({
-      search: '',
-    });
-  }
-
-  onSubmit(forms: FormGroup): void {
-    console.log(this.forms);
-  }
+  onSubmit(dataQuery: string): void {
+    const typeSearch = 'query';
+    this.router.navigate(['/products'], {queryParams: {typeSearch  , value : dataQuery}})
+      .then(() => {
+     setTimeout(() => this.dataQuery = '', 1000)
+   });
+   }
 
   openMenu(type: Type): void {
     if (type === this.typeToDisplay && this.typeToDisplay != null) {

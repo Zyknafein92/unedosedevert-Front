@@ -29,21 +29,8 @@ export class ProductService {
   }
 
   findProductByCriteria(searchCriteria: SearchCriteria): Observable<Array<Product>> {
-    let customParam = new HttpParams();
-    if (searchCriteria && searchCriteria.tag != null) {
-      customParam = customParam.set('tag', searchCriteria.tag);
-    }
-    if (searchCriteria && searchCriteria.categorie != null) {
-      customParam = customParam.set('categorie', searchCriteria.categorie);
-    }
-    if (searchCriteria && searchCriteria.sousCategorie != null) {
-      customParam = customParam.set('sousCategorie', searchCriteria.sousCategorie);
-    }
-    if (searchCriteria && searchCriteria.query != null) {
-      customParam = customParam.set('query', searchCriteria.query);
-    }
-    console.log('Service:', customParam);
-    return this.http.post<Array<Product>>(`${this.URL}/search`, searchCriteria, {params: customParam});
+    console.log('sc', searchCriteria);
+    return this.http.post<Array<Product>>(`${this.URL}/search`, searchCriteria);
   }
 
 

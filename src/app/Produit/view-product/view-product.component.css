@@ -1,6 +1,5 @@
 .wrapper {
   width: 100%;
-
 }
 
 .topWrapper{
@@ -10,8 +9,12 @@
 }
 
 .imageProduit {
-  margin: auto 5% auto 6.5%;
-  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.img {
+  object-fit: cover;
 }
 
 .sideText {

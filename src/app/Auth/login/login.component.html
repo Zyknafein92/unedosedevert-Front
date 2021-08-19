@@ -1,139 +1,140 @@
 <div class="wrapper">
+  <div class="row" style="justify-content: space-between">
+    <div class="ConnexionArea">
+      <h1> Connexion </h1>
+      <hr>
+      <form [formGroup]="forms">
+        <mat-form-field class="col-md-12">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          <mat-error>
+            Veuillez renseigner une adresse e-mail valide !
+          </mat-error>
+        </mat-form-field>
 
-  <div class="ConnexionArea">
-    <h1> Connexion </h1>
-    <hr>
-    <form [formGroup]="forms">
-      <mat-form-field class="col-md-12">
-        <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
-        <mat-error>
-          Veuillez renseigner une adresse e-mail valide !
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="col-md-12">
-        <div class="row">
-          <div class="col-md-10">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-            <mat-error>
-              Mot de passe invalid !
-            </mat-error>
+        <mat-form-field class="col-md-12">
+          <div class="row">
+            <div class="col-md-10">
+              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+              <mat-error>
+                Mot de passe invalid !
+              </mat-error>
+            </div>
+            <div class="mat-icon col-md-2">
+              <mat-icon matSuffix  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
           </div>
-          <div class="mat-icon col-md-2">
-        <mat-icon matSuffix  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </div>
-        </div>
-      </mat-form-field>
-    </form>
-    <div class="ConnexionAreaButton">
-      <mat-dialog-actions>
-        <app-bouton *ngIf="forms.invalid" [disabled]="true" label="Me connecter" padding="2% 20%"></app-bouton>
-        <app-bouton  *ngIf="forms.valid" (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
-      </mat-dialog-actions>
+        </mat-form-field>
+      </form>
+      <div class="ConnexionAreaButton">
+        <mat-dialog-actions>
+          <app-bouton *ngIf="forms.invalid" [disabled]="true" label="Me connecter" padding="2% 20%"></app-bouton>
+          <app-bouton  *ngIf="forms.valid" (click)="onSubmitLogin()" label="Me connecter" padding="2% 20%"></app-bouton>
+        </mat-dialog-actions>
+      </div>
+      <br>
+      <span class="forgetPassword" (click)="forgetPassword()">Mot de passe oublié</span>
     </div>
-    <br>
-    <span class="forgetPassword" (click)="forgetPassword()">Mot de passe oublié</span>
-  </div>
 
-  <div class="CompteArea">
-    <h1> Créer un compte </h1>
-    <hr>
-    <form [formGroup]="formsUser">
-      <mat-accordion>
-        <div class="informationsPerso">
+    <div class="CompteArea">
+      <h1> Créer un compte </h1>
+      <hr>
+      <form [formGroup]="formsUser">
+        <mat-accordion>
+          <div class="informationsPerso">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Informations personnelles
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-radio-group formControlName="gender">
+                <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
+                <mat-radio-button  value="Madame">Madame</mat-radio-button>
+              </mat-radio-group>
+
+              <mat-form-field>
+                <mat-label>Nom:</mat-label>
+                <input matInput placeholder="Nom :" formControlName="lastName">
+                <mat-error [hidden]="formsUser.get('lastName').valid || !formsUser.get('lastName').touched">
+                  Le <strong>lastName</strong> doit être renseigné.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Prenom:</mat-label>
+                <input matInput placeholder="Prenom :" formControlName="firstName">
+                <mat-error [hidden]="formsUser.get('firstName').valid || !formsUser.get('firstName').touched">
+                  Le <strong>prénom</strong> doit être renseigné.
+                </mat-error>
+              </mat-form-field>
+
+              <label class="labelAnniv">Date de naissance :</label>
+              <div class="formAnniv"
+                   [class.has-error]="formsUser.get('birthday').invalid && formsUser.get('birthday').touched">
+                <div class="alert alert-danger" [hidden]="formsUser.get('birthday').valid || !formsUser.get('birthday').touched">La date de naissance doit être renseignée.</div>
+                <input class="form-control input-md"
+                       type="Date"
+                       name="Date de Naissance"
+                       placeholder="birthday"
+                       formControlName="birthday"
+                       autocapitalize="on"
+                       spellcheck="on"
+                       required/>
+              </div>
+            </mat-expansion-panel>
+          </div>
+
+        </mat-accordion>
+        <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Informations personnelles
+                Informations de connexion
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-radio-group formControlName="gender">
-              <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
-              <mat-radio-button  value="Madame">Madame</mat-radio-button>
-            </mat-radio-group>
-
-            <mat-form-field>
-              <mat-label>Nom:</mat-label>
-              <input matInput placeholder="Nom :" formControlName="lastName">
-              <mat-error [hidden]="formsUser.get('lastName').valid || !formsUser.get('lastName').touched">
-                Le <strong>lastName</strong> doit être renseigné.
+            <mat-form-field class="col-md-12">
+              <mat-label>Email :</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com" (input)="onEmailInput()">
+              <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
+                Veuillez renseigner une adresse e-mail valide !
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Prenom:</mat-label>
-              <input matInput placeholder="Prenom :" formControlName="firstName">
-              <mat-error [hidden]="formsUser.get('firstName').valid || !formsUser.get('firstName').touched">
-                Le <strong>prénom</strong> doit être renseigné.
+            <mat-form-field class="col-md-12">
+              <mat-label>Confirmer l'adresse email :</mat-label>
+              <input type="email" formControlName="email2" matInput placeholder="Confirmer l'adresse email : pat@example.com"
+                     (input)="onEmailInput()">
+              <mat-error *ngIf="email2.invalid && !email2.hasError('emailMismatch')">
+                <span>L'email ne correspond pas !</span>
               </mat-error>
             </mat-form-field>
 
-            <label class="labelAnniv">Date de naissance :</label>
-            <div class="formAnniv"
-                 [class.has-error]="formsUser.get('birthday').invalid && formsUser.get('birthday').touched">
-              <div class="alert alert-danger" [hidden]="formsUser.get('birthday').valid || !formsUser.get('birthday').touched">La date de naissance doit être renseignée.</div>
-              <input class="form-control input-md"
-                     type="Date"
-                     name="Date de Naissance"
-                     placeholder="birthday"
-                     formControlName="birthday"
-                     autocapitalize="on"
-                     spellcheck="on"
-                     required/>
-            </div>
+            <mat-form-field class="col-md-12">
+              <input matInput placeholder="Mot de passe" formControlName="password" name="password" (input)="onPasswordInput()">
+              <mat-error [hidden]="formsUser.get('password').valid || !formsUser.get('password').touched || password.hasError('minLength')">
+                Le mot de passe est incorrect. Il doit être au moins de 6 charactères.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+              <input matInput  placeholder="Confirmer le mot de passe" formControlName="password2" name="password2" (input)="onPasswordInput()">
+              <mat-error *ngIf="password2.invalid && !password2.hasError('passwordMismatch')">
+                Les mots de passes ne correspondent pas !
+              </mat-error>
+            </mat-form-field>
+
           </mat-expansion-panel>
-        </div>
-
-      </mat-accordion>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Informations de connexion
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-form-field class="col-md-12">
-            <mat-label>Email :</mat-label>
-            <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com" (input)="onEmailInput()">
-            <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
-              Veuillez renseigner une adresse e-mail valide !
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="col-md-12">
-            <mat-label>Confirmer l'adresse email :</mat-label>
-            <input type="email" formControlName="email2" matInput placeholder="Confirmer l'adresse email : pat@example.com"
-                   (input)="onEmailInput()">
-            <mat-error *ngIf="email2.invalid && !email2.hasError('emailMismatch')">
-             <span>L'email ne correspond pas !</span>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="col-md-12">
-            <input matInput placeholder="Mot de passe" formControlName="password" name="password" (input)="onPasswordInput()">
-            <mat-error [hidden]="formsUser.get('password').valid || !formsUser.get('password').touched || password.hasError('minLength')">
-              Le mot de passe est incorrect. Il doit être au moins de 6 charactères.
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="col-md-12">
-            <input matInput  placeholder="Confirmer le mot de passe" formControlName="password2" name="password2" (input)="onPasswordInput()">
-            <mat-error *ngIf="password2.invalid && !password2.hasError('passwordMismatch')">
-              Les mots de passes ne correspondent pas !
-            </mat-error>
-          </mat-form-field>
-
-        </mat-expansion-panel>
-      </mat-accordion>
-    </form>
-    <div class="CreationButton">
-      <mat-dialog-actions>
-        <app-bouton *ngIf="this.formsUser.invalid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%" [disabled]="true"></app-bouton>
-        <app-bouton *ngIf="this.formsUser.valid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
-      </mat-dialog-actions>
+        </mat-accordion>
+      </form>
+      <div class="CreationButton">
+        <mat-dialog-actions>
+          <app-bouton *ngIf="this.formsUser.invalid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%" [disabled]="true"></app-bouton>
+          <app-bouton *ngIf="this.formsUser.valid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
+        </mat-dialog-actions>
+      </div>
     </div>
   </div>
 </div>
