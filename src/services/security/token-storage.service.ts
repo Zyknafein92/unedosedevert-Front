@@ -12,14 +12,12 @@ const USER_KEY = 'AuthUser';
 })
 
 export class TokenStorageService {
-  // private roles: Array<string> = [];
   private role: string;
   private cookieService = window.localStorage;
   constructor(private router: Router) { }
 
   signOut(): void {
     this.cookieService.clear();
-    this.router.navigate(['/']);
   }
 
 

@@ -123,18 +123,6 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  private initCategorie(): void {
-    this.categorieService.getCategories().subscribe(data => {
-      this.categories = data;
-      if (this.product && this.product.categorie) {
-        this.product.categorie = this.categories.find(value => value.id === this.product.categorie.id);
-        this.forms.patchValue({
-          categorie: this.product.categorie,
-        });
-      }
-    });
-  }
-
   private initType(): void {
     this.typeService.getTypes().subscribe(data => {
       this.types = data;
@@ -171,6 +159,18 @@ export class ProductEditComponent implements OnInit {
     this.labels = this.formBuilder.group({
       id: '',
       name: ['' , Validators.required],
+    });
+  }
+
+  private initCategorie(): void {
+    this.categorieService.getCategories().subscribe(data => {
+      this.categories = data;
+      if (this.product && this.product.categorie) {
+        this.product.categorie = this.categories.find(value => value.id === this.product.categorie.id);
+        this.forms.patchValue({
+          categorie: this.product.categorie,
+        });
+      }
     });
   }
 
@@ -246,7 +246,6 @@ export class ProductEditComponent implements OnInit {
   }
 
   updateSubCategorie(subCategorie: SubCategorie): void {
-     subCategorie = this.subCategories.find(value => value.id === subCategorie.id);
      this.forms.patchValue({
        subCategorie: subCategorie
      });

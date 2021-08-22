@@ -11,7 +11,7 @@ import {ServicePartage} from './service.partage';
 })
 export class TypeService {
 
-  private URL = '/api/produits/types';
+  private URL = '/api/produits/type';
 
   constructor(private http: HttpClient, private servicePartage: ServicePartage) {
     this.URL = servicePartage.BACKEND_URL + this.URL;
@@ -26,7 +26,7 @@ export class TypeService {
   }
 
   getTypePage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get<any>(`${this.URL}/types?page=${page}&size=${size}&sort=${sort}`);
   }
 
   createType(form: FormGroup): Observable < Type> {

@@ -59,7 +59,6 @@ export class AdminViewLabelComponent implements AfterViewInit {
   }
 
   modifierLabel(label: Label): void {
-    console.log('label: ', label);
     const dialogRef = this.dialog.open(LabelEditComponent, {
       data: label
     });

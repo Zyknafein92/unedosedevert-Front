@@ -34,6 +34,7 @@ export class MySpaceSelectorComponent implements OnInit {
 
   logout(): void {
     this.token.signOut();
+    this.router.navigate(['/']).then(window.location.reload);
   }
 
   routeMySpace(): void {

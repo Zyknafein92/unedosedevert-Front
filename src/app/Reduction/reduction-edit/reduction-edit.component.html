@@ -1,6 +1,7 @@
 <div class="container">
   <form [formGroup]="forms">
-    <mat-form-field class="example-full-width col-4">
+    <div class="row">
+    <mat-form-field class="example-full-width col-3">
       <mat-label>Date de début:</mat-label>
       <input matInput formControlName="reductionStart"[matDatepicker]="start">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
@@ -10,7 +11,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width col-4">
+    <mat-form-field class="example-full-width col-3">
       <mat-label>Date de fin:</mat-label>
       <input matInput formControlName="reductionEnd"[matDatepicker]="end">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
@@ -20,17 +21,17 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width col-4">
+    <mat-form-field class="example-full-width col-3">
       <mat-label>Pourcentage de la remise:</mat-label>
       <input matInput type="number" placeholder="Pourcentage de remise" formControlName="percentageReduction">
-      <mat-error [hidden]="forms.get('pourcentageRemise').valid || !forms.get('pourcentageRemise').touched">
+      <mat-error [hidden]="forms.get('percentageReduction').valid || !forms.get('percentageReduction').touched">
         Le <strong>pourcentage</strong> de la reduction du product doit être renseigné.
       </mat-error>
     </mat-form-field>
-
-    <mat-dialog-actions>
-      <button style="text-align: center" mat-button color="warn" *ngIf="this.reduction != null && this.reduction.id" (click)="SupprimerReduction(this.productId, this.reduction.id)">Supprimer la reduction</button>
-      <button style="text-align: center" mat-button color="accent" (click)="onSubmit()">Sauvegarder</button>
-    </mat-dialog-actions>
+    <div class="col-md-3" style="text-align: center; vertical-align: center">
+      <app-bouton *ngIf="this.reduction != null && this.reduction.id" (click)="deleteReduction(this.productId, this.reduction.id)" label="Supprimer la reduction"></app-bouton>
+      <app-bouton *ngIf="!this.reduction" label="Sauvegarder" (click)="onSubmit()"></app-bouton>
+    </div>
+    </div>
   </form>
 </div>

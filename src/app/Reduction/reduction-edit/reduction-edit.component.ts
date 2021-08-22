@@ -34,7 +34,7 @@ export class ReductionEditComponent implements OnInit {
     this.forms = this.formBuilder.group({
       id: '',
       produitID: this.productId,
-      pourcentageRemise: ['', Validators.required],
+      percentageReduction: ['', Validators.required],
       reductionStart: [new FormControl(new Date()), Validators.required],
       reductionEnd: [new FormControl(new Date()), Validators.required],
     });
@@ -46,7 +46,7 @@ export class ReductionEditComponent implements OnInit {
       this.forms.patchValue({
         id: data.id,
         produitID: data.productID,
-        pourcentageRemise: data.percentageReduction,
+        percentageReduction: data.percentageReduction,
         reductionStart: data.reductionStart,
         reductionEnd: data.reductionEnd
       });
@@ -62,7 +62,6 @@ export class ReductionEditComponent implements OnInit {
     if (!this.reduction || this.reduction.id == null) {
       this.reductionService.createReduction(this.forms).subscribe(
         next => {
-          console.log('form to create:', this.forms);
           this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.productId}});
         });
     } else {
@@ -73,7 +72,7 @@ export class ReductionEditComponent implements OnInit {
     }
   }
 
-  SupprimerReduction(produitId, id): void {
+  deleteReduction(produitId, id): void {
     this.reductionService.deleteReduction(this.productId, this.reduction.id).subscribe(next => {
       this.router.navigate(['admin/products/edit'],  { queryParams: {id: this.productId}});
     });

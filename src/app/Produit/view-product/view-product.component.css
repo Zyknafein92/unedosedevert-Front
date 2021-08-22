@@ -45,11 +45,17 @@
 
 .tagArea {
   width: 100%;
-  display: inline-flex;
+  display: flex;
 }
-.tag {
-  width: 100%;
-  height: 100%;
+
+.chips {
+  padding: 0.5% 1%;
+  border-radius: 20px;
+  background-color: #c7a38f;
+  color: #f2f2f2;
+  font-family: WorkSans, sans-serif;
+  font-size: 16px;
+  justify-content: center;
 }
 
 .prix {
@@ -75,15 +81,12 @@
 }
 
 .panierSelecteur{
-  display: inline-flex;
-  flex-direction: row;
   width: 100%;
-  vertical-align: center;
-  text-align: center;
+  align-content: start;
+  margin-bottom: 5%;
 }
 
 .panierSelecteur .buttonRemove {
-  margin: 5% 0% 5% 0;
   font-size:40px;
 }
 
@@ -92,20 +95,22 @@
 }
 
 .panierSelecteur .quantitée {
-  margin: 7% 7.9% 7% 7.9%;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
   font-family: WorkSans, serif;
-  font-size: 22px;
-
+  font-size: 30px;
 }
 
 .panierSelecteur .buttonAdd {
-  margin: 5% 10% 5% 0%;
+  margin-right: 10%;
+  margin-left: 2%;
 }
 
 .panierSelecteur .Panier {
-  margin: 5.5% 0 5% 0;
-  width: 23.6%;
   white-space: nowrap;
+  position: center;
+  margin: 0.5%;
 }
 
 .contenantFraisOrigine {

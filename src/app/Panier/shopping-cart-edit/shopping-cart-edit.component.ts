@@ -41,7 +41,11 @@ export class ShoppingCartEditComponent implements OnChanges {
 
   changeVariant(shoppingCartLine: ShoppingCartLine, variant: Variant) {
     shoppingCartLine.variant = variant;
-    shoppingCartLine.price = variant.price * shoppingCartLine.quantity;
+    if(shoppingCartLine.variant.reductionPrice != null ) {
+      shoppingCartLine.price = variant.reductionPrice * shoppingCartLine.quantity;
+    } else {
+      shoppingCartLine.price = variant.price * shoppingCartLine.quantity;
+    }
     if (!shoppingCartLine.id) {
       window.sessionStorage.setItem('shoppingCart', JSON.stringify(this.data));
     } else {
@@ -52,12 +56,14 @@ export class ShoppingCartEditComponent implements OnChanges {
     }
   }
 
- //todo: prix reduction a traiter
   changeQuantity($event, shoppingCartLine: ShoppingCartLine) {
     let newQuantity = $event.target.value;
     shoppingCartLine.quantity = newQuantity;
-    shoppingCartLine.price = shoppingCartLine.variant.price * newQuantity
-    console.log(shoppingCartLine.price, newQuantity)
+    if(shoppingCartLine.variant.reductionPrice != null ) {
+      shoppingCartLine.price = shoppingCartLine.variant.reductionPrice * newQuantity
+    } else {
+      shoppingCartLine.price = shoppingCartLine.variant.price * newQuantity
+    }
     if (!shoppingCartLine.id) {
       window.sessionStorage.setItem('shoppingCart', JSON.stringify(this.data));
     } else {

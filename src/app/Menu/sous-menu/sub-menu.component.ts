@@ -30,15 +30,15 @@ export class SubMenuComponent implements OnInit, OnChanges {
   }
 
   private initCategories(): void {
-   this.categories = this.type.categories;
+    this.categories = this.type.categories.sort((c1, c2) => c1.id - c2.id);
   }
 
-    searchProduitByCat(cat: string): void {
+  searchProductByCat(cat: string): void {
     const typeSearch = 'cat';
     this.router.navigate(['/products'], {queryParams: {typeSearch  , value : cat}});
   }
 
-  searchProduitBySC(sc: string): void {
+  searchProductBySC(sc: string): void {
     const typeSearch = 'sc';
     this.router.navigate(['/products'], {queryParams: {typeSearch  , value : sc}});
   }

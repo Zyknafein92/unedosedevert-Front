@@ -22,9 +22,8 @@ export class CategoriesService {
     return this.http.get<Array<Categorie>>(`${this.URL}`);
   }
 
-  // todo : changer le lien, et le nom une fois les modifs faites
   getCategoriePage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get<any>(`${this.URL}/categories?page=${page}&size=${size}&sort=${sort}`);
   }
 
   getCategorie(id: number): Observable<Categorie> {
@@ -32,12 +31,10 @@ export class CategoriesService {
   }
 
   createCategorie(form: FormGroup): Observable < Categorie> {
-    console.log('categorie', form.value);
     return this.http.post<Categorie>(this.URL, form.value);
   }
 
   updateCategorie(form: FormGroup): Observable<Categorie> {
-    console.log('categorie', form.value);
     return this.http.put<Categorie>(`${this.URL}`, form.value);
   }
 

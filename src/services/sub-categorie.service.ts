@@ -24,11 +24,10 @@ export class SubCategorieService {
   }
 
   getSubCategoriePage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get<any>(`${this.URL}/subCategories?page=${page}&size=${size}&sort=${sort}`);
   }
 
   createSubCategorie(form: FormGroup): Observable <SubCategorie> {
-    console.log('form:', form.value);
     return this.http.post<SubCategorie>(this.URL, form.value);
   }
 

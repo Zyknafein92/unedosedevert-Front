@@ -28,6 +28,16 @@ export class CarteProduitComponent implements OnInit {
     return formatter.format(Math.min(...prices));
   }
 
+  smallestProductPriceWithReduction(product: Product) {
+    const prices = [];
+    product.variants.forEach( v => prices.push(v.reductionPrice));
+    const formatter = new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR',
+    });
+    return formatter.format(Math.min(...prices));
+  }
+
   showProduit(produit: Product): void {
     this.router.navigate(['/product'], {queryParams: {id : produit.id}});
   }

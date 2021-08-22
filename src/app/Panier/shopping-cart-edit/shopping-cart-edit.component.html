@@ -15,7 +15,7 @@
       </ng-container>
       <ng-container matColumnDef="Countenance">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Contenance choisi</th>
-        <td mat-cell *matCellDef="let shoppingCartLine">
+        <td mat-cell *matCellDef="let shoppingCartLine" >
           <div class="row">
             <div class="col-4">
               <span><app-petit-bouton label="{{shoppingCartLine.product.variants[0].name}}" [selected]="shoppingCartLine.variant.name === shoppingCartLine.product.variants[0].name" (click)="changeVariant(shoppingCartLine, shoppingCartLine.product.variants[0])"></app-petit-bouton></span>

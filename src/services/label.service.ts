@@ -28,7 +28,7 @@ export class LabelService {
   }
 
   getLabelPage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get<any>(`${this.URL}/labels?page=${page}&size=${size}&sort=${sort}`);
   }
 
   createLabel(form: FormGroup): Observable <Label> {

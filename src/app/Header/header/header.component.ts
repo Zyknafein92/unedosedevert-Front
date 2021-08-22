@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
-import {Route, Router} from '@angular/router';
-import {MatMenuTrigger} from '@angular/material/menu';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -9,8 +9,6 @@ import {MatMenuTrigger} from '@angular/material/menu';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-  options: any;
   authorities: string;
   tokenEmail: string;
 

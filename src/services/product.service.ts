@@ -25,7 +25,7 @@ export class ProductService {
   }
 
   getProduitPage(page: number, size: number, sort: string): Observable<any> {
-    return this.http.get<any>(`${this.URL}/xxx?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get<any>(`${this.URL}/products?page=${page}&size=${size}&sort=${sort}`);
   }
 
   findProductByCriteria(searchCriteria: SearchCriteria): Observable<Array<Product>> {

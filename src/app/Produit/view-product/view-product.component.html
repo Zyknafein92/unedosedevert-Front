@@ -15,15 +15,19 @@
         <p>{{product.brand}}<p>
       </div>
 
-      <div class="tagArea" *ngIf="product.tags != null">
-        <div class="tag" *ngFor="let tag of product.tags">
-          <app-tag-chips label="{{tag.name}}"></app-tag-chips>
+      <div *ngIf="product.tags != null">
+        <div class="tagArea" *ngFor="let label of product.labels">
+          <p class="chips">{{label.name}}</p>
         </div>
       </div>
 
       <div class="variantArea" *ngIf="product.variants != null">
-        <div class="prix" *ngIf="variantSelected">
+        <div class="prix" *ngIf="variantSelected && variantSelected.reductionPrice == null">
           <p> {{this.displayPrice(variantSelected.price)}}  les {{variantSelected.name}}</p>
+        </div>
+        <div class="prix" *ngIf="variantSelected && variantSelected.reductionPrice != null">
+          <p style="text-decoration: line-through;">{{this.displayPrice(variantSelected.price)}}</p>
+          <p>{{this.displayPrice(variantSelected.reductionPrice)}}  les {{variantSelected.name}}</p>
         </div>
 
         <div class="prixKG" *ngIf="variantSelected">
@@ -36,10 +40,12 @@
       </div>
 
       <div class="panierSelecteur">
-        <app-petit-bouton class="buttonRemove" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
-        <p class="quantitée">{{quantity}}</p>
-        <app-petit-bouton class="buttonAdd" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
-        <app-bouton class="Panier" label="Ajouter au panier" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
+        <div class="row">
+          <app-petit-bouton class="buttonRemove col-md-1" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
+          <p class="quantitée col-md-1">{{quantity}}</p>
+          <app-petit-bouton class="buttonAdd col-md-1" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
+          <app-bouton class="Panier col-md-2" label="Ajouter au panier" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
+        </div>
       </div>
 
       <div class="contenantFraisOrigine">

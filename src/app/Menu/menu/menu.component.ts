@@ -32,6 +32,7 @@ export class MenuComponent implements OnInit {
   private initTypes(): void {
     this.typeService.getTypes().subscribe( data => {
       this.types = data;
+      console.log('dataType', this.types)
     });
   }
 

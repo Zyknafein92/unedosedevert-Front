@@ -45,14 +45,13 @@ export class AdminViewTagComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource<Tag>(this.tags);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log('data : ', data);
       },
       err => {
         console.log('error: ', err.error.message);
       });
   }
 
-  creerTag(): void {
+  addTag(): void {
     const dialogRef = this.dialog.open(TagEditComponent, {
       data: {}
     });
@@ -61,7 +60,7 @@ export class AdminViewTagComponent implements AfterViewInit {
     });
   }
 
-  modifierTag(tag: Tag): void {
+  updateTag(tag: Tag): void {
     const dialogRef = this.dialog.open(TagEditComponent, {
       data: tag
     });
@@ -70,7 +69,7 @@ export class AdminViewTagComponent implements AfterViewInit {
     });
   }
 
-  supprimerTag(id: number): void {
+  deleteTag(id: number): void {
     this.tagService.deleteTag(id).subscribe(next => this.initTag());
   }
 }

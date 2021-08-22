@@ -15,23 +15,25 @@ export class VariantService {
     this.URL = servicePartage.BACKEND_URL + this.URL;
   }
 
-  getVariantsByProduitId(produitID: number): Observable<Array<Variant>> {
-    return this.http.get<Array<Variant>>(`${this.URL}${produitID}/variants`);
+  getVariantsByProduitId(produitId: number): Observable<Array<Variant>> {
+    return this.http.get<Array<Variant>>(`${this.URL}${produitId}/variants`);
   }
 
-  getVariant(produitID: number, id: number): Observable<Variant> {
-    return this.http.get<Variant>(`${this.URL}${produitID}/variants/${id}`);
+  getVariant(produitId: number, id: number): Observable<Variant> {
+    return this.http.get<Variant>(`${this.URL}${produitId}/variants/${id}`);
   }
 
-  createVariant(form: FormGroup): Observable <Variant> {
-     return this.http.post<Variant>(`${this.URL}${form.getRawValue().productId}/variants`, form.value);
+  createVariant(produitId, form: FormGroup): Observable <Variant> {
+    console.log(form);
+     return this.http.post<Variant>(`${this.URL}${produitId}/variants`, form.value);
   }
 
-  updateVariant(form: FormGroup): Observable<Variant> {
-    return this.http.put<Variant>(`${this.URL}${form.getRawValue().productId}/variants`, form.value);
+  updateVariant(produitId, form: FormGroup): Observable<Variant> {
+    console.log(form);
+    return this.http.put<Variant>(`${this.URL}${produitId}/variants`, form.value);
   }
 
-  deleteVariant(produitID, id: number): Observable<Variant> {
-    return this.http.delete<Variant>(`${this.URL}${produitID}/variants/${id}`);
+  deleteVariant(produitId, id: number): Observable<Variant> {
+    return this.http.delete<Variant>(`${this.URL}${produitId}/variants/${id}`);
   }
 }

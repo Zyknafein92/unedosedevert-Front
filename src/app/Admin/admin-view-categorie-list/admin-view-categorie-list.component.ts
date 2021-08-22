@@ -50,7 +50,6 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
         this.dataSource = new MatTableDataSource<Categorie>(this.categories);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log('data : ', data);
       },
       err => {
         console.log('error: ', err.error.message);

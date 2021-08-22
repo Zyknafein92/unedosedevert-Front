@@ -86,7 +86,11 @@ export class ViewProductComponent implements OnInit {
     shoppingCartLine.variant = variant;
     shoppingCartLine.product = this.product;
     shoppingCartLine.quantity = quantite;
-    shoppingCartLine.price = variant.price * quantite;
+    if (variant.reductionPrice != null ) {
+      shoppingCartLine.price = variant.reductionPrice * quantite;
+    } else {
+      shoppingCartLine.price = variant.price * quantite;
+    }
     shoppingCartLine.manualId = new Date().getTime();
     return shoppingCartLine;
   }

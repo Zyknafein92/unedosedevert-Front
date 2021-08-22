@@ -4,7 +4,7 @@
   </div>
   <div class="tags">
     <p class="separation">Gestion des tags</p>
-    <button mat-raised-button class="createTagButton" (click)="creerTag()">Créer un tag </button>
+    <button mat-raised-button class="createTagButton" (click)="addTag()">Créer un tag </button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
@@ -13,14 +13,14 @@
       <ng-container matColumnDef="modifier">
         <th mat-header-cell *matHeaderCellDef>Modifier</th>
         <td mat-cell *matCellDef="let tag">
-          <button mat-fab color="primary" aria-label="Build" [value]="tag" (click)="modifierTag(tag)">
+          <button mat-fab color="primary" aria-label="Build" [value]="tag" (click)="updateTag(tag)">
             <mat-icon>build</mat-icon>
           </button></td>
       </ng-container>
       <ng-container matColumnDef="supprimer">
         <th mat-header-cell *matHeaderCellDef>Supprimer</th>
         <td mat-cell *matCellDef="let tag">
-          <button mat-fab color="warn" aria-label="Build" [value]="tag" (click)="supprimerTag(tag.id)">
+          <button mat-fab color="warn" aria-label="Build" [value]="tag" (click)="deleteTag(tag.id)">
             <mat-icon>delete</mat-icon>
           </button></td>
       </ng-container>
