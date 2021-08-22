@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="searchWrapper">
+    <hr class="textHR">
+    <span class="chips" *ngFor="let label of labels" (click)="filterByLabelValue(label.name)">{{label.name}}</span>
+    <span class="chips" *ngFor="let tag of tags" (click)="filterByTagValue(tag.name)">{{tag.name}}</span>
+    <span class="chips" (click)="filterByReduction()">Reductions</span>
+    <hr class="textHR">
+  </div>
+  <div class="cardWrapper">
+    <mat-card class="productCard" *ngFor="let product of products">
+      <mat-card-content>
+        <app-carte-produit [product]="product"></app-carte-produit>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

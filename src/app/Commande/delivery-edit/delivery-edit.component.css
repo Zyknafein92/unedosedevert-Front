@@ -1,0 +1,112 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapper-left{
+  width: 75%;
+  margin: 5% 7% 2% 6.5%;
+  font-family: WorkSans, serif;
+}
+
+.wrapper-right {
+  width: 25%;
+  margin: 5% 6.5% 2% 2%;
+  font-family: WorkSans, serif;
+  font-size: 12px;
+  color: #707070;
+}
+
+h4{
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+
+.adress-select {
+  font-size: 12px;
+  margin-left: 1%;
+}
+
+.ifPresent .mat-form-field {
+  border: #f2f2f2 solid 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.ifPresent .mat-form-field :disabled {
+  color: #d2d2d2
+}
+
+.ifPresent .mat-radio-button {
+  margin: 1% 1%;
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+.row {
+  margin: 2% 0;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.separation {
+  font-size: 12px;
+  color: #757575;
+  background-color: #f2f2f2;
+  padding-left: 1%;
+  margin-left: 1%;
+  text-transform: uppercase;
+}
+
+.minimumCommande {
+  background-color: #f2f2f2;
+  padding: 0.5%;
+  margin-bottom: 4%;
+  font-family: WorkSans, serif;
+  font-size: 14px;
+}
+
+.recapLivraison {
+  border: #c7a38f 1px solid;
+  margin: 2% 0;
+}
+
+.recapLivraisonTitre {
+  font-family: WorkSans, serif;
+  font-size: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #c7a38f;
+  padding: 4%;
+  text-transform: uppercase;
+}
+
+.recapPrix {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4%;
+  border-bottom: #c7a38f 1px solid;
+}
+
+.delivery{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4%;
+  border-bottom: #c7a38f 1px solid;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4%;
+  background-color: #f5ede4;
+}

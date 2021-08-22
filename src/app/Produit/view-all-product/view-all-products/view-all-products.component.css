@@ -1,0 +1,48 @@
+.wrapper {
+  width: 100%;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 33%;
+  margin: 0 7%;
+  justify-content: center;
+}
+
+.productCard {
+  width: 15%;
+  height: fit-content;
+  margin: 1% 1%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.searchWrapper {
+  margin: 2% 6.5% 2% 7%;
+}
+
+.searchWrapper p {
+  font-family: WorkSans, serif;
+  font-size: 16px;
+}
+
+.textHR {
+  background-color: #f2f2f2 !important;
+  width: 100%;
+  margin: 1% 0;
+  justify-content: center;
+}
+
+.chips {
+  margin: 0.5%;
+  padding: 0.5% 1%;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  color: #000000;
+  font-family: WorkSans,sans-serif;
+  font-size: 14px;
+  justify-content: center;
+  cursor: pointer;
+}
+

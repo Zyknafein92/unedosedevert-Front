@@ -1,0 +1,48 @@
+<h2 mat-dialog-title *ngIf="data == null">Ajouter un variant de produit</h2>
+<h2 mat-dialog-title *ngIf="data">Modifier un variant de produit</h2>
+<hr class="textHR">
+<p class="separation">Propriétées du variant</p>
+<mat-dialog-content>
+  <form [formGroup]="forms">
+    <mat-form-field class="col-12">
+      <mat-label>Nom:</mat-label>
+      <input matInput placeholder="Nom" formControlName="name">
+      <mat-error [hidden]="forms.get('name').valid || !forms.get('name').touched">
+        Le <strong>nom</strong> du variant doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-6">
+      <mat-label>Prix:</mat-label>
+      <input matInput type="number" placeholder="Prix" formControlName="price">
+      <mat-error [hidden]="forms.get('price').valid || !forms.get('price').touched">
+        Le <strong>prix</strong> du variant doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width col-6">
+      <mat-label>Prix au KG:</mat-label>
+      <input matInput type="number" placeholder="Prix au KG" formControlName="priceKg">
+      <mat-error [hidden]="forms.get('priceKg').valid || !forms.get('priceKg').touched">
+        Le <strong>prix au KG</strong> du variant doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+
+    <p class="separation">Etat du stock</p>
+    <div style="text-align: center">
+    <mat-form-field class="col-md-12">
+      <mat-label>Stock</mat-label>
+      <mat-select [(value)]="stock[this.currentStockValue]">
+        <mat-option *ngFor="let st of stockKeys" (onSelectionChange)="updateStock(st)" [value]="stock[st]">{{stock[st]}}</mat-option>
+      </mat-select>
+      <mat-error [hidden]="forms.get('stock').valid || !forms.get('stock').touched">
+        L'état du<strong> stock </strong>du product doit être renseignée.
+      </mat-error>
+    </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <app-bouton class="modifier col-md" style="text-align: start" label="Annuler" [mat-dialog-close]></app-bouton>
+        <app-bouton class="modifier col-md" style="text-align: end" label="Sauvegarder" [hidden]="forms.invalid" [onClick2]="onSubmit.bind(this)"></app-bouton>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

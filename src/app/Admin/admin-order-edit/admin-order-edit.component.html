@@ -1,0 +1,362 @@
+<div class="wrapper">
+  <table mat-table [dataSource]="this.data" *ngIf="order != null">
+    <ng-container matColumnDef="Photo">
+      <th mat-header-cell *matHeaderCellDef>Photo</th>
+      <td mat-cell *matCellDef="let v">
+        <img src="{{v.productDTO.urlPicture1}}" width="80"/>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Produit">
+      <th mat-header-cell *matHeaderCellDef>Produit</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.productDTO.title}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Contenance">
+      <th mat-header-cell *matHeaderCellDef>Contenance</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.name}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Quantité">
+      <th mat-header-cell *matHeaderCellDef>Quantité</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{v.quantity}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Prix">
+      <th mat-header-cell *matHeaderCellDef>Prix</th>
+      <td mat-cell *matCellDef="let v">
+        <p>{{formatPrice(v.price)}}</p>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="deliveryAdress" *ngIf="this.formsDelivery != null">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p>Adresse de livraison</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="ifPresent">
+          <form [formGroup]="formsDelivery">
+            <div class="gender">
+              <mat-radio-group formControlName="gender">
+                <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
+                <mat-radio-button  value="Madame">Madame</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="userIdentity">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Nom :</mat-label>
+                    <input matInput placeholder="Nom :" formControlName="lastName" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('lastName').valid || !formsDelivery.get('lastName').touched">
+                      Le <strong>nom</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Prenom :</mat-label>
+                    <input matInput placeholder="Prenom :" formControlName="firstName" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('firstName').valid || !formsDelivery.get('firstName').touched">
+                      Le <strong>prénom</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Téléphone :</mat-label>
+                    <input matInput placeholder="Téléphone : " formControlName="phone"
+                           minlength="10"
+                           maxlength="10"
+                           floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('phone').valid || !formsDelivery.get('phone').touched">
+                      Le <strong>téléphone</strong> doit être renseigné et être valide.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Digicode :</mat-label>
+                    <input matInput type="text" placeholder="Digicode :" formControlName="digicode" floatLabel="always">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Interphone :</mat-label>
+                    <input matInput type="text" placeholder="Interphone :" formControlName="interphone" floatLabel="always">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Numéro d'appartement :</mat-label>
+                    <input matInput type="text" placeholder="Numéro d'appartement :" formControlName="appartNumber" floatLabel="always">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Etage :</mat-label>
+                    <input matInput type="number" placeholder="Etage :" formControlName="floor">
+                    <mat-error [hidden]="formsDelivery.get('floor').valid || !formsDelivery.get('floor').touched" floatLabel="always">
+                      <strong>L'étage</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Batiment :</mat-label>
+                    <input matInput type="text" formControlName="building" floatLabel="always">
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Numéro :</mat-label>
+                    <input matInput type="number" placeholder="Numero :" formControlName="number" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('number').valid || !formsDelivery.get('number').touched">
+                      Le <strong>numéro</strong> de l'adresse doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-8">
+                  <mat-form-field>
+                    <mat-label>Voie :</mat-label>
+                    <input matInput type="text" placeholder="rue de Paris" formControlName="street" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('street').valid || !formsDelivery.get('street').touched">
+                      La <strong>street</strong> de l'adresse doit être renseignée (ex: rue,avenue..).
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Code postal :</mat-label>
+                    <input matInput type="text" placeholder="Code postal :" formControlName="postalCode" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('postalCode').valid || !formsDelivery.get('postalCode').touched">
+                      Le <strong>code postal</strong> de l'adresse doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-8">
+                  <mat-form-field>
+                    <mat-label>Ville :</mat-label>
+                    <input matInput type="text" placeholder="Ville" formControlName="city" floatLabel="always">
+                    <mat-error [hidden]="formsDelivery.get('city').valid || !formsDelivery.get('city').touched">
+                      La <strong>ville</strong> doit être renseignée.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>Remarque :</mat-label>
+                    <textarea matInput type="text" placeholder="Remarque..." formControlName="information" floatLabel="always"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="deliveryAdress" *ngIf="this.formsBilling != null">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p>Adresse de facturation</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="ifPresent">
+          <form [formGroup]="formsBilling">
+            <div class="gender">
+              <mat-radio-group formControlName="gender">
+                <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
+                <mat-radio-button  value="Madame">Madame</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="userIdentity">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Nom :</mat-label>
+                    <input matInput placeholder="Nom :" formControlName="lastName" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('lastName').valid || !formsBilling.get('lastName').touched">
+                      Le <strong>nom</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Prenom :</mat-label>
+                    <input matInput placeholder="Prenom :" formControlName="firstName" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('firstName').valid || !formsBilling.get('firstName').touched">
+                      Le <strong>prénom</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Téléphone :</mat-label>
+                    <input matInput placeholder="Téléphone : " formControlName="phone"
+                           minlength="10"
+                           maxlength="10"
+                           floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('phone').valid || !formsBilling.get('phone').touched">
+                      Le <strong>téléphone</strong> doit être renseigné et être valide.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Digicode :</mat-label>
+                    <input matInput type="text" placeholder="Digicode :" formControlName="digicode" floatLabel="always">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Interphone :</mat-label>
+                    <input matInput type="text" placeholder="Interphone :" formControlName="interphone" floatLabel="always">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Numéro d'appartement :</mat-label>
+                    <input matInput type="text" placeholder="Numéro d'appartement :" formControlName="appartNumber" floatLabel="always">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Etage :</mat-label>
+                    <input matInput type="number" placeholder="Etage :" formControlName="floor">
+                    <mat-error [hidden]="formsBilling.get('floor').valid || !formsBilling.get('floor').touched" floatLabel="always">
+                      <strong>L'étage</strong> doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Batiment :</mat-label>
+                    <input matInput type="text" formControlName="building" floatLabel="always">
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Numéro :</mat-label>
+                    <input matInput type="number" placeholder="Numero :" formControlName="number" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('number').valid || !formsBilling.get('number').touched">
+                      Le <strong>numéro</strong> de l'adresse doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-8">
+                  <mat-form-field>
+                    <mat-label>Voie :</mat-label>
+                    <input matInput type="text" placeholder="rue de Paris" formControlName="street" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('street').valid || !formsBilling.get('street').touched">
+                      La <strong>rue</strong> de l'adresse doit être renseignée (ex: rue,avenue..).
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Code postal :</mat-label>
+                    <input matInput type="text" placeholder="Code postal :" formControlName="postalCode" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('postalCode').valid || !formsBilling.get('postalCode').touched">
+                      Le <strong>code postal</strong> de l'adresse doit être renseigné.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-8">
+                  <mat-form-field>
+                    <mat-label>Ville :</mat-label>
+                    <input matInput type="text" placeholder="Ville" formControlName="city" floatLabel="always">
+                    <mat-error [hidden]="formsBilling.get('city').valid || !formsBilling.get('city').touched">
+                      La <strong>ville</strong> doit être renseignée.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>Remarque :</mat-label>
+                    <textarea matInput type="text" placeholder="Remarque..." formControlName="information" floatLabel="always"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="row">
+    <div class="button col-md-4">
+      <app-bouton label="Notifier la préparation de la commande" [onClick2]="setOrderStatusPicking.bind(this)"></app-bouton>
+    </div>
+    <div class="button col-md-4">
+      <app-bouton label="Notifier que la commande est prête" [onClick2]="setOrderStatusReadyToDelivery.bind(this)"></app-bouton>
+    </div>
+    <div class="button col-md-4">
+      <app-bouton label="Notifier de la mise en livraison" [onClick2]="setOrderStatusDelivery.bind(this)"></app-bouton>
+    </div>
+  </div>
+
+  <div class="button">
+    <app-bouton label="Fermer" [onClick2]="close.bind(this)"></app-bouton>
+  </div>
+
+</div>
+

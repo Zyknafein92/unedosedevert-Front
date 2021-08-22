@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <div class="selector">
+    <app-my-space-selector></app-my-space-selector>
+  </div>
+
+  <div class="wrapperMySpace">
+    <p class="separation">Informations du compte</p>
+    <div class="info">
+      <div class="profil">
+        <form [formGroup]="formsUser">
+          <p class="sousCat">Votre profil</p>
+
+          <div class="genderWrapper row">
+            <div class="gender col-md">
+              <mat-radio-group formControlName="gender">
+                <mat-radio-button  value="Monsieur">Monsieur</mat-radio-button>
+                <mat-radio-button  value="Madame">Madame</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="col-md">
+              <div class="formAnniv"
+                   [class.has-success]="formsUser.get('birthday').valid"
+                   [class.has-error]="formsUser.get('birthday').invalid">
+                <div class="alert alert-danger" [hidden]="!formsUser.get('birthday') != null">La date de naissance doit être valide.</div>
+                <label class="control-label">Date de Naissance:</label>
+                <input class="form-control input-md"
+                       type="Date"
+                       name="Date de Naissance"
+                       placeholder="birthday"
+                       formControlName="birthday"
+                       autocapitalize="on"
+                       spellcheck="on"
+                       required/>
+              </div>
+            </div>
+          </div>
+
+          <div class="identityWrapper row">
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Nom:</mat-label>
+                <input matInput placeholder="Nom :" formControlName="lastName">
+                <mat-error [hidden]="formsUser.get('lastName').valid || !formsUser.get('lastName').touched">
+                  Le <strong>lastName</strong> doit être renseigné.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Prenom:</mat-label>
+                <input matInput placeholder="Prenom :" formControlName="firstName">
+                <mat-error [hidden]="formsUser.get('firstName').valid || !formsUser.get('firstName').touched">
+                  Le <strong>prénom</strong> doit être renseigné.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-form-field class="col-md-12">
+            <mat-label>Email:</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Adresse email : pat@example.com">
+            <mat-error [hidden]="formsUser.get('email').valid || !formsUser.get('email').touched">
+              Veuillez renseigner une adresse e-mail valide !
+            </mat-error>
+          </mat-form-field>
+
+          <div class="buttonRow row">
+            <app-bouton class="modifier col-md" label="Modifier" *ngIf="!this.editMode" [onClick2]="enableEdit.bind(this)"></app-bouton>
+            <app-bouton class="modifier col-md"label="Annuler"  *ngIf="this.editMode" [onClick2]="enableEdit.bind(this)"></app-bouton>
+            <app-bouton class="valider col-md" *ngIf="this.editMode  && this.formsUser.invalid" label="Valider" disabled="null"></app-bouton>
+            <app-bouton class="valider col-md" *ngIf="this.editMode && this.formsUser.valid" label="Valider" [onClick2]="updateUserDetails.bind(this)"></app-bouton>
+          </div>
+        </form>
+      </div>
+
+      <div class="password">
+        <p class="sousCat">Gérer mon mot de passe</p>
+
+        <mat-checkbox class="checkbox" [(ngModel)]="checked">Modifier mon mot de passe</mat-checkbox>
+
+        <div class="passwordForm" [(ngModel)]="checked" *ngIf="checked">
+          <form [formGroup]="formsPassword">
+            <mat-form-field class="passwordForm col-md-12">
+              <input matInput placeholder="Mot de passe" formControlName="password" name="password" (input)="onPasswordInput()">
+              <mat-error [hidden]="formsPassword.get('password').valid || !formsPassword.get('password').touched || password.hasError('minLength')">
+                Le mot de passe est incorrect. Il doit être au moins de 6 charactères.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="passwordForm col-md-12">
+              <input matInput  placeholder="Confirmer le mot de passe" formControlName="password2" name="password2" (input)="onPasswordInput()">
+              <mat-error  *ngIf="password2.invalid && !password2.hasError('passwordMismatch')">
+                Les mots de passes ne correspondent pas !
+              </mat-error>
+            </mat-form-field>
+
+            <div class="buttonRowPassword row">
+              <app-bouton class="modifier col-md"  label="Modifier" *ngIf="this.formsPassword.disabled" [onClick2]="enableEdit.bind(this)"></app-bouton>
+              <app-bouton class="modifier col-md" label="Annuler" *ngIf="this.formsPassword.enabled" [onClick2]="enableEdit.bind(this)"></app-bouton>
+              <app-bouton class="valider col-md" *ngIf="this.formsPassword.invalid" label="Valider" disabled="null"></app-bouton>
+              <app-bouton class="valider col-md" label="Valider" *ngIf="this.formsPassword.valid && this.formsPassword.touched" [onClick2]="updateUserPassword.bind(this)"></app-bouton>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

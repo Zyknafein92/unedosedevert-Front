@@ -1,0 +1,89 @@
+a, a:hover, a:visited, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer {
+  width: 100%;
+}
+
+.wrapper1 {
+  height: 15%;
+  background-color: #f2f2f2;
+  flex-direction: inherit;
+  justify-content: space-around;
+}
+
+.wrapper1 ul {
+  margin-top: 1%;
+  text-align: center;
+  font-family: WorkSans, serif;
+  font-size: 14px;
+  list-style: none;
+}
+
+.wrapper1 li {
+  margin-bottom: 13px;
+}
+
+.wrapper1 ul p {
+  text-align: center;
+  font-family: AbhayaLibre, serif;
+  font-size: 24px;
+  margin-bottom: 19px;
+}
+
+
+.wrapper2 {
+  width: 100%;
+  height: 170px;
+  background-color: #f5ede4;
+}
+
+.netSocialIcon {
+  list-style: none;
+  text-align: center;
+  padding-top: 36px;
+}
+
+.netSocialIcon li {
+  display: inline-block;
+
+}
+
+.fb-icon {
+  height: 52px;
+  width: 52px;
+  margin-right: 11px;
+}
+
+.ig-icon {
+  height: 52px;
+  width: 52px;
+  margin-left: 11px;
+}
+
+.netSocial{
+  text-transform: uppercase;
+  font-family: WorkSans, serif;
+  font-size: 18px;
+  text-align: center;
+  color: #4d4d4d;
+  padding-bottom: 36px;
+}
+
+.wrapper3 {
+  width: 100%;
+  height: 61px;
+  background-color: #c7a38f;
+}
+
+.droitReserve {
+  font-family: WorkSans, serif;
+  padding: 18px;
+  text-transform: uppercase;
+  color: white;
+  line-height: 1.19;
+  text-align: center;
+  font-size: 16px;
+}

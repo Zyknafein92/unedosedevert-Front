@@ -1,0 +1,137 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.selector {
+  margin: 1% 0 1% 5.5%;
+  width: 20%;
+}
+
+.separation {
+  font-size: 12px;
+  color: #757575;
+  background-color: #f2f2f2;
+  padding-left: 1%;
+  margin-left: 1%;
+  text-transform: uppercase;
+}
+
+.sousCat {
+  margin: 2% 0 2% 0;
+  padding-bottom: 2%;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #707070;
+  border-bottom:solid #f2f2f2 2px;
+}
+
+.wrapperMyAdress {
+  width:80%;
+  margin: 1.5% 7% 2% 2%;
+  font-family: WorkSans, serif;
+}
+
+.wrapperMyAdress mat-form-field {
+  margin: 0.5%;
+  text-align: left;
+}
+
+.wrapperMyAdress mat-radio-button {
+  margin: 1% 1%;
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+.mat-form-field {
+  padding-left: 2%;
+  border: #f2f2f2 solid 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.mat-form-field :disabled {
+  color: #d2d2d2
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.wrapperFlex {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1%;
+}
+
+.row {
+  padding: 2% 0;
+}
+
+.ifPresent {
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+.ifNull {
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+.AdressWrapper {
+  width: 49%;
+  margin-right: 2%;
+}
+
+.adresseTitle {
+  text-align: right;
+  margin: 0;
+  padding: 2% 0 0 2%;
+}
+
+.LivraisonWrapper {
+  width: 49%;
+  margin-left: 2%;
+}
+
+.addAdresse {
+  margin-left: 1%;
+}
+
+.addAdresse .sousCat {
+  padding-bottom: 1%;
+}
+
+.listAdress {
+  margin: 2% 0 2% 1%;
+}
+
+.listAdress .sousCat {
+  padding-bottom: 1%;
+}
+
+.buttonRow {
+  margin: 4% -15px;
+}
+.buttonRow .valider {
+  text-align: end;
+}
+
+.buttonRow .modifier {
+  text-align: start;
+}
+
+.AdressListWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.AdressLigneWrapper{
+  padding-right: 0;
+}
+
+

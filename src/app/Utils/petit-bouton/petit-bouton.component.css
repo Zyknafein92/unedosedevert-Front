@@ -1,0 +1,20 @@
+.customized-little-button {
+  font-family: WorkSans, serif;
+  width: 54px;
+  height: 54px;
+  font-size: 11px;
+  color: #c7a38f;
+  background-color: white;
+  border: solid 2px #c7a38f;
+}
+
+.customized-little-button:hover {
+  background-color: #c7a38f;
+  color: white;
+}
+
+.clicked {
+  outline: none;
+  background-color: #c7a38f;
+  color: white;
+}

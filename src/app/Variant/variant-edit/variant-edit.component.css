@@ -1,0 +1,38 @@
+.mat-dialog-title{
+  text-align: center;
+}
+
+.mat-dialog-content{
+  height: auto !important;
+  overflow: initial !important;
+}
+
+.mat-form-field {
+  margin: 2% 0;
+}
+
+h2 {
+  font-family: AbhayaLibre, serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.17;
+}
+
+.textHR {
+  background-color: #c7a38f !important;
+  width: 10%;
+  height: 0.15em;
+  justify-content: center;
+}
+
+.separation {
+  font-size: 16px;
+  color: #000000;
+  font-family: WorkSans, serif;
+  background-color: #f5ede4;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin: 2% 0;
+  font-weight: bold;
+}

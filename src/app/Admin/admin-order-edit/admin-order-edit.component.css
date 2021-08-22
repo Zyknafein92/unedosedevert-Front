@@ -1,0 +1,56 @@
+table {
+  width: 100%;
+  height: auto;
+}
+
+td, th {
+  text-align: center;
+}
+
+.button {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.deliveryAdress {
+  margin: 2%;
+}
+
+.mat-accordion mat-expansion-panel mat-expansion-panel-header mat-panel-title {
+  font-family: AbhayaLibre, serif;
+  font-size: 20px;
+  color: #000000;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.adress-select {
+  font-size: 12px;
+  margin-left: 1%;
+}
+
+.ifPresent .mat-form-field {
+  border: #f2f2f2 solid 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.ifPresent .mat-form-field :disabled {
+  color: #000000
+}
+
+.ifPresent .mat-radio-button {
+  margin: 1% 1%;
+  font-size: 14px;
+  font-family: WorkSans, serif;
+  color: #707070;
+}
+
+.row {
+  margin: 2% 0;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}

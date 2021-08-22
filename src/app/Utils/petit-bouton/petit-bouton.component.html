@@ -1,0 +1,4 @@
+<div class="custom-little-button">
+  <button *ngIf="!selected ? true : false" class="customized-little-button" style="font-size: {{fontSize || '14px'}}">{{label}}</button>
+  <button *ngIf="selected === true" class="customized-little-button clicked" style="font-size: {{fontSize || '14px'}}">{{label}}</button>
+</div>

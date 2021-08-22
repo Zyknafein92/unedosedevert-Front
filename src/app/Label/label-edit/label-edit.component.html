@@ -1,0 +1,29 @@
+<h2 mat-dialog-title *ngIf="label == null">Ajouter un label</h2>
+<h2 mat-dialog-title *ngIf="label">Modifier un label</h2>
+<hr class="textHR">
+<p class="separation">Création du label</p>
+<mat-dialog-content>
+  <form [formGroup]="forms">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nom:</mat-label>
+      <input matInput placeholder="Nom" formControlName="name">
+      <mat-error [hidden]="forms.get('name').valid || !forms.get('name').touched">
+        Le <strong>lastName</strong> du label doit être renseigné.
+      </mat-error>
+    </mat-form-field>
+    <p class="separation">Photo du label</p>
+    <div class="photo-selecteur">
+      <input (change)="uploadPicture($event)" class="ng-hide"  multiple type="file"/>
+      <img src="{{forms.controls.urlPicture.value}}" *ngIf="forms.controls.urlPicture && forms.controls.urlPicture.value">
+    </div>
+      <mat-dialog-actions>
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Annuler" [mat-dialog-close]></app-bouton>
+        </div>
+
+        <div class="col-md-6">
+          <app-bouton class="modifier col-md" label="Sauvegarder" [hidden]="forms.invalid" [onClick2]="onSubmit.bind(this)"></app-bouton>
+        </div>
+      </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

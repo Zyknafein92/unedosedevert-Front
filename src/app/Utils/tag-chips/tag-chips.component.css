@@ -1,0 +1,11 @@
+.custom-chips {
+  margin: 4% 2% 4% 0;
+}
+.custom-chips span {
+  padding: 2% 3.5%;
+  border-radius: 20px;
+  background-color: #c7a38f;
+  color: #f2f2f2;
+  font-family: WorkSans, serif;
+  font-size: 14px;
+}
