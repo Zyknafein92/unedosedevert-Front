@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {User} from '../../../model/user.model';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
 import {Adress} from '../../../model/adress.model';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class MySpaceComponent implements OnInit {
   formsAddress: FormGroup;
 
   constructor(private tokenService: TokenStorageService, private formBuilder: FormBuilder,
-              private userService: UserService) { }
+              private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initProfil();
@@ -45,7 +46,7 @@ export class MySpaceComponent implements OnInit {
         this.user = data;
         this.userPatchValue(this.user);
         this.addresses = data.adresses;
-        if (this.addresses) {
+        if(this.addresses.length) {
           this.deliveryAddress = this.addresses.find(c => c.delivery === true);
           this.billingAddress = this.addresses.find(a => a.billing === true);
           if (this.deliveryAddress) {
@@ -130,6 +131,7 @@ export class MySpaceComponent implements OnInit {
     this.formsUser.patchValue({newsletter: !this.user.newsletter});
     this.userService.updateUser(this.formsUser).subscribe(response => {
         this.initProfil();
+        this.toastr.success('La modification a été prise en compte');
       },
       err => {
         console.log('Error: ', err);

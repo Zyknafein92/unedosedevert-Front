@@ -78,6 +78,7 @@ import {NgxStripeModule} from 'ngx-stripe';
 import { ViewOrderComponent } from './Commande/view-order/view-order.component';
 import { AdminViewOrderComponent } from './Admin/admin-view-order/admin-view-order.component';
 import { AdminOrderEditComponent } from './Admin/admin-order-edit/admin-order-edit.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,9 @@ import { AdminOrderEditComponent } from './Admin/admin-order-edit/admin-order-ed
     AdminOrderEditComponent,
   ],
   imports: [
+    ToastrModule.forRoot({
+      positionClass: 'toast-center-center'
+    }),
     NgxStripeModule.forRoot("pk_test_51JCoGrIvqpPoFOLavdVV4XNOJP3bFiGytP3KicrQIdbVGTT1OK4ociumnWnYu9ppkY4zp1Q09F9ckJCWQDvzlu7t00xRxLC4fj"),
     BrowserModule,
     BrowserAnimationsModule,

@@ -2,6 +2,7 @@ import {AfterContentChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetec
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../../model/user.model';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class MyInfoComponent implements OnInit, AfterViewInit {
   checked = false;
   editMode = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private cdRef:ChangeDetectorRef ) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private cdRef:ChangeDetectorRef, private toastr: ToastrService ) { }
+
   ngAfterViewInit() {
     this.cdRef.detectChanges();
   }
@@ -76,19 +78,19 @@ export class MyInfoComponent implements OnInit, AfterViewInit {
       this.initProfil();
       this.formsUser.disable();
       this.editMode = false;
+      this.toastr.success('La modification a été prise en compte');
     });
   }
 
   updateUserPassword(form: FormGroup) {
     let password = this.formsPassword.getRawValue().password;
-    console.log('password', this.formsPassword)
     this.formsUser.patchValue({ password: password });
-    console.log(this.formsUser)
     this.userService.updateUser(this.formsUser).subscribe(res => {
       console.log(res)
       this.initProfil();
       this.formsPassword.disable();
       this.editMode = false;
+      this.toastr.success('La modification a été prise en compte');
     });
   }
 

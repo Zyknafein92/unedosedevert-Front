@@ -11,6 +11,7 @@ import {FormGroup} from '@angular/forms';
 import {ShoppingCartLine} from '../../../model/shopping-cart-line.model';
 import {UserService} from '../../../services/user.service';
 import {ShoppingCart} from '../../../model/shopping-cart.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-product',
@@ -30,7 +31,8 @@ export class ViewProductComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService,
               private variantService: VariantService, private tokenService: TokenStorageService,
-              private shoppingCartService: ShoppingCartService, private userService: UserService) {
+              private shoppingCartService: ShoppingCartService, private userService: UserService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -97,27 +99,24 @@ export class ViewProductComponent implements OnInit {
 
   addToShoppingCart(variantSelected: Variant, quantite: number) {
     let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantity);
-    console.log(ligneToAdd)
     if (this.tokenService.getEmail() != null && this.tokenService.getEmail() != '') {
       this.userService.getMyProfil().subscribe(res => {
-        console.log(res);
         this.shoppingCartService.addShoppingCartLine(ligneToAdd).subscribe(response => {
-          console.log('data', response);
+          this.toastr.success('Le produit a été ajouté au panier');
         });
       });
     } else {
       let shoppingCartToSave = new ShoppingCart();
-
       let ligneToAdd = this.createPanierLigne(this.variantSelected, this.quantity);
       shoppingCartToSave.shoppingCartLines.push(ligneToAdd);
       if (window.sessionStorage.getItem('shoppingCart') == null) {
         window.sessionStorage.setItem('shoppingCart', JSON.stringify(shoppingCartToSave));
-        console.log(JSON.parse(window.sessionStorage.getItem('shoppingCart')));
+        this.toastr.success('Le produit a été ajouté au panier');
       } else {
         shoppingCartToSave = JSON.parse(window.sessionStorage.getItem('shoppingCart'));
         shoppingCartToSave.shoppingCartLines.push(ligneToAdd);
         window.sessionStorage.setItem('shoppingCart', JSON.stringify(shoppingCartToSave));
-        console.log(JSON.parse(window.sessionStorage.getItem('shoppingCart')));
+        this.toastr.success('Le produit a été ajouté au panier');
       }
     }
   }

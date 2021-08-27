@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   private initToken() {
-   this.tokenStorage.getToken();
+    this.tokenStorage.getToken();
   }
 
   private initForms(): void {
@@ -85,16 +85,12 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(response.accessToken);
         this.tokenStorage.saveEmail(response.email);
         this.tokenStorage.saveAuthorities(response.authorities || []);
-        console.log(response.email);
-        console.log(response.accessToken + ' ' + response.authorities);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
         this.router.navigate(['/user/mon-espace']);
       },
       error => {
-        console.log('error:', error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
@@ -118,20 +114,19 @@ export class LoginComponent implements OnInit {
               this.formsUser.getRawValue().password
             );
 
-           this.authService.attemptAuth(this.loginInfo).subscribe(
-             response => {
-               this.tokenStorage.saveToken(response.accessToken);
-               this.tokenStorage.saveEmail(response.email);
-               this.tokenStorage.saveAuthorities(response.authorities || []);
-               this.isLoginFailed = false;
-               this.isLoggedIn = true;
-               this.roles = this.tokenStorage.getAuthorities();
-               this.router.navigate(['/user/mon-espace']);
-             }
-           )
+            this.authService.attemptAuth(this.loginInfo).subscribe(
+              response => {
+                this.tokenStorage.saveToken(response.accessToken);
+                this.tokenStorage.saveEmail(response.email);
+                this.tokenStorage.saveAuthorities(response.authorities || []);
+                this.isLoginFailed = false;
+                this.isLoggedIn = true;
+                this.roles = this.tokenStorage.getAuthorities();
+                this.router.navigate(['/user/mon-espace']);
+              }
+            )
           },
           err => {
-            console.log('Error: ', err.error.message);
             this.isLoginFailed = true;
           });
     }

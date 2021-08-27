@@ -20,6 +20,7 @@ import {VariantService} from '../../../services/variant.service';
 import {ReductionService} from '../../../services/reduction.service';
 
 
+
 @Component({
   selector: 'app-produit-edit',
   templateUrl: './product-edit.component.html',
@@ -83,13 +84,11 @@ export class ProductEditComponent implements OnInit {
     if (!this.product || this.product.id == null) {
       this.productService.createProduit(this.forms).subscribe(
         next => {
-          console.log('form to create:', this.forms);
           this.router.navigate(['admin/products']);
         });
     } else {
       this.productService.updateProduit(this.forms).subscribe(
         next => {
-          console.log('form to update:', this.forms);
           this.router.navigate(['admin/products']);
         });
     }
@@ -294,7 +293,6 @@ export class ProductEditComponent implements OnInit {
     else {
       tags.controls.push(tags.value.filter(t => t.value.id !== value.id));
     }
-    console.log('after pushing: ', tags);
   }
 
   isLabelContain(labels: Array<Label>, label: Label): boolean {
@@ -310,7 +308,6 @@ export class ProductEditComponent implements OnInit {
     else {
       labels.controls.push(labels.value.filter(l => l.value.id !== value.id));
     }
-    console.log('after pushing: ', labels);
   }
 
   backToHomePage() : void {
