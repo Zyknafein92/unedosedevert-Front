@@ -12,26 +12,29 @@
 
 .productCard p {
   font-family: AbhayaLibre, serif;
-  font-size: 20px !important;
   text-align: center !important;
-}
-
-#unite {
-  color: #757575;
-  font-family: WorkSans, serif;
-  font-size: 18px;
 }
 
 #productPrice {
   font-family: WorkSans, serif;
-  font-size: 18px;
-  text-align: end !important;
+  font-size: 14px;
+  text-align: center !important;
 }
 
 #productPriceWithReduction {
   font-family: WorkSans, serif;
-  font-size: 18px;
-  text-align: end !important;
+  font-size: 14px;
+  text-align: center !important;
+}
+
+#Price {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#PriceWithReduction {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .discovery {

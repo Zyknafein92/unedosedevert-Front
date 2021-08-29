@@ -92,9 +92,6 @@
                   <mat-form-field>
                     <mat-label>Etage :</mat-label>
                     <input matInput type="number" placeholder="Etage :" formControlName="floor">
-                    <mat-error [hidden]="formsDelivery.get('floor').valid || !formsDelivery.get('floor').touched" floatLabel="always">
-                      <strong>L'étage</strong> doit être renseigné.
-                    </mat-error>
                   </mat-form-field>
                 </div>
 
@@ -171,7 +168,7 @@
                 <app-bouton label="Valider" disabled="null"></app-bouton>
               </div>
               <div class="valider col-md-6" *ngIf="deliveryAdressEdit === true && this.formsDelivery.valid">
-                <app-bouton label="Valider" [onClick2]="updateFormDelivery.bind(this)"></app-bouton>
+                <app-bouton label="Valider" [onClick2]="updateFormDelivery.bind(this, formsDelivery)"></app-bouton>
               </div>
             </div>
           </form>
@@ -267,9 +264,6 @@
                     <mat-form-field>
                       <mat-label>Etage :</mat-label>
                       <input matInput type="number" placeholder="Etage :" formControlName="floor" floatLabel="always">
-                      <mat-error [hidden]="formsBilling.get('floor').valid || !formsBilling.get('floor').touched">
-                        <strong>L'étage</strong> doit être renseigné.
-                      </mat-error>
                     </mat-form-field>
                   </div>
 
@@ -346,7 +340,7 @@
                   <app-bouton label="Valider" disabled="null"></app-bouton>
                 </div>
                 <div class="valider col-md" *ngIf="billingAdressEdit === true && this.formsBilling.valid">
-                  <app-bouton label="Valider" [onClick2]="updateFormDelivery.bind(this)"></app-bouton>
+                  <app-bouton label="Valider" [onClick2]="updateFormBilling.bind(this, formsBilling)"></app-bouton>
                 </div>
               </div>
             </form>
@@ -446,9 +440,6 @@
                 <mat-form-field>
                   <mat-label>Etage :</mat-label>
                   <input matInput type="number" placeholder="Etage :" formControlName="floor" floatLabel="always">
-                  <mat-error [hidden]="formsNewAdress.get('floor').valid || !formsNewAdress.get('floor').touched">
-                    <strong>L'étage</strong> doit être renseigné.
-                  </mat-error>
                 </mat-form-field>
               </div>
 
@@ -530,10 +521,10 @@
             </div>
           </div>
           <div class="buttonRow row">
-            <div class="annuler col-md">
+            <div class="annuler col-md-6">
               <app-bouton label="Annuler" (click)="cancelFormNewAdress()"></app-bouton>
             </div>
-            <div class="valider col-md">
+            <div class="valider col-md-6">
               <app-bouton *ngIf="formsNewAdress.invalid" label="Valider" disabled="true"></app-bouton>
               <app-bouton *ngIf="formsNewAdress.valid" label="Valider" [onClick2]="submitNewAdress.bind(this)" ></app-bouton>
             </div>
@@ -629,9 +620,6 @@
                 <mat-form-field>
                   <mat-label>Etage :</mat-label>
                   <input matInput type="number" placeholder="Etage :" formControlName="floor" floatLabel="always">
-                  <mat-error [hidden]="formgroups[adresse.id].get('floor').valid || !formgroups[adresse.id].get('floor').touched">
-                    <strong>L'étage</strong> doit être renseigné.
-                  </mat-error>
                 </mat-form-field>
               </div>
 

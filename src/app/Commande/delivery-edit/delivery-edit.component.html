@@ -91,9 +91,6 @@
                 <mat-form-field>
                   <mat-label>Etage :</mat-label>
                   <input matInput type="number" placeholder="Etage :" formControlName="floor">
-                  <mat-error [hidden]="formsDelivery.get('floor').valid || !formsDelivery.get('floor').touched" floatLabel="always">
-                    <strong>L'étage</strong> doit être renseigné.
-                  </mat-error>
                 </mat-form-field>
               </div>
 
@@ -255,9 +252,6 @@
                 <mat-form-field>
                   <mat-label>Etage :</mat-label>
                   <input matInput type="number" placeholder="Etage :" formControlName="floor">
-                  <mat-error [hidden]="formsBilling.get('floor').valid || !formsBilling.get('floor').touched" floatLabel="always">
-                    <strong>L'étage</strong> doit être renseigné.
-                  </mat-error>
                 </mat-form-field>
               </div>
 
@@ -332,7 +326,6 @@
 
 
   <div class="wrapper-right">
-    <p class="minimumCommande">Minimum de commande nécessaire de 15€ afin d’optimiser nos colis</p>
     <div class="recapLivraison">
       <div class="recapLivraisonTitre">
         <span>Récapitulatif de commande</span>
@@ -360,10 +353,10 @@
     </div>
 
     <div class="LivraisonButton" *ngIf="this.deliveryAdress && this.billingAdress">
-      <app-bouton label="Payer ma commande >"  [onClick2]="checkout.bind(this)" padding="4% 37%"></app-bouton>
+      <app-bouton label="Payer ma commande >"  [onClick2]="checkout.bind(this)"></app-bouton>
     </div>
     <div class="LivraisonButton" *ngIf="this.deliveryAdress == null || this.billingAdress == null">
-      <app-bouton label="Payer ma commande >"  disabled="null" padding="4% 37%"></app-bouton>
+      <app-bouton label="Payer ma commande >"  disabled="null"></app-bouton>
     </div>
   </div>
 </div>

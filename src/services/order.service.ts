@@ -4,9 +4,6 @@ import {Observable} from 'rxjs';
 import {Order} from '../model/order.model';
 import {ServicePartage} from './service.partage';
 import {ShoppingCart} from '../model/shopping-cart.model';
-import {OrderStatus} from '../model/order-status.model';
-import {OrderSpecification} from '../model/order-specification.model';
-import {Payment} from '../model/payment.model';
 import {FormGroup} from '@angular/forms';
 
 

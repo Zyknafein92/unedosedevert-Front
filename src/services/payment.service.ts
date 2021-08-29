@@ -8,10 +8,12 @@ import {Payment} from '../model/payment.model';
   providedIn: 'root'
 })
 export class PaymentService {
-  private URL = 'http://localhost:8181/api/order/payment/checkout';
+  private URL = '/api/order/payment/checkout';
 
 
-  constructor(private http: HttpClient, private servicePartage: ServicePartage) { }
+  constructor(private http: HttpClient, private servicePartage: ServicePartage) {
+    this.URL = servicePartage.BACKEND_URL + this.URL;
+  }
 
   checkout(payment: Payment): Observable<Payment> {
     return this.http.post<Payment>(`${this.URL}`, payment);

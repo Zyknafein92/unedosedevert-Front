@@ -9,6 +9,7 @@ import {Order} from '../../../model/order.model';
 import {Payment} from '../../../model/payment.model';
 import {loadStripe} from '@stripe/stripe-js';
 import {environment} from '../../../environments/environment';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-delivery-edit',
@@ -33,7 +34,7 @@ export class DeliveryEditComponent implements OnInit, OnChanges {
   stripePromise = loadStripe(environment.stripe_key);
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private paymentService: PaymentService, private orderService: OrderService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private paymentService: PaymentService, private orderService: OrderService, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -80,8 +81,8 @@ export class DeliveryEditComponent implements OnInit, OnChanges {
           Validators.pattern('^[0-9]{10}$')
         ])),
         digicode: [''],
-        interphone: ['', Validators.required],
-        floor: ['', Validators.required],
+        interphone: [''],
+        floor: [''],
         appartNumber: [''],
         building: [''],
         number: ['', Validators.required],
@@ -159,24 +160,24 @@ export class DeliveryEditComponent implements OnInit, OnChanges {
     if (this.deliveryAdress && this.billingAdress) {
       this.order.deliveryAdress = this.deliveryAdress;
       this.order.billingAdress = this.billingAdress;
-
       this.orderService.createOrder(this.order).subscribe(response => {
         if (this.order != null) {
+          this.toastr.success('Vous allez être redirigé dans un instant');
           this.payement = new Payment();
           let price = parseFloat(response.total.toFixed(2));
           this.payement.price = price * 100;
           this.payement.productName = response.orderNumber;
           this.payement.quantity = 1;
-          this.userService.cleanShoppingCart().subscribe( next => {
-            this.paymentService.checkout(this.payement).subscribe(async data => {
-              console.log('call', data);
+          this.paymentService.checkout(this.payement).subscribe(async data => {
               const stripe = await this.stripePromise;
               const {error} = await stripe.redirectToCheckout({
                   sessionId: data.sessionId
                 });
             });
-          });
+        } else {
+          this.toastr.error('Une erreure est survenue');
         }
+      this.userService.cleanShoppingCart().subscribe();
       });
     }
   }

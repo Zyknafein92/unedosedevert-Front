@@ -71,8 +71,8 @@ export class MyAdressComponent implements OnInit {
           Validators.pattern('^[0-9]{10}$')
         ])),
         digicode: [''],
-        interphone: ['', Validators.required],
-        floor: ['', Validators.required],
+        interphone: [''],
+        floor: [''],
         appartNumber: [''],
         building: [''],
         number: ['', Validators.required],
@@ -180,6 +180,14 @@ export class MyAdressComponent implements OnInit {
       this.initListAdresses();
       this.deliveryAdressEdit = false;
       this.formsDelivery.disable();
+    });
+  }
+
+  updateFormBilling() {
+    this.adresseService.updateAdresse(this.formsBilling).subscribe(response => {
+      this.initListAdresses();
+      this.billingAdressEdit = false;
+      this.formsBilling.disable();
     });
   }
 

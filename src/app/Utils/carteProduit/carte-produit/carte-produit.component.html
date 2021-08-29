@@ -1,12 +1,9 @@
 <div class="wrapper">
 <mat-card-content>
-  <img mat-card-image class="productCardIMG" src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
+  <img mat-card-image class="productCardIMG col-md" src="{{product.urlPicture1}}" alt="Photo de {{product.title}}">
   <p class="productTitle">{{product.title}}</p>
-  <div class="row">
-    <p id="unite" class="col-md-6">à partir de</p>
-    <p id="productPrice" class="col-md-6" *ngIf="product.reduction == null">{{smallestProductPrice(this.product)}}</p>
-    <p id="productPriceWithReduction" class="col-md-6" *ngIf="product.reduction != null"> <span style="text-decoration: line-through">{{smallestProductPrice(this.product)}}</span> {{smallestProductPriceWithReduction(this.product)}}</p>
-  </div>
+  <p id="productPrice" *ngIf="product.reduction == null">à partir de <span id="Price">{{smallestProductPrice(this.product)}}</span></p>
+    <p id="productPriceWithReduction" *ngIf="product.reduction != null">à partir de <span id="PriceWithReduction" style="text-decoration: line-through">{{smallestProductPrice(this.product)}}</span> {{smallestProductPriceWithReduction(this.product)}}</p>
   <div class="discovery">
     <app-bouton label="Découvrir le produit" padding="2% 10%" (click)="showProduit(this.product)"></app-bouton>
   </div>

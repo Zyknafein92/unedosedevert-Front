@@ -46,3 +46,10 @@
   cursor: pointer;
 }
 
+.messageNullProduct {
+  font-family: WorkSans,sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  margin: 4% 0;
+}
+
