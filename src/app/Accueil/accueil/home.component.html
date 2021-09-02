@@ -2,13 +2,7 @@
   <div  class="carousellide">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="../assets/img/carousel1.jpeg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="../assets/img/carousel1.jpeg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="../assets/img/carousel1.jpeg" alt="Third slide">
+        <img class="d-block w-100" src="../assets/img/carousel4.jpg" alt="First slide">
       </div>
     </div>
   </div>
@@ -26,8 +20,9 @@
     </mat-card>
   </div>
 
+
   <div class="buttonNewProduct">
-    <app-bouton label="voir tous nos produits" (click)="showAllProduit()"></app-bouton>
+    <app-bouton label="voir toutes nos nouveautés" (click)="showAllProduit('Nouveauté')"></app-bouton>
   </div>
 
 
@@ -43,6 +38,7 @@
           </mat-expansion-panel-header>
           <p>Une dose de vert, épicerie fine 100 % végétale, vous présente ses produits les plus qualitatifs et les plus respectueux de notre environnement.
             <br>
+            <br>
             Nous vous partageons :
             <br>
             - Nos meilleures denrées alimentaires saines, savoureuses et surtout végétales,
@@ -53,7 +49,9 @@
             <br>
             - Les ustensiles et accessoires du quotidien durables indispensables chez vous.
             <br>
+            <br>
             Vous retrouverez également sur notre site nos meilleures recettes personnalisées selon votre liste d’achat ainsi que nos conseils les plus avisés pour vous transmettre notre expertise.
+            <br>
             <br>
             Vous souhaitez ajouter une « belle Dose de vert » à vos assiettes ? Commandez sur notre site en ligne et laissez-vous guider grâce à nos meilleurs conseils et recettes !</p>
         </mat-expansion-panel>
@@ -64,10 +62,10 @@
 
     <div class="NosEngagements" id="NosEngagements">
       <mat-accordion>
-        <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#NosEngagements') > -1">
+        <mat-expansion-panel  [expanded]="location && location.href && location.href.indexOf('#NosEngagements') > -1">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Nos Engagements
+              Nos engagements
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -117,7 +115,9 @@
           <p>
             A la barre de Une dose de vert, on trouve Céline et Mathieu, jeunes trentenaires végétaliens et tous deux  engagés dans une démarche de réduction de leur impact environnemental. Couple à la city, ils  s’investissent ensemble pour partager leurs connaissances, et vous faire découvrir de nouveaux horizons culinaires.
             <br>
+            <br>
             Généreux et talentueux, Mathieu ne sera jamais avare de conseils et se fera un plaisir de répondre à vos  questions tandis que Céline, cuisinière de formation et formée par de grandes maisons (Galeries Lafayette, Fauchon…), élabore des recettes originales ou détournées de grands classiques pour le plus grand plaisir de vos papilles.
+            <br>
             <br>
             Que ce soit pour des raisons de santé, de préservation de l’environnement, ou de bien-être animal, nous gagnons à intégrer une plus grande « dose de vert » dans nos assiettes. Des recettes saines aux plats régressifs, en passant par des douceurs aux multiples saveurs, vous trouverez forcément quelque chose qui vous plaît, pour vous familiariser avec la cuisine végétalienne !
           </p>
@@ -129,7 +129,7 @@
 
     <div class="LivraisonTarifs" id="LivraisonTarifs">
       <mat-accordion>
-        <mat-expansion-panel [expanded]="location && location.href && location.href.indexOf('#LivraisonTarifs') > -1">
+        <mat-expansion-panel  [expanded]="location && location.href && location.href.indexOf('#LivraisonTarifs') > -1">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Livraison et tarifs
@@ -138,15 +138,19 @@
           <p>
             Pour s’engager toujours au plus près de vous, Une dose de vert s’efforce de calculer le juste price pour tous ses clients tout en préservant ses critères de qualité et pour la juste rémunération des producteurs. C’est cette démarche engagée et de proximité qui façonne notre identité à travers Une dose de vert.
             <br>
+            <br>
             Nos frais de livraison sont de 5€, et la livraison est gratuite pour :
             <br>
             - Un minimum de 20€ de commande en zone verte (communes de Levallois-Perret (92300), Clichy (92110), Neuilly-sur-Seine (92200), Paris 17ème).
             <br>
             - Un minimum de 30€ en zone bleue (Nanterre (92014), Courbevoie (92400), Asnières (92600), Paris (autres arrondissements), Puteaux (92800)
             <br>
+            <br>
             - Nous ne livrons pas encore dans la zone orange mais sommes en recherche de partenaires pour des livraisons avec une empreinte carbone réduite!
             <br>
+            <br>
             - Vous avez aussi la possibilité de venir chercher votre colis sur rendez-vous dans nos locaux à Levallois-Perret, gratuitement et sans minimum de commande. Vous pourrez même apporter vos bocaux ou sacs avec cette option!
+            <br>
             <br>
             Nous ne livrons pas dans les autres communes, mais si nos produits vous intéressent n’hésitez pas à nous contacter à bienvenue@unedosedevert.fr
           </p>
@@ -155,4 +159,22 @@
     </div>
     <hr>
   </div>
+
+  <div class="wrapperNewProduit">
+    <h1>Nos meilleures ventes</h1>
+    <hr class="textHR">
+  </div>
+
+  <div class="wrapperNewProductCardList">
+    <mat-card class="productCard" *ngFor="let product of bestSell">
+      <mat-card-content>
+        <app-carte-produit [product]="product"></app-carte-produit>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="buttonNewProduct">
+    <app-bouton label="voir toutes nos meilleures ventes" (click)="showAllProduit('Meilleures ventes')"></app-bouton>
+  </div>
+
 </div>

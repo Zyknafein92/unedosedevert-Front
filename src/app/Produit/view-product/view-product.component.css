@@ -59,7 +59,7 @@
 }
 
 .prix {
-  margin: 3% 0 2% 0;
+  margin: 1% 0 1% 0;
 }
 
 .prix p {
@@ -67,27 +67,33 @@
   font-size: 22px;
 }
 
+.prixNull {
+  font-family: WorkSans, serif;
+  font-size: 16px;
+  color: #b2b2b2;
+  margin: 1% 0 1% 0;
+}
+
 .prixKG p{
   font-family: WorkSans, serif;
   font-size: 18px;
   color: #b2b2b2;
-  margin: 0 10% 2% 0;
+  margin: 0 5% 1% 0;
 }
 
 .variant{
   display: inline-flex;
   flex-direction: row;
-  margin: 5% 5% 5% 0;
+  margin: 1% 5% 2% 0;
 }
 
 .panierSelecteur{
   width: 100%;
   align-content: start;
-  margin-bottom: 5%;
-}
-
-.panierSelecteur .buttonRemove {
-  font-size:40px;
+  margin-bottom: 2%;
+  justify-content: center;
+  text-align: center;/* align horizontal */
+  align-items: center; /* align vertical */
 }
 
 .buttonRemove:focus {
@@ -96,15 +102,11 @@
 
 .panierSelecteur .quantitée {
   display: flex;
-  justify-content: center; /* align horizontal */
+  justify-content: center;
+  text-align: center;/* align horizontal */
   align-items: center; /* align vertical */
   font-family: WorkSans, serif;
   font-size: 30px;
-}
-
-.panierSelecteur .buttonAdd {
-  margin-right: 10%;
-  margin-left: 2%;
 }
 
 .panierSelecteur .Panier {
@@ -130,7 +132,7 @@
 }
 
 .origine {
-  margin: 2% 0;
+  margin: 1% 0;
 }
 
 .top {
@@ -146,13 +148,14 @@
 }
 
 .descriptionProduit {
-  margin: 2% 0;
+  margin: 1% 0;
 }
 
 .descriptionProduit h2 {
   font-family: AbhayaLibre, serif;
   font-size: 18px;
   color: black;
+  margin: 0 !important;
 }
 
 .descriptionProduit p {
@@ -164,11 +167,13 @@
 .bottomWrapper {
   width: 87%;
   margin: 0 auto;
+
 }
 
 .bottomWrapper hr {
   width: 100%;
-  height: 2px;
+  height: 0.2%;
+  margin: 0.2%;
   background-color: #c7a38f !important;
   align-self: center;
 }
@@ -183,6 +188,10 @@
   justify-content: center;
   box-shadow: none;
   margin: 0;
+}
+
+.mat-accordion mat-expansion-panel mat-expansion-panel-header {
+  height: 50px !important;
 }
 
 .mat-accordion mat-expansion-panel p {

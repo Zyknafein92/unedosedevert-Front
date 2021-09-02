@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../../../model/product.model';
 import {ProductService} from '../../../services/product.service';
 import {Router} from '@angular/router';
@@ -10,8 +10,13 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  products: Array<Product>;
   newProducts: Array<Product>;
+  bestSell :  Array<Product>;
+
+
   location;
+
 
   constructor(private produitService: ProductService, private router: Router) {
     this.location = window.location;
@@ -23,7 +28,10 @@ export class HomeComponent implements OnInit {
 
   private initNewProducts(): void {
     this.produitService.getProduits().subscribe( data => {
-      this.newProducts = data;
+      this.products = data;
+      this.newProducts = this.products.filter( p => p.tags.find(t => t.name == 'Nouveauté'));
+      this.bestSell = this.products.filter( p => p.tags.find(t => t.name == 'Meilleures ventes'));
+      console.log(this.newProducts)
     });
   }
 
@@ -41,7 +49,8 @@ export class HomeComponent implements OnInit {
     return formatter.format(Math.min(...prices));
   }
 
-  showAllProduit() {
-    this.router.navigate(['/products']);
+  showAllProduit(tag: string) {
+    const typeSearch = 'tag';
+    this.router.navigate(['/products'], {queryParams: {typeSearch  , value : tag}});
   }
 }

@@ -9,6 +9,8 @@ export class TagChipsComponent implements OnInit {
 
   @Input()
   label: string;
+  @Input()
+  selected: boolean;
 
   constructor() { }
 

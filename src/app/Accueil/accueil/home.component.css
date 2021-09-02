@@ -14,7 +14,7 @@
 
 .productCard {
   width: 20%;
-  height: fit-content;
+  height: auto;
   margin: 1% 1%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
@@ -26,8 +26,7 @@
 
 .wrapper h1 {
   font-family: AbhayaLibre, serif;
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 20px;
   color: #000000;
   text-align: center;
 }
@@ -53,11 +52,11 @@
 }
 
 .UneDoseDeVert p {
-  padding: 0 25%;
+  padding: 0 10%;
 }
 
 .NosEngagements p {
-  padding: 0 25%;
+  padding: 0 10%;
 }
 
 .NosEngagements img {
@@ -69,11 +68,11 @@
 }
 
 .Equipe p {
-  padding: 0 25%;
+  padding: 0 10%;
 }
 
 .LivraisonTarifs p{
-  padding: 0 25%;
+  padding: 0 10%;
 }
 
 
@@ -109,7 +108,7 @@ hr {
 }
 
 .mat-accordion mat-expansion-panel mat-expansion-panel-header {
-  height: 100px !important;
+  height: 50px !important;
 }
 
 .mat-accordion mat-expansion-panel mat-expansion-panel-header:hover {
@@ -118,10 +117,10 @@ hr {
 
 .mat-accordion mat-expansion-panel mat-expansion-panel-header mat-panel-title {
   font-family: AbhayaLibre, serif;
-  font-size: 26px;
+  font-size: 20px;
   color: #000000;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 40px;
 }
 

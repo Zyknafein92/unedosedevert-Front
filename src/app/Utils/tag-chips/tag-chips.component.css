@@ -1,11 +1,23 @@
-.custom-chips {
-  margin: 4% 2% 4% 0;
-}
-.custom-chips span {
-  padding: 2% 3.5%;
+.customized-chips {
+  margin: 1%;
+  padding: 0.5% 1%;
   border-radius: 20px;
-  background-color: #c7a38f;
-  color: #f2f2f2;
-  font-family: WorkSans, serif;
+  background-color: #f2f2f2;
+  color: #000000;
+  font-family: WorkSans,sans-serif;
   font-size: 14px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.customized-chips:hover {
+  background-color: #e2e2e2;
+  color: black;
+  outline: none;
+}
+
+.clicked {
+  outline: none;
+  background-color: #c7a38f;
+  color: white;
 }

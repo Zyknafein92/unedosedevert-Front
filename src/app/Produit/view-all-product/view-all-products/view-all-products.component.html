@@ -1,9 +1,11 @@
 <div class="wrapper">
   <div class="searchWrapper">
     <hr class="textHR">
-    <span class="chips" *ngFor="let label of labels" (click)="filterByLabelValue(label.name)">{{label.name}}</span>
-    <span class="chips" *ngFor="let tag of tags" (click)="filterByTagValue(tag.name)">{{tag.name}}</span>
-    <span class="chips" (click)="filterByReduction()">Reductions</span>
+<!--    <span class="chips" *ngFor="let tag of tags" (click)="filterByTagValue(tag.name)">{{tag.name}}</span>-->
+    <div class="wrapperChips">
+    <app-tag-chips *ngFor="let tag of tags" (click)="filterByTagValue(tag.name)" [selected]="" label="{{tag.name}}"></app-tag-chips>
+    <span class="chips" (click)="filterByReduction()">En promo !</span>
+    </div>
     <hr class="textHR">
   </div>
   <div class="cardWrapper" *ngIf="products.length > 0">

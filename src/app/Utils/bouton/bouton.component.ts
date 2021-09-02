@@ -23,12 +23,9 @@ export class BoutonComponent implements OnInit {
 
   onButtonClick(): void {
     if(this.onClick2) {
-      console.log('test clicked by function')
       this.onClick2();
     }
   };
-
-
 
   constructor() {
   }

@@ -5,7 +5,7 @@
   <p id="productPrice" *ngIf="product.reduction == null">à partir de <span id="Price">{{smallestProductPrice(this.product)}}</span></p>
     <p id="productPriceWithReduction" *ngIf="product.reduction != null">à partir de <span id="PriceWithReduction" style="text-decoration: line-through">{{smallestProductPrice(this.product)}}</span> {{smallestProductPriceWithReduction(this.product)}}</p>
   <div class="discovery">
-    <app-bouton label="Découvrir le produit" padding="2% 10%" (click)="showProduit(this.product)"></app-bouton>
+    <app-bouton label="Découvrir le produit"  (click)="showProduit(this.product)"></app-bouton>
   </div>
 </mat-card-content>
 </div>

@@ -41,6 +41,9 @@ export class ViewAllProductsComponent implements OnInit {
         if( typeSearch === 'query' && typeSearch != null) {
           searchCriteria.query = value;
         }
+        if( typeSearch === 'tag' && typeSearch != null) {
+          searchCriteria.tag = value;
+        }
         this.initProducts(searchCriteria);
       });
   }

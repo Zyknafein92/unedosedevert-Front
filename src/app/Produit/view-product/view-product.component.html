@@ -29,6 +29,9 @@
           <p style="text-decoration: line-through;">{{this.displayPrice(variantSelected.price)}}</p>
           <p>{{this.displayPrice(variantSelected.reductionPrice)}}  les {{variantSelected.name}}</p>
         </div>
+        <div class="prixNull" *ngIf="!variantSelected">
+          <p>Sélectionnez une quantité afin d'afficher le prix correspondant</p>
+        </div>
 
         <div class="prixKG" *ngIf="variantSelected">
           <p>{{this.displayPrice(variantSelected.priceKg)}}/Kilo</p>
@@ -42,9 +45,9 @@
       <div class="panierSelecteur">
         <div class="row">
           <app-petit-bouton class="buttonRemove col-md-1" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
-          <p class="quantitée col-md-1">{{quantity}}</p>
+          <p class="quantitée col-md-2">{{quantity}}</p>
           <app-petit-bouton class="buttonAdd col-md-1" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
-          <app-bouton class="Panier col-md-2" label="Ajouter au panier" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
+          <app-bouton class="Panier col-md-2" label="Ajouter au panier" [padding]="'10% 8%'" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
         </div>
       </div>
 
@@ -112,7 +115,7 @@
       </mat-accordion>
     </div>
     <hr *ngIf="product.whyThisProduct != '' || product.whyThisProduct != null">
-    <div class="producteur" *ngIf="product.producer != '' || product.producer != null">
+    <div class="producteur" *ngIf="product.producerComment != '' || product.producerComment != null">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -124,7 +127,7 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr *ngIf="product.producer != '' || product.producer != null">
+    <hr *ngIf="product.producerComment != '' || product.producerComment != null">
     <div class="valeurs" *ngIf="product.allergen != '' || product.allergen != null">
       <mat-accordion>
         <mat-expansion-panel>
