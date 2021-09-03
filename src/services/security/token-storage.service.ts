@@ -51,4 +51,12 @@ export class TokenStorageService {
     }
     return this.role;
   }
+
+  public isAdmin(): boolean {
+    const authoritiesString: Array<any> = JSON.parse((this.cookieService.getItem('token-authority')));
+    if(authoritiesString && authoritiesString.length > 0) {
+      return authoritiesString[0].authority === 'ROLE_ADMIN';
+    }
+    return false;
+  }
 }

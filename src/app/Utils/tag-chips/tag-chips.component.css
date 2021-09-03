@@ -1,6 +1,4 @@
 .customized-chips {
-  margin: 1%;
-  padding: 0.5% 1%;
   border-radius: 20px;
   background-color: #f2f2f2;
   color: #000000;
@@ -8,6 +6,9 @@
   font-size: 14px;
   justify-content: center;
   cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
 }
 
 .customized-chips:hover {
@@ -20,4 +21,15 @@
   outline: none;
   background-color: #c7a38f;
   color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.tags-container {
+  display: flex;
+}
+.tags-container .custom-chips{
+
 }

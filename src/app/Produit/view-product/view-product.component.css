@@ -89,35 +89,33 @@
 
 .panierSelecteur{
   width: 100%;
-  align-content: start;
-  margin-bottom: 2%;
-  justify-content: center;
-  text-align: center;/* align horizontal */
-  align-items: center; /* align vertical */
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#quantity {
+  outline: none;
+  color: black !important;
+}
+
+.buttonPanier {
+  margin: 1% 5% 2% 0;
 }
 
 .buttonRemove:focus {
   outline: none;
 }
 
-.panierSelecteur .quantitée {
-  display: flex;
-  justify-content: center;
-  text-align: center;/* align horizontal */
-  align-items: center; /* align vertical */
-  font-family: WorkSans, serif;
-  font-size: 30px;
-}
-
 .panierSelecteur .Panier {
-  white-space: nowrap;
-  position: center;
-  margin: 0.5%;
+  white-space: break-spaces;
+  align-self: center !important;
 }
 
 .contenantFraisOrigine {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-content: space-between;
 }
 

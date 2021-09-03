@@ -2,7 +2,7 @@
   <div class="wrapper1">
     <h1 [routerLink]="['/']">Une dose de vert</h1>
     <ul class="client-area">
-      <li class="admin" (click)="routerAdminSpace()" *ngIf="this.tokenEmail === 'admin@gmail.com' && this.tokenEmail != null">Admin</li>
+      <li class="admin" (click)="routerAdminSpace()">Admin</li>
       <li class="espace" (click)="routerMonEspace()"><p>Mon espace</p></li>
       <li><img class="user-icon" src="../assets/img/usericon.png"> </li>
       <li class="panier" (click)="routerMonPanier()"><p>Mon panier</p> </li>

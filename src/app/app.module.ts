@@ -79,6 +79,7 @@ import { ViewOrderComponent } from './Commande/view-order/view-order.component';
 import { AdminViewOrderComponent } from './Admin/admin-view-order/admin-view-order.component';
 import { AdminOrderEditComponent } from './Admin/admin-order-edit/admin-order-edit.component';
 import {ToastrModule} from 'ngx-toastr';
+import {AuthGuardService} from '../services/security/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -165,7 +166,7 @@ import {ToastrModule} from 'ngx-toastr';
     GlobalHandlerErrorModule,
     FontAwesomeModule
   ],
-  providers: [httpInterceptorProviders, CookieService, ServicePartage],
+  providers: [httpInterceptorProviders, CookieService, ServicePartage, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

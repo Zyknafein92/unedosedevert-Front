@@ -1,6 +1,8 @@
-<div class="custom-chips">
-  <span *ngIf="!selected ? true : false" class="customized-chips">{{label}}</span>
-  <span *ngIf="selected === true" class="clicked">{{label}}</span>
+<div class="tags-container">
+  <div class="custom-chips"  *ngFor="let tag of tags">
+    <span *ngIf="!this.tagMap.get(tag.name)" (click)="this.selectChip(tag.name)" class="customized-chips">{{tag.name}}</span>
+    <span *ngIf="this.tagMap.get(tag.name)" class="clicked">{{tag.name}}</span>
+  </div>
 </div>
 
 

@@ -29,23 +29,24 @@ import {SuccessPaymentComponent} from './Commande/success-payement/success-payme
 import {FailurePaymentComponent} from './Commande/failure-payment/failure-payment.component';
 import {AdminViewOrderComponent} from './Admin/admin-view-order/admin-view-order.component';
 import {AdminOrderEditComponent} from './Admin/admin-order-edit/admin-order-edit.component';
+import {AuthGuardService} from '../services/security/auth-guard.service';
 
 
 const routes: Routes = [
-  { path: 'admin/products', component: AdminViewProductComponent},
-  { path: 'admin/products/edit', component: ProductEditComponent},
-  { path: 'admin/products/categories/edit', component: CategorieEditComponent},
-  { path: 'admin/products/categories', component: AdminViewCategorieListComponent},
-  { path: 'admin/products/sous-categories', component: AdminViewSubCategorieListComponent},
-  { path: 'admin/products/sous-categories/edit', component: SubCategorieEditComponent},
-  { path: 'admin/products/types', component: AdminViewTypesListComponent},
-  { path: 'admin/products/types/edit', component: TypeEditComponent},
-  { path: 'admin/products/tags', component: AdminViewTagComponent},
-  { path: 'admin/products/tags/edit', component: TagEditComponent},
-  { path: 'admin/products/labels', component: AdminViewLabelComponent},
-  { path: 'admin/products/label/edit', component: LabelEditComponent},
-  { path: 'admin/orders', component: AdminViewOrderComponent},
-  { path: 'admin/order/edit', component: AdminOrderEditComponent},
+  { path: 'admin/products', component: AdminViewProductComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/edit', component: ProductEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/categories/edit', component: CategorieEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/categories', component: AdminViewCategorieListComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/sous-categories', component: AdminViewSubCategorieListComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/sous-categories/edit', component: SubCategorieEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/types', component: AdminViewTypesListComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/types/edit', component: TypeEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/tags', component: AdminViewTagComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/tags/edit', component: TagEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/labels', component: AdminViewLabelComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/products/label/edit', component: LabelEditComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/orders', component: AdminViewOrderComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/order/edit', component: AdminOrderEditComponent, canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},
   { path: 'forgot-password', component: PasswordEditComponent},
