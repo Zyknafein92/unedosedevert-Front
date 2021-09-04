@@ -37,7 +37,7 @@ export class AdminViewProductComponent implements AfterViewInit {
   }
 
   private initProducts(): void {
-    this.productService.getProduitPage(0, 30, 'DESC').subscribe(data => {
+    this.productService.getProduitPage(0, 100, 'DESC').subscribe(data => {
         this.products = data.content;
         this.dataSource = new MatTableDataSource<Product>(this.products);
         this.dataSource.paginator = this.paginator;

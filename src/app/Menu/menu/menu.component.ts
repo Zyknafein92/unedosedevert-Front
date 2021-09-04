@@ -51,4 +51,8 @@ export class MenuComponent implements OnInit {
       this.typeToDisplay = type;
     }
   }
+
+  closeMenu() {
+    this.typeToDisplay = null;
+  }
 }

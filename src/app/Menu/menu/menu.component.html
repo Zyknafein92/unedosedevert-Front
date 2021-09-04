@@ -17,5 +17,5 @@
   </div>
 </div>
 
-<app-sous-menu [type]="typeToDisplay" *ngIf="typeToDisplay != null"></app-sous-menu>
+<app-sous-menu [type]="typeToDisplay" (typeEventEmitter)="closeMenu()" *ngIf="typeToDisplay != null"></app-sous-menu>
 

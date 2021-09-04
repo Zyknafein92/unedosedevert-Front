@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {SubCategorie} from '../../../model/sub-categorie';
 import {Categorie} from '../../../model/categorie.model';
 import {Type} from '../../../model/type.model';
@@ -14,10 +14,13 @@ import {Route, Router} from '@angular/router';
   styleUrls: ['./sub-menu.component.css']
 })
 export class SubMenuComponent implements OnInit, OnChanges {
+
   @Input()
   type: Type;
   categories: Array<Categorie>;
   sousCategories: Array<SubCategorie>;
+  @Output()
+  typeEventEmitter = new EventEmitter<Type>();
 
   constructor(private typeService: TypeService, private categorieService: CategoriesService, private sousCategorieService: SubCategorieService, private router: Router) { }
 
@@ -27,6 +30,7 @@ export class SubMenuComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.initCategories();
+    this.closeMenu();
   }
 
   private initCategories(): void {
@@ -36,10 +40,18 @@ export class SubMenuComponent implements OnInit, OnChanges {
   searchProductByCat(cat: string): void {
     const typeSearch = 'cat';
     this.router.navigate(['/products'], {queryParams: {typeSearch  , value : cat}});
+    this.closeMenu();
   }
 
   searchProductBySC(sc: string): void {
     const typeSearch = 'sc';
     this.router.navigate(['/products'], {queryParams: {typeSearch  , value : sc}});
+    this.closeMenu();
   }
+
+  closeMenu() : void {
+    this.typeEventEmitter.emit();
+  }
+
+
 }

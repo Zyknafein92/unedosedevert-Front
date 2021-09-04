@@ -222,10 +222,11 @@ export class ProductEditComponent implements OnInit {
         variant: new Array<Variant>(),
       });
       const tags: FormArray = this.forms.get('tags') as FormArray;
-      this.product.tags.forEach(t => tags.value.push(new FormControl(t)));
+      this.product.tags.forEach(t => tags.value.push(t));
 
       const labels: FormArray = this.forms.get('labels') as FormArray;
-      this.product.labels.forEach(l => labels.value.push(new FormControl(l)));
+      this.product.labels.forEach(l => labels.value.push(l));
+      console.log('products loaded: ', labels);
     });
   }
 
@@ -291,7 +292,8 @@ export class ProductEditComponent implements OnInit {
       tags.push(new FormControl(value));
     }
     else {
-      tags.controls.push(tags.value.filter(t => t.value.id !== value.id));
+      let indexToRemove = tags.value.findIndex(t => t.id === value.id);
+      tags.value.splice(indexToRemove, 1);
     }
   }
 
@@ -303,10 +305,11 @@ export class ProductEditComponent implements OnInit {
     const labels: FormArray = this.forms.get('labels') as FormArray;
     const value = e.source.value;
     if (e.checked) {
-      labels.push(new FormControl(value));
+      labels.value.push(value);
     }
     else {
-      labels.controls.push(labels.value.filter(l => l.value.id !== value.id));
+      let indexToRemove = labels.value.findIndex(l => l.id === value.id);
+      labels.value.splice(indexToRemove, 1);
     }
   }
 
