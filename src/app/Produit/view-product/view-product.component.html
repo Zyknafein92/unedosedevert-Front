@@ -1,7 +1,15 @@
 <div class="wrapper" *ngIf="product != null">
   <div class="topWrapper">
+
     <div class="imageProduit" >
-      <img class="img" src="{{product.urlPicture1}}">
+      <div *ngIf="product.labels != null">
+        <div class="labelArea">
+          <div *ngFor="let label of product.labels">
+            <img class="imgLabel" src="{{label.urlPicture}}">
+          </div>
+        </div>
+      </div>
+      <img class="imgProduct" src="{{product.urlPicture1}}">
     </div>
 
     <div class="sideText">
@@ -16,8 +24,8 @@
       </div>
 
       <div *ngIf="product.tags != null">
-        <div class="tagArea" *ngFor="let label of product.labels">
-          <p class="chips">{{label.name}}</p>
+        <div class="tagArea" *ngFor="let tag of product.tags">
+            <p class="chips">{{tag.name}}</p>
         </div>
       </div>
 
@@ -43,12 +51,11 @@
       </div>
 
       <div class="panierSelecteur">
-          <app-petit-bouton class="buttonPanier" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
-<!--          <p class="quantitée col-md-2">{{quantity}}</p>-->
-          <app-petit-bouton class="buttonPanier" label="{{quantity}}"></app-petit-bouton>
-          <app-petit-bouton class="buttonPanier" id="quantity" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
+        <app-petit-bouton class="buttonPanier" label="-" [selected]="true" (click)="changeQuantity(-1)" fontSize="40px"></app-petit-bouton>
+        <app-petit-bouton class="buttonPanier" label="{{quantity}}" color="black" fontSize="20px" border="solid 1px white"></app-petit-bouton>
+        <app-petit-bouton class="buttonPanier" id="quantity" label="+" [selected]="true" (click)="changeQuantity(1)" fontSize="40px"></app-petit-bouton>
         <div class="Panier">
-          <app-bouton label="Ajouter au panier" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
+          <app-bouton  label="Ajouter au panier" padding="4% 6%" [onClick2]="addToShoppingCart.bind(this)"></app-bouton>
         </div>
       </div>
 

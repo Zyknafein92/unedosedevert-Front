@@ -19,7 +19,7 @@
   margin: 1% 2% 0 2%;
   text-align: center;
   font-family: WorkSans, serif;
-  font-size: 16px;
+  font-size: 12px;
   color: #000000;
 }
 
@@ -44,5 +44,7 @@ table {
 }
 
 .seeOrderButton {
-  background-color: white;
+  background-color: #f2f2f2;
+  transform: scale(0.7);
+  box-shadow: none;
 }

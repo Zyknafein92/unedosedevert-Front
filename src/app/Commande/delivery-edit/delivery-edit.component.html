@@ -353,10 +353,10 @@
     </div>
 
     <div class="LivraisonButton" *ngIf="this.deliveryAdress && this.billingAdress">
-      <app-bouton label="Payer ma commande >"  [onClick2]="checkout.bind(this)"></app-bouton>
+      <app-bouton label="Payer ma commande >" padding="5% 20%" [onClick2]="checkout.bind(this)"></app-bouton>
     </div>
     <div class="LivraisonButton" *ngIf="this.deliveryAdress == null || this.billingAdress == null">
-      <app-bouton label="Payer ma commande >"  disabled="null"></app-bouton>
+      <app-bouton label="Payer ma commande >" padding="5% 20%" disabled="null"></app-bouton>
     </div>
   </div>
 </div>

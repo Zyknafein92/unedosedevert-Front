@@ -32,3 +32,14 @@ table {
 .createCategorieButton {
   margin-left: 1%;
 }
+
+.editButton {
+  transform: scale(0.7);
+  box-shadow: none;
+}
+
+.deleteButton {
+  transform: scale(0.7);
+  box-shadow: none;
+}
+

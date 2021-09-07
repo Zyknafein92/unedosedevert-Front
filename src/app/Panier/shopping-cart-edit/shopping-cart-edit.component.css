@@ -9,7 +9,7 @@
 /*MES ACHATS Wrapper Gauche*/
 .wrapperPanier{
   width: 75%;
-  margin: 1% 7% 2% 6.5%;
+  margin: 1% 3% 2% 6.5%;
   font-family: WorkSans, serif;
 }
 
@@ -58,6 +58,7 @@
   text-wrap: normal;
   text-overflow: fade;
   position: relative;
+  font-size: 12px;
   top: 50%;
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
@@ -65,17 +66,17 @@
 }
 
 .recapLivraison {
-  border: #c7a38f 1px solid;
+  border: #c7a38f 2px solid;
   margin: 2% 0;
 }
 
 .recapLivraisonTitre {
   font-family: WorkSans, serif;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   color: #FFFFFF;
   background-color: #c7a38f;
-  padding: 2%;
+  padding: 2% 0;
   text-transform: uppercase;
 }
 
@@ -87,7 +88,6 @@
 }
 
 .LivraisonButton {
-  width: 100%;
   margin: 10% 0 !important;
 }
 
@@ -95,12 +95,32 @@
   width: 15%;
 }
 
+.productIMG {
+  position: relative;
+  align-self: start;
+}
+
 .mat-column-Produit {
   width: 30%;
+}
+.ProductTitle {
+  font-size: 14px ;
+  font-family: AbhayaLibre, serif;
+  font-weight: bold;
+}
+
+.ProductBrand {
+  font-size: 14px ;
+  font-family: AbhayaLibre, serif;
 }
 
 .mat-column-Countenance {
   width: 40%;
+}
+
+.mat-column-Countenance .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .mat-column-Quantity {
@@ -109,6 +129,12 @@
 
 .mat-column-Price {
   width: 15%;
+}
+
+.price {
+  font-family: WorkSans, serif;
+  font-size: 16px;
+  color: black;
 }
 
 .mat-column-Retire {
@@ -123,4 +149,11 @@
   margin-top: 4%;
 }
 
+.deleteButton {
+  transform: scale(0.8);
+  box-shadow: none;
+}
 
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 0;
+}

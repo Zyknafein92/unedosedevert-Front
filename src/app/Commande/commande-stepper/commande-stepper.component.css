@@ -1,9 +1,10 @@
 .bs-stepper-header {
   width: 87%;
-  margin: 2% 7% 2% 6.5% !important;
+  margin: 2% 0 2% 6.5% !important;
 }
 
 .step-trigger {
+  width: 100%;
   display: flex;
 }
 

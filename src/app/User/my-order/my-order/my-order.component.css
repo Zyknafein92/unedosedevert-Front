@@ -36,15 +36,25 @@ table {
 }
 
 .seeOrderButton {
-  background-color: white;
+  background-color: #f2f2f2;
+  transform: scale(0.8);
+  box-shadow: none;
 }
 
 .renewButton {
   background-color: burlywood;
+  transform: scale(0.8);
+  box-shadow: none;
 }
 
 .paymentButton {
   background-color: lightgreen;
+  transform: scale(0.8);
+  box-shadow: none;
 }
 
+.mat-cell {
+  font-size: 10px;
+  font-family: WorkSans, serif;
+}
 

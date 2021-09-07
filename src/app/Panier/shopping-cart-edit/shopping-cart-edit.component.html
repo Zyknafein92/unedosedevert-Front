@@ -4,13 +4,13 @@
     <table mat-table [dataSource]="this.data" matSort class="shoppingCartLines" *ngIf="shoppingCart != null">
       <ng-container matColumnDef="Photo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 3%">Photo</th>
-        <td mat-cell *matCellDef="let shoppingCartLine"><img src="{{shoppingCartLine.product.urlPicture1}}" width="80"/> </td>
+        <td mat-cell *matCellDef="let shoppingCartLine"><img class="productIMG" src="{{shoppingCartLine.product.urlPicture1}}" width="80"/> </td>
       </ng-container>
       <ng-container matColumnDef="Produit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Mes produits</th>
         <td mat-cell *matCellDef="let shoppingCartLine">
-          <p>{{shoppingCartLine.product.title}}</p>
-          <p>{{shoppingCartLine.product.brand}}</p>
+          <p class="ProductTitle">{{shoppingCartLine.product.title}}</p>
+          <p class="ProductBrand">{{shoppingCartLine.product.brand}}</p>
         </td>
       </ng-container>
       <ng-container matColumnDef="Countenance">
@@ -37,12 +37,14 @@
       </ng-container>
       <ng-container matColumnDef="Price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Prix</th>
-        <td mat-cell *matCellDef="let shoppingCartLine" style="padding-right: 0.3%">{{formatPrice(shoppingCartLine.price)}}</td>
+        <td mat-cell *matCellDef="let shoppingCartLine" style="padding-right: 0.3%">
+          <span class="price">{{formatPrice(shoppingCartLine.price)}}</span>
+        </td>
       </ng-container>
       <ng-container matColumnDef="Retire">
         <th mat-header-cell *matHeaderCellDef style="padding-left: 1%">Retirer</th>
         <td mat-cell *matCellDef="let shoppingCartLine">
-          <button mat-fab color="warn" [value]="shoppingCartLine" (click)="deleteShoppingCartLine(shoppingCartLine)">
+          <button mat-fab color="warn" class="deleteButton" [value]="shoppingCartLine" (click)="deleteShoppingCartLine(shoppingCartLine)">
             <mat-icon>delete</mat-icon>
           </button></td>
       </ng-container>
@@ -77,11 +79,11 @@
     </div>
 
     <div class="LivraisonButton" *ngIf="shoppingCart != null">
-      <div class="col-md" *ngIf="shoppingCart.totalPrice >= 15 && shoppingCart.totalPrice">
-        <app-bouton label="Livraison >" style="text-align: center" [onClick2]="deliveryStep.bind(this)"></app-bouton>
+      <div *ngIf="shoppingCart.totalPrice >= 15 && shoppingCart.totalPrice">
+        <app-bouton class="col-md-12" label="Livraison >" style="text-align: center" padding="5% 20%" [onClick2]="deliveryStep.bind(this)"></app-bouton>
       </div>
-        <div class="col-md" *ngIf="shoppingCart.totalPrice < 15 || shoppingCart.shoppingCartLines.length == 0 || !shoppingCart.totalPrice">
-        <app-bouton label="Livraison >" style="text-align: center"  disabled="null" [onClick2]="deliveryStep.bind(this)"></app-bouton>
+        <div *ngIf="shoppingCart.totalPrice < 15 || shoppingCart.shoppingCartLines.length == 0 || !shoppingCart.totalPrice">
+        <app-bouton class="col-md-12" label="Livraison >" style="text-align: center"  padding="5% 20%" disabled="null" [onClick2]="deliveryStep.bind(this)"></app-bouton>
         </div>
     </div>
 

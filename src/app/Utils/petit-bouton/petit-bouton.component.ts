@@ -12,6 +12,11 @@ export class PetitBoutonComponent implements OnInit {
   fontSize: any;
   @Input()
   selected: boolean;
+  @Input()
+  color: string;
+  @Input()
+  border: string;
+
 
   constructor() { }
 

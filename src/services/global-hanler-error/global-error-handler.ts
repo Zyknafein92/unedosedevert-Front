@@ -1,6 +1,6 @@
 import {Router} from '@angular/router';
 import {ErrorHandler, Injectable} from '@angular/core';
-import {TokenStorageService} from '../services/security/token-storage.service';
+import {TokenStorageService} from '../security/token-storage.service';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable()

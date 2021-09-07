@@ -65,7 +65,7 @@ import {ServicePartage} from '../services/service.partage';
 import { MyOrderComponent } from './User/my-order/my-order/my-order.component';
 import { MyAdressComponent } from './User/my-adress/my-adress.component';
 import { MyInfoComponent } from './User/my-info/my-info.component';
-import {GlobalHandlerErrorModule} from '../global-hanler-error/global-hanler-error.module';
+import {GlobalHandlerErrorModule} from '../services/global-hanler-error/global-hanler-error.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommandeStepperComponent } from './Commande/commande-stepper/commande-stepper.component';
 import { DeliveryEditComponent } from './Commande/delivery-edit/delivery-edit.component';

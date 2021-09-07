@@ -33,3 +33,8 @@ table {
 .createLabelButton {
   margin-left: 1%;
 }
+
+.buttonScale {
+  transform: scale(0.7);
+  box-shadow: none;
+}

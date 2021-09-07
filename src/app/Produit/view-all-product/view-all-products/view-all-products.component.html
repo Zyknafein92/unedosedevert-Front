@@ -3,18 +3,17 @@
     <hr class="textHR">
     <div class="wrapperChips">
       <app-tag-chips [tags]="tags" [onClick]="filterByTagValue.bind(this)"></app-tag-chips>
-      <span class="chips" (click)="filterByReduction()">En promo !</span>
-      </div>
-      <hr class="textHR">
     </div>
-    <div class="cardWrapper" *ngIf="products && products.length > 0">
-      <mat-card class="productCard" *ngFor="let product of products">
-        <mat-card-content>
-          <app-carte-produit [product]="product"></app-carte-produit>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="cardWrapper" *ngIf="!products || products.length == 0">
-      <p class="messageNullProduct"> Aucun produit ne correspond à votre recherche </p>
-    </div>
+    <hr class="textHR">
   </div>
+  <div class="cardWrapper" *ngIf="products && products.length > 0">
+    <mat-card class="productCard" *ngFor="let product of products">
+      <mat-card-content>
+        <app-carte-produit [product]="product"></app-carte-produit>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="cardWrapper" *ngIf="!products || products.length == 0">
+    <p class="messageNullProduct"> Aucun produit ne correspond à votre recherche </p>
+  </div>
+</div>
