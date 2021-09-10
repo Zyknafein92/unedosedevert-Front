@@ -1,11 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatMenuTrigger} from '@angular/material/menu';
-import {TokenStorageService} from '../../../services/security/token-storage.service';
+import {Component, OnInit} from '@angular/core';
 import {Type} from '../../../model/type.model';
 import {TypeService} from '../../../services/type.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Route, Router} from '@angular/router';
-import {timeInterval, timeout} from 'rxjs/operators';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -14,9 +12,6 @@ import {timeInterval, timeout} from 'rxjs/operators';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  authorities: string;
-  tokenEmail: string;
-
   dataQuery: string;
   type: Type;
   typeToDisplay: Type;
@@ -43,6 +38,12 @@ export class MenuComponent implements OnInit {
      setTimeout(() => this.dataQuery = '', 1000)
    });
    }
+
+  keyPressHandler(event): void {
+    if(event.charCode === 13) {
+      this.onSubmit(this.dataQuery);
+    }
+  }
 
   openMenu(type: Type): void {
     if (type === this.typeToDisplay && this.typeToDisplay != null) {

@@ -139,6 +139,14 @@ export class DeliveryEditComponent implements OnInit, OnChanges {
     this.patchValue(this.formsBilling, adress);
   }
 
+  selectChangeDeliveryAdress(event) {
+    this.updateDisplayDeliveryAdress(event.value);
+  }
+
+  selectChangeBillingAdress(event) {
+    this.updateDisplayBillingAdress(event.value);
+  }
+
   displayTotalPrice() {
     const formatter = new Intl.NumberFormat('fr-FR', {
       style: 'currency',

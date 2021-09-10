@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSubmitCreerCompte(): void {
+  onSubmitSignUp(): void {
     if (this.formsUser.invalid) {
       this.forms.markAllAsTouched();
       return;

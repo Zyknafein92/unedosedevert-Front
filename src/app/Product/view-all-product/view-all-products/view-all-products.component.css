@@ -36,11 +36,8 @@
 }
 
 .wrapperChips {
-  display: inline-block;
   overflow-wrap: break-word;
-  white-space: nowrap;
 }
-
 
 .messageNullProduct {
   font-family: WorkSans,sans-serif;

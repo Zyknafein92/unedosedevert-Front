@@ -40,7 +40,7 @@
     </div>
 
     <p class="separation">Mes adresses</p>
-    <div class="userAdressNull" *ngIf="this.addresses.length == 0 || this.addresses == null">
+    <div class="userAdressNull" *ngIf="this.billingAddress == null && this.deliveryAddress == null">
       <p>Votre carnet d'adresse est vide ! Rendez-vous sur <a href="../user/mon-espace/adresses">"Mes adresses"</a> pour en enregistrer une !</p>
     </div>
 

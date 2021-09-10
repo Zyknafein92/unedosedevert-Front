@@ -4,7 +4,7 @@
   </div>
   <div class="typeList">
     <p class="separation">Gestion des types de produit</p>
-    <button mat-raised-button class="createTypeButton" (click)="creerType()">Créer un type de produit</button>
+    <button mat-raised-button class="createTypeButton" (click)="addType()">Créer un type de produit</button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
@@ -13,14 +13,14 @@
       <ng-container matColumnDef="modifier">
         <th mat-header-cell *matHeaderCellDef>Modifier</th>
         <td mat-cell *matCellDef="let type">
-          <button mat-fab color="primary" class="editButton" aria-label="Build" [value]="" (click)="modifierType(type)">
+          <button mat-fab color="primary" class="editButton" aria-label="Build" [value]="" (click)="updateType(type)">
             <mat-icon>build</mat-icon>
           </button></td>
       </ng-container>
       <ng-container matColumnDef="supprimer">
         <th mat-header-cell *matHeaderCellDef>Supprimer</th>
         <td mat-cell *matCellDef="let type">
-          <button mat-fab color="warn" class="deleteButton" aria-label="Build" [value]="type" (click)="supprimerType(type.id)">
+          <button mat-fab color="warn" class="deleteButton" aria-label="Build" [value]="type" (click)="deleteType(type.id)">
             <mat-icon>delete</mat-icon>
           </button></td>
       </ng-container>

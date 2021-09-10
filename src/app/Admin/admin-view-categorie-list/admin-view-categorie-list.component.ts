@@ -9,6 +9,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {merge} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 
 
@@ -32,7 +33,7 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
 
   constructor(private router: Router,
               private categorieService: CategoriesService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog, private toastService: ToastrService) {}
 
   ngAfterViewInit(): void {
    this.initCategories();
@@ -56,7 +57,7 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
       });
   }
 
-  creerCategorie(): void {
+  createCategorie(): void {
     const dialogRef = this.dialog.open(CategorieEditComponent, {
       data: {}
     });
@@ -65,7 +66,7 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
     });
   }
 
-  modifierCategorie(cat: Categorie): void {
+  updateCategorie(cat: Categorie): void {
     const dialogRef = this.dialog.open(CategorieEditComponent, {
       data: cat
     });
@@ -74,8 +75,13 @@ export class AdminViewCategorieListComponent implements  AfterViewInit {
     });
   }
 
-  supprimerCategorie(id: number): void {
-    this.categorieService.deleteCategorie(id).subscribe(next => this.initCategories());
+  deleteCategorie(id: number): void {
+    this.categorieService.deleteCategorie(id).subscribe(next => {
+      this.initCategories()
+    },
+      err => {
+      this.toastService.error(err.error.message);
+    })
   }
 }
 

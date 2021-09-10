@@ -6,8 +6,6 @@
   font-size: 14px;
   justify-content: center;
   cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
   padding: 5px 10px;
 }
 
@@ -21,15 +19,16 @@
   outline: none;
   background-color: #c7a38f;
   color: white;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 5px 10px;
+  padding: 10px 10px;
   border-radius: 20px;
 }
 
 .tags-container {
   display: flex;
+  flex-wrap: wrap;
 }
-.tags-container .custom-chips{
 
+.custom-chips {
+  margin: 10px 3px;
 }
+

@@ -86,8 +86,9 @@ export class AdminViewOrderComponent implements OnInit, AfterViewInit {
   seeOrder(order: Order) {
     this.dialog.open(AdminOrderEditComponent, {
       data: order,
-      width: '100%'
-    });
+      width: '100%',
+      height: '100%'
+  });
     this.dialog.afterAllClosed.subscribe( data => { this.initOrders()})
   }
 

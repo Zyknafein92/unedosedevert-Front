@@ -9,6 +9,7 @@ import {startWith, switchMap} from 'rxjs/operators';
 import {Tag} from '../../../model/tag.model';
 import {TagService} from '../../../services/tag.service';
 import {TagEditComponent} from '../../Tags/tag-edit/tag-edit.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-view-tag',
@@ -27,7 +28,7 @@ export class AdminViewTagComponent implements AfterViewInit {
 
   constructor(private router: Router,
               private tagService: TagService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog, private toastService: ToastrService) {}
 
   ngAfterViewInit(): void {
     this.initTag();
@@ -70,6 +71,11 @@ export class AdminViewTagComponent implements AfterViewInit {
   }
 
   deleteTag(id: number): void {
-    this.tagService.deleteTag(id).subscribe(next => this.initTag());
+    this.tagService.deleteTag(id).subscribe(next => {
+      this.initTag()
+    },
+      err => {
+        this.toastService.error(err.error.message);
+      });
   }
 }

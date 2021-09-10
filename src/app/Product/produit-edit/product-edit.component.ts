@@ -226,13 +226,11 @@ export class ProductEditComponent implements OnInit {
 
       const labels: FormArray = this.forms.get('labels') as FormArray;
       this.product.labels.forEach(l => labels.value.push(l));
-      console.log('products loaded: ', labels);
     });
   }
 
   updateCategorie(cat: Categorie): void {
     cat = this.categories.find(value => value.id === cat.id);
-    console.log(cat);
     this.forms.patchValue({
       categorie: cat,
     });
@@ -289,7 +287,8 @@ export class ProductEditComponent implements OnInit {
     const tags: FormArray = this.forms.get('tags') as FormArray;
     const value = e.source.value;
     if (e.checked) {
-      tags.push(new FormControl(value));
+      tags.value.push(value);
+      console.log('tag push', value)
     }
     else {
       let indexToRemove = tags.value.findIndex(t => t.id === value.id);

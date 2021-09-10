@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {merge} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
 import {LabelEditComponent} from '../../Label/label-edit/label-edit.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-view-tag-categorie',
@@ -25,7 +26,7 @@ export class AdminViewLabelComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router, private labelService: LabelService, public dialog: MatDialog) { }
+  constructor(private router: Router, private labelService: LabelService, public dialog: MatDialog, private toastService: ToastrService) { }
 
   ngAfterViewInit(): void {
     this.initLabel();
@@ -49,7 +50,7 @@ export class AdminViewLabelComponent implements AfterViewInit {
       });
   }
 
-  creerLabel(): void {
+  addLabel(): void {
     const dialogRef = this.dialog.open(LabelEditComponent, {
       data: {}
     });
@@ -58,7 +59,7 @@ export class AdminViewLabelComponent implements AfterViewInit {
     });
   }
 
-  modifierLabel(label: Label): void {
+  updateLabel(label: Label): void {
     const dialogRef = this.dialog.open(LabelEditComponent, {
       data: label
     });
@@ -67,8 +68,14 @@ export class AdminViewLabelComponent implements AfterViewInit {
     });
   }
 
-  supprimerLabel(id: number): void {
-    this.labelService.deleteLabel(id).subscribe( next => this.initLabel()); }
+  deleteLabel(id: number): void {
+    this.labelService.deleteLabel(id).subscribe( next => {
+      this.initLabel()
+    },
+        err => {
+        this.toastService.error(err.error.message);
+      });
+  }
 }
 
 

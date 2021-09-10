@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {merge} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
 import {TypeEditComponent} from '../../Type/type-edit/type-edit.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-view-types-list',
@@ -26,7 +27,7 @@ export class AdminViewTypesListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router, private typeService: TypeService, public dialog: MatDialog) { }
+  constructor(private router: Router, private typeService: TypeService, public dialog: MatDialog, private toastService: ToastrService) { }
 
   ngAfterViewInit(): void {
     this.initTypes();
@@ -50,7 +51,7 @@ export class AdminViewTypesListComponent implements AfterViewInit {
       });
   }
 
-  creerType(): void {
+  addType(): void {
     const dialogRef = this.dialog.open(TypeEditComponent, {
       data: {}
     });
@@ -59,7 +60,7 @@ export class AdminViewTypesListComponent implements AfterViewInit {
     });
   }
 
-  modifierType(type: Type): void {
+  updateType(type: Type): void {
     const dialogRef = this.dialog.open(TypeEditComponent, {
       data: type
     });
@@ -68,6 +69,12 @@ export class AdminViewTypesListComponent implements AfterViewInit {
     });
   }
 
-  supprimerType(id: number): void {
-    this.typeService.deleteType(id).subscribe( next => this.initTypes()); }
+  deleteType(id: number): void {
+    this.typeService.deleteType(id).subscribe( next => {
+       this.initTypes()
+    },
+        err => {
+      this.toastService.error(err.error.message);
+    });
+  }
 }

@@ -9,7 +9,8 @@ import {merge} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
 import {SubCategorie} from '../../../model/sub-categorie';
 import {SubCategorieService} from '../../../services/sub-categorie.service';
-import {SubCategorieEditComponent} from '../../Categorie/sous-categorie-edit/sub-categorie-edit.component';
+import {SubCategorieEditComponent} from '../../Categorie/sub-categorie-edit/sub-categorie-edit.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-view-sous-categorie-list',
@@ -29,7 +30,7 @@ export class AdminViewSubCategorieListComponent implements AfterViewInit {
 
   constructor(private router: Router,
               private subCategorieService: SubCategorieService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog, private toastService: ToastrService) {}
 
   ngAfterViewInit(): void {
     this.initSubCategories();
@@ -53,7 +54,7 @@ export class AdminViewSubCategorieListComponent implements AfterViewInit {
       });
   }
 
-  createSubCategorie(): void {
+  addSubCategorie(): void {
     const dialogRef = this.dialog.open(SubCategorieEditComponent, {
       data: {}
     });
@@ -72,6 +73,11 @@ export class AdminViewSubCategorieListComponent implements AfterViewInit {
   }
 
   deleteSubCategorie(id: number): void {
-    this.subCategorieService.deleteSubCategorie(id).subscribe(next => this.initSubCategories());
+    this.subCategorieService.deleteSubCategorie(id).subscribe(next => {
+        this.initSubCategories()
+      },
+      err => {
+        this.toastService.error(err.error.message);
+      });
   }
 }

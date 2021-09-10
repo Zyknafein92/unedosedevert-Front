@@ -9,8 +9,8 @@
           <h4>Sélectionnez une adresse de livraison :</h4>
           <mat-form-field appearance="fill">
             <mat-label>Adresse :</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let adress of adressList" [value]="adress" (onSelectionChange)="updateDisplayDeliveryAdress(adress)">
+            <mat-select (selectionChange)="selectChangeDeliveryAdress($event)">
+              <mat-option *ngFor="let adress of adressList" [value]="adress" >
                 {{adress.adressName}}
               </mat-option>
             </mat-select>
@@ -170,8 +170,8 @@
           <h4>Sélectionnez une adresse de facturation :</h4>
           <mat-form-field appearance="fill">
             <mat-label>Adresse :</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let adress of adressList" [value]="adress" (onSelectionChange)="updateDisplayBillingAdress(adress)">
+            <mat-select (selectionChange)="selectChangeBillingAdress($event)">
+              <mat-option *ngFor="let adress of adressList" [value]="adress">
                 {{adress.adressName}}
               </mat-option>
             </mat-select>

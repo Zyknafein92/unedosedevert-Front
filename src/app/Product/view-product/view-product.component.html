@@ -84,7 +84,7 @@
 
   <div class="bottomWrapper">
     <hr class="bottomHR">
-    <div class="conseil" *ngIf="!product.utilisationAdvice || product.utilisationAdvice != null">
+    <div class="conseil" *ngIf="product.utilisationAdvice">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -96,8 +96,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="!product.utilisationAdvice || product.utilisationAdvice != null">
-    <div class="composition" *ngIf="!product.composition || product.composition != null">
+    <hr class="bottomHR" *ngIf="product.utilisationAdvice">
+    <div class="composition" *ngIf="product.composition">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -109,8 +109,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="!product.composition || product.composition != null">
-    <div class="pourquoi?" *ngIf="!product.whyThisProduct || product.whyThisProduct != null">
+    <hr class="bottomHR" *ngIf="product.composition">
+    <div class="pourquoi?" *ngIf="product.whyThisProduct">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -122,8 +122,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="!product.whyThisProduct || product.whyThisProduct != null">
-    <div class="producteur" *ngIf="!product.producerComment || product.producerComment != null">
+    <hr class="bottomHR" *ngIf="product.whyThisProduct">
+    <div class="producteur" *ngIf="product.producerComment">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -135,8 +135,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="!product.producerComment || product.producerComment != null">
-    <div class="valeurs" *ngIf="!product.allergen  || product.allergen != null">
+    <hr class="bottomHR" *ngIf="product.producerComment">
+    <div class="valeurs" *ngIf="product.allergen">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -148,8 +148,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="!product.allergen || product.allergen != null">
-    <div class="infoNutri" *ngIf="!product.nutritionalInformation || product.nutritionalInformation != null">
+    <hr class="bottomHR" *ngIf="product.allergen">
+    <div class="infoNutri" *ngIf="product.nutritionalInformation">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -161,6 +161,6 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <hr class="bottomHR" *ngIf="product.nutritionalInformation != null">
+    <hr class="bottomHR" *ngIf="product.nutritionalInformation">
   </div>
 </div>

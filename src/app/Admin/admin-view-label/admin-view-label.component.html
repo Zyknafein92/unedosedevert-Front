@@ -4,7 +4,7 @@
   </div>
   <div class="labels">
     <p class="separation">Gestion des labels</p>
-    <button mat-raised-button class="createLabelButton" (click)="creerLabel()">Créer un label </button>
+    <button mat-raised-button class="createLabelButton" (click)="addLabel()">Créer un label </button>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
@@ -13,14 +13,14 @@
       <ng-container matColumnDef="modifier">
         <th mat-header-cell *matHeaderCellDef>Modifier</th>
         <td mat-cell *matCellDef="let label">
-          <button mat-fab color="primary" class="buttonScale" aria-label="Build" [value]="label" (click)="modifierLabel(label)">
+          <button mat-fab color="primary" class="buttonScale" aria-label="Build" [value]="label" (click)="updateLabel(label)">
             <mat-icon>build</mat-icon>
           </button></td>
       </ng-container>
       <ng-container matColumnDef="supprimer">
         <th mat-header-cell *matHeaderCellDef>Supprimer</th>
         <td mat-cell *matCellDef="let label">
-          <button mat-fab color="warn" class="buttonScale" aria-label="Build" [value]="label" (click)="supprimerLabel(label.id)">
+          <button mat-fab color="warn" class="buttonScale" aria-label="Build" [value]="label" (click)="deleteLabel(label.id)">
             <mat-icon>delete</mat-icon>
           </button></td>
       </ng-container>

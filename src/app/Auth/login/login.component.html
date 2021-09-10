@@ -131,8 +131,8 @@
       </form>
       <div class="CreationButton">
         <mat-dialog-actions>
-          <app-bouton *ngIf="this.formsUser.invalid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%" [disabled]="true"></app-bouton>
-          <app-bouton *ngIf="this.formsUser.valid" (click)="onSubmitCreerCompte()" label="Créer mon compte" padding="2% 20%"></app-bouton>
+          <app-bouton *ngIf="this.formsUser.invalid" (click)="onSubmitSignUp()" label="Créer mon compte" padding="2% 20%" [disabled]="true"></app-bouton>
+          <app-bouton *ngIf="this.formsUser.valid" (click)="onSubmitSignUp()" label="Créer mon compte" padding="2% 20%"></app-bouton>
         </mat-dialog-actions>
       </div>
     </div>

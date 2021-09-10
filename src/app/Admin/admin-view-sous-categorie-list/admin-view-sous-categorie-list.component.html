@@ -4,7 +4,7 @@
   </div>
 <div class="sCategorie">
   <p class="separation">Gestion des sous-catégories de produit</p>
-  <button mat-raised-button class="createSCategorieButton" (click)="createSubCategorie()">Créer une sous-catégorie </button>
+  <button mat-raised-button class="createSCategorieButton" (click)="addSubCategorie()">Créer une sous-catégorie </button>
   <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>

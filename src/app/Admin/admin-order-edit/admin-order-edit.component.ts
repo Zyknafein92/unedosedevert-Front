@@ -119,14 +119,17 @@ export class AdminOrderEditComponent implements OnInit {
 
   setOrderStatusPicking() {
     this.orderService.updateOrderStatusAfterOrderPicking(this.order.orderNumber).subscribe();
+    this.dialogRef.close();
   }
 
   setOrderStatusReadyToDelivery() {
     this.orderService.updateOrderStatusToReadyDelivery(this.order.orderNumber).subscribe();
+    this.dialogRef.close();
   }
 
   setOrderStatusDelivery() {
     this.orderService.updateOrderStatusToDelivery(this.order.orderNumber).subscribe();
+    this.dialogRef.close();
   }
 
   close() {

@@ -5,7 +5,7 @@
   <div class="categorie">
     <p class="separation">Gestion des catégories de produit</p>
     <div class="createCategorieButton">
-      <button mat-raised-button  (click)="creerCategorie()">Créer une catégorie </button>
+      <button mat-raised-button  (click)="createCategorie()">Créer une catégorie </button>
     </div>
     <table mat-table [dataSource]="this.dataSource" matSort class="example-table">
       <ng-container matColumnDef="name">
@@ -15,14 +15,14 @@
       <ng-container matColumnDef="modifier">
         <th mat-header-cell *matHeaderCellDef>Modifier</th>
         <td mat-cell *matCellDef="let categorie">
-          <button mat-fab color="primary" class="editButton" aria-label="Build" [value]="categorie" (click)="modifierCategorie(categorie)">
+          <button mat-fab color="primary" class="editButton" aria-label="Build" [value]="categorie" (click)="updateCategorie(categorie)">
             <mat-icon>build</mat-icon>
           </button></td>
       </ng-container>
       <ng-container matColumnDef="supprimer">
         <th mat-header-cell *matHeaderCellDef>Supprimer</th>
         <td mat-cell *matCellDef="let categorie">
-          <button mat-fab color="warn" class="deleteButton" aria-label="Build" [value]="categorie" (click)="supprimerCategorie(categorie.id)">
+          <button mat-fab color="warn" class="deleteButton" aria-label="Build" [value]="categorie" (click)="deleteCategorie(categorie.id)">
             <mat-icon>delete</mat-icon>
           </button></td>
       </ng-container>

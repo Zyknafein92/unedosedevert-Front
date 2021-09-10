@@ -8,7 +8,7 @@
   <div class="wrapperRightSide">
     <mat-form-field>
       <label>
-        <input type="text" class="searchBar" matInput placeholder="Rechercher...." [(ngModel)]="dataQuery">
+        <input type="text" class="searchBar" matInput placeholder="Rechercher...." [(ngModel)]="dataQuery" (keypress)="keyPressHandler($event)">
       </label>
       <button mat-button matSuffix mat-icon-button (click)="onSubmit(this.dataQuery)">
         <mat-icon>search</mat-icon>
